@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Nucleo Bariátrico — Landing
 
-## Getting Started
+Sitio web para el equipo médico de cirugía bariátrica de la Dra. Agustina y Sergio (Villa del Parque + San Isidro).
 
-First, run the development server:
+## Stack
+
+- Next.js 16.2.6 · React 19 · TypeScript · Tailwind v4 (`@theme` block en `app/globals.css`)
+- Framer Motion 12 · Lenis 1.3 (smooth scroll)
+- three 0.184 + @react-three/fiber + @react-three/drei (escenas 3D del Hero y "No estás solo")
+- Resend 6 + Zod 4 (form de contacto)
+- Fonts: Fraunces (display, variable) + Manrope (body) vía `next/font/google`
+
+## Scripts
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev      # http://localhost:3000
+npm run build    # build de producción
+npm run start    # servir el build
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Variables de entorno (ver `.env.example`)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Var | Descripción |
+| --- | --- |
+| `RESEND_API_KEY` | API key de Resend. Si no está, `/api/contact` responde `{ ok: true, devMode: true }`. |
+| `CONTACT_TO_EMAIL` | Email destino que recibe los leads. |
+| `CONTACT_FROM_EMAIL` | Email "from" verificado en Resend. En dev se puede usar `onboarding@resend.dev`. |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Estructura
 
-## Learn More
+```
+app/
+  layout.tsx              # fonts, IMCProvider, LenisProvider, WhatsAppFloat, JSON-LD MedicalBusiness
+  page.tsx                # compone todas las secciones
+  globals.css             # tokens + Tailwind @theme bridge
+  api/contact/route.ts    # Resend + Zod + honeypot + rate-limit + IMC en payload
+  opengraph-image.tsx     # OG image dinámica
+  robots.ts               # noindex hasta aprobación del cliente
+components/
+  primitives/             # Container, Section, Eyebrow, Hairline, Reveal, WipeWords, Isotipo
+  sections/               # Hero, IMCCalculator, Diferencial, Equipo, Proceso, Testimonios,
+                          # ObrasSociales, Ubicaciones, NoEstasSolo, FAQ, Contacto, Navbar, Footer
+  three/                  # IsotipoLive (Hero) + NucleoOrbitas ("No estás solo")
+  ui/                     # WhatsAppFloat, MapEmbed
+lib/
+  copy.ts                 # TODO el copy editable — único archivo a tocar para cambios de texto
+  fonts.ts, motion.ts, utils.ts
+  imc.ts                  # cálculo + clasificación OMS + criterio bariátrico (≥35/≥40)
+  imc-context.tsx         # React Context para persistir el IMC entre secciones
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Calculadora de IMC
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+La pieza central. Cuando un usuario calcula su IMC en `#imc`, el resultado vive en `IMCContext` y se inyecta automáticamente:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- En el formulario de contacto (campo visible "Tu IMC calculado: X · Categoría").
+- En el botón flotante de WhatsApp (el mensaje pre-armado incluye el dato).
+- En el payload del endpoint `/api/contact` cuando se envía la consulta.
 
-## Deploy on Vercel
+## Three.js
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Dos escenas en `components/three/`, ambas cargadas con `dynamic({ ssr: false })` y reemplazadas por SVG/CSS estático en mobile o cuando el usuario tiene `prefers-reduced-motion`:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **IsotipoLive** — el isotipo oficial N+U extruido como `TubeGeometry` siguiendo el path SVG. Reacciona sutilmente al cursor del mouse, con iluminación de drei `<Environment>` + `<ContactShadows>`.
+- **NucleoOrbitas** — esfera central índigo + 4 órbitas concéntricas con partículas. La rotación se mapea al progreso de scroll de la sección "No estás solo".
+
+## Pendientes antes del deploy
+
+1. Reemplazar el WhatsApp en `lib/copy.ts:brand.whatsappNumber` por el número real.
+2. Setear `CONTACT_TO_EMAIL` y `CONTACT_FROM_EMAIL` en Vercel.
+3. Cambiar `app/robots.ts` para permitir indexación.
+4. Subir fotos de Agustina + Sergio a `public/images/` y referenciarlas en `components/sections/Equipo.tsx`.
+5. Bios reales de cada uno en `lib/copy.ts:equipo.miembros`.
+6. Lista de obras sociales reales con logos en `public/logos/` (referenciar en `ObrasSociales.tsx`).
+7. Testimonios reales (con autorización firmada) en `lib/copy.ts:testimonios.items`.
+8. Disclaimer médico legal del footer revisado/aprobado por Agustina.
+9. Direcciones exactas de los dos consultorios + URLs reales de Google Maps embed.
+10. Pixel de Meta + GA4 si se va a hacer pauta paga.

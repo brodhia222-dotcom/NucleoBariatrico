@@ -1,26 +1,325 @@
 @import "tailwindcss";
 
+/* ============================================================================
+   NUCLEO · Tokens de diseño
+   Sistema completo importado del manual oficial de marca.
+   Editar valores acá si el cliente pide ajustes globales.
+   ========================================================================== */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ---------- COLOR · Brand ---------- */
+  --color-indigo-900: #2a2349;
+  --color-indigo-700: #3f356e;
+  --color-indigo-500: #6a608f;
+  --color-indigo-300: #a8a1c4;
+  --color-indigo-100: #e6e2ee;
+
+  --color-beige-50:  #faf7eb;
+  --color-beige-100: #f5f1e0;
+  --color-beige-200: #ebe4cb;
+  --color-beige-300: #d8cdab;
+
+  --color-orange-700: #b86223;
+  --color-orange-500: #df7e35;
+  --color-orange-300: #f0b683;
+  --color-orange-100: #fce8d4;
+
+  /* ---------- COLOR · Funcionales ---------- */
+  --color-whatsapp:    #25d366;
+  --color-success:     #5a8a5e;
+  --color-warning:     #d4953a;
+  --color-error:       #b14545;
+
+  /* ---------- COLOR · Semantic (LIGHT) ---------- */
+  --bg:              var(--color-beige-100);
+  --bg-elevated:     var(--color-beige-50);
+  --bg-subtle:       var(--color-beige-200);
+  --bg-inverse:      var(--color-indigo-700);
+
+  --ink:             var(--color-indigo-700);
+  --ink-soft:        var(--color-indigo-500);
+  --ink-muted:       var(--color-indigo-300);
+  --ink-inverse:     var(--color-beige-100);
+
+  --accent:          var(--color-orange-500);
+  --accent-hover:    var(--color-orange-700);
+  --accent-soft:     var(--color-orange-100);
+  --accent-ink:      #ffffff;
+
+  --border:          rgba(63, 53, 110, 0.14);
+  --border-strong:   rgba(63, 53, 110, 0.28);
+  --border-accent:   var(--color-orange-500);
+
+  --focus-ring:      rgba(223, 126, 53, 0.45);
+  --overlay:         rgba(42, 35, 73, 0.55);
+
+  /* ---------- TIPOGRAFÍA ---------- */
+  --font-display: var(--font-fraunces), "Cormorant Garamond", "Georgia", serif;
+  --font-body:    var(--font-manrope), "Helvetica Neue", "Helvetica", sans-serif;
+  --font-mono:    "JetBrains Mono", "SFMono-Regular", "Menlo", monospace;
+
+  --text-display-xl: clamp(56px, 11vw, 132px);
+  --text-display-lg: clamp(44px, 7vw, 88px);
+  --text-display-md: clamp(36px, 5vw, 56px);
+  --text-h1:         clamp(30px, 4vw, 48px);
+  --text-h2:         clamp(26px, 3vw, 36px);
+  --text-h3:         clamp(20px, 2.2vw, 26px);
+  --text-h4:         clamp(18px, 1.6vw, 20px);
+  --text-body-lg:    clamp(17px, 1.2vw, 19px);
+  --text-body:       16px;
+  --text-body-sm:    14px;
+  --text-caption:    13px;
+  --text-overline:   12px;
+
+  --leading-tight:   1.05;
+  --leading-snug:    1.2;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.65;
+
+  --weight-light:    300;
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+
+  --tracking-tight:  -0.025em;
+  --tracking-snug:   -0.012em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.04em;
+  --tracking-overline: 0.16em;
+
+  /* ---------- ESPACIADO ---------- */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  --section-y:       clamp(80px, 12vw, 160px);
+  --section-x:       max(24px, 6vw);
+  --container-max:   1240px;
+
+  /* ---------- RADIOS ---------- */
+  --radius-xs:   4px;
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   20px;
+  --radius-xl:   28px;
+  --radius-pill: 999px;
+
+  /* ---------- SOMBRAS · tonos cálidos índigo ---------- */
+  --shadow-xs: 0 1px 2px rgba(63, 53, 110, 0.06);
+  --shadow-sm: 0 2px 6px rgba(63, 53, 110, 0.06), 0 1px 2px rgba(63, 53, 110, 0.04);
+  --shadow-md: 0 6px 18px rgba(63, 53, 110, 0.08), 0 2px 4px rgba(63, 53, 110, 0.05);
+  --shadow-lg: 0 18px 40px rgba(63, 53, 110, 0.12), 0 4px 12px rgba(63, 53, 110, 0.06);
+  --shadow-xl: 0 30px 60px rgba(63, 53, 110, 0.18);
+
+  /* ---------- MOTION ---------- */
+  --duration-instant: 80ms;
+  --duration-fast:    160ms;
+  --duration-base:    240ms;
+  --duration-slow:    400ms;
+  --duration-slower:  650ms;
+
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:     cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-snappy: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-editorial: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* ---------- LAYOUT ---------- */
+  --nav-height: 72px;
+  --max-prose:  68ch;
+  --grid-gap:   24px;
+
+  /* ---------- Z-INDEX ---------- */
+  --z-base:    1;
+  --z-raised:  10;
+  --z-sticky:  100;
+  --z-overlay: 500;
+  --z-modal:   1000;
+  --z-toast:   2000;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ---------- Tailwind v4 @theme bridge ----------
+   Mapeo de tokens a utilidades Tailwind (bg-bg, text-ink, etc.) */
+@theme {
+  --color-bg: var(--color-beige-100);
+  --color-bg-elevated: var(--color-beige-50);
+  --color-bg-subtle: var(--color-beige-200);
+  --color-bg-inverse: var(--color-indigo-700);
+  --color-ink: var(--color-indigo-700);
+  --color-ink-soft: var(--color-indigo-500);
+  --color-ink-muted: var(--color-indigo-300);
+  --color-ink-inverse: var(--color-beige-100);
+  --color-accent: var(--color-orange-500);
+  --color-accent-hover: var(--color-orange-700);
+  --color-accent-soft: var(--color-orange-100);
+  --color-indigo-900: #2a2349;
+  --color-indigo-700: #3f356e;
+  --color-indigo-500: #6a608f;
+  --color-indigo-300: #a8a1c4;
+  --color-indigo-100: #e6e2ee;
+  --color-beige-50: #faf7eb;
+  --color-beige-100: #f5f1e0;
+  --color-beige-200: #ebe4cb;
+  --color-beige-300: #d8cdab;
+  --color-orange-700: #b86223;
+  --color-orange-500: #df7e35;
+  --color-orange-300: #f0b683;
+  --color-orange-100: #fce8d4;
+  --color-whatsapp: #25d366;
+  --font-display: var(--font-fraunces), "Cormorant Garamond", "Georgia", serif;
+  --font-body: var(--font-manrope), "Helvetica Neue", "Helvetica", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ---------- RESET LIGERO ---------- */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-relaxed);
+  font-feature-settings: "ss01", "cv11";
+}
+
+::selection {
+  background: var(--color-orange-500);
+  color: #ffffff;
+}
+
+/* ---------- TIPOGRAFÍA UTILIDADES ---------- */
+.font-display {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-variation-settings: "opsz" 96;
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-tight);
+  font-weight: var(--weight-light);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.display-xl { font-size: var(--text-display-xl); font-family: var(--font-display); font-weight: var(--weight-light); letter-spacing: var(--tracking-tight); line-height: var(--leading-tight); font-optical-sizing: auto; font-variation-settings: "opsz" 96; }
+.display-lg { font-size: var(--text-display-lg); font-family: var(--font-display); font-weight: var(--weight-light); letter-spacing: var(--tracking-tight); line-height: var(--leading-tight); font-optical-sizing: auto; font-variation-settings: "opsz" 72; }
+.display-md { font-size: var(--text-display-md); font-family: var(--font-display); font-weight: var(--weight-light); letter-spacing: var(--tracking-snug); line-height: var(--leading-snug); font-optical-sizing: auto; font-variation-settings: "opsz" 48; }
+
+.h1 { font-size: var(--text-h1); font-family: var(--font-display); font-weight: var(--weight-light); letter-spacing: var(--tracking-tight); line-height: var(--leading-tight); }
+.h2 { font-size: var(--text-h2); font-family: var(--font-display); font-weight: var(--weight-light); letter-spacing: var(--tracking-snug); line-height: var(--leading-snug); }
+.h3 { font-size: var(--text-h3); font-family: var(--font-display); font-weight: var(--weight-light); letter-spacing: var(--tracking-snug); line-height: var(--leading-snug); }
+.h4 { font-size: var(--text-h4); font-family: var(--font-body); font-weight: var(--weight-semibold); letter-spacing: 0; line-height: var(--leading-snug); }
+
+.body-lg { font-size: var(--text-body-lg); line-height: var(--leading-relaxed); }
+.body    { font-size: var(--text-body); line-height: var(--leading-relaxed); }
+.body-sm { font-size: var(--text-body-sm); line-height: var(--leading-normal); }
+.caption { font-size: var(--text-caption); line-height: var(--leading-normal); color: var(--ink-soft); }
+
+.eyebrow {
+  font-size: var(--text-overline);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-overline);
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-family: var(--font-body);
+}
+
+/* ---------- LAYOUT UTILIDADES ---------- */
+.container-x {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--section-x);
+}
+
+.section {
+  padding-block: var(--section-y);
+}
+
+.section-tight {
+  padding-block: calc(var(--section-y) * 0.6);
+}
+
+.hairline {
+  height: 1px;
+  width: 100%;
+  background: var(--border);
+}
+
+/* ---------- FOCUS ---------- */
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------- REVEAL on-scroll fallback (cuando no usás Framer) ---------- */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+}
+[data-reveal][data-revealed="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- PLACEHOLDER (imágenes pendientes del cliente) ---------- */
+.placeholder {
+  position: relative;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      var(--bg-elevated) 0,
+      var(--bg-elevated) 8px,
+      var(--bg-subtle) 8px,
+      var(--bg-subtle) 9px
+    );
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  display: grid;
+  place-items: center;
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.placeholder::after {
+  content: attr(data-label);
+  padding: 4px 10px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+}
+
+/* ---------- REDUCED MOTION ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
