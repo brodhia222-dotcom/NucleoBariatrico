@@ -10,13 +10,6 @@ import { MapEmbed } from "@/components/ui/MapEmbed";
 import { ubicaciones } from "@/lib/copy";
 import { viewportOnce, easeEditorial } from "@/lib/motion";
 
-// Placeholder editoriales de espacios médicos cálidos. Cliente provee
-// fotografía real del consultorio cuando esté lista.
-const sedeImages = [
-  "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=900&q=80&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1666214280391-8ff5bd3c0bf0?w=900&q=80&auto=format&fit=crop",
-];
-
 const sedeMeta: { area: string; horario: string; transporte: string }[] = [
   { area: "CABA", horario: "Lun a Vie · 09 – 19hs", transporte: "Subte B · Línea Mitre" },
   { area: "Zona Norte", horario: "Lun a Vie · 09 – 19hs", transporte: "Tren Mitre · Estación San Isidro" },
@@ -69,23 +62,9 @@ export function Ubicaciones() {
                 transition={{ duration: 0.8, delay: i * 0.1, ease: easeEditorial }}
                 className="group flex flex-col gap-6 overflow-hidden rounded-[var(--radius-xl)] bg-[color:var(--bg-elevated)] border border-[color:var(--border)]"
               >
-                {/* Photo of the space */}
-                <div className="relative aspect-[16/10] overflow-hidden">
-                  <img
-                    src={sedeImages[i] ?? sedeImages[0]}
-                    alt={`Espacio del consultorio ${sede.nombre}`}
-                    className="h-full w-full object-cover img-warm transition-transform duration-700 group-hover:scale-[1.02]"
-                    loading="lazy"
-                  />
-                  <div
-                    aria-hidden
-                    className="absolute inset-0"
-                    style={{
-                      background:
-                        "linear-gradient(180deg, transparent 60%, rgba(42,35,73,0.4) 100%)",
-                    }}
-                  />
-                  <div className="absolute left-5 bottom-5 right-5 flex items-end justify-between text-[color:var(--ink-inverse)]">
+                {/* Placeholder of the space */}
+                <div className="placeholder relative aspect-[16/10] rounded-none">
+                  <div className="absolute left-5 bottom-5 right-5 flex items-end justify-between text-[color:var(--ink-soft)]">
                     <div className="flex items-center gap-2">
                       <MapPin weight="fill" className="h-4 w-4 text-[color:var(--accent)]" aria-hidden />
                       <span className="font-mono text-[10px] tracking-[0.2em] uppercase">

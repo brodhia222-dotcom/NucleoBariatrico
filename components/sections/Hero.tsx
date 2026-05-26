@@ -195,31 +195,15 @@ function HeroVisual() {
       transition={{ duration: 1.0, delay: 0.3, ease: easeEditorial }}
       className="relative w-full aspect-[3/4] lg:aspect-[4/5] max-h-[680px]"
     >
-      {/* Main photo with editorial treatment */}
-      <div className="relative h-full w-full overflow-hidden rounded-[var(--radius-xl)]">
-        <img
-          src="https://images.unsplash.com/photo-1581595220892-b0739db3ba8c?w=900&q=80&auto=format&fit=crop"
-          alt="Mujer caminando con calma en luz natural"
-          className="h-full w-full object-cover img-treatment"
-          loading="eager"
-          fetchPriority="high"
-        />
-        {/* Indigo vignette to align with palette */}
-        <div
-          aria-hidden
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(180deg, transparent 30%, rgba(42,35,73,0.18) 70%, rgba(42,35,73,0.45) 100%)",
-          }}
-        />
-        {/* Caption strip overlay — like a documentary photo caption */}
-        <div className="absolute left-4 right-4 bottom-4 flex items-center justify-between text-[color:var(--ink-inverse)]">
-          <span className="font-mono text-[10px] tracking-[0.18em] uppercase opacity-90">
-            № 01 · Vida después
+      {/* Placeholder visual — esperando foto editorial del cliente */}
+      <div className="placeholder relative h-full w-full">
+        {/* Caption strip overlay */}
+        <div className="absolute left-4 right-4 bottom-4 flex items-center justify-between text-[color:var(--ink-soft)]">
+          <span className="font-mono text-[10px] tracking-[0.18em] uppercase opacity-80">
+            Foto · paciente
           </span>
-          <span className="font-mono text-[10px] tracking-[0.18em] uppercase opacity-90">
-            Caso real · 2026
+          <span className="font-mono text-[10px] tracking-[0.18em] uppercase opacity-80">
+            3:4 · pendiente
           </span>
         </div>
       </div>
@@ -241,7 +225,7 @@ function HeroVisual() {
           Equipo médico
         </span>
         <span className="font-display italic text-[15px] leading-tight" style={{ fontWeight: 400 }}>
-          “Acompañamos cada paso del recorrido.”
+          “Lorem ipsum dolor sit amet.”
         </span>
       </div>
     </motion.div>

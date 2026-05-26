@@ -8,13 +8,6 @@ import { Reveal } from "@/components/primitives/Reveal";
 import { equipo } from "@/lib/copy";
 import { easeEditorial, viewportOnce } from "@/lib/motion";
 
-// Placeholders curados — son profesionales de la salud en luz cálida.
-// Cuando el cliente provea fotos reales, reemplazamos los src.
-const placeholderImages = [
-  "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=900&q=80&auto=format&fit=crop", // doctora
-  "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=900&q=80&auto=format&fit=crop", // doctor
-];
-
 const especialidades: string[][] = [
   ["Cirugía bariátrica", "Bypass gástrico", "Manga gástrica"],
   ["Seguimiento clínico", "Coordinación interdisciplinaria"],
@@ -70,21 +63,17 @@ export function Equipo() {
                 transition={{ duration: 0.9, ease: easeEditorial }}
                 className={`grid items-center gap-8 lg:gap-16 lg:grid-cols-12 ${isReverse ? "lg:[direction:rtl]" : ""}`}
               >
-                {/* Image column */}
+                {/* Image column — placeholder editorial */}
                 <div className={`relative lg:col-span-7 ${isReverse ? "lg:[direction:ltr]" : ""}`}>
-                  <div className="relative aspect-[4/5] overflow-hidden rounded-[var(--radius-xl)]">
-                    <img
-                      src={placeholderImages[i] ?? placeholderImages[0]}
-                      alt={`Retrato editorial de ${m.nombre}`}
-                      className="h-full w-full object-cover img-warm transition-transform duration-700 hover:scale-[1.03]"
-                      loading="lazy"
-                    />
-                    {/* Number badge over image */}
+                  <div className="placeholder relative aspect-[4/5]">
                     <div className="absolute top-5 left-5 flex items-center gap-2 bg-[color:var(--bg)]/85 backdrop-blur-md px-3 py-1.5 rounded-full">
                       <span className="block h-1.5 w-1.5 rounded-full bg-[color:var(--accent)]" aria-hidden />
                       <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-[color:var(--ink)]">
                         Miembro / {String(i + 1).padStart(2, "0")}
                       </span>
+                    </div>
+                    <div className="absolute bottom-5 right-5 font-mono text-[10px] tracking-[0.18em] uppercase text-[color:var(--ink-soft)]/80">
+                      Foto · 4:5 · pendiente
                     </div>
                   </div>
                 </div>

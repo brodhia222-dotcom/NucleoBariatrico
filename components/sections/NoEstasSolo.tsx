@@ -13,21 +13,11 @@ export function NoEstasSolo() {
       className="relative overflow-hidden bg-[color:var(--color-indigo-900)]"
       style={{ paddingBlock: "clamp(120px, 16vw, 200px)" }}
     >
-      {/* Background image */}
-      <img
-        src="https://images.unsplash.com/photo-1517842645767-c639042777db?w=1800&q=80&auto=format&fit=crop"
-        alt=""
-        aria-hidden
-        className="absolute inset-0 h-full w-full object-cover opacity-30"
-      />
-      {/* Indigo veil */}
+      {/* Subtle dot pattern background */}
       <div
         aria-hidden
-        className="absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(29,23,57,0.95) 0%, rgba(42,35,73,0.85) 50%, rgba(29,23,57,0.96) 100%)",
-        }}
+        className="absolute inset-0 bg-dots opacity-[0.06]"
+        style={{ color: "var(--ink-inverse)" }}
       />
       {/* Radial vignette */}
       <div

@@ -3,7 +3,9 @@ import { fraunces, manrope } from "@/lib/fonts";
 import { IMCProvider } from "@/lib/imc-context";
 import { LenisProvider } from "@/components/LenisProvider";
 import { WhatsAppFloat } from "@/components/ui/WhatsAppFloat";
+import { ThemePicker } from "@/components/ui/ThemePicker";
 import { brand } from "@/lib/copy";
+import { themes } from "@/lib/themes";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -34,7 +36,7 @@ export const metadata: Metadata = {
     locale: "es_AR",
     type: "website",
   },
-  robots: { index: false, follow: false }, // PENDIENTE: cambiar a true antes del deploy
+  robots: { index: false, follow: false },
 };
 
 const jsonLd = {
@@ -59,6 +61,22 @@ const jsonLd = {
   ],
 };
 
+// Pre-paint theme application — evita flash del tema "default" antes de que
+// React hidrate y aplique el guardado en localStorage.
+const themeBootstrapScript = `
+(function() {
+  try {
+    var stored = localStorage.getItem('nucleo-theme');
+    var themes = ${JSON.stringify(Object.fromEntries(themes.map((t) => [t.key, t.vars])))};
+    var key = themes[stored] ? stored : 'manual';
+    var vars = themes[key];
+    var root = document.documentElement;
+    Object.keys(vars).forEach(function(k){ root.style.setProperty(k, vars[k]); });
+    root.setAttribute('data-theme', key);
+  } catch(e) {}
+})();
+`;
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
@@ -68,6 +86,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     >
       <body className="min-h-full">
         <script
+          dangerouslySetInnerHTML={{ __html: themeBootstrapScript }}
+        />
+        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
@@ -75,6 +96,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <LenisProvider />
           {children}
           <WhatsAppFloat />
+          <ThemePicker />
         </IMCProvider>
       </body>
     </html>
