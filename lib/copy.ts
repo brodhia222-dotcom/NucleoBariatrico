@@ -197,12 +197,12 @@ export const ubicaciones = {
     {
       nombre: "Villa del Parque",
       direccion: "CABA · dirección exacta a confirmar", // PENDIENTE
-      mapa: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.5!2d-58.49!3d-34.6!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1",
+      mapa: "https://maps.google.com/maps?q=Villa%20del%20Parque%2C%20CABA&t=&z=14&ie=UTF8&iwloc=&output=embed",
     },
     {
       nombre: "San Isidro",
       direccion: "Zona Norte · dirección exacta a confirmar", // PENDIENTE
-      mapa: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.5!2d-58.51!3d-34.47!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1",
+      mapa: "https://maps.google.com/maps?q=San%20Isidro%2C%20Buenos%20Aires&t=&z=14&ie=UTF8&iwloc=&output=embed",
     },
   ],
 };

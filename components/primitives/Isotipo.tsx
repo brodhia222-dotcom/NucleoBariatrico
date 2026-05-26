@@ -1,14 +1,19 @@
 import { cn } from "@/lib/utils";
 
 // Isotipo Nucleo · N + U entrelazadas como una línea continua.
-// Versión SVG 2D del manual oficial (variable de colores permitida).
-// Es el fallback estático del componente 3D del hero.
+// Path estructural del manual: vertical izquierda → arco superior (N) →
+// vertical media → arco inferior (U) → vertical derecha. Una sola línea
+// continua con line-caps y joins redondeados.
+//
+// El stroke se escala con el viewBox (viewBox 100×100 — stroke 10 = 10% del lado).
+// Antes usábamos vectorEffect="non-scaling-stroke" lo que hacía que el stroke
+// fuera de 14px literales del DOM, tapando el SVG en tamaños chicos. Eliminado.
 
 type IsotipoProps = {
   className?: string;
-  /** Stroke color. Default: currentColor (inherits from text color). */
+  /** Stroke color. Default: currentColor. */
   color?: string;
-  /** Stroke width as fraction of viewBox (default 0.16). */
+  /** Stroke width in viewBox units (100×100). Default 10. */
   strokeWidth?: number;
   title?: string;
 };
@@ -16,7 +21,7 @@ type IsotipoProps = {
 export function Isotipo({
   className,
   color = "currentColor",
-  strokeWidth = 14,
+  strokeWidth = 10,
   title = "Nucleo Bariátrico",
 }: IsotipoProps) {
   return (
@@ -28,25 +33,19 @@ export function Isotipo({
       fill="none"
     >
       <title>{title}</title>
-      {/*
-        Path inspirado en el isotipo oficial del manual de Nucleo:
-        línea única, continua, que dibuja una "N" entrelazada con una "U".
-        Reconstruida a partir del PDF de identidad visual.
-      */}
       <path
         d="
-          M 20 78
-          L 20 30
-          A 14 14 0 0 1 48 30
-          L 48 78
-          A 14 14 0 0 0 76 78
-          L 76 30
+          M 22 80
+          L 22 36
+          A 14 14 0 0 1 50 36
+          L 50 80
+          A 14 14 0 0 0 78 80
+          L 78 22
         "
         stroke={color}
         strokeWidth={strokeWidth}
         strokeLinecap="round"
         strokeLinejoin="round"
-        vectorEffect="non-scaling-stroke"
       />
     </svg>
   );
@@ -63,7 +62,7 @@ export function IsotipoLockup({
 }) {
   return (
     <div className={cn("inline-flex flex-col items-center gap-2", className)} aria-label="Nucleo Bariátrico">
-      <Isotipo className="h-10 w-10" color={color} strokeWidth={14} />
+      <Isotipo className="h-10 w-10" color={color} />
       <div className="flex flex-col items-center leading-none">
         <span
           className="font-display"

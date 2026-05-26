@@ -41,7 +41,7 @@ components/
   primitives/             # Container, Section, Eyebrow, Hairline, Reveal, WipeWords, Isotipo
   sections/               # Hero, IMCCalculator, Diferencial, Equipo, Proceso, Testimonios,
                           # ObrasSociales, Ubicaciones, NoEstasSolo, FAQ, Contacto, Navbar, Footer
-  three/                  # IsotipoLive (Hero) + NucleoOrbitas ("No estás solo")
+  three/                  # NucleoOrbitas ("No estás solo")
   ui/                     # WhatsAppFloat, MapEmbed
 lib/
   copy.ts                 # TODO el copy editable — único archivo a tocar para cambios de texto
@@ -60,10 +60,11 @@ La pieza central. Cuando un usuario calcula su IMC en `#imc`, el resultado vive 
 
 ## Three.js
 
-Dos escenas en `components/three/`, ambas cargadas con `dynamic({ ssr: false })` y reemplazadas por SVG/CSS estático en mobile o cuando el usuario tiene `prefers-reduced-motion`:
+Una escena en `components/three/NucleoOrbitas.tsx`, cargada con `dynamic({ ssr: false })` y reemplazada por CSS estático en mobile o cuando el usuario tiene `prefers-reduced-motion`:
 
-- **IsotipoLive** — el isotipo oficial N+U extruido como `TubeGeometry` siguiendo el path SVG. Reacciona sutilmente al cursor del mouse, con iluminación de drei `<Environment>` + `<ContactShadows>`.
-- **NucleoOrbitas** — esfera central índigo + 4 órbitas concéntricas con partículas. La rotación se mapea al progreso de scroll de la sección "No estás solo".
+- **NucleoOrbitas** — núcleo central (un punto pequeño naranja) + 4 órbitas concéntricas con partículas beige. Las órbitas rotan a velocidades distintas según el progreso de scroll de la sección "No estás solo". Sin protagonismo: acompañan al texto, no compiten con él.
+
+El isotipo del Hero usa SVG plano con `motion.path` animado (stroke draw-on-mount) y tilt 3D sutil al cursor — más editorial y predecible que three.js.
 
 ## Pendientes antes del deploy
 

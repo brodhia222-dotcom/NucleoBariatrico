@@ -38,7 +38,7 @@ export function Navbar() {
       >
         <div className="container-x flex h-full items-center justify-between">
           <a href="#top" className="flex items-center gap-3 text-[color:var(--ink)]">
-            <Isotipo className="h-7 w-7" strokeWidth={14} />
+            <Isotipo className="h-8 w-8" strokeWidth={11} />
             <span className="flex flex-col leading-none">
               <span className="font-display text-lg tracking-tight" style={{ fontWeight: 400 }}>
                 nucleo
@@ -98,7 +98,7 @@ export function Navbar() {
             transition={{ duration: 0.25 }}
           >
             <div className="container-x flex h-[var(--nav-height)] items-center justify-between">
-              <Isotipo className="h-7 w-7" strokeWidth={14} />
+              <Isotipo className="h-8 w-8" strokeWidth={11} />
               <button
                 type="button"
                 onClick={() => setOpen(false)}

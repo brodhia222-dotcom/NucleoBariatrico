@@ -139,21 +139,23 @@ export function IMCCalculator() {
               <div className="mt-10 grid gap-8 md:grid-cols-[auto_1fr] md:items-end">
                 <div>
                   <p className="eyebrow mb-2">{imcCalc.labels.resultado}</p>
-                  <motion.span
+                  <span
                     className="font-display block tabular-nums"
                     style={{
                       fontSize: "clamp(72px, 11vw, 128px)",
                       lineHeight: 1,
                       letterSpacing: "-0.04em",
-                      color: resultado?.esCandidatoQuirurgico
-                        ? "var(--accent)"
-                        : "var(--ink)",
+                      color: resultado
+                        ? resultado.esCandidatoQuirurgico
+                          ? "var(--accent)"
+                          : "var(--ink)"
+                        : "var(--ink-muted)",
                       fontVariationSettings: '"opsz" 144',
                       fontWeight: 300,
                     }}
                   >
-                    <motion.span>{motionImcDisplay}</motion.span>
-                  </motion.span>
+                    {resultado ? <motion.span>{motionImcDisplay}</motion.span> : "—"}
+                  </span>
                 </div>
                 <div className="md:pb-4">
                   <p className="eyebrow mb-2">{imcCalc.labels.categoria}</p>

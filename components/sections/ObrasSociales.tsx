@@ -51,17 +51,17 @@ export function ObrasSociales() {
                   </div>
                 </div>
 
-                <div className="mt-8 grid grid-cols-3 gap-3 md:grid-cols-4">
+                <div className="mt-8 grid grid-cols-3 gap-2 md:grid-cols-4">
                   {Array.from({ length: 8 }).map((_, i) => (
                     <div
                       key={i}
-                      className="placeholder aspect-[2/1] text-[10px]"
-                      data-label={`OS ${i + 1}`}
+                      aria-hidden
+                      className="aspect-[2/1] rounded-[var(--radius-sm)] border border-dashed border-[color:var(--border)] bg-transparent"
                     />
                   ))}
                 </div>
 
-                <p className="caption mt-6">{obrasSociales.notaEfector}</p>
+                <p className="caption mt-6 leading-relaxed">{obrasSociales.notaEfector}</p>
               </div>
             </Reveal>
           </div>

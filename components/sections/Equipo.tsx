@@ -29,18 +29,31 @@ export function Equipo() {
           </div>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:gap-12">
+        <div className="grid gap-10 md:grid-cols-2 lg:gap-16">
           {equipo.miembros.map((m, i) => (
             <Reveal key={m.nombre} delay={i * 0.12}>
-              <article className="group">
-                <div className="placeholder mb-6" data-label={`Foto · ${m.nombre} · 3:4`} style={{ aspectRatio: "3 / 4" }} />
-                <div className="flex items-baseline justify-between gap-6">
-                  <h3 className="h2" style={{ fontVariationSettings: '"opsz" 48' }}>
+              <article className="group grid grid-cols-[auto_1fr] items-start gap-6 md:gap-8">
+                <div
+                  className="placeholder shrink-0"
+                  data-label="Foto"
+                  style={{ width: "clamp(120px, 22vw, 180px)", aspectRatio: "4 / 5" }}
+                />
+                <div className="flex flex-col gap-2 pt-2">
+                  <span className="eyebrow">{m.rol}</span>
+                  <h3
+                    className="font-display"
+                    style={{
+                      fontSize: "clamp(28px, 3vw, 40px)",
+                      letterSpacing: "-0.02em",
+                      fontWeight: 300,
+                      lineHeight: 1.1,
+                      fontVariationSettings: '"opsz" 56',
+                    }}
+                  >
                     {m.nombre}
                   </h3>
-                  <span className="eyebrow whitespace-nowrap">{m.rol}</span>
+                  <p className="body mt-2 text-[color:var(--ink-soft)] max-w-md">{m.bio}</p>
                 </div>
-                <p className="body mt-3 text-[color:var(--ink-soft)] max-w-md">{m.bio}</p>
               </article>
             </Reveal>
           ))}
