@@ -122,12 +122,6 @@ export function ThemePicker() {
                   );
                 })}
               </ul>
-
-              <div className="p-4 border-t border-[color:var(--border)]">
-                <p className="caption leading-snug">
-                  Tu elección se guarda en este dispositivo. El sitio definitivo va a ir con la paleta que aprueben Agustina y el equipo.
-                </p>
-              </div>
             </motion.aside>
           </>
         )}
