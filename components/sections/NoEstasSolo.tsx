@@ -10,7 +10,7 @@ export function NoEstasSolo() {
   return (
     <section
       id="no-estas-solo"
-      className="relative overflow-hidden bg-[color:var(--color-indigo-900)]"
+      className="relative overflow-hidden bg-[color:var(--bg-inverse)]"
       style={{ paddingBlock: "clamp(120px, 16vw, 200px)" }}
     >
       {/* Subtle dot pattern background */}
@@ -19,13 +19,13 @@ export function NoEstasSolo() {
         className="absolute inset-0 bg-dots opacity-[0.06]"
         style={{ color: "var(--ink-inverse)" }}
       />
-      {/* Radial vignette */}
+      {/* Radial vignette — uses semantic bg-inverse so it tracks the active theme */}
       <div
         aria-hidden
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse at center, transparent 30%, rgba(29,23,57,0.55) 75%, rgba(29,23,57,0.85) 100%)",
+            "radial-gradient(ellipse at center, transparent 30%, color-mix(in srgb, var(--bg-inverse) 55%, transparent) 75%, color-mix(in srgb, var(--bg-inverse) 85%, transparent) 100%)",
         }}
       />
 

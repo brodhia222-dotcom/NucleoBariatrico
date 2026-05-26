@@ -320,9 +320,9 @@ body::before {
 .placeholder {
   position: relative;
   background:
-    radial-gradient(ellipse at 30% 25%, rgba(223, 126, 53, 0.15), transparent 55%),
-    radial-gradient(ellipse at 70% 75%, rgba(63, 53, 110, 0.18), transparent 60%),
-    linear-gradient(135deg, var(--color-beige-200), var(--color-beige-300));
+    radial-gradient(ellipse at 30% 25%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 55%),
+    radial-gradient(ellipse at 70% 75%, color-mix(in srgb, var(--ink) 20%, transparent), transparent 60%),
+    linear-gradient(135deg, var(--bg-subtle), var(--bg-deep));
   border-radius: var(--radius-lg);
   overflow: hidden;
 }

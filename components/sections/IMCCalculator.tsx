@@ -136,7 +136,7 @@ export function IMCCalculator() {
                         ? resultado.esCandidatoQuirurgico
                           ? "var(--accent)"
                           : "var(--ink-inverse)"
-                        : "rgba(245,241,224,0.35)",
+                        : "color-mix(in srgb, var(--ink-inverse) 35%, transparent)",
                     }}
                   >
                     {resultado ? <motion.span>{motionImcDisplay}</motion.span> : "—"}
@@ -167,7 +167,7 @@ export function IMCCalculator() {
                     className="absolute inset-y-0 left-0 right-0"
                     style={{
                       background:
-                        "linear-gradient(90deg, rgba(245,241,224,0.5) 0%, rgba(245,241,224,0.65) 26%, rgba(245,241,224,0.65) 42%, rgba(223,126,53,0.7) 50%, rgba(223,126,53,0.9) 65%, #df7e35 85%)",
+                        "linear-gradient(90deg, color-mix(in srgb, var(--ink-inverse) 50%, transparent) 0%, color-mix(in srgb, var(--ink-inverse) 65%, transparent) 26%, color-mix(in srgb, var(--ink-inverse) 65%, transparent) 42%, color-mix(in srgb, var(--accent) 70%, transparent) 50%, color-mix(in srgb, var(--accent) 90%, transparent) 65%, var(--accent) 85%)",
                     }}
                   />
                   {markerPercent !== null && (
@@ -175,7 +175,8 @@ export function IMCCalculator() {
                       initial={{ left: "0%" }}
                       animate={{ left: `${markerPercent}%` }}
                       transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-                      className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 h-5 w-5 rounded-full bg-white shadow-[0_0_0_4px_rgba(223,126,53,0.35)]"
+                      className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 h-5 w-5 rounded-full bg-[color:var(--ink-inverse)]"
+                      style={{ boxShadow: "0 0 0 4px color-mix(in srgb, var(--accent) 35%, transparent)" }}
                       aria-hidden
                     />
                   )}

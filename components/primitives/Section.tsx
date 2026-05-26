@@ -4,10 +4,10 @@ import type { ReactNode } from "react";
 type Tone = "default" | "elevated" | "subtle" | "dark";
 
 const toneClass: Record<Tone, string> = {
-  default: "bg-bg text-ink",
-  elevated: "bg-bg-elevated text-ink",
-  subtle: "bg-bg-subtle text-ink",
-  dark: "bg-indigo-700 text-ink-inverse",
+  default: "bg-[color:var(--bg)] text-[color:var(--ink)]",
+  elevated: "bg-[color:var(--bg-elevated)] text-[color:var(--ink)]",
+  subtle: "bg-[color:var(--bg-subtle)] text-[color:var(--ink)]",
+  dark: "bg-[color:var(--bg-inverse)] text-[color:var(--ink-inverse)]",
 };
 
 export function Section({

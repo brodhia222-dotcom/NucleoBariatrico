@@ -9,7 +9,7 @@ import { viewportOnce, easeEditorial } from "@/lib/motion";
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-[color:var(--color-indigo-900)] text-[color:var(--ink-inverse)]">
+    <footer className="relative overflow-hidden bg-[color:var(--bg-inverse)] text-[color:var(--ink-inverse)]">
       {/* Top CTA block */}
       <div className="border-b border-[color:var(--ink-inverse)]/10">
         <Container>
