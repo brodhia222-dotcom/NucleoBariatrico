@@ -1,45 +1,56 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { Container } from "@/components/primitives/Container";
-import { Section } from "@/components/primitives/Section";
 import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { noEstasSolo } from "@/lib/copy";
 import { viewportOnce, easeEditorial } from "@/lib/motion";
 
-const NucleoOrbitas = dynamic(
-  () => import("@/components/three/NucleoOrbitas").then((m) => m.NucleoOrbitas),
-  { ssr: false, loading: () => null },
-);
-
 export function NoEstasSolo() {
   return (
-    <Section id="no-estas-solo" tone="dark" className="relative overflow-hidden">
-      {/* Orbitas 3D detrás — silenciosas, baja opacidad */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 opacity-70">
-        <NucleoOrbitas />
-      </div>
-
-      {/* Veil vertical para asegurar legibilidad del texto centrado */}
+    <section
+      id="no-estas-solo"
+      className="relative overflow-hidden bg-[color:var(--color-indigo-900)]"
+      style={{ paddingBlock: "clamp(120px, 16vw, 200px)" }}
+    >
+      {/* Background image */}
+      <img
+        src="https://images.unsplash.com/photo-1517842645767-c639042777db?w=1800&q=80&auto=format&fit=crop"
+        alt=""
+        aria-hidden
+        className="absolute inset-0 h-full w-full object-cover opacity-30"
+      />
+      {/* Indigo veil */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0"
+        className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse at center, rgba(42,35,73,0.55) 0%, rgba(42,35,73,0.1) 60%, transparent 100%)",
+            "linear-gradient(180deg, rgba(29,23,57,0.95) 0%, rgba(42,35,73,0.85) 50%, rgba(29,23,57,0.96) 100%)",
+        }}
+      />
+      {/* Radial vignette */}
+      <div
+        aria-hidden
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, transparent 30%, rgba(29,23,57,0.55) 75%, rgba(29,23,57,0.85) 100%)",
         }}
       />
 
-      <Container className="relative grid place-items-center min-h-[78svh] py-[var(--space-20)] text-center text-[color:var(--ink-inverse)]">
+      <Container className="relative z-10 grid place-items-center text-center text-[color:var(--ink-inverse)]">
         <div className="flex flex-col items-center gap-10 max-w-3xl">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={viewportOnce}
             transition={{ duration: 0.8, delay: 0.2 }}
+            className="flex items-center gap-3"
           >
-            <Eyebrow className="opacity-70">{noEstasSolo.eyebrow}</Eyebrow>
+            <span aria-hidden className="block h-px w-10 bg-[color:var(--accent)]" />
+            <Eyebrow className="text-[color:var(--ink-inverse)]/70">{noEstasSolo.eyebrow}</Eyebrow>
+            <span aria-hidden className="block h-px w-10 bg-[color:var(--accent)]" />
           </motion.div>
 
           <motion.h2
@@ -49,7 +60,7 @@ export function NoEstasSolo() {
             transition={{ duration: 1.0, delay: 0.3, ease: easeEditorial }}
             className="font-display"
             style={{
-              fontSize: "clamp(56px, 10vw, 132px)",
+              fontSize: "clamp(48px, 8vw, 104px)",
               lineHeight: 1.0,
               letterSpacing: "-0.04em",
               fontWeight: 300,
@@ -57,20 +68,32 @@ export function NoEstasSolo() {
               textWrap: "balance",
             }}
           >
-            {noEstasSolo.headline}
+            {noEstasSolo.headline.replace(".", "")}
+            <span className="italic-serif text-[color:var(--accent)]">.</span>
           </motion.h2>
 
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={viewportOnce}
-            transition={{ duration: 0.8, delay: 0.7 }}
-            className="body-lg max-w-md text-[color:var(--ink-inverse)]/75"
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="body-lg max-w-md text-[color:var(--ink-inverse)]/80"
           >
             {noEstasSolo.body}
           </motion.p>
+
+          {/* Signature */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={viewportOnce}
+            transition={{ duration: 0.8, delay: 0.85 }}
+            className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--ink-inverse)]/55 mt-6"
+          >
+            — Equipo Nucleo Bariátrico
+          </motion.div>
         </div>
       </Container>
-    </Section>
+    </section>
   );
 }

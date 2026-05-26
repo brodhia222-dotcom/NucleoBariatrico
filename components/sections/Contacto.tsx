@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useId } from "react";
 import { motion } from "framer-motion";
+import { ArrowRight, WhatsappLogo, EnvelopeSimple, Clock } from "@phosphor-icons/react";
 import { Container } from "@/components/primitives/Container";
 import { Section } from "@/components/primitives/Section";
 import { Eyebrow } from "@/components/primitives/Eyebrow";
@@ -23,7 +24,6 @@ export function Contacto() {
   const idMensaje = useId();
   const idHoneypot = useId();
 
-  // Make sure focus rings and aria work when reduced motion.
   useEffect(() => {
     if (status === "sent") {
       const t = setTimeout(() => setStatus("idle"), 8000);
@@ -42,7 +42,6 @@ export function Contacto() {
     const form = e.currentTarget;
     const data = new FormData(form);
 
-    // Honeypot — silent discard if bot fills it.
     if ((data.get("website") as string)?.trim()) return;
 
     const payload = {
@@ -80,39 +79,100 @@ export function Contacto() {
   return (
     <Section id="contacto" tone="default">
       <Container>
-        <div className="grid gap-16 lg:grid-cols-12 lg:gap-20">
-          <div className="lg:col-span-5 flex flex-col gap-6">
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+          {/* LEFT — visual + contact options */}
+          <div className="lg:col-span-5 flex flex-col gap-8">
             <Reveal>
               <Eyebrow>{contacto.eyebrow}</Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
-              <h2 className="display-md" style={{ fontVariationSettings: '"opsz" 80', maxWidth: "12ch" }}>
-                {contacto.headline}
+              <h2
+                className="font-display"
+                style={{
+                  fontSize: "clamp(40px, 5vw, 72px)",
+                  lineHeight: 1.0,
+                  letterSpacing: "-0.035em",
+                  fontWeight: 300,
+                  fontVariationSettings: '"opsz" 96',
+                  textWrap: "balance",
+                  maxWidth: "8ch",
+                }}
+              >
+                {contacto.headline.replace(".", "")}
+                <span className="italic-serif text-[color:var(--accent)]">.</span>
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
-              <p className="body-lg text-[color:var(--ink-soft)]">{contacto.body}</p>
+              <p className="body-lg text-[color:var(--ink-soft)] max-w-prose">{contacto.body}</p>
             </Reveal>
 
-            <Reveal delay={0.18} className="mt-4">
-              <a
-                href={whatsappHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex h-12 items-center gap-3 rounded-[12px] border border-[color:var(--ink)] bg-transparent px-6 text-sm font-medium text-[color:var(--ink)] hover:bg-[color:var(--ink)] hover:text-white transition-colors"
-              >
-                <svg viewBox="0 0 32 32" fill="currentColor" className="h-5 w-5" aria-hidden>
-                  <path d="M16.005 3C8.82 3 3 8.815 3 15.99c0 2.823.9 5.435 2.427 7.563L4 29l5.65-1.39A12.9 12.9 0 0 0 16 28.98c7.182 0 13-5.815 13-12.99C29 8.815 23.187 3 16.005 3Zm0 23.793a10.8 10.8 0 0 1-5.5-1.504l-.395-.235-3.357.826.83-3.273-.257-.42a10.8 10.8 0 0 1-1.617-5.697c0-5.978 4.85-10.823 10.83-10.823 5.98 0 10.83 4.845 10.83 10.823 0 5.977-4.85 10.823-10.83 10.823Z" />
-                </svg>
-                {contacto.labels.enviar !== "" && "Escribir por WhatsApp"}
-              </a>
+            {/* Direct contact list */}
+            <Reveal delay={0.15}>
+              <ul className="flex flex-col divide-y divide-[color:var(--border)] border-y border-[color:var(--border)] mt-2">
+                <li>
+                  <a
+                    href={whatsappHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-between gap-4 py-5 hover:px-2 transition-all"
+                  >
+                    <span className="flex items-center gap-4">
+                      <span
+                        aria-hidden
+                        className="grid h-10 w-10 place-items-center rounded-full bg-[color:var(--color-whatsapp)]/15 text-[color:var(--color-whatsapp)]"
+                      >
+                        <WhatsappLogo weight="fill" className="h-5 w-5" />
+                      </span>
+                      <span className="flex flex-col">
+                        <span className="font-medium text-[color:var(--ink)]">WhatsApp</span>
+                        <span className="caption">Respuesta rápida</span>
+                      </span>
+                    </span>
+                    <ArrowRight weight="bold" className="h-4 w-4 text-[color:var(--ink)] opacity-50 group-hover:opacity-100 transition-opacity" />
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={`mailto:${brand.email}`}
+                    className="group flex items-center justify-between gap-4 py-5 hover:px-2 transition-all"
+                  >
+                    <span className="flex items-center gap-4">
+                      <span
+                        aria-hidden
+                        className="grid h-10 w-10 place-items-center rounded-full bg-[color:var(--accent-soft)] text-[color:var(--accent)]"
+                      >
+                        <EnvelopeSimple weight="regular" className="h-5 w-5" />
+                      </span>
+                      <span className="flex flex-col">
+                        <span className="font-medium text-[color:var(--ink)]">Email</span>
+                        <span className="caption">{brand.email}</span>
+                      </span>
+                    </span>
+                    <ArrowRight weight="bold" className="h-4 w-4 text-[color:var(--ink)] opacity-50 group-hover:opacity-100 transition-opacity" />
+                  </a>
+                </li>
+                <li>
+                  <div className="flex items-center gap-4 py-5">
+                    <span
+                      aria-hidden
+                      className="grid h-10 w-10 place-items-center rounded-full bg-[color:var(--bg-subtle)] text-[color:var(--ink)]"
+                    >
+                      <Clock weight="regular" className="h-5 w-5" />
+                    </span>
+                    <span className="flex flex-col">
+                      <span className="font-medium text-[color:var(--ink)]">Lun a Vie · 09 – 19hs</span>
+                      <span className="caption">Respuesta &lt; 24 hs hábiles</span>
+                    </span>
+                  </div>
+                </li>
+              </ul>
             </Reveal>
 
             {resultado && (
               <motion.div
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mt-4 rounded-[var(--radius-md)] border border-[color:var(--accent-soft)] bg-[color:var(--accent-soft)]/60 p-5"
+                className="rounded-[var(--radius-md)] border border-[color:var(--accent-soft)] bg-[color:var(--accent-soft)]/60 p-5"
               >
                 <p className="caption uppercase tracking-[0.16em] text-[color:var(--accent)] mb-1 font-medium">
                   {contacto.labels.imcAuto}
@@ -120,17 +180,20 @@ export function Contacto() {
                 <p className="text-lg font-medium text-[color:var(--ink)]">
                   IMC {resultado.imc} · {resultado.categoria}
                 </p>
+                <p className="caption mt-1">Lo sumamos a tu consulta automáticamente.</p>
               </motion.div>
             )}
           </div>
 
+          {/* RIGHT — form */}
           <div className="lg:col-span-7">
             <Reveal>
               <form
                 onSubmit={onSubmit}
-                className="grid gap-5 rounded-[var(--radius-xl)] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-8 lg:p-10 shadow-[var(--shadow-md)]"
+                className="grid gap-5 rounded-[var(--radius-2xl)] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-8 lg:p-10 shadow-[var(--shadow-md)]"
               >
-                {/* Honeypot */}
+                <span className="eyebrow mb-2">Formulario de consulta</span>
+
                 <input
                   id={idHoneypot}
                   name="website"
@@ -142,38 +205,19 @@ export function Contacto() {
                 />
 
                 <div className="grid gap-5 md:grid-cols-2">
-                  <FormField
-                    id={idNombre}
-                    name="nombre"
-                    label={contacto.labels.nombre}
-                    required
-                  />
-                  <FormField
-                    id={idTelefono}
-                    name="telefono"
-                    label={contacto.labels.telefono}
-                    type="tel"
-                    required
-                  />
+                  <FormField id={idNombre} name="nombre" label={contacto.labels.nombre} required />
+                  <FormField id={idTelefono} name="telefono" label={contacto.labels.telefono} type="tel" required />
                 </div>
-                <FormField
-                  id={idEmail}
-                  name="email"
-                  label={contacto.labels.email}
-                  type="email"
-                  required
-                />
+                <FormField id={idEmail} name="email" label={contacto.labels.email} type="email" required />
 
                 <label className="flex flex-col gap-2">
-                  <span className="eyebrow" id={`${idMotivo}-label`}>
-                    {contacto.labels.motivo}
-                  </span>
+                  <span className="eyebrow">{contacto.labels.motivo}</span>
                   <select
                     id={idMotivo}
                     name="motivo"
                     required
                     defaultValue=""
-                    className="h-12 rounded-[12px] border border-[color:var(--border-strong)] bg-[color:var(--bg)] px-4 text-[color:var(--ink)] outline-none focus:border-[color:var(--accent)]"
+                    className="h-12 rounded-[10px] border border-[color:var(--border-strong)] bg-[color:var(--bg)] px-4 text-[color:var(--ink)] outline-none focus:border-[color:var(--ink)]"
                   >
                     <option value="" disabled>
                       Elegí un motivo
@@ -192,25 +236,27 @@ export function Contacto() {
                     id={idMensaje}
                     name="mensaje"
                     rows={4}
-                    className="rounded-[12px] border border-[color:var(--border-strong)] bg-[color:var(--bg)] px-4 py-3 text-[color:var(--ink)] outline-none focus:border-[color:var(--accent)]"
-                    placeholder="Contanos tu situación..."
+                    className="rounded-[10px] border border-[color:var(--border-strong)] bg-[color:var(--bg)] px-4 py-3 text-[color:var(--ink)] outline-none focus:border-[color:var(--ink)] resize-none"
+                    placeholder="Contanos brevemente tu situación..."
                   />
                 </label>
 
                 <button
                   type="submit"
                   disabled={status === "sending"}
-                  className="mt-2 inline-flex h-12 w-full items-center justify-center rounded-[12px] bg-[color:var(--accent)] px-6 text-sm font-medium text-white shadow-[var(--shadow-sm)] hover:bg-[color:var(--accent-hover)] transition-colors disabled:opacity-60"
+                  className="btn btn-primary mt-2 group disabled:opacity-60"
                 >
                   {status === "sending" ? contacto.labels.enviando : contacto.labels.enviar}
+                  <ArrowRight weight="bold" className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                 </button>
 
                 {status === "sent" && (
                   <motion.p
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="text-sm text-[color:var(--color-success)]"
+                    className="text-sm text-[color:var(--color-success)] flex items-center gap-2"
                   >
+                    <span className="h-2 w-2 rounded-full bg-[color:var(--color-success)]" />
                     {contacto.labels.enviado}
                   </motion.p>
                 )}
@@ -253,7 +299,7 @@ function FormField({
         name={name}
         type={type}
         required={required}
-        className="h-12 rounded-[12px] border border-[color:var(--border-strong)] bg-[color:var(--bg)] px-4 text-[color:var(--ink)] outline-none focus:border-[color:var(--accent)]"
+        className="h-12 rounded-[10px] border border-[color:var(--border-strong)] bg-[color:var(--bg)] px-4 text-[color:var(--ink)] outline-none focus:border-[color:var(--ink)] transition-colors"
       />
     </label>
   );

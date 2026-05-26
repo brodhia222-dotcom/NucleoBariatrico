@@ -1,57 +1,67 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { ArrowDown, ArrowUpRight, WhatsappLogo } from "@phosphor-icons/react";
 import { Container } from "@/components/primitives/Container";
-import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { Isotipo } from "@/components/primitives/Isotipo";
-import { WipeWords } from "@/components/primitives/WipeWords";
-import { hero } from "@/lib/copy";
+import { brand, hero } from "@/lib/copy";
 import { easeEditorial, easeOut } from "@/lib/motion";
 
 export function Hero() {
+  const reduced = useReducedMotion();
+
   return (
     <section
       id="top"
       className="relative isolate overflow-hidden"
-      style={{ paddingTop: "calc(var(--nav-height) + 32px)" }}
+      style={{ paddingTop: "calc(var(--nav-height) + 16px)" }}
     >
-      <Container className="relative grid items-center gap-10 lg:grid-cols-12 lg:gap-20 pb-[calc(var(--section-y)*0.6)] lg:min-h-[calc(100svh-var(--nav-height))]">
+      {/* Editorial metadata strip — like a magazine masthead */}
+      <Container>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="flex items-center justify-between border-b border-[color:var(--border)] pb-3 mb-10 lg:mb-14"
+        >
+          <span className="eyebrow tabular">Mayo · 2026</span>
+          <span className="eyebrow hidden sm:block">Equipo Médico · Cirugía Bariátrica</span>
+          <span className="eyebrow tabular">№ 01</span>
+        </motion.div>
+      </Container>
+
+      <Container className="relative grid items-end gap-10 lg:grid-cols-12 lg:gap-12 pb-16 lg:pb-24">
         {/* Left: type column */}
         <div className="lg:col-span-7 flex flex-col gap-7 lg:gap-9">
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: easeOut }}
+            transition={{ duration: 0.55, ease: easeOut }}
+            className="flex items-center gap-3"
           >
-            <Eyebrow>{hero.eyebrow}</Eyebrow>
+            <span className="block h-2 w-2 rounded-full bg-[color:var(--accent)]" aria-hidden />
+            <span className="eyebrow">{hero.eyebrow}</span>
           </motion.div>
 
           <h1
             className="font-display"
             style={{
-              fontSize: "clamp(56px, 9vw, 128px)",
+              fontSize: "clamp(48px, 7.5vw, 96px)",
               lineHeight: 0.98,
               letterSpacing: "-0.035em",
               fontWeight: 300,
               fontVariationSettings: '"opsz" 144',
+              textWrap: "balance",
             }}
           >
-            <WipeWords text={["Tu salud"]} as="span" byLine />
-            <WipeWords
-              text={["empieza acá."]}
-              as="span"
-              byLine
-              wordClassName=""
-              delayChildren={0.18}
-            />
+            <HeroHeadline reduced={Boolean(reduced)} />
           </h1>
 
           <motion.p
-            className="body-lg max-w-xl text-[color:var(--ink-soft)]"
+            className="body-lg max-w-[52ch] text-[color:var(--ink-soft)]"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.5, ease: easeEditorial }}
+            transition={{ duration: 0.7, delay: 0.55, ease: easeEditorial }}
           >
             {hero.body}
           </motion.p>
@@ -60,118 +70,180 @@ export function Hero() {
             className="flex flex-wrap items-center gap-3 mt-1"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.65, ease: easeEditorial }}
+            transition={{ duration: 0.7, delay: 0.72, ease: easeEditorial }}
           >
-            <a
-              href={hero.primary.href}
-              className="inline-flex h-12 items-center rounded-[12px] bg-[color:var(--accent)] px-6 text-sm font-medium text-white shadow-[var(--shadow-sm)] hover:bg-[color:var(--accent-hover)] transition-colors"
-            >
+            <a href={hero.primary.href} className="btn btn-primary group">
               {hero.primary.label}
+              <ArrowDown weight="bold" className="h-4 w-4 transition-transform group-hover:translate-y-0.5" />
             </a>
             <a
-              href={hero.secondary.href}
-              className="inline-flex h-12 items-center px-3 text-sm font-medium text-[color:var(--ink)] underline-offset-4 hover:underline"
+              href={`https://wa.me/${brand.whatsappNumber.replace(/[^\d]/g, "")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-ghost"
             >
-              {hero.secondary.label}
-              <span aria-hidden className="ml-2">→</span>
+              <WhatsappLogo weight="fill" className="h-4 w-4" />
+              Hablar por WhatsApp
             </a>
           </motion.div>
+
+          {/* Metric strip */}
+          <motion.dl
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.95, ease: easeEditorial }}
+            className="mt-6 grid grid-cols-3 gap-4 lg:gap-6 border-t border-[color:var(--border)] pt-6"
+          >
+            <Metric value="2" label="Consultorios" sublabel="Villa del Parque · San Isidro" />
+            <Metric value="100%" label="Cobertura PMO" sublabel="con efector autorizado" />
+            <Metric value="12m" label="Seguimiento" sublabel="post-quirúrgico incluido" />
+          </motion.dl>
         </div>
 
-        {/* Right: large SVG isotype, fluid line. */}
-        <div className="lg:col-span-5 relative flex items-center justify-center">
-          <HeroIsotipo />
+        {/* Right: image + isotipo composition */}
+        <div className="lg:col-span-5 relative">
+          <HeroVisual />
         </div>
       </Container>
-
-      {/* Bottom anchor row — only visible after the hero copy, low key */}
-      <div className="container-x">
-        <div className="flex items-center gap-6 border-t border-[color:var(--border)] py-6 text-[color:var(--ink-soft)]">
-          <span className="eyebrow">Consultorios</span>
-          <span aria-hidden className="block h-px w-8 bg-[color:var(--border)]" />
-          <span className="text-sm">Villa del Parque</span>
-          <span aria-hidden className="block h-px w-4 bg-[color:var(--border)]" />
-          <span className="text-sm">San Isidro</span>
-        </div>
-      </div>
     </section>
   );
 }
 
-function HeroIsotipo() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const reduced = useReducedMotion();
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    if (reduced) return;
-    const onMove = (e: MouseEvent) => {
-      const el = containerRef.current;
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top + rect.height / 2;
-      const x = Math.max(-1, Math.min(1, (e.clientX - cx) / (rect.width / 2)));
-      const y = Math.max(-1, Math.min(1, (e.clientY - cy) / (rect.height / 2)));
-      setTilt({ x: x * 6, y: -y * 6 });
-    };
-    window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
-  }, [reduced]);
-
+function HeroHeadline({ reduced }: { reduced: boolean }) {
+  const words = ["Tu salud", "empieza"];
+  const accentWord = "acá";
   return (
-    <div ref={containerRef} className="relative aspect-square w-full max-w-[520px]" style={{ perspective: "1000px" }}>
-      {/* Soft warm halo */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10"
+    <motion.span
+      initial="hidden"
+      animate="visible"
+      variants={{
+        hidden: {},
+        visible: { transition: { staggerChildren: 0.07, delayChildren: 0.12 } },
+      }}
+      className="inline-block"
+    >
+      {words.map((w, i) => (
+        <span key={i} className="block overflow-hidden">
+          <motion.span
+            variants={
+              reduced
+                ? { hidden: { opacity: 1 }, visible: { opacity: 1 } }
+                : {
+                    hidden: { y: "108%" },
+                    visible: { y: 0, transition: { duration: 0.85, ease: easeEditorial } },
+                  }
+            }
+            className="inline-block will-change-transform"
+          >
+            {w}
+          </motion.span>
+        </span>
+      ))}
+      <span className="block overflow-hidden">
+        <motion.span
+          variants={
+            reduced
+              ? { hidden: { opacity: 1 }, visible: { opacity: 1 } }
+              : {
+                  hidden: { y: "108%" },
+                  visible: { y: 0, transition: { duration: 0.85, ease: easeEditorial } },
+                }
+          }
+          className="inline-block will-change-transform italic-serif text-[color:var(--accent)]"
+        >
+          {accentWord}.
+        </motion.span>
+      </span>
+    </motion.span>
+  );
+}
+
+function Metric({
+  value,
+  label,
+  sublabel,
+}: {
+  value: string;
+  label: string;
+  sublabel: string;
+}) {
+  return (
+    <div className="flex flex-col gap-1">
+      <span
+        className="font-display tabular text-[color:var(--ink)]"
         style={{
-          background:
-            "radial-gradient(circle at 50% 55%, rgba(223,126,53,0.10), transparent 60%)",
+          fontSize: "clamp(28px, 3vw, 40px)",
+          letterSpacing: "-0.02em",
+          lineHeight: 1,
+          fontWeight: 300,
+          fontVariationSettings: '"opsz" 48',
         }}
-      />
-      <motion.div
-        className="absolute inset-0 grid place-items-center"
-        initial={{ opacity: 0, scale: 0.96 }}
-        animate={{
-          opacity: 1,
-          scale: 1,
-          rotateX: tilt.y,
-          rotateY: tilt.x,
-        }}
-        transition={{
-          opacity: { duration: 1.0, ease: easeEditorial },
-          scale: { duration: 1.0, ease: easeEditorial },
-          rotateX: { type: "spring", stiffness: 90, damping: 20 },
-          rotateY: { type: "spring", stiffness: 90, damping: 20 },
-        }}
-        style={{ transformStyle: "preserve-3d" }}
       >
-        <SVGIsotipoDrawn />
-      </motion.div>
+        {value}
+      </span>
+      <span className="eyebrow leading-tight">{label}</span>
+      <span className="caption hidden md:block leading-tight">{sublabel}</span>
     </div>
   );
 }
 
-function SVGIsotipoDrawn() {
-  const reduced = useReducedMotion();
+function HeroVisual() {
   return (
-    <svg
-      viewBox="0 0 100 100"
-      className="h-[78%] w-[78%] text-[color:var(--ink)] drop-shadow-[0_24px_48px_rgba(63,53,110,0.18)]"
-      fill="none"
-      aria-hidden
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1.0, delay: 0.3, ease: easeEditorial }}
+      className="relative w-full aspect-[3/4] lg:aspect-[4/5] max-h-[680px]"
     >
-      <motion.path
-        d="M 22 80 L 22 36 A 14 14 0 0 1 50 36 L 50 80 A 14 14 0 0 0 78 80 L 78 22"
-        stroke="currentColor"
-        strokeWidth={10}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        initial={reduced ? { pathLength: 1 } : { pathLength: 0 }}
-        animate={{ pathLength: 1 }}
-        transition={{ duration: 1.8, ease: easeEditorial, delay: 0.2 }}
-      />
-    </svg>
+      {/* Main photo with editorial treatment */}
+      <div className="relative h-full w-full overflow-hidden rounded-[var(--radius-xl)]">
+        <img
+          src="https://images.unsplash.com/photo-1581595220892-b0739db3ba8c?w=900&q=80&auto=format&fit=crop"
+          alt="Mujer caminando con calma en luz natural"
+          className="h-full w-full object-cover img-treatment"
+          loading="eager"
+          fetchPriority="high"
+        />
+        {/* Indigo vignette to align with palette */}
+        <div
+          aria-hidden
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, transparent 30%, rgba(42,35,73,0.18) 70%, rgba(42,35,73,0.45) 100%)",
+          }}
+        />
+        {/* Caption strip overlay — like a documentary photo caption */}
+        <div className="absolute left-4 right-4 bottom-4 flex items-center justify-between text-[color:var(--ink-inverse)]">
+          <span className="font-mono text-[10px] tracking-[0.18em] uppercase opacity-90">
+            № 01 · Vida después
+          </span>
+          <span className="font-mono text-[10px] tracking-[0.18em] uppercase opacity-90">
+            Caso real · 2026
+          </span>
+        </div>
+      </div>
+
+      {/* Floating isotipo badge — top right */}
+      <div
+        className="absolute -top-4 -right-4 lg:-top-6 lg:-right-6 grid h-20 w-20 lg:h-24 lg:w-24 place-items-center rounded-full bg-[color:var(--bg)] shadow-[var(--shadow-md)]"
+        aria-hidden
+      >
+        <Isotipo className="h-9 w-9 lg:h-11 lg:w-11 text-[color:var(--ink)]" strokeWidth={10} />
+      </div>
+
+      {/* Editorial quote tag — bottom left */}
+      <div
+        className="absolute -bottom-3 -left-3 lg:-bottom-4 lg:-left-4 max-w-[200px] bg-[color:var(--ink)] text-[color:var(--ink-inverse)] px-4 py-3 rounded-[var(--radius-md)] shadow-[var(--shadow-lg)]"
+        aria-hidden
+      >
+        <span className="block text-[10px] tracking-[0.18em] uppercase opacity-70 font-mono mb-1">
+          Equipo médico
+        </span>
+        <span className="font-display italic text-[15px] leading-tight" style={{ fontWeight: 400 }}>
+          “Acompañamos cada paso del recorrido.”
+        </span>
+      </div>
+    </motion.div>
   );
 }

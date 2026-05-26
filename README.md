@@ -41,7 +41,6 @@ components/
   primitives/             # Container, Section, Eyebrow, Hairline, Reveal, WipeWords, Isotipo
   sections/               # Hero, IMCCalculator, Diferencial, Equipo, Proceso, Testimonios,
                           # ObrasSociales, Ubicaciones, NoEstasSolo, FAQ, Contacto, Navbar, Footer
-  three/                  # NucleoOrbitas ("No estás solo")
   ui/                     # WhatsAppFloat, MapEmbed
 lib/
   copy.ts                 # TODO el copy editable — único archivo a tocar para cambios de texto
@@ -58,13 +57,13 @@ La pieza central. Cuando un usuario calcula su IMC en `#imc`, el resultado vive 
 - En el botón flotante de WhatsApp (el mensaje pre-armado incluye el dato).
 - En el payload del endpoint `/api/contact` cuando se envía la consulta.
 
-## Three.js
+## Diseño
 
-Una escena en `components/three/NucleoOrbitas.tsx`, cargada con `dynamic({ ssr: false })` y reemplazada por CSS estático en mobile o cuando el usuario tiene `prefers-reduced-motion`:
+La landing se basa en una grilla editorial asimétrica (estilo revista), tipografía Fraunces (display) + Manrope (body), grain overlay global sutil, e iconografía Phosphor Icons. La paleta es índigo + beige + naranja con uso medido — el naranja aparece solo como acento crítico (CTAs, cifras destacadas, palabras italicizadas).
 
-- **NucleoOrbitas** — núcleo central (un punto pequeño naranja) + 4 órbitas concéntricas con partículas beige. Las órbitas rotan a velocidades distintas según el progreso de scroll de la sección "No estás solo". Sin protagonismo: acompañan al texto, no compiten con él.
+El isotipo Nucleo está implementado como SVG inline con stroke escalable, sin three.js (saqué el WebGL — la calidad editorial venía de las imágenes reales y la composición, no de geometría 3D).
 
-El isotipo del Hero usa SVG plano con `motion.path` animado (stroke draw-on-mount) y tilt 3D sutil al cursor — más editorial y predecible que three.js.
+**Imagery:** las fotos del Hero, Equipo y Ubicaciones usan placeholders curados de Unsplash con tratamiento warm/sepia para alinear con la paleta. Cuando el cliente provea sus fotos reales, se reemplazan los `src`.
 
 ## Pendientes antes del deploy
 
