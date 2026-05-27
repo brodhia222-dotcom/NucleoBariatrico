@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, InstagramLogo, WhatsappLogo } from "@phosphor-icons/react";
 import { Container } from "@/components/primitives/Container";
+import { Isotipo } from "@/components/primitives/Isotipo";
 import { brand, footer, nav } from "@/lib/copy";
 import { viewportOnce, easeEditorial } from "@/lib/motion";
 
@@ -72,6 +73,17 @@ export function Footer() {
         <div className="py-12 lg:py-16 grid gap-10 lg:grid-cols-12 lg:gap-16">
           {/* Brand */}
           <div className="lg:col-span-5 flex flex-col gap-5">
+            <div className="flex items-center gap-2.5">
+              <Isotipo className="h-8 w-8 text-[color:var(--ink-inverse)]" strokeWidth={11} />
+              <span className="flex items-baseline gap-1.5">
+                <span className="font-display text-xl tracking-tight text-[color:var(--ink-inverse)]" style={{ fontWeight: 400 }}>
+                  nucleo
+                </span>
+                <span className="font-mono text-[10px] tracking-[0.28em] uppercase text-[color:var(--ink-inverse)]/60">
+                  bariátrico
+                </span>
+              </span>
+            </div>
             <p
               className="font-display italic text-[color:var(--ink-inverse)]/82 max-w-[28ch]"
               style={{ fontSize: "20px", lineHeight: 1.32, fontWeight: 300, fontVariationSettings: '"opsz" 36' }}
