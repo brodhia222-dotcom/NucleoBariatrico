@@ -1,6 +1,5 @@
 import { Navbar } from "@/components/sections/Navbar";
 import { Hero } from "@/components/sections/Hero";
-import { Manifiesto } from "@/components/sections/Manifiesto";
 import { IMCCalculator } from "@/components/sections/IMCCalculator";
 import { Diferencial } from "@/components/sections/Diferencial";
 import { Equipo } from "@/components/sections/Equipo";
@@ -19,7 +18,6 @@ export default function Page() {
       <Navbar />
       <main>
         <Hero />
-        <Manifiesto />
         <IMCCalculator />
         <Diferencial />
         <Equipo />

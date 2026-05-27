@@ -111,25 +111,22 @@ export const equipo = {
   body: lorem.short,
   miembros: [
     {
-      nombre: "Dra. Agustina",
+      nombre: "Agustina",
       rol: "Cirujana bariátrica",
       bio: lorem.medium,
       foto: null,
-      tags: ["Cirugía bariátrica", "Bypass gástrico", "Manga gástrica"],
     },
     {
       nombre: "Sergio",
       rol: "Coordinación clínica",
       bio: lorem.medium,
       foto: null,
-      tags: ["Coordinación", "Seguimiento", "Acompañamiento"],
     },
     {
-      nombre: "Dra. Lorem",
+      nombre: "Nombre",
       rol: "Nutrición clínica",
       bio: lorem.medium,
       foto: null,
-      tags: ["Nutrición", "Plan pre-quirúrgico", "Post-operatorio"],
     },
   ],
 };

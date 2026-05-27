@@ -41,10 +41,10 @@ export function NoEstasSolo() {
       id="no-estas-solo"
       data-nav-tone="dark"
       className="relative bg-[color:var(--bg-inverse)] text-[color:var(--ink-inverse)]"
-      style={{ paddingBlock: "clamp(96px, 12vw, 160px)" }}
+      style={{ paddingBlock: "clamp(56px, 7vw, 96px)" }}
     >
       <Container className="text-[color:var(--ink-inverse)]">
-        <div className="mx-auto flex max-w-2xl flex-col items-center gap-10 text-center">
+        <div className="mx-auto flex max-w-2xl flex-col items-center gap-7 text-center">
           {/* Eyebrow */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -68,11 +68,11 @@ export function NoEstasSolo() {
             transition={{ duration: 0.9, delay: 0.25, ease: easeEditorial }}
             className="font-display"
             style={{
-              fontSize: "clamp(48px, 7.6vw, 104px)",
-              lineHeight: 0.98,
+              fontSize: "clamp(40px, 6vw, 80px)",
+              lineHeight: 1.0,
               letterSpacing: "-0.035em",
               fontWeight: 300,
-              fontVariationSettings: '"opsz" 144',
+              fontVariationSettings: '"opsz" 96',
               textWrap: "balance",
             }}
           >

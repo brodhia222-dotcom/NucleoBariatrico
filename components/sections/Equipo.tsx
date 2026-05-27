@@ -88,17 +88,6 @@ export function Equipo() {
                   {m.nombre}
                 </h3>
                 <p className="body-sm text-[color:var(--ink-soft)] mt-1 max-w-[38ch]">{m.bio}</p>
-
-                <ul className="flex flex-wrap gap-1.5 mt-3">
-                  {m.tags.map((tag) => (
-                    <li
-                      key={tag}
-                      className="px-2.5 py-1 text-[11px] tracking-wide rounded-full border border-[color:var(--border-strong)] text-[color:var(--ink-soft)]"
-                    >
-                      {tag}
-                    </li>
-                  ))}
-                </ul>
               </div>
             </motion.li>
           ))}

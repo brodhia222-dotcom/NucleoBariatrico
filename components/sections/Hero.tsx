@@ -11,156 +11,119 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative isolate overflow-hidden bg-[color:var(--bg-inverse)] text-[color:var(--ink-inverse)]"
-      data-nav-tone="dark"
+      data-nav-tone="light"
+      className="relative isolate flex flex-col items-center justify-center overflow-hidden bg-[color:var(--bg-elevated)] text-[color:var(--ink)]"
       style={{
         paddingTop: "var(--nav-height)",
-        minHeight: "min(880px, 94vh)",
+        minHeight: "min(880px, 92vh)",
       }}
     >
-      {/* Full-bleed placeholder de foto */}
-      <div aria-hidden className="absolute inset-0 placeholder" />
+      {/* Grid background — comunica que acá va imagen/video */}
+      <div aria-hidden className="absolute inset-0 grid-bg" />
 
-      {/* Overlay para legibilidad */}
+      {/* Soft halo en el centro para concentrar el texto */}
       <div
         aria-hidden
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(180deg, color-mix(in srgb, var(--bg-inverse) 25%, transparent) 0%, color-mix(in srgb, var(--bg-inverse) 45%, transparent) 55%, color-mix(in srgb, var(--bg-inverse) 88%, transparent) 100%)",
+            "radial-gradient(ellipse 70% 60% at 50% 50%, color-mix(in srgb, var(--bg-elevated) 92%, transparent) 0%, color-mix(in srgb, var(--bg-elevated) 70%, transparent) 60%, transparent 100%)",
         }}
       />
 
-      {/* Placeholder badge */}
-      <div className="pointer-events-none absolute top-[calc(var(--nav-height)+20px)] right-6 z-10 flex items-center gap-2 rounded-full bg-[color:var(--bg-inverse)]/55 backdrop-blur-md px-3 py-1.5 border border-[color:var(--ink-inverse)]/15">
-        <span aria-hidden className="block h-1.5 w-1.5 rounded-full bg-[color:var(--accent)]" />
-        <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--ink-inverse)]/80">
-          Foto · placeholder · 16:9
-        </span>
-      </div>
-
       {/* Content */}
-      <div className="relative z-10 flex h-full min-h-[inherit] flex-col">
-        {/* Top masthead */}
-        <Container>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex items-center justify-between border-b border-[color:var(--ink-inverse)]/15 pb-3 pt-5"
+      <Container className="relative z-10 py-14 lg:py-20">
+        <div className="mx-auto flex max-w-4xl flex-col items-center gap-8 text-center lg:gap-10">
+          <h1
+            className="font-display"
+            style={{
+              fontSize: "clamp(52px, 8.4vw, 128px)",
+              lineHeight: 0.94,
+              letterSpacing: "-0.04em",
+              fontWeight: 300,
+              fontVariationSettings: '"opsz" 144',
+              textWrap: "balance",
+            }}
           >
-            <span className="font-mono text-[10px] tracking-[0.22em] uppercase tabular text-[color:var(--ink-inverse)]/75">
-              Mayo · 2026
-            </span>
-            <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--ink-inverse)]/75 hidden sm:block">
-              Equipo médico · Cirugía bariátrica
-            </span>
-            <span className="font-mono text-[10px] tracking-[0.22em] uppercase tabular text-[color:var(--ink-inverse)]/75">
-              № 01
-            </span>
+            <HeroHeadline reduced={Boolean(reduced)} />
+          </h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 1.1 }}
+            className="body-lg max-w-[52ch] text-[color:var(--ink-soft)]"
+          >
+            {hero.body}
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 1.3 }}
+            className="flex flex-wrap items-center justify-center gap-3 pt-2"
+          >
+            <a href={hero.primary.href} className="btn btn-primary group">
+              {hero.primary.label}
+              <ArrowRight weight="bold" className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </a>
+            <a
+              href={`https://wa.me/${brand.whatsappNumber.replace(/[^\d]/g, "")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-ghost"
+            >
+              <WhatsappLogo weight="fill" className="h-4 w-4" />
+              Hablar por WhatsApp
+            </a>
           </motion.div>
-        </Container>
-
-        {/* Spacer */}
-        <div className="flex-1" />
-
-        {/* Bottom-left aligned title block */}
-        <Container>
-          <div className="pb-12 lg:pb-20 max-w-4xl">
-            <motion.span
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--ink-inverse)]/80 mb-6 block"
-            >
-              {hero.eyebrow}
-            </motion.span>
-
-            <h1
-              className="font-display"
-              style={{
-                fontSize: "clamp(48px, 8vw, 112px)",
-                lineHeight: 0.96,
-                letterSpacing: "-0.035em",
-                fontWeight: 300,
-                fontVariationSettings: '"opsz" 144',
-                textWrap: "balance",
-              }}
-            >
-              <HeroHeadline reduced={Boolean(reduced)} />
-            </h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 1.1 }}
-              className="body-lg mt-7 max-w-[52ch] text-[color:var(--ink-inverse)]/82"
-            >
-              {hero.body}
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 1.25 }}
-              className="mt-9 flex flex-wrap items-center gap-3"
-            >
-              <a href={hero.primary.href} className="btn btn-primary group">
-                {hero.primary.label}
-                <ArrowRight weight="bold" className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-              </a>
-              <a
-                href={`https://wa.me/${brand.whatsappNumber.replace(/[^\d]/g, "")}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-ghost !border-[color:var(--ink-inverse)]/30 !text-[color:var(--ink-inverse)] hover:!bg-[color:var(--ink-inverse)] hover:!text-[color:var(--bg-inverse)]"
-              >
-                <WhatsappLogo weight="fill" className="h-4 w-4" />
-                Hablar por WhatsApp
-              </a>
-            </motion.div>
-          </div>
-        </Container>
-      </div>
+        </div>
+      </Container>
     </section>
   );
 }
 
 function HeroHeadline({ reduced }: { reduced: boolean }) {
-  const lines = ["Tu salud", "empieza acá."];
   return (
     <motion.span
       initial="hidden"
       animate="visible"
       variants={{
         hidden: {},
-        visible: { transition: { staggerChildren: 0.12, delayChildren: 0.55 } },
+        visible: { transition: { staggerChildren: 0.14, delayChildren: 0.35 } },
       }}
       className="inline-block"
     >
-      {lines.map((line, i) => (
-        <span key={i} className="block overflow-hidden">
-          <motion.span
-            variants={
-              reduced
-                ? { hidden: { opacity: 1 }, visible: { opacity: 1 } }
-                : {
-                    hidden: { y: "108%" },
-                    visible: { y: 0, transition: { duration: 0.95, ease: [0.16, 1, 0.3, 1] } },
-                  }
-            }
-            className="inline-block will-change-transform"
-          >
-            {i === 1 ? (
-              <>
-                empieza <span className="italic-serif text-[color:var(--accent)]">acá.</span>
-              </>
-            ) : (
-              line
-            )}
-          </motion.span>
-        </span>
-      ))}
+      <span className="block overflow-hidden">
+        <motion.span
+          variants={
+            reduced
+              ? { hidden: { opacity: 1 }, visible: { opacity: 1 } }
+              : {
+                  hidden: { y: "108%" },
+                  visible: { y: 0, transition: { duration: 0.95, ease: [0.16, 1, 0.3, 1] } },
+                }
+          }
+          className="inline-block will-change-transform"
+        >
+          Tu salud
+        </motion.span>
+      </span>
+      <span className="block overflow-hidden">
+        <motion.span
+          variants={
+            reduced
+              ? { hidden: { opacity: 1 }, visible: { opacity: 1 } }
+              : {
+                  hidden: { y: "108%" },
+                  visible: { y: 0, transition: { duration: 0.95, ease: [0.16, 1, 0.3, 1] } },
+                }
+          }
+          className="inline-block will-change-transform"
+        >
+          empieza <span className="italic-serif text-[color:var(--accent)]">acá.</span>
+        </motion.span>
+      </span>
     </motion.span>
   );
 }

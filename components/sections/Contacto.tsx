@@ -77,7 +77,12 @@ export function Contacto() {
   }
 
   return (
-    <Section id="contacto" tone="default">
+    <Section id="contacto" tone="subtle" className="relative">
+      {/* Línea naranja arriba para marcar el break con FAQ */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute top-0 left-0 right-0 h-px bg-[color:var(--accent)] opacity-60"
+      />
       <Container>
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
           {/* LEFT — visual + contact options */}

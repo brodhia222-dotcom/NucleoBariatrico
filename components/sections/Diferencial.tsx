@@ -1,6 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Heartbeat, UsersThree, ShieldCheck, MapPinLine, ArrowUpRight } from "@phosphor-icons/react";
+import type { ComponentType } from "react";
 import { Container } from "@/components/primitives/Container";
 import { Section } from "@/components/primitives/Section";
 import { Eyebrow } from "@/components/primitives/Eyebrow";
@@ -8,12 +11,17 @@ import { Reveal } from "@/components/primitives/Reveal";
 import { diferencial } from "@/lib/copy";
 import { easeEditorial, viewportOnce } from "@/lib/motion";
 
+type IconType = ComponentType<{ className?: string; weight?: "thin" | "light" | "regular" | "bold" | "fill" | "duotone" }>;
+const icons: IconType[] = [UsersThree, Heartbeat, ShieldCheck, MapPinLine];
+
 export function Diferencial() {
+  const [active, setActive] = useState(0);
+
   return (
     <Section id="diferencial" tone="elevated">
       <Container>
         {/* Header */}
-        <div className="grid gap-8 lg:grid-cols-12 lg:gap-12 mb-16 lg:mb-24 items-end">
+        <div className="grid gap-8 lg:grid-cols-12 lg:gap-12 mb-12 lg:mb-16 items-end">
           <div className="lg:col-span-3">
             <Reveal>
               <Eyebrow>{diferencial.eyebrow}</Eyebrow>
@@ -48,69 +56,145 @@ export function Diferencial() {
           </div>
         </div>
 
-        {/* Editorial pull list — números grandes a la izquierda, contenido a la derecha */}
-        <ul className="flex flex-col gap-12 lg:gap-16">
-          {diferencial.items.map((item, i) => (
-            <motion.li
-              key={item.title}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={viewportOnce}
-              transition={{ duration: 0.7, delay: i * 0.08, ease: easeEditorial }}
-              className="group grid gap-6 lg:grid-cols-12 lg:gap-12 border-t border-[color:var(--border)] pt-10"
-            >
-              {/* Numeral grande */}
-              <div className="lg:col-span-3 flex items-start">
-                <span
-                  className="font-display tabular text-[color:var(--ink)]"
-                  style={{
-                    fontSize: "clamp(64px, 8vw, 112px)",
-                    lineHeight: 0.85,
-                    letterSpacing: "-0.045em",
-                    fontWeight: 300,
-                    fontVariationSettings: '"opsz" 144',
-                  }}
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-              </div>
-
-              {/* Texto */}
-              <div className="lg:col-span-6 flex flex-col gap-4">
-                <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--accent)]">
-                  {item.badge}
-                </span>
-                <h3
-                  className="font-display"
-                  style={{
-                    fontSize: "clamp(24px, 2.6vw, 34px)",
-                    lineHeight: 1.12,
-                    letterSpacing: "-0.018em",
-                    fontWeight: 400,
-                    fontVariationSettings: '"opsz" 48',
-                    textWrap: "balance",
-                    maxWidth: "20ch",
-                  }}
-                >
-                  {item.title}
-                </h3>
-                <p className="body text-[color:var(--ink-soft)] max-w-[52ch]">{item.body}</p>
-              </div>
-
-              {/* Link sutil */}
-              <div className="lg:col-span-3 flex items-end">
-                <a
-                  href={item.href}
-                  className="group/cta inline-flex items-center gap-2 text-sm font-medium text-[color:var(--ink)] transition-colors hover:text-[color:var(--accent)]"
-                >
-                  <span className="block h-px w-6 bg-[color:var(--accent)] transition-all duration-300 group-hover/cta:w-10" />
-                  {item.cta}
-                </a>
-              </div>
-            </motion.li>
-          ))}
-        </ul>
+        {/* Expanding cards */}
+        <Reveal>
+          <div className="flex flex-col gap-3 lg:flex-row lg:gap-3 lg:h-[520px]">
+            {diferencial.items.map((item, i) => {
+              const Icon = icons[i] ?? icons[0];
+              return (
+                <ExpandingCard
+                  key={item.title}
+                  index={i}
+                  isActive={i === active}
+                  onActivate={() => setActive(i)}
+                  item={item}
+                  Icon={Icon}
+                />
+              );
+            })}
+          </div>
+        </Reveal>
       </Container>
     </Section>
+  );
+}
+
+function ExpandingCard({
+  index,
+  isActive,
+  onActivate,
+  item,
+  Icon,
+}: {
+  index: number;
+  isActive: boolean;
+  onActivate: () => void;
+  item: (typeof diferencial)["items"][number];
+  Icon: IconType;
+}) {
+  return (
+    <motion.button
+      type="button"
+      onMouseEnter={onActivate}
+      onFocus={onActivate}
+      onClick={onActivate}
+      aria-expanded={isActive}
+      animate={{ flexGrow: isActive ? 4 : 1 }}
+      transition={{ duration: 0.85, ease: easeEditorial }}
+      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 20 }}
+      viewport={viewportOnce}
+      style={{ flexBasis: 0 }}
+      className="group relative flex min-h-[240px] basis-0 overflow-hidden rounded-[var(--radius-xl)] text-left text-[color:var(--ink-inverse)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)] focus-visible:ring-offset-2 lg:min-h-0"
+    >
+      {/* Imagen placeholder */}
+      <div aria-hidden className="placeholder absolute inset-0" style={{ borderRadius: 0 }} />
+
+      {/* Dark overlay para legibilidad */}
+      <div
+        aria-hidden
+        className="absolute inset-0"
+        style={{
+          background: `linear-gradient(180deg, color-mix(in srgb, var(--bg-inverse) ${
+            index % 2 === 0 ? 28 : 38
+          }%, transparent) 0%, color-mix(in srgb, var(--bg-inverse) 88%, transparent) 100%)`,
+        }}
+      />
+
+      {/* Content */}
+      <div className="relative z-10 flex w-full flex-col justify-between gap-6 p-6 lg:p-8">
+        {/* Top — número + icono */}
+        <div className="flex items-start justify-between gap-3">
+          <span className="font-mono text-[10px] tracking-[0.22em] uppercase opacity-75">
+            № {String(index + 1).padStart(2, "0")}
+          </span>
+          <span
+            aria-hidden
+            className="grid h-10 w-10 place-items-center rounded-full bg-[color:var(--ink-inverse)]/12 backdrop-blur-md text-[color:var(--ink-inverse)] transition-colors group-hover:bg-[color:var(--accent)] group-hover:text-white"
+          >
+            <Icon weight="regular" className="h-5 w-5" />
+          </span>
+        </div>
+
+        {/* Bottom — vertical title or expanded content */}
+        <AnimatePresence mode="wait">
+          {!isActive ? (
+            <motion.div
+              key="collapsed"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="flex flex-1 items-end lg:items-center"
+            >
+              <h3
+                className="font-display lg:[writing-mode:vertical-rl] lg:rotate-180"
+                style={{
+                  fontSize: "22px",
+                  lineHeight: 1.08,
+                  fontWeight: 300,
+                  letterSpacing: "0.005em",
+                  fontVariationSettings: '"opsz" 36',
+                }}
+              >
+                {item.title}
+              </h3>
+            </motion.div>
+          ) : (
+            <motion.div
+              key="expanded"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 12 }}
+              transition={{ duration: 0.45, ease: easeEditorial }}
+              className="flex flex-col gap-4 max-w-[44ch]"
+            >
+              <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--accent)]">
+                {item.badge}
+              </span>
+              <h3
+                className="font-display"
+                style={{
+                  fontSize: "clamp(26px, 3vw, 40px)",
+                  lineHeight: 1.04,
+                  letterSpacing: "-0.022em",
+                  fontWeight: 300,
+                  fontVariationSettings: '"opsz" 56',
+                  textWrap: "balance",
+                }}
+              >
+                {item.title}
+              </h3>
+              <p className="body-sm opacity-85">{item.body}</p>
+              <span className="mt-2 inline-flex items-center gap-2 text-xs font-medium tracking-wide">
+                <span className="block h-px w-8 bg-[color:var(--accent)]" />
+                {item.cta}
+                <ArrowUpRight weight="bold" className="h-3.5 w-3.5 opacity-80" />
+              </span>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </motion.button>
   );
 }
