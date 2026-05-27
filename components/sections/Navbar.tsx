@@ -34,7 +34,7 @@ export function Navbar() {
     );
     if (!sections.length) return;
 
-    const navHeight = 68;
+    const navHeight = 80;
     const probeY = navHeight + 12;
 
     const compute = () => {
@@ -79,7 +79,7 @@ export function Navbar() {
               src="/logos/logo-indigo.png"
               alt="Nucleo Bariátrico"
               className={cn(
-                "h-8 w-auto transition-opacity duration-500",
+                "h-16 w-auto transition-opacity duration-500",
                 isDark ? "opacity-0" : "opacity-100",
               )}
             />
@@ -87,7 +87,7 @@ export function Navbar() {
               src="/logos/logo-blanco.png"
               alt="Nucleo Bariátrico"
               className={cn(
-                "absolute inset-0 h-8 w-auto transition-opacity duration-500",
+                "absolute inset-0 h-16 w-auto transition-opacity duration-500",
                 isDark ? "opacity-100" : "opacity-0",
               )}
             />
@@ -165,7 +165,7 @@ export function Navbar() {
             transition={{ duration: 0.25 }}
           >
             <div className="container-x flex h-[var(--nav-height)] items-center justify-between">
-              <img src="/logos/logo-indigo.png" alt="Nucleo Bariátrico" className="h-14 w-auto" />
+              <img src="/logos/logo-indigo.png" alt="Nucleo Bariátrico" className="h-16 w-auto" />
               <button
                 type="button"
                 onClick={() => setOpen(false)}
