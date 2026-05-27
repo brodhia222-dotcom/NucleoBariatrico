@@ -72,7 +72,7 @@ export function Footer() {
         <div className="py-12 lg:py-16 grid gap-10 lg:grid-cols-12 lg:gap-16">
           {/* Brand */}
           <div className="lg:col-span-5 flex flex-col gap-5">
-            <img src="/logos/logo-blanco.png" alt="Nucleo Bariátrico" className="h-9 w-auto" />
+            <img src="/logos/logo-vertical-beige.png" alt="Nucleo Bariátrico" className="h-20 w-auto" />
             <p
               className="font-display italic text-[color:var(--ink-inverse)]/82 max-w-[28ch]"
               style={{ fontSize: "20px", lineHeight: 1.32, fontWeight: 300, fontVariationSettings: '"opsz" 36' }}
