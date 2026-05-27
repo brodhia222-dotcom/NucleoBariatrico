@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowDown, WhatsappLogo } from "@phosphor-icons/react";
+import { ArrowDown, WhatsappLogo, Play } from "@phosphor-icons/react";
 import { Container } from "@/components/primitives/Container";
 import { brand, hero } from "@/lib/copy";
 import { easeEditorial, easeOut } from "@/lib/motion";
@@ -12,8 +12,11 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative isolate flex min-h-[100dvh] flex-col overflow-hidden"
-      style={{ paddingTop: "var(--nav-height)" }}
+      className="relative isolate flex flex-col overflow-hidden"
+      style={{
+        paddingTop: "var(--nav-height)",
+        minHeight: "min(820px, 92vh)",
+      }}
     >
       <HeroBackground />
 
@@ -23,7 +26,7 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="relative z-10 flex items-center justify-between border-b border-[color:var(--border)] pb-3 pt-6"
+          className="relative z-10 flex items-center justify-between border-b border-[color:var(--border)] pb-3 pt-5"
         >
           <span className="eyebrow tabular">Mayo · 2026</span>
           <span className="eyebrow hidden sm:block">Equipo Médico · Cirugía Bariátrica</span>
@@ -34,13 +37,13 @@ export function Hero() {
       {/* Centered content */}
       <div className="relative z-10 flex flex-1 items-center justify-center">
         <Container>
-          <div className="mx-auto flex max-w-4xl flex-col items-center gap-8 py-16 text-center lg:gap-10 lg:py-24">
+          <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 py-10 text-center lg:gap-8 lg:py-14">
             {/* Tag */}
             <motion.div
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, ease: easeOut, delay: 0.2 }}
-              className="flex items-center gap-3 rounded-full border border-[color:var(--border-strong)] bg-[color:var(--bg-elevated)]/60 px-4 py-1.5 backdrop-blur-md"
+              className="flex items-center gap-3 rounded-full border border-[color:var(--border-strong)] bg-[color:var(--bg-elevated)]/70 px-4 py-1.5 backdrop-blur-md"
             >
               <span className="block h-1.5 w-1.5 rounded-full bg-[color:var(--accent)]" aria-hidden />
               <span className="eyebrow">{hero.eyebrow}</span>
@@ -50,9 +53,9 @@ export function Hero() {
             <h1
               className="font-display"
               style={{
-                fontSize: "clamp(56px, 9vw, 128px)",
-                lineHeight: 0.96,
-                letterSpacing: "-0.04em",
+                fontSize: "clamp(44px, 6.8vw, 96px)",
+                lineHeight: 0.98,
+                letterSpacing: "-0.035em",
                 fontWeight: 300,
                 fontVariationSettings: '"opsz" 144',
                 textWrap: "balance",
@@ -63,17 +66,18 @@ export function Hero() {
 
             {/* Body */}
             <motion.p
-              className="body-lg max-w-[56ch] text-[color:var(--ink-soft)]"
+              className="body text-[color:var(--ink-soft)]"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.85, ease: easeEditorial }}
+              style={{ maxWidth: "52ch" }}
             >
               {hero.body}
             </motion.p>
 
             {/* CTAs */}
             <motion.div
-              className="flex flex-wrap items-center justify-center gap-3"
+              className="flex flex-wrap items-center justify-center gap-3 pt-2"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 1.0, ease: easeEditorial }}
@@ -102,23 +106,23 @@ export function Hero() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.3, ease: easeEditorial }}
-          className="relative z-10 mb-10 grid items-end gap-8 border-t border-[color:var(--border)] pt-6 sm:grid-cols-[1fr_auto_1fr]"
+          className="relative z-10 mb-8 grid items-end gap-6 border-t border-[color:var(--border)] pt-4 sm:grid-cols-[1fr_auto_1fr]"
         >
-          <div className="hidden sm:flex flex-col gap-1">
+          <div className="hidden sm:flex flex-col gap-0.5">
             <span className="eyebrow">Cobertura PMO</span>
             <span className="caption">100% · efector autorizado</span>
           </div>
           <a
             href="#imc"
             aria-label="Bajar a la calculadora"
-            className="mx-auto flex flex-col items-center gap-2 text-[color:var(--ink-soft)] transition-colors hover:text-[color:var(--ink)]"
+            className="mx-auto flex flex-col items-center gap-1.5 text-[color:var(--ink-soft)] transition-colors hover:text-[color:var(--ink)]"
           >
             <span className="font-mono text-[10px] tracking-[0.22em] uppercase">Scroll</span>
             <span aria-hidden className="scroll-hint">
               <ArrowDown weight="regular" className="h-4 w-4" />
             </span>
           </a>
-          <div className="hidden sm:flex flex-col items-end gap-1">
+          <div className="hidden sm:flex flex-col items-end gap-0.5">
             <span className="eyebrow">Sedes</span>
             <span className="caption">Villa del Parque · San Isidro</span>
           </div>
@@ -129,96 +133,54 @@ export function Hero() {
 }
 
 /* ============================================================
-   Background — mesh gradient + placeholder image + grid lines
+   Background — placeholder de video transparentado + texture
    ============================================================ */
 function HeroBackground() {
   return (
     <>
-      {/* Mesh gradient layer */}
-      <div aria-hidden className="absolute inset-0 mesh-bg" />
-
-      {/* Placeholder image (faint) — esperando foto definitiva del cliente */}
+      {/* Layer 1 — placeholder de video (full bleed, semi-transparente) */}
       <div
         aria-hidden
-        className="placeholder absolute inset-0 opacity-[0.18]"
-        style={{ borderRadius: 0 }}
+        className="placeholder absolute inset-0"
+        style={{ borderRadius: 0, opacity: 0.42 }}
       />
 
-      {/* Dotted grid */}
-      <div
-        aria-hidden
-        className="absolute inset-0 bg-dots opacity-[0.05]"
-        style={{ color: "var(--ink)" }}
-      />
-
-      {/* Decorative SVG line drawing — top-right */}
-      <svg
-        aria-hidden
-        className="pointer-events-none absolute right-[-80px] top-[18%] hidden h-[420px] w-[420px] text-[color:var(--ink)] opacity-[0.18] lg:block float-slow"
-        viewBox="0 0 200 200"
-        fill="none"
-      >
-        <circle
-          cx="100"
-          cy="100"
-          r="84"
-          stroke="currentColor"
-          strokeWidth="0.6"
-          className="path-draw"
-          style={{ ["--dash" as never]: "560" }}
-        />
-        <circle
-          cx="100"
-          cy="100"
-          r="56"
-          stroke="currentColor"
-          strokeWidth="0.6"
-          className="path-draw"
-          style={{ ["--dash" as never]: "380" }}
-        />
-        <circle
-          cx="100"
-          cy="100"
-          r="28"
-          stroke="currentColor"
-          strokeWidth="0.6"
-          className="path-draw"
-          style={{ ["--dash" as never]: "200" }}
-        />
-      </svg>
-
-      {/* Decorative SVG — bottom-left tubule */}
-      <svg
-        aria-hidden
-        className="pointer-events-none absolute -bottom-10 -left-10 hidden h-[360px] w-[360px] text-[color:var(--accent)] opacity-[0.25] lg:block"
-        viewBox="0 0 200 200"
-        fill="none"
-      >
-        <path
-          d="M10 160 Q 60 60 100 110 T 190 60"
-          stroke="currentColor"
-          strokeWidth="0.8"
-          className="path-draw"
-          style={{ ["--dash" as never]: "300" }}
-        />
-        <path
-          d="M10 180 Q 60 80 100 130 T 190 80"
-          stroke="currentColor"
-          strokeWidth="0.5"
-          className="path-draw"
-          style={{ ["--dash" as never]: "300" }}
-        />
-      </svg>
-
-      {/* Vignette */}
+      {/* Layer 2 — gradient overlay para legibilidad del centro */}
       <div
         aria-hidden
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse at center, transparent 30%, color-mix(in srgb, var(--bg) 35%, transparent) 80%)",
+            "linear-gradient(180deg, color-mix(in srgb, var(--bg) 70%, transparent) 0%, color-mix(in srgb, var(--bg) 45%, transparent) 45%, color-mix(in srgb, var(--bg) 65%, transparent) 100%)",
         }}
       />
+
+      {/* Layer 3 — vignette para concentrar la atención en el centro */}
+      <div
+        aria-hidden
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 65% 50% at 50% 50%, transparent 0%, color-mix(in srgb, var(--bg) 30%, transparent) 70%, color-mix(in srgb, var(--bg) 60%, transparent) 100%)",
+        }}
+      />
+
+      {/* Layer 4 — dot pattern muy sutil */}
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-dots opacity-[0.04]"
+        style={{ color: "var(--ink)" }}
+      />
+
+      {/* Layer 5 — video placeholder badge */}
+      <div className="pointer-events-none absolute bottom-6 right-6 z-[5] hidden md:flex items-center gap-2 rounded-full bg-[color:var(--bg-elevated)]/85 backdrop-blur-md px-3 py-1.5 border border-[color:var(--border)]">
+        <span aria-hidden className="grid h-4 w-4 place-items-center rounded-full bg-[color:var(--accent)] text-white">
+          <Play weight="fill" className="h-2 w-2 translate-x-[0.5px]" />
+        </span>
+        <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-[color:var(--ink-soft)]">
+          Video · placeholder
+        </span>
+      </div>
     </>
   );
 }

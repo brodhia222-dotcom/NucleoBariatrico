@@ -17,9 +17,13 @@ const sedeMeta: { area: string; horario: string; transporte: string }[] = [
 
 export function Ubicaciones() {
   return (
-    <Section id="ubicaciones" tone="default">
+    <Section
+      id="ubicaciones"
+      tone="elevated"
+      marker={{ index: "07", label: "Ubicaciones", aside: "CABA · Zona Norte" }}
+    >
       <Container>
-        <div className="grid gap-8 lg:grid-cols-12 lg:gap-12 mb-14 lg:mb-20 items-end">
+        <div className="grid gap-8 lg:grid-cols-12 lg:gap-12 mb-10 lg:mb-14 items-end">
           <div className="lg:col-span-3">
             <Reveal>
               <Eyebrow>{ubicaciones.eyebrow}</Eyebrow>

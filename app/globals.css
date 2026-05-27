@@ -108,7 +108,7 @@
   --space-24: 96px;
   --space-32: 128px;
 
-  --section-y:       clamp(72px, 10vw, 140px);
+  --section-y:       clamp(56px, 6.5vw, 96px);
   --section-x:       max(20px, 5vw);
   --container-max:   1280px;
 

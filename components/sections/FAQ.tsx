@@ -13,10 +13,14 @@ export function FAQ() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
 
   return (
-    <Section id="faq" tone="default">
+    <Section
+      id="faq"
+      tone="default"
+      marker={{ index: "08", label: "Preguntas", aside: "Lo que más consultan" }}
+    >
       <Container>
         {/* Editorial header — minimal, two cols */}
-        <div className="grid gap-10 lg:grid-cols-12 lg:gap-12 mb-12 lg:mb-20 items-end">
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-12 mb-10 lg:mb-14 items-end">
           <div className="lg:col-span-6">
             <Reveal>
               <Eyebrow>{faq.eyebrow}</Eyebrow>

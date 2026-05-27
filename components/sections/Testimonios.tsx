@@ -16,10 +16,14 @@ export function Testimonios() {
   const [open, setOpen] = useState<Item | null>(null);
 
   return (
-    <Section id="testimonios" tone="default">
+    <Section
+      id="testimonios"
+      tone="default"
+      marker={{ index: "05", label: "Testimonios", aside: "Pacientes · 2024 – 2026" }}
+    >
       <Container>
         {/* Header */}
-        <div className="grid gap-8 lg:grid-cols-12 lg:gap-12 mb-12 lg:mb-16 items-end">
+        <div className="grid gap-8 lg:grid-cols-12 lg:gap-12 mb-10 lg:mb-14 items-end">
           <div className="lg:col-span-3">
             <Reveal>
               <Eyebrow>{testimonios.eyebrow}</Eyebrow>

@@ -39,10 +39,14 @@ export function Proceso() {
   const CurrentIcon = stepIcons[idx] ?? stepIcons[0];
 
   return (
-    <Section id="proceso" tone="elevated">
+    <Section
+      id="proceso"
+      tone="subtle"
+      marker={{ index: "04", label: "Proceso", aside: "5 pasos · 12 meses" }}
+    >
       <Container>
         {/* Header */}
-        <div className="grid gap-8 lg:grid-cols-12 lg:gap-12 mb-14 lg:mb-20 items-end">
+        <div className="grid gap-8 lg:grid-cols-12 lg:gap-12 mb-10 lg:mb-14 items-end">
           <div className="lg:col-span-3">
             <Reveal>
               <Eyebrow>{proceso.eyebrow}</Eyebrow>

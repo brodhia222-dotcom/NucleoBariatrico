@@ -75,10 +75,15 @@ export function IMCCalculator() {
   };
 
   return (
-    <Section id="imc" tone="default" className="relative">
+    <Section
+      id="imc"
+      tone="default"
+      className="relative"
+      marker={{ index: "02", label: "Calculadora", aside: "Referencia OMS" }}
+    >
       <Container>
         {/* Editorial header */}
-        <div className="grid gap-8 lg:grid-cols-12 lg:gap-12 mb-12 lg:mb-16 items-end">
+        <div className="grid gap-8 lg:grid-cols-12 lg:gap-12 mb-10 lg:mb-14 items-end">
           <div className="lg:col-span-3 flex items-center gap-3">
             <Reveal>
               <span

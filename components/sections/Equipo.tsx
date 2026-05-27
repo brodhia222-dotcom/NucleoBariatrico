@@ -18,10 +18,14 @@ export function Equipo() {
   const [active, setActive] = useState(0);
 
   return (
-    <Section id="equipo" tone="default">
+    <Section
+      id="equipo"
+      tone="elevated"
+      marker={{ index: "03", label: "Equipo", aside: "3 profesionales" }}
+    >
       <Container>
         {/* Editorial header */}
-        <div className="grid gap-8 lg:grid-cols-12 lg:gap-12 mb-12 lg:mb-16 items-end">
+        <div className="grid gap-8 lg:grid-cols-12 lg:gap-12 mb-10 lg:mb-14 items-end">
           <div className="lg:col-span-3">
             <Reveal>
               <Eyebrow>{equipo.eyebrow}</Eyebrow>

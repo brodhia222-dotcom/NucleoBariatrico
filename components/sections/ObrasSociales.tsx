@@ -17,10 +17,15 @@ import { viewportOnce, easeEditorial } from "@/lib/motion";
 
 export function ObrasSociales() {
   return (
-    <Section id="obras-sociales" tone="default" className="relative overflow-hidden">
+    <Section
+      id="obras-sociales"
+      tone="subtle"
+      className="relative overflow-hidden"
+      marker={{ index: "06", label: "Cobertura", aside: "Obras sociales" }}
+    >
       <Container>
         {/* Header */}
-        <div className="grid gap-10 lg:grid-cols-12 lg:gap-16 items-start mb-12 lg:mb-16">
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-16 items-start mb-10 lg:mb-14">
           <div className="lg:col-span-6 flex flex-col gap-5">
             <Reveal>
               <Eyebrow>{obrasSociales.eyebrow}</Eyebrow>

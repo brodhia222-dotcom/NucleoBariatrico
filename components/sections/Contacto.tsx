@@ -77,7 +77,11 @@ export function Contacto() {
   }
 
   return (
-    <Section id="contacto" tone="default">
+    <Section
+      id="contacto"
+      tone="subtle"
+      marker={{ index: "09", label: "Contacto", aside: "Respuesta < 24 hs hábiles" }}
+    >
       <Container>
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
           {/* LEFT — visual + contact options */}

@@ -18,10 +18,14 @@ import { easeEditorial, viewportOnce } from "@/lib/motion";
 
 export function Diferencial() {
   return (
-    <Section id="diferencial" tone="default">
+    <Section
+      id="diferencial"
+      tone="subtle"
+      marker={{ index: "01", label: "Diferencial", aside: "Equipo médico · Mayo 2026" }}
+    >
       <Container>
         {/* Editorial header — asymmetric */}
-        <div className="grid gap-8 lg:grid-cols-12 lg:gap-12 mb-14 lg:mb-20 items-end">
+        <div className="grid gap-8 lg:grid-cols-12 lg:gap-12 mb-10 lg:mb-14 items-end">
           <div className="lg:col-span-3">
             <Reveal>
               <Eyebrow>{diferencial.eyebrow}</Eyebrow>
