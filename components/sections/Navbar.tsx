@@ -165,7 +165,7 @@ export function Navbar() {
             transition={{ duration: 0.25 }}
           >
             <div className="container-x flex h-[var(--nav-height)] items-center justify-between">
-              <img src="/logos/logo-indigo.png" alt="Nucleo Bariátrico" className="h-8 w-auto" />
+              <img src="/logos/logo-indigo.png" alt="Nucleo Bariátrico" className="h-11 w-auto" />
               <button
                 type="button"
                 onClick={() => setOpen(false)}

@@ -18,30 +18,25 @@ export function Testimonios() {
     <Section id="testimonios" tone="elevated">
       <Container>
         {/* Header */}
-        <div className="grid gap-8 lg:grid-cols-12 lg:gap-12 mb-14 lg:mb-20 items-end">
-          <div className="lg:col-span-3">
-            <Reveal>
-              <Eyebrow>{testimonios.eyebrow}</Eyebrow>
-            </Reveal>
-          </div>
-          <div className="lg:col-span-9">
-            <Reveal delay={0.05}>
-              <h2
-                className="font-display"
-                style={{
-                  fontSize: "clamp(36px, 4.6vw, 64px)",
-                  lineHeight: 1.04,
-                  letterSpacing: "-0.025em",
-                  fontWeight: 300,
-                  fontVariationSettings: '"opsz" 72',
-                  textWrap: "balance",
-                  maxWidth: "20ch",
-                }}
-              >
-                {testimonios.headline}
-              </h2>
-            </Reveal>
-          </div>
+        <div className="flex flex-col items-center text-center gap-4 mb-14 lg:mb-20">
+          <Reveal>
+            <Eyebrow>{testimonios.eyebrow}</Eyebrow>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <h2
+              className="font-display"
+              style={{
+                fontSize: "clamp(36px, 4.6vw, 64px)",
+                lineHeight: 1.04,
+                letterSpacing: "-0.025em",
+                fontWeight: 300,
+                fontVariationSettings: '"opsz" 72',
+                textWrap: "balance",
+              }}
+            >
+              {testimonios.headline}
+            </h2>
+          </Reveal>
         </div>
 
         {/* Feature card — retrato grande + quote */}

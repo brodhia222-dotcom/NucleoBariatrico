@@ -13,7 +13,7 @@ export function Equipo() {
     <Section id="equipo" tone="subtle">
       <Container>
         {/* Header — título + descripción debajo del eyebrow, no al lado */}
-        <div className="flex flex-col gap-4 mb-14 lg:mb-20">
+        <div className="flex flex-col items-center text-center gap-4 mb-14 lg:mb-20">
           <Reveal>
             <Eyebrow>{equipo.eyebrow}</Eyebrow>
           </Reveal>
@@ -27,14 +27,13 @@ export function Equipo() {
                 fontWeight: 300,
                 fontVariationSettings: '"opsz" 72',
                 textWrap: "balance",
-                maxWidth: "18ch",
               }}
             >
               {equipo.headline}
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="body-lg text-[color:var(--ink-soft)] max-w-prose mt-2">
+            <p className="body-lg text-[color:var(--ink-soft)] max-w-prose">
               {equipo.body}
             </p>
           </Reveal>

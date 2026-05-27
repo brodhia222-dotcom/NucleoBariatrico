@@ -20,8 +20,8 @@ export function Diferencial() {
   return (
     <Section id="diferencial" tone="elevated">
       <Container>
-        {/* Header — título debajo del eyebrow */}
-        <div className="flex flex-col gap-4 mb-12 lg:mb-16">
+        {/* Header */}
+        <div className="flex flex-col items-center text-center gap-4 mb-12 lg:mb-16">
           <Reveal>
             <Eyebrow>{diferencial.eyebrow}</Eyebrow>
           </Reveal>
@@ -35,7 +35,6 @@ export function Diferencial() {
                 fontWeight: 300,
                 fontVariationSettings: '"opsz" 72',
                 textWrap: "balance",
-                maxWidth: "22ch",
               }}
             >
               {diferencial.headline.split(", ").map((part, i, arr) => (

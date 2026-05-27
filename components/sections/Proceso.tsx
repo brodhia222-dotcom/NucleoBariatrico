@@ -13,35 +13,28 @@ export function Proceso() {
     <Section id="proceso" tone="default">
       <Container>
         {/* Header */}
-        <div className="grid gap-8 lg:grid-cols-12 lg:gap-12 mb-14 lg:mb-20 items-end">
-          <div className="lg:col-span-3">
-            <Reveal>
-              <Eyebrow>{proceso.eyebrow}</Eyebrow>
-            </Reveal>
-          </div>
-          <div className="lg:col-span-6">
-            <Reveal delay={0.05}>
-              <h2
-                className="font-display"
-                style={{
-                  fontSize: "clamp(36px, 4.6vw, 64px)",
-                  lineHeight: 1.04,
-                  letterSpacing: "-0.025em",
-                  fontWeight: 300,
-                  fontVariationSettings: '"opsz" 72',
-                  textWrap: "balance",
-                  maxWidth: "18ch",
-                }}
-              >
-                {proceso.headline}
-              </h2>
-            </Reveal>
-          </div>
-          <div className="lg:col-span-3">
-            <Reveal delay={0.1}>
-              <p className="body-sm text-[color:var(--ink-soft)] max-w-prose">{proceso.body}</p>
-            </Reveal>
-          </div>
+        <div className="flex flex-col items-center text-center gap-4 mb-14 lg:mb-20">
+          <Reveal>
+            <Eyebrow>{proceso.eyebrow}</Eyebrow>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <h2
+              className="font-display"
+              style={{
+                fontSize: "clamp(36px, 4.6vw, 64px)",
+                lineHeight: 1.04,
+                letterSpacing: "-0.025em",
+                fontWeight: 300,
+                fontVariationSettings: '"opsz" 72',
+                textWrap: "balance",
+              }}
+            >
+              {proceso.headline}
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="body-lg text-[color:var(--ink-soft)] max-w-prose">{proceso.body}</p>
+          </Reveal>
         </div>
 
         {/* Zigzag steps */}

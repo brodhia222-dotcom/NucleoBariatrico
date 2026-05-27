@@ -15,41 +15,36 @@ export function FAQ() {
   return (
     <Section id="faq" tone="default">
       <Container>
-        <div className="grid gap-10 lg:grid-cols-12 lg:gap-12 mb-14 lg:mb-20 items-end">
-          <div className="lg:col-span-7">
-            <Reveal>
-              <Eyebrow>{faq.eyebrow}</Eyebrow>
-            </Reveal>
-            <Reveal delay={0.05}>
-              <h2
-                className="font-display mt-4"
-                style={{
-                  fontSize: "clamp(36px, 4.6vw, 64px)",
-                  lineHeight: 1.02,
-                  letterSpacing: "-0.03em",
-                  fontWeight: 300,
-                  fontVariationSettings: '"opsz" 72',
-                  textWrap: "balance",
-                  maxWidth: "14ch",
-                }}
-              >
-                {faq.headline}
-              </h2>
-            </Reveal>
-          </div>
-          <div className="lg:col-span-5 lg:flex lg:items-end lg:justify-end">
-            <Reveal delay={0.1}>
-              <a
-                href={`https://wa.me/${brand.whatsappNumber.replace(/[^\d]/g, "")}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-ghost w-fit"
-              >
-                <ChatCircleDots weight="regular" className="h-4 w-4" />
-                Hacer una pregunta
-              </a>
-            </Reveal>
-          </div>
+        <div className="flex flex-col items-center text-center gap-4 mb-14 lg:mb-20">
+          <Reveal>
+            <Eyebrow>{faq.eyebrow}</Eyebrow>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <h2
+              className="font-display"
+              style={{
+                fontSize: "clamp(36px, 4.6vw, 64px)",
+                lineHeight: 1.02,
+                letterSpacing: "-0.03em",
+                fontWeight: 300,
+                fontVariationSettings: '"opsz" 72',
+                textWrap: "balance",
+              }}
+            >
+              {faq.headline}
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <a
+              href={`https://wa.me/${brand.whatsappNumber.replace(/[^\d]/g, "")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-ghost w-fit"
+            >
+              <ChatCircleDots weight="regular" className="h-4 w-4" />
+              Hacer una pregunta
+            </a>
+          </Reveal>
         </div>
 
         <ul className="border-t border-[color:var(--border-strong)]">
