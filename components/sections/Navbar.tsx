@@ -76,15 +76,15 @@ export function Navbar() {
           {/* Logo */}
           <a href="#top" className="relative flex items-center">
             <img
-              src="/logos/logo-indigo-trimmed.png"
+              src="/logos/logo-indigo.png"
               alt="Nucleo Bariátrico"
               className={cn(
-                "h-12 w-auto transition-opacity duration-500",
+                "h-16 w-auto transition-opacity duration-500",
                 isDark ? "opacity-0" : "opacity-100",
               )}
             />
             <img
-              src="/logos/logo-blanco-trimmed.png"
+              src="/logos/logo-blanco.png"
               alt="Nucleo Bariátrico"
               className={cn(
                 "absolute inset-0 h-16 w-auto transition-opacity duration-500",
@@ -165,7 +165,7 @@ export function Navbar() {
             transition={{ duration: 0.25 }}
           >
             <div className="container-x flex h-[var(--nav-height)] items-center justify-between">
-              <img src="/logos/logo-indigo-trimmed.png" alt="Nucleo Bariátrico" className="h-12 w-auto" />
+              <img src="/logos/logo-indigo.png" alt="Nucleo Bariátrico" className="h-16 w-auto" />
               <button
                 type="button"
                 onClick={() => setOpen(false)}
