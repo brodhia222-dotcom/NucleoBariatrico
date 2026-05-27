@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { List, X, ArrowUpRight } from "@phosphor-icons/react";
 import { Isotipo } from "@/components/primitives/Isotipo";
@@ -9,20 +9,11 @@ import { cn } from "@/lib/utils";
 
 type Tone = "light" | "dark";
 
-type Indicator = { left: number; width: number; opacity: number };
-
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [tone, setTone] = useState<Tone>("light");
-  const [activeHref, setActiveHref] = useState<string>("#top");
-  const [indicator, setIndicator] = useState<Indicator>({ left: 0, width: 0, opacity: 0 });
-  const [hovering, setHovering] = useState(false);
+  const [tone, setTone] = useState<Tone>("dark"); // hero is dark
 
-  const linksRef = useRef<HTMLDivElement>(null);
-  const linkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
-
-  // Scroll listener for blur backdrop
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
@@ -30,7 +21,6 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Lock scroll when mobile menu open
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
@@ -38,7 +28,7 @@ export function Navbar() {
     };
   }, [open]);
 
-  // Tone + active section detection
+  // Tone detection — read data-nav-tone of the section overlapping the nav probe line
   useEffect(() => {
     const sections = Array.from(
       document.querySelectorAll<HTMLElement>("section[id], [data-nav-tone]"),
@@ -46,22 +36,17 @@ export function Navbar() {
     if (!sections.length) return;
 
     const navHeight = 68;
-    const probeY = navHeight + 12; // pixels from top to read the section under
+    const probeY = navHeight + 12;
 
     const compute = () => {
-      // Find section that overlaps probe line
-      let current: HTMLElement | null = null;
       for (const s of sections) {
         const rect = s.getBoundingClientRect();
         if (rect.top <= probeY && rect.bottom > probeY) {
-          current = s;
-          break;
+          const t = (s.getAttribute("data-nav-tone") as Tone | null) ?? "light";
+          setTone(t);
+          return;
         }
       }
-      if (!current) return;
-      const t = (current.getAttribute("data-nav-tone") as Tone | null) ?? "light";
-      setTone(t);
-      if (current.id) setActiveHref(`#${current.id}`);
     };
 
     compute();
@@ -73,41 +58,6 @@ export function Navbar() {
     };
   }, []);
 
-  // Move indicator to a link (or active link)
-  const moveToHref = (href: string, instant = false) => {
-    const el = linkRefs.current[href];
-    const wrap = linksRef.current;
-    if (!el || !wrap) return;
-    const elRect = el.getBoundingClientRect();
-    const wrapRect = wrap.getBoundingClientRect();
-    const next: Indicator = {
-      left: elRect.left - wrapRect.left,
-      width: elRect.width,
-      opacity: 1,
-    };
-    if (instant) {
-      setIndicator(next);
-    } else {
-      setIndicator(next);
-    }
-  };
-
-  // Snap indicator to active when not hovering, on scroll/resize, on activeHref change
-  useEffect(() => {
-    if (hovering) return;
-    // Find a matching link in nav for the active section, otherwise hide
-    const knownHrefs = nav.links.map((l) => l.href);
-    if (!knownHrefs.includes(activeHref)) {
-      setIndicator((i) => ({ ...i, opacity: 0 }));
-      return;
-    }
-    moveToHref(activeHref);
-    // also on resize
-    const onResize = () => moveToHref(activeHref);
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, [activeHref, hovering]);
-
   const isDark = tone === "dark";
 
   return (
@@ -118,7 +68,7 @@ export function Navbar() {
           scrolled
             ? isDark
               ? "bg-[color:var(--bg-inverse)]/55 backdrop-blur-xl border-b border-[color:var(--ink-inverse)]/12"
-              : "bg-[color:var(--bg)]/72 backdrop-blur-xl border-b border-[color:var(--border)]"
+              : "bg-[color:var(--bg)]/75 backdrop-blur-xl border-b border-[color:var(--border)]"
             : "bg-transparent border-b border-transparent",
         )}
         style={{ height: "var(--nav-height)" }}
@@ -148,73 +98,26 @@ export function Navbar() {
             </span>
           </a>
 
-          {/* Center nav with sliding pill */}
-          <nav
-            ref={linksRef}
-            onMouseEnter={() => setHovering(true)}
-            onMouseLeave={() => {
-              setHovering(false);
-              // snap back to active
-              const knownHrefs = nav.links.map((l) => l.href);
-              if (knownHrefs.includes(activeHref)) moveToHref(activeHref);
-              else setIndicator((i) => ({ ...i, opacity: 0 }));
-            }}
-            className="hidden lg:flex relative items-center gap-1 rounded-full px-1.5 py-1.5"
-            aria-label="Principal"
-            style={{
-              background: isDark
-                ? "color-mix(in srgb, var(--ink-inverse) 8%, transparent)"
-                : "color-mix(in srgb, var(--ink) 5%, transparent)",
-              border: isDark
-                ? "1px solid color-mix(in srgb, var(--ink-inverse) 16%, transparent)"
-                : "1px solid color-mix(in srgb, var(--ink) 10%, transparent)",
-              transition: "background 500ms, border-color 500ms",
-            }}
-          >
-            {/* Sliding pill */}
-            <motion.span
-              aria-hidden
-              animate={{
-                left: indicator.left,
-                width: indicator.width,
-                opacity: indicator.opacity,
-              }}
-              initial={false}
-              transition={{ type: "spring", stiffness: 320, damping: 32, mass: 0.6 }}
-              className="absolute top-1.5 bottom-1.5 rounded-full"
-              style={{
-                background: isDark
-                  ? "color-mix(in srgb, var(--ink-inverse) 92%, transparent)"
-                  : "color-mix(in srgb, var(--ink) 92%, transparent)",
-                transition: "background 500ms",
-              }}
-            />
-            {nav.links.map((link) => {
-              const isActive = link.href === activeHref;
-              return (
-                <a
-                  key={link.href}
-                  ref={(el) => {
-                    linkRefs.current[link.href] = el;
-                  }}
-                  href={link.href}
-                  onMouseEnter={() => moveToHref(link.href)}
-                  className={cn(
-                    "relative z-10 px-4 py-1.5 rounded-full text-[13px] font-medium tracking-wide transition-colors duration-300",
-                    isDark
-                      ? isActive
-                        ? "text-[color:var(--bg-inverse)]"
-                        : "text-[color:var(--ink-inverse)]/80 hover:text-[color:var(--bg-inverse)]"
-                      : isActive
-                        ? "text-[color:var(--ink-inverse)]"
-                        : "text-[color:var(--ink-soft)] hover:text-[color:var(--ink-inverse)]",
-                  )}
-                  aria-current={isActive ? "true" : undefined}
-                >
-                  {link.label}
-                </a>
-              );
-            })}
+          {/* Center links */}
+          <nav className="hidden lg:flex items-center gap-8" aria-label="Principal">
+            {nav.links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className={cn(
+                  "text-[13px] font-medium transition-colors duration-300 relative group",
+                  isDark
+                    ? "text-[color:var(--ink-inverse)]/80 hover:text-[color:var(--ink-inverse)]"
+                    : "text-[color:var(--ink-soft)] hover:text-[color:var(--ink)]",
+                )}
+              >
+                {link.label}
+                <span
+                  aria-hidden
+                  className="absolute -bottom-1.5 left-0 h-px w-full origin-left scale-x-0 bg-[color:var(--accent)] transition-transform duration-300 group-hover:scale-x-100"
+                />
+              </a>
+            ))}
           </nav>
 
           {/* Right side */}
@@ -224,7 +127,7 @@ export function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               className={cn(
-                "text-sm transition-colors px-3 py-2 duration-500",
+                "text-[13px] transition-colors px-3 py-2 duration-500",
                 isDark
                   ? "text-[color:var(--ink-inverse)]/75 hover:text-[color:var(--ink-inverse)]"
                   : "text-[color:var(--ink-soft)] hover:text-[color:var(--ink)]",
@@ -241,7 +144,7 @@ export function Navbar() {
             </a>
           </div>
 
-          {/* Mobile menu trigger */}
+          {/* Mobile trigger */}
           <button
             type="button"
             onClick={() => setOpen(true)}
@@ -267,7 +170,7 @@ export function Navbar() {
             transition={{ duration: 0.25 }}
           >
             <div className="container-x flex h-[var(--nav-height)] items-center justify-between">
-              <Isotipo className="h-7 w-7" strokeWidth={11} />
+              <Isotipo className="h-7 w-7 text-[color:var(--ink)]" strokeWidth={11} />
               <button
                 type="button"
                 onClick={() => setOpen(false)}

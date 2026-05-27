@@ -1,7 +1,8 @@
 import { Navbar } from "@/components/sections/Navbar";
 import { Hero } from "@/components/sections/Hero";
-import { Diferencial } from "@/components/sections/Diferencial";
+import { Manifiesto } from "@/components/sections/Manifiesto";
 import { IMCCalculator } from "@/components/sections/IMCCalculator";
+import { Diferencial } from "@/components/sections/Diferencial";
 import { Equipo } from "@/components/sections/Equipo";
 import { Proceso } from "@/components/sections/Proceso";
 import { NoEstasSolo } from "@/components/sections/NoEstasSolo";
@@ -18,8 +19,9 @@ export default function Page() {
       <Navbar />
       <main>
         <Hero />
-        <Diferencial />
+        <Manifiesto />
         <IMCCalculator />
+        <Diferencial />
         <Equipo />
         <Proceso />
         <NoEstasSolo />

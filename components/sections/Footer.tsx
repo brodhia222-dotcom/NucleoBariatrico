@@ -9,25 +9,28 @@ import { viewportOnce, easeEditorial } from "@/lib/motion";
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-[color:var(--bg-inverse)] text-[color:var(--ink-inverse)]">
-      {/* Top CTA block */}
-      <div className="border-b border-[color:var(--ink-inverse)]/10">
+    <footer
+      data-nav-tone="dark"
+      className="relative bg-[color:var(--bg-inverse)] text-[color:var(--ink-inverse)]"
+    >
+      {/* CTA block */}
+      <div className="border-b border-[color:var(--ink-inverse)]/12">
         <Container>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={viewportOnce}
             transition={{ duration: 0.8, ease: easeEditorial }}
-            className="grid gap-8 lg:grid-cols-12 lg:gap-12 items-end py-16 lg:py-24"
+            className="grid gap-8 lg:grid-cols-12 lg:gap-12 items-end py-14 lg:py-20"
           >
             <div className="lg:col-span-8">
-              <span className="font-mono text-[10px] tracking-[0.22em] uppercase opacity-65 mb-5 block">
+              <span className="font-mono text-[10px] tracking-[0.22em] uppercase opacity-65 mb-4 block">
                 ¿Listo para empezar?
               </span>
               <h2
                 className="font-display"
                 style={{
-                  fontSize: "clamp(40px, 5.5vw, 88px)",
+                  fontSize: "clamp(36px, 5vw, 80px)",
                   lineHeight: 0.98,
                   letterSpacing: "-0.035em",
                   fontWeight: 300,
@@ -42,7 +45,7 @@ export function Footer() {
             <div className="lg:col-span-4 flex flex-col gap-3">
               <a
                 href="#contacto"
-                className="flex items-center justify-between gap-4 border border-[color:var(--ink-inverse)]/20 hover:border-[color:var(--ink-inverse)]/60 transition-colors px-6 py-5 rounded-full group"
+                className="flex items-center justify-between gap-4 border border-[color:var(--ink-inverse)]/20 hover:border-[color:var(--ink-inverse)]/60 transition-colors px-6 py-4 rounded-full group"
               >
                 <span className="font-medium text-base">Pedir turno</span>
                 <span className="grid h-9 w-9 place-items-center rounded-full bg-[color:var(--accent)] text-white">
@@ -53,7 +56,7 @@ export function Footer() {
                 href={`https://wa.me/${brand.whatsappNumber.replace(/[^\d]/g, "")}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between gap-4 border border-[color:var(--ink-inverse)]/20 hover:border-[color:var(--ink-inverse)]/60 transition-colors px-6 py-5 rounded-full group"
+                className="flex items-center justify-between gap-4 border border-[color:var(--ink-inverse)]/20 hover:border-[color:var(--ink-inverse)]/60 transition-colors px-6 py-4 rounded-full group"
               >
                 <span className="font-medium text-base">Hablar por WhatsApp</span>
                 <span className="grid h-9 w-9 place-items-center rounded-full bg-[color:var(--color-whatsapp)] text-white">
@@ -67,13 +70,13 @@ export function Footer() {
 
       {/* Main footer */}
       <Container>
-        <div className="py-14 lg:py-16 grid gap-12 lg:grid-cols-12 lg:gap-16">
-          {/* Brand block */}
-          <div className="lg:col-span-5 flex flex-col gap-6">
+        <div className="py-12 lg:py-16 grid gap-10 lg:grid-cols-12 lg:gap-16">
+          {/* Brand */}
+          <div className="lg:col-span-5 flex flex-col gap-5">
             <div className="flex items-center gap-3">
-              <Isotipo className="h-10 w-10" strokeWidth={11} />
+              <Isotipo className="h-9 w-9" strokeWidth={11} />
               <div className="flex items-baseline gap-2">
-                <span className="font-display text-2xl tracking-tight" style={{ fontWeight: 400 }}>
+                <span className="font-display text-xl tracking-tight" style={{ fontWeight: 400 }}>
                   nucleo
                 </span>
                 <span className="font-mono text-[10px] tracking-[0.28em] uppercase opacity-65">
@@ -82,8 +85,8 @@ export function Footer() {
               </div>
             </div>
             <p
-              className="font-display italic text-[color:var(--ink-inverse)]/85 max-w-[28ch]"
-              style={{ fontSize: "22px", lineHeight: 1.3, fontWeight: 300, fontVariationSettings: '"opsz" 36' }}
+              className="font-display italic text-[color:var(--ink-inverse)]/82 max-w-[28ch]"
+              style={{ fontSize: "20px", lineHeight: 1.32, fontWeight: 300, fontVariationSettings: '"opsz" 36' }}
             >
               {footer.tagline}
             </p>
@@ -115,7 +118,7 @@ export function Footer() {
                 <li key={l.href}>
                   <a
                     href={l.href}
-                    className="text-sm text-[color:var(--ink-inverse)]/85 hover:text-[color:var(--ink-inverse)] transition-colors"
+                    className="text-sm text-[color:var(--ink-inverse)]/82 hover:text-[color:var(--ink-inverse)] transition-colors"
                   >
                     {l.label}
                   </a>
@@ -133,7 +136,7 @@ export function Footer() {
                   href={`https://wa.me/${brand.whatsappNumber.replace(/[^\d]/g, "")}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-[color:var(--ink-inverse)]/85 hover:text-[color:var(--ink-inverse)] transition-colors"
+                  className="text-sm text-[color:var(--ink-inverse)]/82 hover:text-[color:var(--ink-inverse)] transition-colors"
                 >
                   WhatsApp
                 </a>
@@ -141,7 +144,7 @@ export function Footer() {
               <li>
                 <a
                   href={`mailto:${footer.contacto.email}`}
-                  className="text-sm text-[color:var(--ink-inverse)]/85 hover:text-[color:var(--ink-inverse)] transition-colors break-all"
+                  className="text-sm text-[color:var(--ink-inverse)]/82 hover:text-[color:var(--ink-inverse)] transition-colors break-all"
                 >
                   {footer.contacto.email}
                 </a>
@@ -156,7 +159,7 @@ export function Footer() {
               {footer.sedes.map((s) => (
                 <li key={s.nombre}>
                   <p className="text-sm font-medium text-[color:var(--ink-inverse)]">{s.nombre}</p>
-                  <p className="caption text-[color:var(--ink-inverse)]/60 mt-0.5">{s.direccion}</p>
+                  <p className="caption text-[color:var(--ink-inverse)]/58 mt-0.5">{s.direccion}</p>
                 </li>
               ))}
             </ul>
@@ -164,27 +167,11 @@ export function Footer() {
         </div>
 
         {/* Legal */}
-        <div className="border-t border-[color:var(--ink-inverse)]/10 py-6 grid gap-4 md:grid-cols-[1fr_auto] items-start">
+        <div className="border-t border-[color:var(--ink-inverse)]/12 py-6 grid gap-4 md:grid-cols-[1fr_auto] items-start">
           <p className="caption text-[color:var(--ink-inverse)]/65 max-w-prose">{footer.legal}</p>
           <p className="caption text-[color:var(--ink-inverse)]/45 md:text-right">{footer.copyright}</p>
         </div>
       </Container>
-
-      {/* Giant brand mark — bottom watermark */}
-      <div className="relative h-32 lg:h-48 overflow-hidden" aria-hidden>
-        <span
-          className="absolute -bottom-8 lg:-bottom-16 left-1/2 -translate-x-1/2 font-display whitespace-nowrap opacity-[0.06] text-[color:var(--ink-inverse)] select-none"
-          style={{
-            fontSize: "clamp(120px, 22vw, 320px)",
-            letterSpacing: "-0.04em",
-            fontWeight: 300,
-            lineHeight: 0.9,
-            fontVariationSettings: '"opsz" 144',
-          }}
-        >
-          nucleo
-        </span>
-      </div>
     </footer>
   );
 }

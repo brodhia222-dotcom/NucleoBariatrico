@@ -13,15 +13,10 @@ export function FAQ() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
 
   return (
-    <Section
-      id="faq"
-      tone="default"
-      marker={{ index: "08", label: "Preguntas", aside: "Lo que más consultan" }}
-    >
+    <Section id="faq" tone="default">
       <Container>
-        {/* Editorial header — minimal, two cols */}
-        <div className="grid gap-10 lg:grid-cols-12 lg:gap-12 mb-10 lg:mb-14 items-end">
-          <div className="lg:col-span-6">
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-12 mb-14 lg:mb-20 items-end">
+          <div className="lg:col-span-7">
             <Reveal>
               <Eyebrow>{faq.eyebrow}</Eyebrow>
             </Reveal>
@@ -42,7 +37,7 @@ export function FAQ() {
               </h2>
             </Reveal>
           </div>
-          <div className="lg:col-span-6 lg:flex lg:items-end lg:justify-end">
+          <div className="lg:col-span-5 lg:flex lg:items-end lg:justify-end">
             <Reveal delay={0.1}>
               <a
                 href={`https://wa.me/${brand.whatsappNumber.replace(/[^\d]/g, "")}`}
@@ -57,17 +52,16 @@ export function FAQ() {
           </div>
         </div>
 
-        {/* Single column, hairline dividers, generous padding */}
-        <ul className="border-t border-[color:var(--ink)]/30">
+        <ul className="border-t border-[color:var(--border-strong)]">
           {faq.items.map((item, i) => {
             const isOpen = openIdx === i;
             return (
               <Reveal key={i} delay={i * 0.04}>
-                <li className="border-b border-[color:var(--ink)]/15">
+                <li className="border-b border-[color:var(--border)]">
                   <button
                     type="button"
                     onClick={() => setOpenIdx(isOpen ? null : i)}
-                    className="group flex w-full items-center justify-between gap-6 py-8 lg:py-10 text-left"
+                    className="group flex w-full items-center justify-between gap-6 py-7 lg:py-9 text-left"
                     aria-expanded={isOpen}
                   >
                     <span className="flex flex-1 items-baseline gap-6 lg:gap-10">
@@ -80,8 +74,8 @@ export function FAQ() {
                       <span
                         className="font-display text-[color:var(--ink)] transition-opacity duration-300 group-hover:opacity-70"
                         style={{
-                          fontSize: "clamp(22px, 2.4vw, 32px)",
-                          lineHeight: 1.15,
+                          fontSize: "clamp(20px, 2vw, 28px)",
+                          lineHeight: 1.18,
                           letterSpacing: "-0.015em",
                           fontWeight: 300,
                           fontVariationSettings: '"opsz" 48',
@@ -92,11 +86,11 @@ export function FAQ() {
                     </span>
                     <motion.span
                       animate={{ rotate: isOpen ? 45 : 0 }}
-                      transition={{ duration: 0.45, ease: [0.65, 0, 0.35, 1] }}
+                      transition={{ duration: 0.4, ease: [0.65, 0, 0.35, 1] }}
                       className="shrink-0 text-[color:var(--ink)]"
                       aria-hidden
                     >
-                      <Plus weight="thin" className="h-7 w-7" />
+                      <Plus weight="thin" className="h-6 w-6" />
                     </motion.span>
                   </button>
 
@@ -107,10 +101,10 @@ export function FAQ() {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.5, ease: [0.65, 0, 0.35, 1] }}
+                        transition={{ duration: 0.45, ease: [0.65, 0, 0.35, 1] }}
                         className="overflow-hidden"
                       >
-                        <div className="pl-0 lg:pl-[calc(11px+2.5rem)] pr-12 pb-10 max-w-3xl">
+                        <div className="pl-0 lg:pl-[calc(11px+2.5rem)] pr-12 pb-8 max-w-3xl">
                           <p className="body-lg text-[color:var(--ink-soft)] leading-relaxed">
                             {item.a}
                           </p>

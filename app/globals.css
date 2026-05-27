@@ -48,22 +48,18 @@
   --accent:          var(--color-orange-500);
   --accent-hover:    var(--color-orange-700);
   --accent-soft:     var(--color-orange-100);
-  --accent-ink:      #ffffff;
 
   --border:          rgba(63, 53, 110, 0.12);
   --border-strong:   rgba(63, 53, 110, 0.24);
-  --border-accent:   var(--color-orange-500);
 
   --focus-ring:      rgba(223, 126, 53, 0.45);
-  --overlay:         rgba(42, 35, 73, 0.55);
 
-  /* ---------- TIPOGRAFÍA — escala REDUCIDA y más controlada ---------- */
+  /* ---------- TIPOGRAFÍA ---------- */
   --font-display: var(--font-fraunces), "Cormorant Garamond", "Georgia", serif;
   --font-body:    var(--font-manrope), "Helvetica Neue", "Helvetica", sans-serif;
   --font-mono:    "JetBrains Mono", "SFMono-Regular", "Menlo", monospace;
 
-  /* Display: rangos más conservadores. El hero ya no es 132px, es 88px máx. */
-  --text-display-xl: clamp(48px, 7.5vw, 96px);
+  --text-display-xl: clamp(48px, 7vw, 92px);
   --text-display-lg: clamp(40px, 5.5vw, 72px);
   --text-display-md: clamp(32px, 4vw, 52px);
   --text-h1:         clamp(28px, 3.2vw, 40px);
@@ -89,7 +85,6 @@
 
   --tracking-tight:  -0.025em;
   --tracking-snug:   -0.012em;
-  --tracking-normal: 0;
   --tracking-wide:   0.04em;
   --tracking-overline: 0.18em;
 
@@ -98,22 +93,17 @@
   --space-2:  8px;
   --space-3:  12px;
   --space-4:  16px;
-  --space-5:  20px;
   --space-6:  24px;
   --space-8:  32px;
-  --space-10: 40px;
   --space-12: 48px;
   --space-16: 64px;
-  --space-20: 80px;
   --space-24: 96px;
-  --space-32: 128px;
 
-  --section-y:       clamp(56px, 6.5vw, 96px);
+  --section-y:       clamp(64px, 8vw, 112px);
   --section-x:       max(20px, 5vw);
   --container-max:   1280px;
 
   /* ---------- RADIOS ---------- */
-  --radius-xs:   4px;
   --radius-sm:   8px;
   --radius-md:   12px;
   --radius-lg:   20px;
@@ -121,38 +111,20 @@
   --radius-2xl:  40px;
   --radius-pill: 999px;
 
-  /* ---------- SOMBRAS · tintadas con indigo ---------- */
+  /* ---------- SOMBRAS ---------- */
   --shadow-xs: 0 1px 2px rgba(63, 53, 110, 0.05);
-  --shadow-sm: 0 2px 6px rgba(63, 53, 110, 0.06), 0 1px 2px rgba(63, 53, 110, 0.04);
-  --shadow-md: 0 8px 24px rgba(63, 53, 110, 0.08), 0 2px 6px rgba(63, 53, 110, 0.05);
-  --shadow-lg: 0 20px 48px rgba(63, 53, 110, 0.14), 0 6px 14px rgba(63, 53, 110, 0.07);
-  --shadow-xl: 0 32px 64px rgba(63, 53, 110, 0.2);
+  --shadow-sm: 0 2px 6px rgba(63, 53, 110, 0.06);
+  --shadow-md: 0 8px 24px rgba(63, 53, 110, 0.08);
+  --shadow-lg: 0 20px 48px rgba(63, 53, 110, 0.14);
   --shadow-accent: 0 12px 32px rgba(223, 126, 53, 0.22);
 
   /* ---------- MOTION ---------- */
-  --duration-instant: 80ms;
-  --duration-fast:    160ms;
-  --duration-base:    240ms;
-  --duration-slow:    420ms;
-  --duration-slower:  720ms;
-
   --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in:     cubic-bezier(0.7, 0, 0.84, 0);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
-  --ease-snappy: cubic-bezier(0.34, 1.56, 0.64, 1);
 
   /* ---------- LAYOUT ---------- */
   --nav-height: 68px;
   --max-prose:  62ch;
-  --grid-gap:   24px;
-
-  /* ---------- Z-INDEX ---------- */
-  --z-base:    1;
-  --z-raised:  10;
-  --z-sticky:  100;
-  --z-overlay: 500;
-  --z-modal:   1000;
-  --z-toast:   2000;
 }
 
 /* ---------- Tailwind v4 @theme bridge ---------- */
@@ -160,7 +132,6 @@
   --color-bg: var(--color-beige-100);
   --color-bg-elevated: var(--color-beige-50);
   --color-bg-subtle: var(--color-beige-200);
-  --color-bg-deep: var(--color-beige-300);
   --color-bg-inverse: var(--color-indigo-700);
   --color-ink: var(--color-indigo-700);
   --color-ink-soft: var(--color-indigo-500);
@@ -171,21 +142,13 @@
   --color-accent-soft: var(--color-orange-100);
   --color-indigo-950: #1d1739;
   --color-indigo-900: #2a2349;
-  --color-indigo-800: #34294f;
   --color-indigo-700: #3f356e;
   --color-indigo-500: #6a608f;
-  --color-indigo-300: #a8a1c4;
-  --color-indigo-100: #e6e2ee;
   --color-beige-50: #fbf8ef;
   --color-beige-100: #f5f1e0;
   --color-beige-200: #ebe4cb;
-  --color-beige-300: #d8cdab;
-  --color-beige-400: #b9ad84;
-  --color-orange-700: #b86223;
   --color-orange-500: #df7e35;
-  --color-orange-400: #e69757;
-  --color-orange-300: #f0b683;
-  --color-orange-100: #fce8d4;
+  --color-orange-700: #b86223;
   --color-whatsapp: #25d366;
   --font-display: var(--font-fraunces), "Cormorant Garamond", "Georgia", serif;
   --font-body: var(--font-manrope), "Helvetica Neue", "Helvetica", sans-serif;
@@ -209,23 +172,6 @@ body {
   font-size: var(--text-body);
   font-weight: var(--weight-regular);
   line-height: var(--leading-relaxed);
-  font-feature-settings: "ss01", "cv11";
-  position: relative;
-}
-
-/* ---------- GRAIN OVERLAY GLOBAL ----------
-   Texture sutil para romper la flatness del beige y darle profundidad orgánica.
-   No interactivo, pegado a viewport. */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1000;
-  opacity: 0.045;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='noiseFilter'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23noiseFilter)'/></svg>");
-  background-size: 180px;
 }
 
 ::selection {
@@ -249,7 +195,6 @@ body::before {
 .display-lg { font-size: var(--text-display-lg); font-family: var(--font-display); font-weight: var(--weight-light); letter-spacing: var(--tracking-tight); line-height: 1.04; font-optical-sizing: auto; font-variation-settings: "opsz" 72; }
 .display-md { font-size: var(--text-display-md); font-family: var(--font-display); font-weight: var(--weight-light); letter-spacing: var(--tracking-snug); line-height: var(--leading-snug); font-optical-sizing: auto; font-variation-settings: "opsz" 48; }
 
-.h1 { font-size: var(--text-h1); font-family: var(--font-display); font-weight: var(--weight-light); letter-spacing: var(--tracking-tight); line-height: var(--leading-snug); font-variation-settings: "opsz" 40; }
 .h2 { font-size: var(--text-h2); font-family: var(--font-display); font-weight: var(--weight-regular); letter-spacing: var(--tracking-snug); line-height: var(--leading-snug); font-variation-settings: "opsz" 32; }
 .h3 { font-size: var(--text-h3); font-family: var(--font-display); font-weight: var(--weight-regular); letter-spacing: var(--tracking-snug); line-height: 1.22; font-variation-settings: "opsz" 24; }
 .h4 { font-size: var(--text-h4); font-family: var(--font-body); font-weight: var(--weight-semibold); letter-spacing: -0.005em; line-height: var(--leading-snug); }
@@ -280,16 +225,7 @@ body::before {
 }
 
 .section { padding-block: var(--section-y); }
-.section-tight { padding-block: calc(var(--section-y) * 0.55); }
-
-.hairline { height: 1px; width: 100%; background: var(--border); }
-.hairline-strong { height: 1px; width: 100%; background: var(--border-strong); }
-
-/* ---------- DOT PATTERN BG ---------- */
-.bg-dots {
-  background-image: radial-gradient(currentColor 1px, transparent 1px);
-  background-size: 24px 24px;
-}
+.section-tight { padding-block: calc(var(--section-y) * 0.6); }
 
 /* ---------- FOCUS ---------- */
 :focus-visible {
@@ -298,42 +234,26 @@ body::before {
   border-radius: 4px;
 }
 
-/* ---------- REVEAL ---------- */
-[data-reveal] {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
-}
-[data-reveal][data-revealed="true"] {
-  opacity: 1;
-  transform: none;
-}
-
-/* ---------- IMAGE / PLACEHOLDER UTILITIES ---------- */
-.img-warm {
-  filter: saturate(0.7) contrast(1.02) sepia(0.12);
-}
-.img-treatment {
-  filter: grayscale(0.4) sepia(0.15) brightness(0.92) contrast(1.05);
-}
-
+/* ---------- PLACEHOLDER (foto pendiente) ----------
+   Un fondo cálido neutro que comunica "acá va una foto".
+   Usa los tokens semánticos para respetar theme picker. */
 .placeholder {
   position: relative;
   background:
-    radial-gradient(ellipse at 30% 25%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 55%),
-    radial-gradient(ellipse at 70% 75%, color-mix(in srgb, var(--ink) 20%, transparent), transparent 60%),
-    linear-gradient(135deg, var(--bg-subtle), var(--bg-deep));
-  border-radius: var(--radius-lg);
+    linear-gradient(135deg,
+      color-mix(in srgb, var(--accent) 14%, var(--bg-subtle)) 0%,
+      color-mix(in srgb, var(--ink) 12%, var(--bg-subtle)) 100%);
   overflow: hidden;
 }
 .placeholder::after {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.95'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-  background-size: 180px;
-  opacity: 0.18;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-size: 200px;
+  opacity: 0.15;
   mix-blend-mode: overlay;
+  pointer-events: none;
 }
 
 /* ---------- MARQUEE ---------- */
@@ -345,90 +265,7 @@ body::before {
   display: flex;
   gap: var(--space-12);
   width: max-content;
-  animation: marquee 32s linear infinite;
-}
-.marquee--reverse { animation-direction: reverse; }
-
-/* ---------- GRADIENT TEXT SHIFT ----------
-   Background-clip text con gradient que se desplaza en loop.
-   Usa vars semánticas → respeta theme picker. */
-@keyframes gradient-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50%      { background-position: 100% 50%; }
-}
-.gradient-text {
-  background: linear-gradient(
-    90deg,
-    var(--accent) 0%,
-    var(--accent-hover) 35%,
-    var(--ink) 50%,
-    var(--accent-hover) 65%,
-    var(--accent) 100%
-  );
-  background-size: 220% 100%;
-  background-position: 0% 50%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: gradient-shift 9s ease-in-out infinite;
-  display: inline-block;
-}
-
-/* ---------- DRAW PATH ANIMATION ---------- */
-@keyframes draw {
-  from { stroke-dashoffset: var(--dash, 1200); }
-  to   { stroke-dashoffset: 0; }
-}
-.path-draw {
-  stroke-dasharray: var(--dash, 1200);
-  stroke-dashoffset: var(--dash, 1200);
-  animation: draw 2.2s var(--ease-out) forwards;
-}
-
-/* ---------- PULSING GLOW ---------- */
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 38%, transparent), var(--shadow-accent); }
-  50%      { box-shadow: 0 0 0 14px color-mix(in srgb, var(--accent) 0%, transparent), var(--shadow-accent); }
-}
-.btn-pulse {
-  animation: pulse-glow 2.6s ease-in-out infinite;
-}
-
-/* ---------- SLOW FLOAT (decorative SVGs) ---------- */
-@keyframes float-slow {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  50%      { transform: translate3d(0, -10px, 0); }
-}
-.float-slow { animation: float-slow 7s ease-in-out infinite; }
-
-/* ---------- MESH BG ----------
-   Gradiente radial multi-stop que deja un "halo" cálido. */
-.mesh-bg {
-  background:
-    radial-gradient(ellipse 70% 50% at 50% 0%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 70%),
-    radial-gradient(ellipse 60% 50% at 100% 100%, color-mix(in srgb, var(--ink) 14%, transparent), transparent 70%),
-    radial-gradient(ellipse 60% 50% at 0% 100%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 70%);
-}
-
-/* ---------- SCROLL HINT ---------- */
-@keyframes scroll-bounce {
-  0%, 100% { transform: translateY(0); opacity: 0.4; }
-  50%      { transform: translateY(8px); opacity: 1; }
-}
-.scroll-hint { animation: scroll-bounce 2.2s ease-in-out infinite; }
-
-/* ---------- TILT CARD ---------- */
-.tilt-wrap { perspective: 1200px; }
-.tilt-card {
-  transform-style: preserve-3d;
-  transition: transform 0.35s var(--ease-out);
-  will-change: transform;
-}
-
-/* ---------- PROGRESS FILL (Proceso carousel) ---------- */
-@keyframes progress-fill {
-  from { transform: scaleX(0); }
-  to   { transform: scaleX(1); }
+  animation: marquee 38s linear infinite;
 }
 
 /* ---------- BUTTON SYSTEM ---------- */
@@ -436,16 +273,17 @@ body::before {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  height: 46px;
+  height: 48px;
   padding: 0 1.4rem;
   border-radius: 999px;
   font-size: 14px;
   font-weight: 500;
   letter-spacing: -0.005em;
-  transition: transform var(--duration-fast) var(--ease-out),
-              background-color var(--duration-fast) var(--ease-out),
-              color var(--duration-fast) var(--ease-out),
-              box-shadow var(--duration-base) var(--ease-out);
+  transition: transform 160ms var(--ease-out),
+              background-color 240ms var(--ease-out),
+              color 240ms var(--ease-out),
+              border-color 240ms var(--ease-out),
+              box-shadow 240ms var(--ease-out);
 }
 .btn:active { transform: scale(0.97); }
 .btn-primary {
@@ -456,7 +294,7 @@ body::before {
 .btn-primary:hover { background: var(--accent-hover); }
 .btn-ink {
   background: var(--ink);
-  color: white;
+  color: var(--ink-inverse);
 }
 .btn-ink:hover { background: var(--color-indigo-900); }
 .btn-ghost {

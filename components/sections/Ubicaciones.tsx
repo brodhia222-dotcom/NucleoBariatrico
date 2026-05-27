@@ -17,13 +17,9 @@ const sedeMeta: { area: string; horario: string; transporte: string }[] = [
 
 export function Ubicaciones() {
   return (
-    <Section
-      id="ubicaciones"
-      tone="elevated"
-      marker={{ index: "07", label: "Ubicaciones", aside: "CABA · Zona Norte" }}
-    >
+    <Section id="ubicaciones" tone="subtle">
       <Container>
-        <div className="grid gap-8 lg:grid-cols-12 lg:gap-12 mb-10 lg:mb-14 items-end">
+        <div className="grid gap-8 lg:grid-cols-12 lg:gap-12 mb-14 lg:mb-20 items-end">
           <div className="lg:col-span-3">
             <Reveal>
               <Eyebrow>{ubicaciones.eyebrow}</Eyebrow>
@@ -34,11 +30,11 @@ export function Ubicaciones() {
               <h2
                 className="font-display"
                 style={{
-                  fontSize: "clamp(32px, 4vw, 56px)",
-                  lineHeight: 1.06,
+                  fontSize: "clamp(36px, 4.6vw, 64px)",
+                  lineHeight: 1.04,
                   letterSpacing: "-0.025em",
                   fontWeight: 300,
-                  fontVariationSettings: '"opsz" 56',
+                  fontVariationSettings: '"opsz" 72',
                   textWrap: "balance",
                 }}
               >
@@ -53,7 +49,6 @@ export function Ubicaciones() {
           </div>
         </div>
 
-        {/* Cards */}
         <div className="grid gap-6 md:grid-cols-2 lg:gap-8">
           {ubicaciones.sedes.map((sede, i) => {
             const meta = sedeMeta[i] ?? sedeMeta[0];
@@ -64,15 +59,15 @@ export function Ubicaciones() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={viewportOnce}
                 transition={{ duration: 0.8, delay: i * 0.1, ease: easeEditorial }}
-                className="group flex flex-col gap-6 overflow-hidden rounded-[var(--radius-xl)] bg-[color:var(--bg-elevated)] border border-[color:var(--border)]"
+                className="flex flex-col gap-6 overflow-hidden rounded-[var(--radius-xl)] bg-[color:var(--bg-elevated)] border border-[color:var(--border)]"
               >
-                {/* Placeholder of the space */}
-                <div className="placeholder relative aspect-[16/10] rounded-none">
-                  <div className="absolute left-5 bottom-5 right-5 flex items-end justify-between text-[color:var(--ink-soft)]">
-                    <div className="flex items-center gap-2">
-                      <MapPin weight="fill" className="h-4 w-4 text-[color:var(--accent)]" aria-hidden />
+                {/* Foto sede */}
+                <div className="placeholder relative aspect-[16/10]">
+                  <div className="absolute left-5 bottom-5 right-5 flex items-end justify-between text-[color:var(--ink)]/80">
+                    <div className="flex items-center gap-2 rounded-full bg-[color:var(--bg)]/85 backdrop-blur-md px-2.5 py-1">
+                      <MapPin weight="fill" className="h-3.5 w-3.5 text-[color:var(--accent)]" aria-hidden />
                       <span className="font-mono text-[10px] tracking-[0.2em] uppercase">
-                        Sede / {String(i + 1).padStart(2, "0")}
+                        Sede {String(i + 1).padStart(2, "0")}
                       </span>
                     </div>
                     <span className="font-mono text-[10px] tracking-[0.2em] uppercase opacity-80">
@@ -87,8 +82,8 @@ export function Ubicaciones() {
                     className="font-display"
                     style={{
                       fontSize: "clamp(26px, 2.6vw, 36px)",
-                      lineHeight: 1.05,
-                      letterSpacing: "-0.025em",
+                      lineHeight: 1.04,
+                      letterSpacing: "-0.022em",
                       fontWeight: 300,
                       fontVariationSettings: '"opsz" 48',
                     }}
@@ -102,18 +97,19 @@ export function Ubicaciones() {
                   </dl>
                 </div>
 
-                {/* Map */}
                 <div className="px-6 lg:px-8 pb-6 lg:pb-8">
                   <MapEmbed src={sede.mapa} title={`Mapa ${sede.nombre}`} />
                 </div>
 
-                {/* Footer link */}
                 <a
-                  href={`#contacto`}
+                  href="#contacto"
                   className="group/cta flex items-center justify-between gap-3 border-t border-[color:var(--border)] px-6 lg:px-8 py-5 text-sm font-medium text-[color:var(--ink)] hover:bg-[color:var(--ink)] hover:text-[color:var(--ink-inverse)] transition-colors"
                 >
                   Pedir turno en {sede.nombre}
-                  <ArrowUpRight weight="bold" className="h-4 w-4 transition-transform group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5" />
+                  <ArrowUpRight
+                    weight="bold"
+                    className="h-4 w-4 transition-transform group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5"
+                  />
                 </a>
               </motion.article>
             );
