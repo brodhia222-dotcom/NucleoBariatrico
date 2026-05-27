@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MapPin, ArrowUpRight } from "@phosphor-icons/react";
+import { ArrowUpRight } from "@phosphor-icons/react";
 import { Container } from "@/components/primitives/Container";
 import { Section } from "@/components/primitives/Section";
 import { Eyebrow } from "@/components/primitives/Eyebrow";
@@ -62,19 +62,7 @@ export function Ubicaciones() {
                 className="flex flex-col gap-6 overflow-hidden rounded-[var(--radius-xl)] bg-[color:var(--bg-elevated)] border border-[color:var(--border)]"
               >
                 {/* Foto sede */}
-                <div className="placeholder relative aspect-[16/10]">
-                  <div className="absolute left-5 bottom-5 right-5 flex items-end justify-between text-[color:var(--ink)]/80">
-                    <div className="flex items-center gap-2 rounded-full bg-[color:var(--bg)]/85 backdrop-blur-md px-2.5 py-1">
-                      <MapPin weight="fill" className="h-3.5 w-3.5 text-[color:var(--accent)]" aria-hidden />
-                      <span className="font-mono text-[10px] tracking-[0.2em] uppercase">
-                        Sede {String(i + 1).padStart(2, "0")}
-                      </span>
-                    </div>
-                    <span className="font-mono text-[10px] tracking-[0.2em] uppercase opacity-80">
-                      {meta.area}
-                    </span>
-                  </div>
-                </div>
+                <div className="placeholder relative aspect-[16/10]" />
 
                 {/* Info */}
                 <div className="px-6 lg:px-8 flex flex-col gap-4">

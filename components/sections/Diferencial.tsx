@@ -15,58 +15,55 @@ type IconType = ComponentType<{ className?: string; weight?: "thin" | "light" | 
 const icons: IconType[] = [UsersThree, Heartbeat, ShieldCheck, MapPinLine];
 
 export function Diferencial() {
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState<number | null>(null);
 
   return (
     <Section id="diferencial" tone="elevated">
       <Container>
-        {/* Header */}
-        <div className="grid gap-8 lg:grid-cols-12 lg:gap-12 mb-12 lg:mb-16 items-end">
-          <div className="lg:col-span-3">
-            <Reveal>
-              <Eyebrow>{diferencial.eyebrow}</Eyebrow>
-            </Reveal>
-          </div>
-          <div className="lg:col-span-9">
-            <Reveal delay={0.05}>
-              <h2
-                className="font-display"
-                style={{
-                  fontSize: "clamp(36px, 4.6vw, 64px)",
-                  lineHeight: 1.04,
-                  letterSpacing: "-0.025em",
-                  fontWeight: 300,
-                  fontVariationSettings: '"opsz" 72',
-                  textWrap: "balance",
-                  maxWidth: "22ch",
-                }}
-              >
-                {diferencial.headline.split(", ").map((part, i, arr) => (
-                  <span key={i}>
-                    {i === arr.length - 1 ? (
-                      <span className="italic-serif text-[color:var(--accent)]">{part}</span>
-                    ) : (
-                      part
-                    )}
-                    {i < arr.length - 1 && ", "}
-                  </span>
-                ))}
-              </h2>
-            </Reveal>
-          </div>
+        {/* Header — título debajo del eyebrow */}
+        <div className="flex flex-col gap-4 mb-12 lg:mb-16">
+          <Reveal>
+            <Eyebrow>{diferencial.eyebrow}</Eyebrow>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <h2
+              className="font-display"
+              style={{
+                fontSize: "clamp(36px, 4.6vw, 64px)",
+                lineHeight: 1.04,
+                letterSpacing: "-0.025em",
+                fontWeight: 300,
+                fontVariationSettings: '"opsz" 72',
+                textWrap: "balance",
+                maxWidth: "22ch",
+              }}
+            >
+              {diferencial.headline.split(", ").map((part, i, arr) => (
+                <span key={i}>
+                  {i === arr.length - 1 ? (
+                    <span className="italic-serif text-[color:var(--accent)]">{part}</span>
+                  ) : (
+                    part
+                  )}
+                  {i < arr.length - 1 && ", "}
+                </span>
+              ))}
+            </h2>
+          </Reveal>
         </div>
 
-        {/* Expanding cards */}
+        {/* Expanding cards — todas cerradas por default */}
         <Reveal>
           <div className="flex flex-col gap-3 lg:flex-row lg:gap-3 lg:h-[520px]">
             {diferencial.items.map((item, i) => {
               const Icon = icons[i] ?? icons[0];
+              const isActive = i === active;
               return (
                 <ExpandingCard
                   key={item.title}
                   index={i}
-                  isActive={i === active}
-                  onActivate={() => setActive(i)}
+                  isActive={isActive}
+                  onActivate={() => setActive(isActive ? null : i)}
                   item={item}
                   Icon={Icon}
                 />
@@ -110,7 +107,7 @@ function ExpandingCard({
       {/* Imagen placeholder */}
       <div aria-hidden className="placeholder absolute inset-0" style={{ borderRadius: 0 }} />
 
-      {/* Dark overlay para legibilidad */}
+      {/* Dark overlay */}
       <div
         aria-hidden
         className="absolute inset-0"
@@ -123,11 +120,8 @@ function ExpandingCard({
 
       {/* Content */}
       <div className="relative z-10 flex w-full flex-col justify-between gap-6 p-6 lg:p-8">
-        {/* Top — número + icono */}
-        <div className="flex items-start justify-between gap-3">
-          <span className="font-mono text-[10px] tracking-[0.22em] uppercase opacity-75">
-            № {String(index + 1).padStart(2, "0")}
-          </span>
+        {/* Top — icono */}
+        <div className="flex items-start justify-end">
           <span
             aria-hidden
             className="grid h-10 w-10 place-items-center rounded-full bg-[color:var(--ink-inverse)]/12 backdrop-blur-md text-[color:var(--ink-inverse)] transition-colors group-hover:bg-[color:var(--accent)] group-hover:text-white"
@@ -136,7 +130,7 @@ function ExpandingCard({
           </span>
         </div>
 
-        {/* Bottom — vertical title or expanded content */}
+        {/* Bottom */}
         <AnimatePresence mode="wait">
           {!isActive ? (
             <motion.div
@@ -169,9 +163,6 @@ function ExpandingCard({
               transition={{ duration: 0.45, ease: easeEditorial }}
               className="flex flex-col gap-4 max-w-[44ch]"
             >
-              <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--accent)]">
-                {item.badge}
-              </span>
               <h3
                 className="font-display"
                 style={{
@@ -186,11 +177,14 @@ function ExpandingCard({
                 {item.title}
               </h3>
               <p className="body-sm opacity-85">{item.body}</p>
-              <span className="mt-2 inline-flex items-center gap-2 text-xs font-medium tracking-wide">
+              <a
+                href={item.href}
+                className="mt-2 inline-flex items-center gap-2 text-xs font-medium tracking-wide"
+              >
                 <span className="block h-px w-8 bg-[color:var(--accent)]" />
                 {item.cta}
                 <ArrowUpRight weight="bold" className="h-3.5 w-3.5 opacity-80" />
-              </span>
+              </a>
             </motion.div>
           )}
         </AnimatePresence>

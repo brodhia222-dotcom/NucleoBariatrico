@@ -64,13 +64,7 @@ export function FAQ() {
                     className="group flex w-full items-center justify-between gap-6 py-7 lg:py-9 text-left"
                     aria-expanded={isOpen}
                   >
-                    <span className="flex flex-1 items-baseline gap-6 lg:gap-10">
-                      <span
-                        className="font-mono text-[11px] tracking-[0.22em] uppercase text-[color:var(--ink-muted)] tabular shrink-0 mt-1"
-                        aria-hidden
-                      >
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
+                    <span className="flex flex-1 items-baseline">
                       <span
                         className="font-display text-[color:var(--ink)] transition-opacity duration-300 group-hover:opacity-70"
                         style={{

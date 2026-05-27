@@ -59,17 +59,7 @@ export function Proceso() {
               >
                 {/* Foto column */}
                 <div className={`relative lg:col-span-7 ${isReverse ? "lg:[direction:ltr]" : ""}`}>
-                  <div className="placeholder relative aspect-[16/10] rounded-[var(--radius-lg)]">
-                    <div className="absolute top-5 left-5 flex items-center gap-2 rounded-full bg-[color:var(--bg)]/85 backdrop-blur-md px-2.5 py-1">
-                      <span aria-hidden className="block h-1.5 w-1.5 rounded-full bg-[color:var(--accent)]" />
-                      <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-[color:var(--ink)]">
-                        Paso {paso.n}
-                      </span>
-                    </div>
-                    <div className="absolute bottom-5 right-5 font-mono text-[10px] tracking-[0.18em] uppercase text-[color:var(--ink)]/60">
-                      Foto · 16:10 · pendiente
-                    </div>
-                  </div>
+                  <div className="placeholder relative aspect-[16/10] rounded-[var(--radius-lg)]" />
                 </div>
 
                 {/* Text column */}

@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { List, X, ArrowUpRight } from "@phosphor-icons/react";
-import { Isotipo } from "@/components/primitives/Isotipo";
 import { brand, nav } from "@/lib/copy";
 import { cn } from "@/lib/utils";
 
@@ -75,27 +74,23 @@ export function Navbar() {
       >
         <div className="container-x flex h-full items-center justify-between">
           {/* Logo */}
-          <a
-            href="#top"
-            className={cn(
-              "flex items-center gap-2.5 transition-colors duration-500",
-              isDark ? "text-[color:var(--ink-inverse)]" : "text-[color:var(--ink)]",
-            )}
-          >
-            <Isotipo className="h-7 w-7" strokeWidth={11} />
-            <span className="flex items-baseline gap-1.5">
-              <span className="font-display text-[17px] tracking-tight" style={{ fontWeight: 400 }}>
-                nucleo
-              </span>
-              <span
-                className={cn(
-                  "font-body text-[10px] tracking-[0.28em] uppercase transition-colors duration-500",
-                  isDark ? "text-[color:var(--ink-inverse)]/65" : "text-[color:var(--ink-soft)]",
-                )}
-              >
-                bariátrico
-              </span>
-            </span>
+          <a href="#top" className="relative flex items-center">
+            <img
+              src="/logos/logo-indigo.png"
+              alt="Nucleo Bariátrico"
+              className={cn(
+                "h-8 w-auto transition-opacity duration-500",
+                isDark ? "opacity-0" : "opacity-100",
+              )}
+            />
+            <img
+              src="/logos/logo-blanco.png"
+              alt="Nucleo Bariátrico"
+              className={cn(
+                "absolute inset-0 h-8 w-auto transition-opacity duration-500",
+                isDark ? "opacity-100" : "opacity-0",
+              )}
+            />
           </a>
 
           {/* Center links */}
@@ -170,7 +165,7 @@ export function Navbar() {
             transition={{ duration: 0.25 }}
           >
             <div className="container-x flex h-[var(--nav-height)] items-center justify-between">
-              <Isotipo className="h-7 w-7 text-[color:var(--ink)]" strokeWidth={11} />
+              <img src="/logos/logo-indigo.png" alt="Nucleo Bariátrico" className="h-8 w-auto" />
               <button
                 type="button"
                 onClick={() => setOpen(false)}

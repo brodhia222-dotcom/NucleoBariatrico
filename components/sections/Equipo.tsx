@@ -12,39 +12,35 @@ export function Equipo() {
   return (
     <Section id="equipo" tone="subtle">
       <Container>
-        {/* Header */}
-        <div className="grid gap-8 lg:grid-cols-12 lg:gap-12 mb-14 lg:mb-20 items-end">
-          <div className="lg:col-span-3">
-            <Reveal>
-              <Eyebrow>{equipo.eyebrow}</Eyebrow>
-            </Reveal>
-          </div>
-          <div className="lg:col-span-6">
-            <Reveal delay={0.05}>
-              <h2
-                className="font-display"
-                style={{
-                  fontSize: "clamp(36px, 4.6vw, 64px)",
-                  lineHeight: 1.04,
-                  letterSpacing: "-0.025em",
-                  fontWeight: 300,
-                  fontVariationSettings: '"opsz" 72',
-                  textWrap: "balance",
-                  maxWidth: "16ch",
-                }}
-              >
-                {equipo.headline}
-              </h2>
-            </Reveal>
-          </div>
-          <div className="lg:col-span-3">
-            <Reveal delay={0.1}>
-              <p className="body-sm text-[color:var(--ink-soft)] max-w-prose">{equipo.body}</p>
-            </Reveal>
-          </div>
+        {/* Header — título + descripción debajo del eyebrow, no al lado */}
+        <div className="flex flex-col gap-4 mb-14 lg:mb-20">
+          <Reveal>
+            <Eyebrow>{equipo.eyebrow}</Eyebrow>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <h2
+              className="font-display"
+              style={{
+                fontSize: "clamp(36px, 4.6vw, 64px)",
+                lineHeight: 1.04,
+                letterSpacing: "-0.025em",
+                fontWeight: 300,
+                fontVariationSettings: '"opsz" 72',
+                textWrap: "balance",
+                maxWidth: "18ch",
+              }}
+            >
+              {equipo.headline}
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="body-lg text-[color:var(--ink-soft)] max-w-prose mt-2">
+              {equipo.body}
+            </p>
+          </Reveal>
         </div>
 
-        {/* 3 retratos editoriales */}
+        {/* 3 retratos — sin numerales, sin tags */}
         <ul className="grid gap-8 md:grid-cols-3 lg:gap-10">
           {equipo.miembros.map((m, i) => (
             <motion.li
@@ -55,23 +51,11 @@ export function Equipo() {
               transition={{ duration: 0.8, delay: i * 0.1, ease: easeEditorial }}
               className="group flex flex-col gap-5"
             >
-              {/* Retrato */}
               <figure className="relative overflow-hidden rounded-[var(--radius-lg)]">
-                <div className="placeholder relative aspect-[4/5] transition-transform duration-700 group-hover:scale-[1.02]">
-                  <div className="absolute top-4 left-4 flex items-center gap-2 rounded-full bg-[color:var(--bg)]/85 backdrop-blur-md px-2.5 py-1">
-                    <span aria-hidden className="block h-1.5 w-1.5 rounded-full bg-[color:var(--accent)]" />
-                    <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-[color:var(--ink)]">
-                      № {String(i + 1).padStart(2, "0")}
-                    </span>
-                  </div>
-                  <div className="absolute bottom-4 right-4 font-mono text-[10px] tracking-[0.18em] uppercase text-[color:var(--ink)]/65">
-                    Foto · 4:5
-                  </div>
-                </div>
+                <div className="placeholder relative aspect-[4/5] transition-transform duration-700 group-hover:scale-[1.02]" />
               </figure>
 
-              {/* Info */}
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-2">
                 <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--accent)]">
                   {m.rol}
                 </span>

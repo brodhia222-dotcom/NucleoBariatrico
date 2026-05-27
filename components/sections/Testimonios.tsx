@@ -55,17 +55,7 @@ export function Testimonios() {
               className="grid gap-8 lg:grid-cols-12 lg:gap-16 mb-16 lg:mb-20"
             >
               <div className="lg:col-span-5">
-                <div className="placeholder relative aspect-[4/5] rounded-[var(--radius-lg)] overflow-hidden">
-                  <div className="absolute top-4 left-4 flex items-center gap-2 rounded-full bg-[color:var(--bg)]/85 backdrop-blur-md px-2.5 py-1">
-                    <span aria-hidden className="block h-1.5 w-1.5 rounded-full bg-[color:var(--accent)]" />
-                    <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-[color:var(--ink)]">
-                      Testimonio · 01
-                    </span>
-                  </div>
-                  <div className="absolute bottom-4 right-4 font-mono text-[10px] tracking-[0.18em] uppercase text-[color:var(--ink)]/60">
-                    Foto · 4:5
-                  </div>
-                </div>
+                <div className="placeholder relative aspect-[4/5] rounded-[var(--radius-lg)] overflow-hidden" />
               </div>
               <div className="lg:col-span-7 flex flex-col justify-between gap-6">
                 <Quotes weight="fill" className="h-9 w-9 text-[color:var(--accent)]" aria-hidden />
@@ -104,11 +94,7 @@ export function Testimonios() {
               transition={{ duration: 0.7, delay: i * 0.08, ease: easeEditorial }}
               className="flex flex-col gap-5"
             >
-              <div className="placeholder relative aspect-[3/4] rounded-[var(--radius-lg)] overflow-hidden">
-                <div className="absolute top-3 left-3 font-mono text-[10px] tracking-[0.18em] uppercase text-[color:var(--ink)]/70 bg-[color:var(--bg)]/80 backdrop-blur-md rounded-full px-2 py-0.5">
-                  № 0{i + 2}
-                </div>
-              </div>
+              <div className="placeholder relative aspect-[3/4] rounded-[var(--radius-lg)] overflow-hidden" />
               <Quotes weight="regular" className="h-5 w-5 text-[color:var(--accent)]" aria-hidden />
               <blockquote
                 className="font-display"
