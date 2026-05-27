@@ -349,6 +349,88 @@ body::before {
 }
 .marquee--reverse { animation-direction: reverse; }
 
+/* ---------- GRADIENT TEXT SHIFT ----------
+   Background-clip text con gradient que se desplaza en loop.
+   Usa vars semánticas → respeta theme picker. */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+.gradient-text {
+  background: linear-gradient(
+    90deg,
+    var(--accent) 0%,
+    var(--accent-hover) 35%,
+    var(--ink) 50%,
+    var(--accent-hover) 65%,
+    var(--accent) 100%
+  );
+  background-size: 220% 100%;
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-shift 9s ease-in-out infinite;
+  display: inline-block;
+}
+
+/* ---------- DRAW PATH ANIMATION ---------- */
+@keyframes draw {
+  from { stroke-dashoffset: var(--dash, 1200); }
+  to   { stroke-dashoffset: 0; }
+}
+.path-draw {
+  stroke-dasharray: var(--dash, 1200);
+  stroke-dashoffset: var(--dash, 1200);
+  animation: draw 2.2s var(--ease-out) forwards;
+}
+
+/* ---------- PULSING GLOW ---------- */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 38%, transparent), var(--shadow-accent); }
+  50%      { box-shadow: 0 0 0 14px color-mix(in srgb, var(--accent) 0%, transparent), var(--shadow-accent); }
+}
+.btn-pulse {
+  animation: pulse-glow 2.6s ease-in-out infinite;
+}
+
+/* ---------- SLOW FLOAT (decorative SVGs) ---------- */
+@keyframes float-slow {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(0, -10px, 0); }
+}
+.float-slow { animation: float-slow 7s ease-in-out infinite; }
+
+/* ---------- MESH BG ----------
+   Gradiente radial multi-stop que deja un "halo" cálido. */
+.mesh-bg {
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 70%),
+    radial-gradient(ellipse 60% 50% at 100% 100%, color-mix(in srgb, var(--ink) 14%, transparent), transparent 70%),
+    radial-gradient(ellipse 60% 50% at 0% 100%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 70%);
+}
+
+/* ---------- SCROLL HINT ---------- */
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.4; }
+  50%      { transform: translateY(8px); opacity: 1; }
+}
+.scroll-hint { animation: scroll-bounce 2.2s ease-in-out infinite; }
+
+/* ---------- TILT CARD ---------- */
+.tilt-wrap { perspective: 1200px; }
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.35s var(--ease-out);
+  will-change: transform;
+}
+
+/* ---------- PROGRESS FILL (Proceso carousel) ---------- */
+@keyframes progress-fill {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
 /* ---------- BUTTON SYSTEM ---------- */
 .btn {
   display: inline-flex;

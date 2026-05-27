@@ -1,9 +1,8 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowDown, ArrowUpRight, WhatsappLogo } from "@phosphor-icons/react";
+import { ArrowDown, WhatsappLogo } from "@phosphor-icons/react";
 import { Container } from "@/components/primitives/Container";
-import { Isotipo } from "@/components/primitives/Isotipo";
 import { brand, hero } from "@/lib/copy";
 import { easeEditorial, easeOut } from "@/lib/motion";
 
@@ -13,16 +12,18 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative isolate overflow-hidden"
-      style={{ paddingTop: "calc(var(--nav-height) + 16px)" }}
+      className="relative isolate flex min-h-[100dvh] flex-col overflow-hidden"
+      style={{ paddingTop: "var(--nav-height)" }}
     >
-      {/* Editorial metadata strip — like a magazine masthead */}
+      <HeroBackground />
+
+      {/* Editorial masthead */}
       <Container>
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="flex items-center justify-between border-b border-[color:var(--border)] pb-3 mb-10 lg:mb-14"
+          className="relative z-10 flex items-center justify-between border-b border-[color:var(--border)] pb-3 pt-6"
         >
           <span className="eyebrow tabular">Mayo · 2026</span>
           <span className="eyebrow hidden sm:block">Equipo Médico · Cirugía Bariátrica</span>
@@ -30,95 +31,210 @@ export function Hero() {
         </motion.div>
       </Container>
 
-      <Container className="relative grid items-end gap-10 lg:grid-cols-12 lg:gap-12 pb-16 lg:pb-24">
-        {/* Left: type column */}
-        <div className="lg:col-span-7 flex flex-col gap-7 lg:gap-9">
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, ease: easeOut }}
-            className="flex items-center gap-3"
-          >
-            <span className="block h-2 w-2 rounded-full bg-[color:var(--accent)]" aria-hidden />
-            <span className="eyebrow">{hero.eyebrow}</span>
-          </motion.div>
-
-          <h1
-            className="font-display"
-            style={{
-              fontSize: "clamp(48px, 7.5vw, 96px)",
-              lineHeight: 0.98,
-              letterSpacing: "-0.035em",
-              fontWeight: 300,
-              fontVariationSettings: '"opsz" 144',
-              textWrap: "balance",
-            }}
-          >
-            <HeroHeadline reduced={Boolean(reduced)} />
-          </h1>
-
-          <motion.p
-            className="body-lg max-w-[52ch] text-[color:var(--ink-soft)]"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.55, ease: easeEditorial }}
-          >
-            {hero.body}
-          </motion.p>
-
-          <motion.div
-            className="flex flex-wrap items-center gap-3 mt-1"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.72, ease: easeEditorial }}
-          >
-            <a href={hero.primary.href} className="btn btn-primary group">
-              {hero.primary.label}
-              <ArrowDown weight="bold" className="h-4 w-4 transition-transform group-hover:translate-y-0.5" />
-            </a>
-            <a
-              href={`https://wa.me/${brand.whatsappNumber.replace(/[^\d]/g, "")}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-ghost"
+      {/* Centered content */}
+      <div className="relative z-10 flex flex-1 items-center justify-center">
+        <Container>
+          <div className="mx-auto flex max-w-4xl flex-col items-center gap-8 py-16 text-center lg:gap-10 lg:py-24">
+            {/* Tag */}
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, ease: easeOut, delay: 0.2 }}
+              className="flex items-center gap-3 rounded-full border border-[color:var(--border-strong)] bg-[color:var(--bg-elevated)]/60 px-4 py-1.5 backdrop-blur-md"
             >
-              <WhatsappLogo weight="fill" className="h-4 w-4" />
-              Hablar por WhatsApp
-            </a>
-          </motion.div>
+              <span className="block h-1.5 w-1.5 rounded-full bg-[color:var(--accent)]" aria-hidden />
+              <span className="eyebrow">{hero.eyebrow}</span>
+            </motion.div>
 
-          {/* Metric strip */}
-          <motion.dl
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.95, ease: easeEditorial }}
-            className="mt-6 grid grid-cols-3 gap-4 lg:gap-6 border-t border-[color:var(--border)] pt-6"
+            {/* Headline */}
+            <h1
+              className="font-display"
+              style={{
+                fontSize: "clamp(56px, 9vw, 128px)",
+                lineHeight: 0.96,
+                letterSpacing: "-0.04em",
+                fontWeight: 300,
+                fontVariationSettings: '"opsz" 144',
+                textWrap: "balance",
+              }}
+            >
+              <HeroHeadline reduced={Boolean(reduced)} />
+            </h1>
+
+            {/* Body */}
+            <motion.p
+              className="body-lg max-w-[56ch] text-[color:var(--ink-soft)]"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.85, ease: easeEditorial }}
+            >
+              {hero.body}
+            </motion.p>
+
+            {/* CTAs */}
+            <motion.div
+              className="flex flex-wrap items-center justify-center gap-3"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 1.0, ease: easeEditorial }}
+            >
+              <a href={hero.primary.href} className="btn btn-primary btn-pulse group">
+                {hero.primary.label}
+                <ArrowDown weight="bold" className="h-4 w-4 transition-transform group-hover:translate-y-0.5" />
+              </a>
+              <a
+                href={`https://wa.me/${brand.whatsappNumber.replace(/[^\d]/g, "")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-ghost"
+              >
+                <WhatsappLogo weight="fill" className="h-4 w-4" />
+                Hablar por WhatsApp
+              </a>
+            </motion.div>
+          </div>
+        </Container>
+      </div>
+
+      {/* Bottom strip — metric + scroll hint */}
+      <Container>
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.3, ease: easeEditorial }}
+          className="relative z-10 mb-10 grid items-end gap-8 border-t border-[color:var(--border)] pt-6 sm:grid-cols-[1fr_auto_1fr]"
+        >
+          <div className="hidden sm:flex flex-col gap-1">
+            <span className="eyebrow">Cobertura PMO</span>
+            <span className="caption">100% · efector autorizado</span>
+          </div>
+          <a
+            href="#imc"
+            aria-label="Bajar a la calculadora"
+            className="mx-auto flex flex-col items-center gap-2 text-[color:var(--ink-soft)] transition-colors hover:text-[color:var(--ink)]"
           >
-            <Metric value="2" label="Consultorios" sublabel="Villa del Parque · San Isidro" />
-            <Metric value="100%" label="Cobertura PMO" sublabel="con efector autorizado" />
-            <Metric value="12m" label="Seguimiento" sublabel="post-quirúrgico incluido" />
-          </motion.dl>
-        </div>
-
-        {/* Right: image + isotipo composition */}
-        <div className="lg:col-span-5 relative">
-          <HeroVisual />
-        </div>
+            <span className="font-mono text-[10px] tracking-[0.22em] uppercase">Scroll</span>
+            <span aria-hidden className="scroll-hint">
+              <ArrowDown weight="regular" className="h-4 w-4" />
+            </span>
+          </a>
+          <div className="hidden sm:flex flex-col items-end gap-1">
+            <span className="eyebrow">Sedes</span>
+            <span className="caption">Villa del Parque · San Isidro</span>
+          </div>
+        </motion.div>
       </Container>
     </section>
   );
 }
 
+/* ============================================================
+   Background — mesh gradient + placeholder image + grid lines
+   ============================================================ */
+function HeroBackground() {
+  return (
+    <>
+      {/* Mesh gradient layer */}
+      <div aria-hidden className="absolute inset-0 mesh-bg" />
+
+      {/* Placeholder image (faint) — esperando foto definitiva del cliente */}
+      <div
+        aria-hidden
+        className="placeholder absolute inset-0 opacity-[0.18]"
+        style={{ borderRadius: 0 }}
+      />
+
+      {/* Dotted grid */}
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-dots opacity-[0.05]"
+        style={{ color: "var(--ink)" }}
+      />
+
+      {/* Decorative SVG line drawing — top-right */}
+      <svg
+        aria-hidden
+        className="pointer-events-none absolute right-[-80px] top-[18%] hidden h-[420px] w-[420px] text-[color:var(--ink)] opacity-[0.18] lg:block float-slow"
+        viewBox="0 0 200 200"
+        fill="none"
+      >
+        <circle
+          cx="100"
+          cy="100"
+          r="84"
+          stroke="currentColor"
+          strokeWidth="0.6"
+          className="path-draw"
+          style={{ ["--dash" as never]: "560" }}
+        />
+        <circle
+          cx="100"
+          cy="100"
+          r="56"
+          stroke="currentColor"
+          strokeWidth="0.6"
+          className="path-draw"
+          style={{ ["--dash" as never]: "380" }}
+        />
+        <circle
+          cx="100"
+          cy="100"
+          r="28"
+          stroke="currentColor"
+          strokeWidth="0.6"
+          className="path-draw"
+          style={{ ["--dash" as never]: "200" }}
+        />
+      </svg>
+
+      {/* Decorative SVG — bottom-left tubule */}
+      <svg
+        aria-hidden
+        className="pointer-events-none absolute -bottom-10 -left-10 hidden h-[360px] w-[360px] text-[color:var(--accent)] opacity-[0.25] lg:block"
+        viewBox="0 0 200 200"
+        fill="none"
+      >
+        <path
+          d="M10 160 Q 60 60 100 110 T 190 60"
+          stroke="currentColor"
+          strokeWidth="0.8"
+          className="path-draw"
+          style={{ ["--dash" as never]: "300" }}
+        />
+        <path
+          d="M10 180 Q 60 80 100 130 T 190 80"
+          stroke="currentColor"
+          strokeWidth="0.5"
+          className="path-draw"
+          style={{ ["--dash" as never]: "300" }}
+        />
+      </svg>
+
+      {/* Vignette */}
+      <div
+        aria-hidden
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, transparent 30%, color-mix(in srgb, var(--bg) 35%, transparent) 80%)",
+        }}
+      />
+    </>
+  );
+}
+
+/* ============================================================
+   Headline — staggered word-by-word reveal with gradient accent
+   ============================================================ */
 function HeroHeadline({ reduced }: { reduced: boolean }) {
   const words = ["Tu salud", "empieza"];
-  const accentWord = "acá";
   return (
     <motion.span
       initial="hidden"
       animate="visible"
       variants={{
         hidden: {},
-        visible: { transition: { staggerChildren: 0.07, delayChildren: 0.12 } },
+        visible: { transition: { staggerChildren: 0.09, delayChildren: 0.3 } },
       }}
       className="inline-block"
     >
@@ -129,8 +245,8 @@ function HeroHeadline({ reduced }: { reduced: boolean }) {
               reduced
                 ? { hidden: { opacity: 1 }, visible: { opacity: 1 } }
                 : {
-                    hidden: { y: "108%" },
-                    visible: { y: 0, transition: { duration: 0.85, ease: easeEditorial } },
+                    hidden: { y: "110%" },
+                    visible: { y: 0, transition: { duration: 0.9, ease: easeEditorial } },
                   }
             }
             className="inline-block will-change-transform"
@@ -145,89 +261,15 @@ function HeroHeadline({ reduced }: { reduced: boolean }) {
             reduced
               ? { hidden: { opacity: 1 }, visible: { opacity: 1 } }
               : {
-                  hidden: { y: "108%" },
-                  visible: { y: 0, transition: { duration: 0.85, ease: easeEditorial } },
+                  hidden: { y: "110%" },
+                  visible: { y: 0, transition: { duration: 0.9, ease: easeEditorial } },
                 }
           }
-          className="inline-block will-change-transform italic-serif text-[color:var(--accent)]"
+          className="inline-block will-change-transform italic-serif gradient-text"
         >
-          {accentWord}.
+          acá.
         </motion.span>
       </span>
     </motion.span>
-  );
-}
-
-function Metric({
-  value,
-  label,
-  sublabel,
-}: {
-  value: string;
-  label: string;
-  sublabel: string;
-}) {
-  return (
-    <div className="flex flex-col gap-1">
-      <span
-        className="font-display tabular text-[color:var(--ink)]"
-        style={{
-          fontSize: "clamp(28px, 3vw, 40px)",
-          letterSpacing: "-0.02em",
-          lineHeight: 1,
-          fontWeight: 300,
-          fontVariationSettings: '"opsz" 48',
-        }}
-      >
-        {value}
-      </span>
-      <span className="eyebrow leading-tight">{label}</span>
-      <span className="caption hidden md:block leading-tight">{sublabel}</span>
-    </div>
-  );
-}
-
-function HeroVisual() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1.0, delay: 0.3, ease: easeEditorial }}
-      className="relative w-full aspect-[3/4] lg:aspect-[4/5] max-h-[680px]"
-    >
-      {/* Placeholder visual — esperando foto editorial del cliente */}
-      <div className="placeholder relative h-full w-full">
-        {/* Caption strip overlay */}
-        <div className="absolute left-4 right-4 bottom-4 flex items-center justify-between text-[color:var(--ink-soft)]">
-          <span className="font-mono text-[10px] tracking-[0.18em] uppercase opacity-80">
-            Foto · paciente
-          </span>
-          <span className="font-mono text-[10px] tracking-[0.18em] uppercase opacity-80">
-            3:4 · pendiente
-          </span>
-        </div>
-      </div>
-
-      {/* Floating isotipo badge — top right */}
-      <div
-        className="absolute -top-4 -right-4 lg:-top-6 lg:-right-6 grid h-20 w-20 lg:h-24 lg:w-24 place-items-center rounded-full bg-[color:var(--bg)] shadow-[var(--shadow-md)]"
-        aria-hidden
-      >
-        <Isotipo className="h-9 w-9 lg:h-11 lg:w-11 text-[color:var(--ink)]" strokeWidth={10} />
-      </div>
-
-      {/* Editorial quote tag — bottom left */}
-      <div
-        className="absolute -bottom-3 -left-3 lg:-bottom-4 lg:-left-4 max-w-[200px] bg-[color:var(--ink)] text-[color:var(--ink-inverse)] px-4 py-3 rounded-[var(--radius-md)] shadow-[var(--shadow-lg)]"
-        aria-hidden
-      >
-        <span className="block text-[10px] tracking-[0.18em] uppercase opacity-70 font-mono mb-1">
-          Equipo médico
-        </span>
-        <span className="font-display italic text-[15px] leading-tight" style={{ fontWeight: 400 }}>
-          “Lorem ipsum dolor sit amet.”
-        </span>
-      </div>
-    </motion.div>
   );
 }

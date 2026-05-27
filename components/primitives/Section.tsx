@@ -26,6 +26,7 @@ export function Section({
   return (
     <section
       id={id}
+      data-nav-tone={tone === "dark" ? "dark" : "light"}
       className={cn(
         tight ? "section-tight" : "section",
         toneClass[tone],

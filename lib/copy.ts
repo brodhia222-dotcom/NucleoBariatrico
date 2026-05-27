@@ -29,10 +29,10 @@ export const brand = {
 
 export const nav = {
   links: [
-    { href: "#imc", label: "Calculadora IMC" },
+    { href: "#imc", label: "IMC" },
     { href: "#proceso", label: "Proceso" },
     { href: "#equipo", label: "Equipo" },
-    { href: "#ubicaciones", label: "Ubicaciones" },
+    { href: "#testimonios", label: "Testimonios" },
     { href: "#faq", label: "Preguntas" },
   ],
   cta: { href: "#contacto", label: "Pedir turno" },
@@ -50,10 +50,34 @@ export const diferencial = {
   eyebrow: "Qué nos diferencia",
   headline: "Un equipo, un núcleo, un solo recorrido.",
   items: [
-    { title: "Cirujana especializada al frente", body: lorem.short },
-    { title: "Abordaje integral", body: lorem.short },
-    { title: "Obras sociales incluidas", body: lorem.short },
-    { title: "Dos puntos de atención", body: lorem.short },
+    {
+      badge: "01 · Equipo",
+      title: "Cirujana especializada al frente",
+      body: lorem.short,
+      cta: "Conocer al equipo",
+      href: "#equipo",
+    },
+    {
+      badge: "02 · Abordaje",
+      title: "Mirada integral, no solo quirúrgica",
+      body: lorem.short,
+      cta: "Ver proceso",
+      href: "#proceso",
+    },
+    {
+      badge: "03 · Cobertura",
+      title: "Obras sociales incluidas",
+      body: lorem.short,
+      cta: "Consultar cobertura",
+      href: "#obras-sociales",
+    },
+    {
+      badge: "04 · Locaciones",
+      title: "Dos puntos de atención",
+      body: lorem.short,
+      cta: "Ver ubicaciones",
+      href: "#ubicaciones",
+    },
   ],
 };
 
@@ -83,7 +107,7 @@ export const imcCalc = {
 
 export const equipo = {
   eyebrow: "El equipo",
-  headline: "Dos profesionales, una sola consulta.",
+  headline: "Tres profesionales, una sola consulta.",
   body: lorem.short,
   miembros: [
     {
@@ -91,12 +115,21 @@ export const equipo = {
       rol: "Cirujana bariátrica",
       bio: lorem.medium,
       foto: null,
+      tags: ["Cirugía bariátrica", "Bypass gástrico", "Manga gástrica"],
     },
     {
       nombre: "Sergio",
-      rol: "Equipo médico",
+      rol: "Coordinación clínica",
       bio: lorem.medium,
       foto: null,
+      tags: ["Coordinación", "Seguimiento", "Acompañamiento"],
+    },
+    {
+      nombre: "Dra. Lorem",
+      rol: "Nutrición clínica",
+      bio: lorem.medium,
+      foto: null,
+      tags: ["Nutrición", "Plan pre-quirúrgico", "Post-operatorio"],
     },
   ],
 };
@@ -119,9 +152,49 @@ export const testimonios = {
   headline: "Cambios reales, no promesas.",
   body: lorem.short,
   items: [
-    { nombre: "M.", tiempo: "8 meses después de la cirugía", quote: lorem.quote },
-    { nombre: "C.", tiempo: "1 año y 2 meses", quote: lorem.quote },
-    { nombre: "L.", tiempo: "6 meses", quote: lorem.quote },
+    {
+      type: "text" as const,
+      nombre: "M.",
+      tiempo: "8 meses después de la cirugía",
+      quote: lorem.quote,
+      rating: 5,
+    },
+    {
+      type: "image" as const,
+      nombre: "C.",
+      tiempo: "1 año y 2 meses",
+      quote: lorem.quote,
+      thumbnail: null,
+    },
+    {
+      type: "text" as const,
+      nombre: "L.",
+      tiempo: "6 meses",
+      quote: lorem.quote,
+      rating: 5,
+    },
+    {
+      type: "video" as const,
+      nombre: "R.",
+      tiempo: "10 meses",
+      quote: lorem.short,
+      thumbnail: null,
+      mediaUrl: null,
+    },
+    {
+      type: "text" as const,
+      nombre: "J.",
+      tiempo: "4 meses",
+      quote: lorem.quote,
+      rating: 5,
+    },
+    {
+      type: "image" as const,
+      nombre: "A.",
+      tiempo: "1 año",
+      quote: lorem.quote,
+      thumbnail: null,
+    },
   ],
 };
 
@@ -133,6 +206,17 @@ export const obrasSociales = {
   cta: { label: "Hablar con el equipo", href: "#contacto" },
   notaEfector: lorem.short,
   logosPendiente: "Lorem ipsum logos pendiente.",
+  planes: [
+    "OSDE",
+    "Swiss Medical",
+    "Galeno",
+    "Medifé",
+    "Omint",
+    "Hospital Italiano",
+    "Avalian",
+    "Accord Salud",
+    "Sancor Salud",
+  ],
 };
 
 export const ubicaciones = {
@@ -157,18 +241,44 @@ export const noEstasSolo = {
   eyebrow: "Una nota",
   headline: "No estás solo.",
   body: lorem.short,
+  cta: {
+    leer: "Leer un mensaje",
+    dejar: "Dejar un mensaje",
+  },
+  mensajesEntrantes: [
+    {
+      texto:
+        "Lorem ipsum dolor sit amet consectetur. Nullam vitae libero ut elit faucibus consectetur — sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      autor: "Una paciente · 6 meses post-cirugía",
+    },
+    {
+      texto:
+        "Curabitur in lectus nec urna venenatis fermentum non a tortor. Etiam at orci a leo bibendum dapibus — ut imperdiet justo sit amet velit auctor.",
+      autor: "Un paciente · 1 año post-cirugía",
+    },
+    {
+      texto:
+        "Vestibulum ut libero in lectus laoreet faucibus. Curabitur in lectus nec urna venenatis fermentum non a tortor.",
+      autor: "Una paciente · 8 meses post-cirugía",
+    },
+  ],
+  formLabels: {
+    placeholder: "Dejá unas palabras que quieras que otra persona lea cuando llegue acá…",
+    submit: "Compartir mensaje",
+    thanks: "Gracias por dejar un mensaje. Cuando alguien más llegue hasta acá, tu mensaje lo va a estar esperando.",
+  },
 };
 
 export const faq = {
   eyebrow: "Preguntas frecuentes",
   headline: "Lo que más nos consultan.",
   items: [
-    { q: "¿La cirugía bariátrica es estética?", a: lorem.medium },
-    { q: "¿La obra social cubre la cirugía?", a: lorem.medium },
-    { q: "¿Cuánto dura la internación?", a: lorem.medium },
-    { q: "¿Hay seguimiento después de la cirugía?", a: lorem.medium },
-    { q: "¿En qué se diferencia el bypass de la manga gástrica?", a: lorem.medium },
-    { q: "¿Cuándo es recomendable considerar la cirugía?", a: lorem.medium },
+    { q: "Pregunta 1", a: lorem.medium },
+    { q: "Pregunta 2", a: lorem.medium },
+    { q: "Pregunta 3", a: lorem.medium },
+    { q: "Pregunta 4", a: lorem.medium },
+    { q: "Pregunta 5", a: lorem.medium },
+    { q: "Pregunta 6", a: lorem.medium },
   ],
 };
 
