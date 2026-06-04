@@ -122,19 +122,19 @@ export const equipo = {
   miembros: [
     {
       nombre: "Agustina",
-      rol: "Cirugía bariátrica",
+      rol: "Cirujana Bariátrica",
       bio: lorem.medium,
       foto: null,
     },
     {
       nombre: "Sergio",
-      rol: "Cirugía bariátrica",
+      rol: "Cirujano Bariátrico",
       bio: lorem.medium,
       foto: null,
     },
     {
       nombre: "Nombre",
-      rol: "Cirugía bariátrica",
+      rol: "Cirujano Bariátrico",
       bio: lorem.medium,
       foto: null,
     },
