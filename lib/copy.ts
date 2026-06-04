@@ -103,6 +103,16 @@ export const imcCalc = {
     { range: "≥ 40", label: "Obesidad III", color: "orange" },
   ],
   highIMCMessage: "Tu IMC sugiere que podemos ayudarte. Conversemos.",
+  messages: {
+    alerta:
+      "Tu IMC entra en zona de obesidad. Te recomendamos una consulta médica para evaluación metabólica.",
+    critico:
+      "Tu IMC es elevado. Conversemos para una evaluación clínica con nuestro equipo.",
+  },
+  badges: {
+    alerta: "Evaluación clínica",
+    critico: "Conversemos",
+  },
 };
 
 export const equipo = {
@@ -112,19 +122,19 @@ export const equipo = {
   miembros: [
     {
       nombre: "Agustina",
-      rol: "Cirujana bariátrica",
+      rol: "Cirugía bariátrica",
       bio: lorem.medium,
       foto: null,
     },
     {
       nombre: "Sergio",
-      rol: "Coordinación clínica",
+      rol: "Cirugía bariátrica",
       bio: lorem.medium,
       foto: null,
     },
     {
       nombre: "Nombre",
-      rol: "Nutrición clínica",
+      rol: "Cirugía bariátrica",
       bio: lorem.medium,
       foto: null,
     },

@@ -10,11 +10,17 @@ import { Reveal } from "@/components/primitives/Reveal";
 import { calcularIMC } from "@/lib/imc";
 import { useIMC } from "@/lib/imc-context";
 import { imcCalc } from "@/lib/copy";
-import { cn } from "@/lib/utils";
 
 function imcToPercent(imc: number): number {
   const clamped = Math.max(15, Math.min(50, imc));
   return ((clamped - 15) / (50 - 15)) * 100;
+}
+
+/** Color del resultado según el nivel clínico del IMC. */
+function nivelColor(nivel: "normal" | "alerta" | "critico" | undefined): string {
+  if (nivel === "critico") return "var(--color-error)";
+  if (nivel === "alerta") return "var(--accent)";
+  return "var(--ink)";
 }
 
 export function IMCCalculator() {
@@ -160,23 +166,19 @@ export function IMCCalculator() {
                 <ul className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
                   {imcCalc.categories.map((cat) => {
                     const isCurrent = resultado?.categoria === cat.label;
+                    const labelColor = isCurrent
+                      ? nivelColor(resultado?.nivel)
+                      : cat.color === "orange"
+                        ? "var(--accent)"
+                        : "var(--ink)";
                     return (
                       <li
                         key={cat.label}
-                        className={cn(
-                          "flex items-baseline justify-between gap-4 transition-colors",
-                          isCurrent && "text-[color:var(--accent)]",
-                        )}
+                        className="flex items-baseline justify-between gap-4 transition-colors duration-500"
                       >
                         <span
-                          className={cn(
-                            "font-medium",
-                            cat.color === "orange"
-                              ? "text-[color:var(--accent)]"
-                              : isCurrent
-                                ? "text-[color:var(--accent)]"
-                                : "text-[color:var(--ink)]",
-                          )}
+                          className="font-medium transition-colors duration-500"
+                          style={{ color: labelColor }}
                         >
                           {cat.label}
                         </span>
@@ -197,7 +199,7 @@ export function IMCCalculator() {
 
               <div className="flex flex-col items-start gap-4">
                 <span
-                  className="font-display tabular block"
+                  className="font-display tabular block transition-colors duration-500"
                   style={{
                     fontSize: "clamp(96px, 14vw, 168px)",
                     lineHeight: 0.85,
@@ -205,9 +207,7 @@ export function IMCCalculator() {
                     fontWeight: 300,
                     fontVariationSettings: '"opsz" 144',
                     color: resultado
-                      ? resultado.esCandidatoQuirurgico
-                        ? "var(--accent)"
-                        : "var(--ink)"
+                      ? nivelColor(resultado.nivel)
                       : "color-mix(in srgb, var(--ink) 22%, transparent)",
                   }}
                 >
@@ -220,12 +220,15 @@ export function IMCCalculator() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -6 }}
                     transition={{ duration: 0.4 }}
-                    className="font-display italic-serif"
+                    className="font-display italic-serif transition-colors duration-500"
                     style={{
                       fontSize: "20px",
                       lineHeight: 1.2,
                       fontWeight: 400,
-                      color: resultado?.esCandidatoQuirurgico ? "var(--accent)" : "var(--ink-soft)",
+                      color:
+                        resultado && resultado.nivel !== "normal"
+                          ? nivelColor(resultado.nivel)
+                          : "var(--ink-soft)",
                       fontVariationSettings: '"opsz" 36',
                     }}
                   >
@@ -265,21 +268,35 @@ export function IMCCalculator() {
                 </div>
               </div>
 
-              <AnimatePresence>
-                {resultado?.esCandidatoQuirurgico && (
-                  <motion.p
+              <AnimatePresence mode="wait">
+                {resultado && resultado.nivel !== "normal" && (
+                  <motion.div
+                    key={resultado.nivel}
                     initial={{ opacity: 0, y: 6 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0 }}
-                    className="italic-serif text-[color:var(--accent)] max-w-[32ch]"
-                    style={{
-                      fontSize: "17px",
-                      lineHeight: 1.4,
-                      fontVariationSettings: '"opsz" 24',
-                    }}
+                    exit={{ opacity: 0, y: -6 }}
+                    transition={{ duration: 0.45 }}
+                    className="flex items-start gap-3 max-w-[36ch]"
                   >
-                    {imcCalc.highIMCMessage}
-                  </motion.p>
+                    <span
+                      aria-hidden
+                      className="mt-1 block h-2 w-2 shrink-0 rounded-full transition-colors duration-500"
+                      style={{ background: nivelColor(resultado.nivel) }}
+                    />
+                    <p
+                      className="italic-serif transition-colors duration-500"
+                      style={{
+                        fontSize: "17px",
+                        lineHeight: 1.4,
+                        fontVariationSettings: '"opsz" 24',
+                        color: nivelColor(resultado.nivel),
+                      }}
+                    >
+                      {resultado.nivel === "critico"
+                        ? imcCalc.messages.critico
+                        : imcCalc.messages.alerta}
+                    </p>
+                  </motion.div>
                 )}
               </AnimatePresence>
             </div>

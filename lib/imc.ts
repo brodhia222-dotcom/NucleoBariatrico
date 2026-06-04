@@ -6,9 +6,19 @@ export type IMCCategoria =
   | "Obesidad II"
   | "Obesidad III";
 
+/**
+ * Nivel clínico que define el color del resultado y el mensaje al usuario.
+ * Umbrales acordados con Núcleo Bariátrico (no son OMS estándar):
+ * - normal:  IMC < 28
+ * - alerta:  28 ≤ IMC < 35 (zona de riesgo metabólico → evaluación médica)
+ * - critico: IMC ≥ 35      (zona de candidatura quirúrgica → evaluación clínica)
+ */
+export type IMCNivel = "normal" | "alerta" | "critico";
+
 export type IMCResultado = {
   imc: number;
   categoria: IMCCategoria;
+  nivel: IMCNivel;
   peso: number;
   alturaCm: number;
   /** true cuando IMC ≥ 35 (criterio bariátrico habitual con comorbilidad o ≥40). */
@@ -27,6 +37,7 @@ export function calcularIMC(pesoKg: number, alturaCm: number): IMCResultado | nu
   return {
     imc: imcRedondeado,
     categoria: clasificar(imcRedondeado),
+    nivel: clasificarNivel(imcRedondeado),
     peso: pesoKg,
     alturaCm,
     esCandidatoQuirurgico: imcRedondeado >= 35,
@@ -40,4 +51,10 @@ export function clasificar(imc: number): IMCCategoria {
   if (imc < 35) return "Obesidad I";
   if (imc < 40) return "Obesidad II";
   return "Obesidad III";
+}
+
+export function clasificarNivel(imc: number): IMCNivel {
+  if (imc >= 35) return "critico";
+  if (imc >= 28) return "alerta";
+  return "normal";
 }
