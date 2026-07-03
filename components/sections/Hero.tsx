@@ -15,7 +15,7 @@ export function Hero() {
       className="relative isolate flex flex-col items-center justify-center overflow-hidden bg-[color:var(--bg-elevated)] text-[color:var(--ink)]"
       style={{
         paddingTop: "var(--nav-height)",
-        minHeight: "min(880px, 92vh)",
+        minHeight: "min(720px, 86vh)",
       }}
     >
       {/* Grid background — comunica que acá va imagen/video */}
@@ -37,7 +37,7 @@ export function Hero() {
           <h1
             className="font-display"
             style={{
-              fontSize: "clamp(52px, 8.4vw, 128px)",
+              fontSize: "clamp(42px, 6.4vw, 92px)",
               lineHeight: 0.94,
               letterSpacing: "-0.04em",
               fontWeight: 300,

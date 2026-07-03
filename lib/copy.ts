@@ -124,19 +124,19 @@ export const equipo = {
       nombre: "Agustina",
       rol: "Cirujana Bariátrica",
       bio: lorem.medium,
-      foto: null,
+      foto: "/images/equipo-agustina.jpg",
     },
     {
       nombre: "Sergio",
       rol: "Cirujano Bariátrico",
       bio: lorem.medium,
-      foto: null,
+      foto: "/images/equipo-sergio.jpg",
     },
     {
-      nombre: "Nombre",
+      nombre: "Nahuel",
       rol: "Cirujano Bariátrico",
       bio: lorem.medium,
-      foto: null,
+      foto: "/images/equipo-nahuel.jpg",
     },
   ],
 };
@@ -146,12 +146,12 @@ export const proceso = {
   headline: "Un recorrido continuo, no una operación aislada.",
   body: lorem.short,
   pasos: [
-    { n: "01", titulo: "Primera consulta", body: lorem.short },
-    { n: "02", titulo: "Evaluación integral", body: lorem.short },
-    { n: "03", titulo: "Cobertura y trámites", body: lorem.short },
-    { n: "04", titulo: "Cirugía", body: lorem.short },
-    { n: "05", titulo: "Seguimiento", body: lorem.short },
-  ],
+    { n: "01", titulo: "Primera consulta", body: lorem.short, foto: "/images/proceso-primera-consulta.jpg" },
+    { n: "02", titulo: "Evaluación integral", body: lorem.short, foto: "/images/proceso-evaluacion-integral.jpg" },
+    { n: "03", titulo: "Cobertura y trámites", body: lorem.short, foto: "/images/proceso-tramites.jpg" },
+    { n: "04", titulo: "Cirugía", body: lorem.short, foto: "/images/proceso-cirugia.jpg" },
+    { n: "05", titulo: "Seguimiento", body: lorem.short, foto: "/images/proceso-seguimiento.jpg" },
+  ] as { n: string; titulo: string; body: string; foto: string | null }[],
 };
 
 export const testimonios = {
@@ -165,6 +165,7 @@ export const testimonios = {
       tiempo: "8 meses después de la cirugía",
       quote: lorem.quote,
       rating: 5,
+      foto: "/images/testimonio-1.jpg",
     },
     {
       type: "image" as const,
@@ -172,6 +173,7 @@ export const testimonios = {
       tiempo: "1 año y 2 meses",
       quote: lorem.quote,
       thumbnail: null,
+      foto: "/images/testimonio-2.jpg",
     },
     {
       type: "text" as const,
@@ -179,6 +181,7 @@ export const testimonios = {
       tiempo: "6 meses",
       quote: lorem.quote,
       rating: 5,
+      foto: "/images/testimonio-3.jpg",
     },
     {
       type: "video" as const,
@@ -187,6 +190,7 @@ export const testimonios = {
       quote: lorem.short,
       thumbnail: null,
       mediaUrl: null,
+      foto: "/images/testimonio-4.jpg",
     },
     {
       type: "text" as const,
@@ -194,6 +198,7 @@ export const testimonios = {
       tiempo: "4 meses",
       quote: lorem.quote,
       rating: 5,
+      foto: null,
     },
     {
       type: "image" as const,
@@ -201,6 +206,7 @@ export const testimonios = {
       tiempo: "1 año",
       quote: lorem.quote,
       thumbnail: null,
+      foto: null,
     },
   ],
 };

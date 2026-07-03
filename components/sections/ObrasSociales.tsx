@@ -28,7 +28,7 @@ export function ObrasSociales() {
             <h2
               className="font-display"
               style={{
-                fontSize: "clamp(36px, 4.6vw, 64px)",
+                fontSize: "clamp(30px, 3.6vw, 46px)",
                 lineHeight: 1.04,
                 letterSpacing: "-0.025em",
                 fontWeight: 300,
@@ -161,7 +161,7 @@ function LogoCard({ label }: { label: string }) {
         <span
           className="relative font-display text-[color:var(--ink)] transition-transform duration-300 group-hover:scale-105"
           style={{
-            fontSize: "clamp(20px, 2.4vw, 28px)",
+            fontSize: "clamp(17px, 1.9vw, 23px)",
             letterSpacing: "-0.015em",
             fontWeight: 400,
             fontVariationSettings: '"opsz" 36',

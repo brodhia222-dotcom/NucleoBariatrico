@@ -21,7 +21,7 @@ export function Proceso() {
             <h2
               className="font-display"
               style={{
-                fontSize: "clamp(36px, 4.6vw, 64px)",
+                fontSize: "clamp(30px, 3.6vw, 46px)",
                 lineHeight: 1.04,
                 letterSpacing: "-0.025em",
                 fontWeight: 300,
@@ -52,19 +52,28 @@ export function Proceso() {
               >
                 {/* Foto column */}
                 <div className={`relative lg:col-span-7 ${isReverse ? "lg:[direction:ltr]" : ""}`}>
-                  <div className="placeholder relative aspect-[16/10] rounded-[var(--radius-lg)]" />
+                  {paso.foto ? (
+                    <img
+                      src={paso.foto}
+                      alt={paso.titulo}
+                      loading="lazy"
+                      className="aspect-[16/10] w-full rounded-[var(--radius-lg)] object-cover"
+                    />
+                  ) : (
+                    <div className="placeholder relative aspect-[16/10] rounded-[var(--radius-lg)]" />
+                  )}
                 </div>
 
                 {/* Text column */}
-                <div className={`lg:col-span-5 flex flex-col gap-5 ${isReverse ? "lg:[direction:ltr]" : ""}`}>
+                <div className={`lg:col-span-5 flex flex-col gap-4 ${isReverse ? "lg:[direction:ltr]" : ""}`}>
                   <span
                     className="font-display tabular text-[color:var(--accent)]"
                     style={{
-                      fontSize: "clamp(72px, 9vw, 128px)",
-                      lineHeight: 0.82,
-                      letterSpacing: "-0.05em",
+                      fontSize: "clamp(44px, 5vw, 68px)",
+                      lineHeight: 0.85,
+                      letterSpacing: "-0.04em",
                       fontWeight: 300,
-                      fontVariationSettings: '"opsz" 144',
+                      fontVariationSettings: '"opsz" 96',
                     }}
                   >
                     {paso.n}
@@ -72,9 +81,9 @@ export function Proceso() {
                   <h3
                     className="font-display"
                     style={{
-                      fontSize: "clamp(26px, 2.8vw, 36px)",
-                      lineHeight: 1.08,
-                      letterSpacing: "-0.022em",
+                      fontSize: "clamp(22px, 2.2vw, 30px)",
+                      lineHeight: 1.1,
+                      letterSpacing: "-0.02em",
                       fontWeight: 300,
                       fontVariationSettings: '"opsz" 48',
                     }}

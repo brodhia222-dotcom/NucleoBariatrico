@@ -21,7 +21,7 @@ export function Equipo() {
             <h2
               className="font-display"
               style={{
-                fontSize: "clamp(36px, 4.6vw, 64px)",
+                fontSize: "clamp(30px, 3.6vw, 46px)",
                 lineHeight: 1.04,
                 letterSpacing: "-0.025em",
                 fontWeight: 300,
@@ -51,7 +51,17 @@ export function Equipo() {
               className="group flex flex-col gap-5"
             >
               <figure className="relative overflow-hidden rounded-[var(--radius-lg)]">
-                <div className="placeholder relative aspect-[4/5] transition-transform duration-700 group-hover:scale-[1.02]" />
+                {m.foto ? (
+                  <img
+                    src={m.foto}
+                    alt={`${m.nombre} · ${m.rol}`}
+                    loading="lazy"
+                    className="aspect-[4/5] w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                    style={{ objectPosition: "center 22%" }}
+                  />
+                ) : (
+                  <div className="placeholder relative aspect-[4/5] transition-transform duration-700 group-hover:scale-[1.02]" />
+                )}
               </figure>
 
               <div className="flex flex-col gap-2">
@@ -61,7 +71,7 @@ export function Equipo() {
                 <h3
                   className="font-display"
                   style={{
-                    fontSize: "clamp(26px, 2.8vw, 36px)",
+                    fontSize: "clamp(22px, 2.2vw, 30px)",
                     lineHeight: 1.04,
                     letterSpacing: "-0.022em",
                     fontWeight: 300,

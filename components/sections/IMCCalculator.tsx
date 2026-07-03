@@ -84,7 +84,7 @@ export function IMCCalculator() {
             <h2
               className="font-display"
               style={{
-                fontSize: "clamp(36px, 4.6vw, 64px)",
+                fontSize: "clamp(30px, 3.6vw, 46px)",
                 lineHeight: 1.04,
                 letterSpacing: "-0.025em",
                 fontWeight: 300,
@@ -201,7 +201,7 @@ export function IMCCalculator() {
                 <span
                   className="font-display tabular block transition-colors duration-500"
                   style={{
-                    fontSize: "clamp(96px, 14vw, 168px)",
+                    fontSize: "clamp(72px, 9.5vw, 120px)",
                     lineHeight: 0.85,
                     letterSpacing: "-0.05em",
                     fontWeight: 300,

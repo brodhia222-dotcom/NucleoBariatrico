@@ -51,13 +51,11 @@ export function NoEstasSolo() {
             whileInView={{ opacity: 1 }}
             viewport={viewportOnce}
             transition={{ duration: 0.8, delay: 0.15 }}
-            className="flex items-center gap-3"
+            className="flex items-center"
           >
-            <span aria-hidden className="block h-px w-10 bg-[color:var(--accent)]" />
             <span className="font-mono text-[10px] tracking-[0.24em] uppercase text-[color:var(--ink-inverse)]/70">
               {noEstasSolo.eyebrow}
             </span>
-            <span aria-hidden className="block h-px w-10 bg-[color:var(--accent)]" />
           </motion.div>
 
           {/* Headline */}
@@ -68,7 +66,7 @@ export function NoEstasSolo() {
             transition={{ duration: 0.9, delay: 0.25, ease: easeEditorial }}
             className="font-display"
             style={{
-              fontSize: "clamp(40px, 6vw, 80px)",
+              fontSize: "clamp(34px, 4.6vw, 60px)",
               lineHeight: 1.0,
               letterSpacing: "-0.035em",
               fontWeight: 300,

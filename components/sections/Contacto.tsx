@@ -94,7 +94,7 @@ export function Contacto() {
               <h2
                 className="font-display"
                 style={{
-                  fontSize: "clamp(40px, 5vw, 72px)",
+                  fontSize: "clamp(34px, 4vw, 54px)",
                   lineHeight: 1.0,
                   letterSpacing: "-0.035em",
                   fontWeight: 300,

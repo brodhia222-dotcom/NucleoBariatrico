@@ -99,7 +99,7 @@
   --space-16: 64px;
   --space-24: 96px;
 
-  --section-y:       clamp(64px, 8vw, 112px);
+  --section-y:       clamp(48px, 5.5vw, 84px);
   --section-x:       max(20px, 5vw);
   --container-max:   1280px;
 

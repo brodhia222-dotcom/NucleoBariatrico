@@ -27,7 +27,7 @@ export function Ubicaciones() {
             <h2
               className="font-display"
               style={{
-                fontSize: "clamp(36px, 4.6vw, 64px)",
+                fontSize: "clamp(30px, 3.6vw, 46px)",
                 lineHeight: 1.04,
                 letterSpacing: "-0.025em",
                 fontWeight: 300,
@@ -63,7 +63,7 @@ export function Ubicaciones() {
                   <h3
                     className="font-display"
                     style={{
-                      fontSize: "clamp(26px, 2.6vw, 36px)",
+                      fontSize: "clamp(22px, 2.2vw, 30px)",
                       lineHeight: 1.04,
                       letterSpacing: "-0.022em",
                       fontWeight: 300,

@@ -23,7 +23,7 @@ export function FAQ() {
             <h2
               className="font-display"
               style={{
-                fontSize: "clamp(36px, 4.6vw, 64px)",
+                fontSize: "clamp(30px, 3.6vw, 46px)",
                 lineHeight: 1.02,
                 letterSpacing: "-0.03em",
                 fontWeight: 300,
@@ -63,7 +63,7 @@ export function FAQ() {
                       <span
                         className="font-display text-[color:var(--ink)] transition-opacity duration-300 group-hover:opacity-70"
                         style={{
-                          fontSize: "clamp(20px, 2vw, 28px)",
+                          fontSize: "clamp(18px, 1.7vw, 23px)",
                           lineHeight: 1.18,
                           letterSpacing: "-0.015em",
                           fontWeight: 300,
