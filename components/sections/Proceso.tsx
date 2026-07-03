@@ -32,9 +32,6 @@ export function Proceso() {
               {proceso.headline}
             </h2>
           </Reveal>
-          <Reveal delay={0.1}>
-            <p className="body-lg text-[color:var(--ink-soft)] max-w-prose">{proceso.body}</p>
-          </Reveal>
         </div>
 
         {/* Zigzag steps — foto ancha (mitad del grid), texto pegado, poco scroll */}

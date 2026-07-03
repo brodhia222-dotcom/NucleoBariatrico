@@ -38,9 +38,6 @@ export function Ubicaciones() {
               {ubicaciones.headline}
             </h2>
           </Reveal>
-          <Reveal delay={0.1}>
-            <p className="body-lg text-[color:var(--ink-soft)] max-w-prose">{ubicaciones.body}</p>
-          </Reveal>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:gap-8">

@@ -55,7 +55,7 @@ export const diferencial = {
     {
       badge: "01 · Equipo",
       title: "Equipo especializado al frente",
-      body: lorem.short,
+      body: "Cirujanos bariátricos con formación específica en obesidad. Conocé a las personas que van a acompañarte durante todo el recorrido.",
       cta: "Conocer al equipo",
       href: "#equipo",
       foto: "/images/proceso-evaluacion-integral.jpg",
@@ -63,7 +63,7 @@ export const diferencial = {
     {
       badge: "02 · Abordaje",
       title: "Mirada integral, no solo quirúrgica",
-      body: lorem.short,
+      body: "La cirugía es una herramienta, no la meta. Trabajamos nutrición, hábitos y acompañamiento emocional para que el cambio sea sostenible.",
       cta: "Ver proceso",
       href: "#proceso",
       foto: "/images/diferencial-mirada.jpg",
@@ -71,7 +71,7 @@ export const diferencial = {
     {
       badge: "03 · Cobertura",
       title: "Obras sociales incluidas",
-      body: lorem.short,
+      body: "Trabajamos con las principales obras sociales y prepagas, y te guiamos paso a paso en la autorización de tu cobertura.",
       cta: "Consultar cobertura",
       href: "#obras-sociales",
       foto: "/images/diferencial-cobertura.jpg",
@@ -79,7 +79,7 @@ export const diferencial = {
     {
       badge: "04 · Locaciones",
       title: "Dos puntos de atención",
-      body: lorem.short,
+      body: "Atendemos en Villa del Parque y San Isidro, para que elijas el punto que te quede más cómodo. Mismo equipo, misma atención.",
       cta: "Ver ubicaciones",
       href: "#ubicaciones",
       foto: null,
@@ -97,7 +97,7 @@ export const diferencial = {
 export const imcCalc = {
   eyebrow: "Calculadora",
   headline: "Empezá por saber dónde estás parado.",
-  body: lorem.medium,
+  body: "El IMC (Índice de Masa Corporal) relaciona tu peso con tu altura y es el primer indicador que usa el equipo médico para evaluar si la cirugía bariátrica puede ser una opción para vos. Calculalo en segundos: es el punto de partida de cualquier evaluación.",
   labels: {
     peso: "Peso (kg)",
     altura: "Altura (cm)",
@@ -130,8 +130,8 @@ export const imcCalc = {
 
 export const equipo = {
   eyebrow: "El equipo",
-  headline: "Tres profesionales, una sola consulta.",
-  body: lorem.short,
+  headline: "3 Profesionales, una sola consulta.",
+  body: null as string | null,
   miembros: [
     {
       nombre: "Agustina",
@@ -157,15 +157,46 @@ export const equipo = {
 export const proceso = {
   eyebrow: "Cómo te acompañamos",
   headline: "Un recorrido continuo, no una operación aislada.",
-  body: lorem.short,
+  body: null as string | null,
   pasos: [
     // La foto 01 es vertical (cara arriba, notebook abajo): necesita
     // contenedor cuadrado para que entren ambas en el encuadre.
-    { n: "01", titulo: "Primera consulta", body: lorem.short, foto: "/images/proceso-primera-consulta.jpg", fotoPos: "center 48%", fotoAspect: "aspect-square" },
-    { n: "02", titulo: "Evaluación integral", body: lorem.short, foto: "/images/proceso-evaluacion-integral.jpg", fotoPos: "center" },
-    { n: "03", titulo: "Cobertura y trámites", body: lorem.short, foto: "/images/proceso-tramites.jpg", fotoPos: "center 40%" },
-    { n: "04", titulo: "Cirugía", body: lorem.short, foto: "/images/proceso-cirugia.jpg", fotoPos: "center 55%" },
-    { n: "05", titulo: "Seguimiento", body: lorem.short, foto: "/images/proceso-seguimiento.jpg", fotoPos: "center" },
+    {
+      n: "01",
+      titulo: "Primera consulta",
+      body: "Nos conocemos, escuchamos tu historia y respondemos todas tus dudas. Salís de la consulta sabiendo si la cirugía es una opción para vos y cuáles son los próximos pasos.",
+      foto: "/images/proceso-primera-consulta.jpg",
+      fotoPos: "center 48%",
+      fotoAspect: "aspect-square",
+    },
+    {
+      n: "02",
+      titulo: "Evaluación integral",
+      body: "Estudios clínicos, evaluación nutricional y acompañamiento psicológico. Todo el equipo revisa tu caso para que llegues a la cirugía en las mejores condiciones.",
+      foto: "/images/proceso-evaluacion-integral.jpg",
+      fotoPos: "center",
+    },
+    {
+      n: "03",
+      titulo: "Cobertura y trámites",
+      body: "Te guiamos con la autorización de tu obra social y todo el papeleo. Nos encargamos de que los trámites no sean un obstáculo en tu recorrido.",
+      foto: "/images/proceso-tramites.jpg",
+      fotoPos: "center 40%",
+    },
+    {
+      n: "04",
+      titulo: "Cirugía",
+      body: "El día de la cirugía te acompañamos en todo momento. Técnicas mínimamente invasivas e internación corta, para que vuelvas a tu casa lo antes posible.",
+      foto: "/images/proceso-cirugia.jpg",
+      fotoPos: "center 55%",
+    },
+    {
+      n: "05",
+      titulo: "Seguimiento",
+      body: "La cirugía es el punto de partida. Controles periódicos con todo el equipo durante los primeros meses, para consolidar resultados y acompañarte en tu nueva etapa.",
+      foto: "/images/proceso-seguimiento.jpg",
+      fotoPos: "center",
+    },
   ] as { n: string; titulo: string; body: string; foto: string | null; fotoPos?: string; fotoAspect?: string }[],
 };
 
@@ -229,10 +260,11 @@ export const testimonios = {
 export const obrasSociales = {
   eyebrow: "Cobertura",
   headline: "Tu obra social puede cubrir la cirugía.",
-  body: lorem.medium,
+  body: "La cirugía bariátrica está incluida en el Programa Médico Obligatorio (PMO), por lo que la mayoría de las obras sociales y prepagas la cubren. Para autorizarla, tu obra social necesita que la práctica la realice un equipo efector habilitado: nosotros lo somos, y gestionamos la autorización con vos.",
   badge: "Consultá tu cobertura",
   cta: { label: "Hablar con el equipo", href: "#contacto" },
-  notaEfector: lorem.short,
+  notaEfector:
+    "Un efector es el equipo médico habilitado ante tu obra social para realizar una práctica cubierta. Al ser efectores de cirugía bariátrica, podemos gestionar tu autorización y realizar todo el proceso — de la primera consulta al seguimiento — con la cobertura de tu plan.",
   logosPendiente: "Lorem ipsum logos pendiente.",
   // fit: "cover" = tile de marca con fondo propio (llena la tarjeta);
   //      "contain" = logo sobre fondo claro (centrado en tarjeta blanca)
@@ -251,8 +283,8 @@ export const obrasSociales = {
 
 export const ubicaciones = {
   eyebrow: "Dónde encontrarnos",
-  headline: "Dos puntos de atención.",
-  body: lorem.short,
+  headline: "2 puntos de atención.",
+  body: null as string | null,
   sedes: [
     {
       nombre: "Villa del Parque",

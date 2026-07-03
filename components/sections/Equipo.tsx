@@ -32,11 +32,6 @@ export function Equipo() {
               {equipo.headline}
             </h2>
           </Reveal>
-          <Reveal delay={0.1}>
-            <p className="body-lg text-[color:var(--ink-soft)] max-w-prose">
-              {equipo.body}
-            </p>
-          </Reveal>
         </div>
 
         {/* 3 retratos — sin numerales, sin tags */}

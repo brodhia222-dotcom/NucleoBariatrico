@@ -89,19 +89,18 @@ function ExpandingCard({
   Icon: IconType;
 }) {
   return (
-    <motion.button
-      type="button"
+    // Toda la tarjeta navega a su sección; hover/focus la expande
+    <motion.a
+      href={item.href}
       onMouseEnter={onActivate}
       onFocus={onActivate}
-      onClick={onActivate}
-      aria-expanded={isActive}
       animate={{ flexGrow: isActive ? 4 : 1 }}
       transition={{ duration: 0.85, ease: easeEditorial }}
       whileInView={{ opacity: 1, y: 0 }}
       initial={{ opacity: 0, y: 20 }}
       viewport={viewportOnce}
       style={{ flexBasis: 0 }}
-      className="group relative flex min-h-[240px] basis-0 overflow-hidden rounded-[var(--radius-xl)] text-left text-[color:var(--ink-inverse)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)] focus-visible:ring-offset-2 lg:min-h-0"
+      className="group relative flex min-h-[240px] basis-0 cursor-pointer overflow-hidden rounded-[var(--radius-xl)] text-left text-[color:var(--ink-inverse)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)] focus-visible:ring-offset-2 lg:min-h-0"
     >
       {/* Imagen de fondo: textura tenue colapsada, revelada al expandir */}
       {item.foto ? (
@@ -190,18 +189,16 @@ function ExpandingCard({
                 {item.title}
               </h3>
               <p className="body-sm opacity-85">{item.body}</p>
-              <a
-                href={item.href}
-                className="mt-2 inline-flex items-center gap-2 text-xs font-medium tracking-wide"
-              >
-                <span className="block h-px w-8 bg-[color:var(--accent)]" />
+              {/* La tarjeta entera es el link; esto es solo indicador visual */}
+              <span className="mt-2 inline-flex items-center gap-2 text-xs font-medium tracking-wide">
+                <span className="block h-px w-8 bg-[color:var(--accent)] transition-all duration-300 group-hover:w-12" />
                 {item.cta}
                 <ArrowUpRight weight="bold" className="h-3.5 w-3.5 opacity-80" />
-              </a>
+              </span>
             </motion.div>
           )}
         </AnimatePresence>
       </div>
-    </motion.button>
+    </motion.a>
   );
 }
