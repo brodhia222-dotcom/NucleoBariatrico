@@ -90,7 +90,9 @@ export function Footer() {
                 <WhatsappLogo weight="regular" className="h-4 w-4" />
               </a>
               <a
-                href="#"
+                href={brand.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Instagram"
                 className="grid h-9 w-9 place-items-center rounded-full border border-[color:var(--ink-inverse)]/15 hover:bg-[color:var(--accent)] hover:border-[color:var(--accent)] transition-colors"
               >

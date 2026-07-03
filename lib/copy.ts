@@ -21,10 +21,12 @@ export const brand = {
   short: "Nucleo",
   tagline: "Tu salud empieza acá",
   taglineLong: "El origen de una vida plena",
-  whatsappNumber: "+5491100000000", // PENDIENTE
+  // Celular AR: se marca como +54 9 11 XXXX-XXXX para wa.me
+  whatsappNumber: "+5491156077780",
   whatsappMessage: "Hola, me gustaría agendar una consulta.",
   email: "contacto@nucleobariatrico.com.ar",
   domain: "nucleobariatrico.com.ar",
+  instagram: "https://www.instagram.com/nucleobariatrico/",
 };
 
 // Ordenado según el orden real de las secciones en el scroll:
