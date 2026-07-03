@@ -96,7 +96,7 @@ export const diferencial = {
 
 export const imcCalc = {
   eyebrow: "Calculadora",
-  headline: "Empezá por saber dónde estás parado.",
+  headline: "Empezá por saber dónde estás.",
   body: "El IMC (Índice de Masa Corporal) relaciona tu peso con tu altura y es el primer indicador que usa el equipo médico para evaluar si la cirugía bariátrica puede ser una opción para vos. Calculalo en segundos: es el punto de partida de cualquier evaluación.",
   labels: {
     peso: "Peso (kg)",
@@ -260,11 +260,11 @@ export const testimonios = {
 export const obrasSociales = {
   eyebrow: "Cobertura",
   headline: "Tu obra social puede cubrir la cirugía.",
-  body: "La cirugía bariátrica está incluida en el Programa Médico Obligatorio (PMO), por lo que la mayoría de las obras sociales y prepagas la cubren. Para autorizarla, tu obra social necesita que la práctica la realice un equipo efector habilitado: nosotros lo somos, y gestionamos la autorización con vos.",
+  body: "La cirugía bariátrica está incluida en el Programa Médico Obligatorio (PMO) y la mayoría de las obras sociales y prepagas la cubren. Solo necesitás un equipo efector habilitado que realice la práctica. Nosotros lo somos: gestionamos la autorización con vos.",
   badge: "Consultá tu cobertura",
   cta: { label: "Hablar con el equipo", href: "#contacto" },
   notaEfector:
-    "Un efector es el equipo médico habilitado ante tu obra social para realizar una práctica cubierta. Al ser efectores de cirugía bariátrica, podemos gestionar tu autorización y realizar todo el proceso — de la primera consulta al seguimiento — con la cobertura de tu plan.",
+    "Es el equipo médico habilitado ante tu obra social para realizar una práctica cubierta. Como efectores de cirugía bariátrica, gestionamos tu autorización y te acompañamos con la cobertura de tu plan durante todo el proceso.",
   logosPendiente: "Lorem ipsum logos pendiente.",
   // fit: "cover" = tile de marca con fondo propio (llena la tarjeta);
   //      "contain" = logo sobre fondo claro (centrado en tarjeta blanca)
@@ -301,8 +301,8 @@ export const ubicaciones = {
 
 export const noEstasSolo = {
   eyebrow: "Una nota",
-  headline: "No estás solo.",
-  body: lorem.short,
+  headline: "No estás solo/a.",
+  body: "Detrás de cada cirugía hay una historia parecida a la tuya. Leé lo que otros pacientes quisieron contarte, o dejá unas palabras para quien recién empieza el camino.",
   cta: {
     leer: "Leer un mensaje",
     dejar: "Dejar un mensaje",
@@ -347,7 +347,7 @@ export const faq = {
 export const contacto = {
   eyebrow: "Contacto",
   headline: "Conversemos.",
-  body: lorem.short,
+  body: "Contanos tu situación en el formulario y un profesional del equipo te responde en menos de 24 horas hábiles. Sin compromiso y con total confidencialidad.",
   labels: {
     nombre: "Nombre completo",
     telefono: "Teléfono",

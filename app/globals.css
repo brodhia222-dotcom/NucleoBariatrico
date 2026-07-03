@@ -179,6 +179,11 @@ body {
   color: #ffffff;
 }
 
+/* Evita palabras huérfanas colgadas en la última línea de los párrafos */
+p, blockquote, dd, figcaption {
+  text-wrap: pretty;
+}
+
 /* ---------- TYPOGRAPHY UTILS ---------- */
 .font-display {
   font-family: var(--font-display);
