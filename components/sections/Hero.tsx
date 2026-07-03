@@ -18,16 +18,33 @@ export function Hero() {
         minHeight: "min(720px, 86vh)",
       }}
     >
-      {/* Grid background — comunica que acá va imagen/video */}
-      <div aria-hidden className="absolute inset-0 grid-bg" />
+      {/* Foto de fondo — composición antes/después con el centro libre para el texto */}
+      <img
+        src="/images/hero.jpg"
+        alt=""
+        aria-hidden
+        fetchPriority="high"
+        className="absolute inset-0 h-full w-full object-cover"
+        style={{ objectPosition: "center 30%" }}
+      />
 
-      {/* Soft halo en el centro para concentrar el texto */}
+      {/* Velo general para que el texto lea bien sobre la foto */}
       <div
         aria-hidden
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 70% 60% at 50% 50%, color-mix(in srgb, var(--bg-elevated) 92%, transparent) 0%, color-mix(in srgb, var(--bg-elevated) 70%, transparent) 60%, transparent 100%)",
+            "linear-gradient(180deg, color-mix(in srgb, var(--bg-elevated) 62%, transparent) 0%, color-mix(in srgb, var(--bg-elevated) 34%, transparent) 45%, color-mix(in srgb, var(--bg-elevated) 72%, transparent) 100%)",
+        }}
+      />
+
+      {/* Halo central extra sobre la zona del texto */}
+      <div
+        aria-hidden
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 62% 55% at 50% 52%, color-mix(in srgb, var(--bg-elevated) 78%, transparent) 0%, color-mix(in srgb, var(--bg-elevated) 45%, transparent) 55%, transparent 100%)",
         }}
       />
 
