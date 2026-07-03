@@ -45,7 +45,8 @@ export const nav = {
 export const hero = {
   eyebrow: "Cirugía bariátrica · Equipo médico",
   headline: ["Tu salud", "empieza", "acá."],
-  body: lorem.medium,
+  // Copy aprobado por Maya Vega (2026-07-03)
+  body: "Somos un equipo especializado en cirugía bariátrica y metabólica. Abordamos la obesidad desde una mirada integral, con tratamientos médicos, farmacológicos y quirúrgicos adaptados a cada caso, y un acompañamiento que sostiene cada etapa del proceso, incluido el seguimiento a largo plazo.",
   primary: { label: "Calcular mi IMC", href: "#imc" },
   secondary: { label: "Conocer al equipo", href: "#equipo" },
 };
@@ -163,10 +164,11 @@ export const proceso = {
   pasos: [
     // La foto 01 es vertical (cara arriba, notebook abajo): necesita
     // contenedor cuadrado para que entren ambas en el encuadre.
+    // Copy de pasos 01/02/04/05 aprobado por Maya Vega (2026-07-03); el 03 se mantiene
     {
       n: "01",
       titulo: "Primera consulta",
-      body: "Nos conocemos, escuchamos tu historia y respondemos todas tus dudas. Salís de la consulta sabiendo si la cirugía es una opción para vos y cuáles son los próximos pasos.",
+      body: "Nos conocemos, escuchamos tu historia y respondemos todas tus dudas. Salís de la consulta sabiendo cuál es el abordaje más adecuado para vos y cuáles son los próximos pasos.",
       foto: "/images/proceso-primera-consulta.jpg",
       fotoPos: "center 48%",
       fotoAspect: "aspect-square",
@@ -174,7 +176,7 @@ export const proceso = {
     {
       n: "02",
       titulo: "Evaluación integral",
-      body: "Estudios clínicos, evaluación nutricional y acompañamiento psicológico. Todo el equipo revisa tu caso para que llegues a la cirugía en las mejores condiciones.",
+      body: "Analizamos tu estado de salud en profundidad: historia clínica, estudios y factores metabólicos, junto a la evaluación nutricional y el acompañamiento psicológico. Toda esa información nos permite trazar un plan a tu medida, para que llegues al tratamiento indicado en las mejores condiciones.",
       foto: "/images/proceso-evaluacion-integral.jpg",
       fotoPos: "center",
     },
@@ -188,14 +190,14 @@ export const proceso = {
     {
       n: "04",
       titulo: "Cirugía",
-      body: "El día de la cirugía te acompañamos en todo momento. Técnicas mínimamente invasivas e internación corta, para que vuelvas a tu casa lo antes posible.",
+      body: "Cuando la cirugía es el camino indicado, la realizamos con técnicas mínimamente invasivas e internación corta, para que vuelvas a tu casa lo antes posible. Un momento planificado y acompañado, con protocolos de seguridad en cada instancia.",
       foto: "/images/proceso-cirugia.jpg",
       fotoPos: "center 55%",
     },
     {
       n: "05",
       titulo: "Seguimiento",
-      body: "La cirugía es el punto de partida. Controles periódicos con todo el equipo durante los primeros meses, para consolidar resultados y acompañarte en tu nueva etapa.",
+      body: "El proceso no termina en el quirófano. Hacemos controles periódicos con todo el equipo durante el tiempo que tu caso lo requiera, porque el seguimiento a largo plazo es lo que permite sostener los resultados y cuidar tu salud en el tiempo.",
       foto: "/images/proceso-seguimiento.jpg",
       fotoPos: "center",
     },
