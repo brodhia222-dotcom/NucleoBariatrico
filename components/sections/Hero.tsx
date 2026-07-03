@@ -2,7 +2,6 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, WhatsappLogo } from "@phosphor-icons/react";
-import { Container } from "@/components/primitives/Container";
 import { brand, hero } from "@/lib/copy";
 
 export function Hero() {
@@ -12,90 +11,87 @@ export function Hero() {
     <section
       id="top"
       data-nav-tone="light"
-      className="relative isolate flex flex-col items-center justify-center overflow-hidden bg-[color:var(--bg-elevated)] text-[color:var(--ink)]"
-      style={{
-        paddingTop: "var(--nav-height)",
-        minHeight: "min(720px, 86vh)",
-      }}
+      className="relative isolate overflow-hidden bg-[color:var(--bg-elevated)] text-[color:var(--ink)]"
+      style={{ paddingTop: "var(--nav-height)" }}
     >
-      {/* Foto de fondo — composición antes/después con el centro libre para el texto */}
-      <img
-        src="/images/hero.jpg"
-        alt=""
-        aria-hidden
-        fetchPriority="high"
-        className="absolute inset-0 h-full w-full object-cover"
-        style={{ objectPosition: "center 30%" }}
-      />
-
-      {/* Velo general para que el texto lea bien sobre la foto */}
-      <div
-        aria-hidden
-        className="absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(180deg, color-mix(in srgb, var(--bg-elevated) 62%, transparent) 0%, color-mix(in srgb, var(--bg-elevated) 34%, transparent) 45%, color-mix(in srgb, var(--bg-elevated) 72%, transparent) 100%)",
-        }}
-      />
-
-      {/* Halo central extra sobre la zona del texto */}
-      <div
-        aria-hidden
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse 62% 55% at 50% 52%, color-mix(in srgb, var(--bg-elevated) 78%, transparent) 0%, color-mix(in srgb, var(--bg-elevated) 45%, transparent) 55%, transparent 100%)",
-        }}
-      />
-
-      {/* Content */}
-      <Container className="relative z-10 py-14 lg:py-20">
-        <div className="mx-auto flex max-w-4xl flex-col items-center gap-8 text-center lg:gap-10">
-          <h1
-            className="font-display"
-            style={{
-              fontSize: "clamp(42px, 6.4vw, 92px)",
-              lineHeight: 0.94,
-              letterSpacing: "-0.04em",
-              fontWeight: 300,
-              fontVariationSettings: '"opsz" 144',
-              textWrap: "balance",
-            }}
-          >
-            <HeroHeadline reduced={Boolean(reduced)} />
-          </h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 1.1 }}
-            className="body-lg max-w-[52ch] text-[color:var(--ink-soft)]"
-          >
-            {hero.body}
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 1.3 }}
-            className="flex flex-wrap items-center justify-center gap-3 pt-2"
-          >
-            <a href={hero.primary.href} className="btn btn-primary group">
-              {hero.primary.label}
-              <ArrowRight weight="bold" className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-            </a>
-            <a
-              href={`https://wa.me/${brand.whatsappNumber.replace(/[^\d]/g, "")}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-ghost"
+      <div className="grid lg:grid-cols-2" style={{ minHeight: "min(680px, 82vh)" }}>
+        {/* Texto — columna izquierda, fondo limpio */}
+        <div className="flex items-center">
+          <div className="w-full px-6 py-14 sm:px-10 lg:py-20 lg:pl-[max(20px,6vw)] lg:pr-14 xl:pl-[max(20px,8vw)]">
+            <h1
+              className="font-display"
+              style={{
+                fontSize: "clamp(42px, 4.6vw, 76px)",
+                lineHeight: 0.96,
+                letterSpacing: "-0.035em",
+                fontWeight: 300,
+                fontVariationSettings: '"opsz" 144',
+                textWrap: "balance",
+              }}
             >
-              <WhatsappLogo weight="fill" className="h-4 w-4" />
-              Hablar por WhatsApp
-            </a>
-          </motion.div>
+              <HeroHeadline reduced={Boolean(reduced)} />
+            </h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 1.0 }}
+              className="body-lg mt-7 max-w-[54ch] text-[color:var(--ink-soft)]"
+            >
+              {hero.body}
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 1.2 }}
+              className="mt-9 flex flex-wrap items-center gap-3"
+            >
+              <a href={hero.primary.href} className="btn btn-primary group">
+                {hero.primary.label}
+                <ArrowRight
+                  weight="bold"
+                  className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                />
+              </a>
+              <a
+                href={`https://wa.me/${brand.whatsappNumber.replace(/[^\d]/g, "")}?text=${encodeURIComponent(brand.whatsappMessage)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-ghost"
+              >
+                <WhatsappLogo weight="fill" className="h-4 w-4" />
+                Hablar por WhatsApp
+              </a>
+            </motion.div>
+          </div>
         </div>
-      </Container>
+
+        {/* Foto — columna derecha, sin veladuras */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.1, delay: 0.3 }}
+          className="relative aspect-[16/11] lg:aspect-auto"
+        >
+          <img
+            src="/images/hero.jpg"
+            alt="Antes y después de un proceso bariátrico"
+            fetchPriority="high"
+            className="absolute inset-0 h-full w-full object-cover"
+            style={{ objectPosition: "center 20%" }}
+          />
+          {/* Fundido sutil hacia la columna de texto (solo desktop) */}
+          <div
+            aria-hidden
+            className="absolute inset-y-0 left-0 hidden w-24 lg:block"
+            style={{
+              background:
+                "linear-gradient(90deg, var(--bg-elevated), transparent)",
+            }}
+          />
+        </motion.div>
+      </div>
     </section>
   );
 }
@@ -107,7 +103,7 @@ function HeroHeadline({ reduced }: { reduced: boolean }) {
       animate="visible"
       variants={{
         hidden: {},
-        visible: { transition: { staggerChildren: 0.14, delayChildren: 0.35 } },
+        visible: { transition: { staggerChildren: 0.14, delayChildren: 0.3 } },
       }}
       className="inline-block"
     >
