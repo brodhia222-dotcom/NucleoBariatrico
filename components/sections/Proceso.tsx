@@ -37,8 +37,8 @@ export function Proceso() {
           </Reveal>
         </div>
 
-        {/* Zigzag steps — compactos: foto contenida, 2 pasos por viewport aprox */}
-        <ol className="flex flex-col gap-10 lg:gap-14">
+        {/* Zigzag steps — foto ancha (mitad del grid), texto pegado, poco scroll */}
+        <ol className="flex flex-col gap-8 lg:gap-12">
           {proceso.pasos.map((paso, i) => {
             const isReverse = i % 2 === 1;
             return (
@@ -48,25 +48,25 @@ export function Proceso() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={viewportOnce}
                 transition={{ duration: 0.75, ease: easeEditorial }}
-                className={`grid items-center gap-6 lg:gap-12 lg:grid-cols-12 ${isReverse ? "lg:[direction:rtl]" : ""}`}
+                className={`grid items-center gap-5 lg:gap-8 lg:grid-cols-2 ${isReverse ? "lg:[direction:rtl]" : ""}`}
               >
                 {/* Foto column */}
-                <div className={`relative lg:col-span-5 ${isReverse ? "lg:[direction:ltr]" : ""}`}>
+                <div className={`relative ${isReverse ? "lg:[direction:ltr]" : ""}`}>
                   {paso.foto ? (
                     <img
                       src={paso.foto}
                       alt={paso.titulo}
                       loading="lazy"
-                      className="aspect-[4/3] w-full rounded-[var(--radius-lg)] object-cover"
+                      className="aspect-[16/9] w-full rounded-[var(--radius-lg)] object-cover"
                       style={{ objectPosition: paso.fotoPos ?? "center" }}
                     />
                   ) : (
-                    <div className="placeholder relative aspect-[4/3] rounded-[var(--radius-lg)]" />
+                    <div className="placeholder relative aspect-[16/9] rounded-[var(--radius-lg)]" />
                   )}
                 </div>
 
                 {/* Text column */}
-                <div className={`lg:col-span-7 flex flex-col gap-3 ${isReverse ? "lg:[direction:ltr]" : ""}`}>
+                <div className={`flex flex-col gap-3 ${isReverse ? "lg:[direction:ltr]" : ""}`}>
                   <span
                     className="font-display tabular text-[color:var(--accent)]"
                     style={{

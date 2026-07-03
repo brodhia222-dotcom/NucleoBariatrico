@@ -103,27 +103,31 @@ function ExpandingCard({
       style={{ flexBasis: 0 }}
       className="group relative flex min-h-[240px] basis-0 overflow-hidden rounded-[var(--radius-xl)] text-left text-[color:var(--ink-inverse)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)] focus-visible:ring-offset-2 lg:min-h-0"
     >
-      {/* Imagen de fondo o placeholder */}
+      {/* Imagen de fondo: textura tenue colapsada, revelada al expandir */}
       {item.foto ? (
         <img
           src={item.foto}
           alt=""
           aria-hidden
           loading="lazy"
-          className="absolute inset-0 h-full w-full object-cover"
+          className={`absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-700 ${
+            isActive ? "opacity-100 scale-100" : "opacity-30 scale-105"
+          }`}
         />
       ) : (
         <div aria-hidden className="placeholder absolute inset-0" style={{ borderRadius: 0 }} />
       )}
 
-      {/* Dark overlay */}
+      {/* Dark overlay — más denso colapsada para que la foto sea textura, no recorte raro */}
       <div
         aria-hidden
-        className="absolute inset-0"
+        className="absolute inset-0 transition-colors duration-700"
         style={{
-          background: `linear-gradient(180deg, color-mix(in srgb, var(--bg-inverse) ${
-            index % 2 === 0 ? 30 : 40
-          }%, transparent) 0%, color-mix(in srgb, var(--bg-inverse) 90%, transparent) 100%)`,
+          background: isActive
+            ? "linear-gradient(180deg, color-mix(in srgb, var(--bg-inverse) 25%, transparent) 0%, color-mix(in srgb, var(--bg-inverse) 88%, transparent) 100%)"
+            : `linear-gradient(180deg, color-mix(in srgb, var(--bg-inverse) ${
+                index % 2 === 0 ? 62 : 72
+              }%, transparent) 0%, color-mix(in srgb, var(--bg-inverse) 94%, transparent) 100%)`,
         }}
       />
 

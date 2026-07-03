@@ -280,10 +280,10 @@ body {
    (mismo tono que la barra OMS en la posición del IMC) y la
    transición lo acompaña. */
 @keyframes imc-bg-cycle {
-  0%   { background-color: color-mix(in srgb, var(--accent) 9%, var(--bg)); }
-  33%  { background-color: color-mix(in srgb, var(--ink) 11%, var(--bg)); }
-  66%  { background-color: color-mix(in srgb, var(--accent) 16%, var(--bg-subtle)); }
-  100% { background-color: color-mix(in srgb, var(--accent) 9%, var(--bg)); }
+  0%   { background-color: color-mix(in srgb, var(--accent) 22%, var(--bg)); }
+  33%  { background-color: color-mix(in srgb, var(--ink) 24%, var(--bg)); }
+  66%  { background-color: color-mix(in srgb, var(--accent) 32%, var(--bg-subtle)); }
+  100% { background-color: color-mix(in srgb, var(--accent) 22%, var(--bg)); }
 }
 .imc-bg { transition: background-color 1.4s var(--ease-out); }
 .imc-bg-idle { animation: imc-bg-cycle 18s ease-in-out infinite; }

@@ -159,7 +159,7 @@ export const proceso = {
   pasos: [
     { n: "01", titulo: "Primera consulta", body: lorem.short, foto: "/images/proceso-primera-consulta.jpg", fotoPos: "center 58%" },
     { n: "02", titulo: "Evaluación integral", body: lorem.short, foto: "/images/proceso-evaluacion-integral.jpg", fotoPos: "center" },
-    { n: "03", titulo: "Cobertura y trámites", body: lorem.short, foto: "/images/proceso-tramites.jpg", fotoPos: "center" },
+    { n: "03", titulo: "Cobertura y trámites", body: lorem.short, foto: "/images/proceso-tramites.jpg", fotoPos: "center 40%" },
     { n: "04", titulo: "Cirugía", body: lorem.short, foto: "/images/proceso-cirugia.jpg", fotoPos: "center 55%" },
     { n: "05", titulo: "Seguimiento", body: lorem.short, foto: "/images/proceso-seguimiento.jpg", fotoPos: "center" },
   ] as { n: string; titulo: string; body: string; foto: string | null; fotoPos?: string }[],
@@ -230,17 +230,19 @@ export const obrasSociales = {
   cta: { label: "Hablar con el equipo", href: "#contacto" },
   notaEfector: lorem.short,
   logosPendiente: "Lorem ipsum logos pendiente.",
+  // fit: "cover" = tile de marca con fondo propio (llena la tarjeta);
+  //      "contain" = logo sobre fondo claro (centrado en tarjeta blanca)
   planes: [
-    "OSDE",
-    "Swiss Medical",
-    "Galeno",
-    "Medifé",
-    "Omint",
-    "Hospital Italiano",
-    "Avalian",
-    "Accord Salud",
-    "Sancor Salud",
-  ],
+    { nombre: "OSDE", logo: "/images/obras/osde.png", fit: "cover" },
+    { nombre: "Swiss Medical", logo: "/images/obras/swiss-medical.png", fit: "contain" },
+    { nombre: "Galeno", logo: "/images/obras/galeno.png", fit: "cover" },
+    { nombre: "Medifé", logo: "/images/obras/medife.png", fit: "cover" },
+    { nombre: "Omint", logo: "/images/obras/omint.png", fit: "contain" },
+    { nombre: "Hospital Italiano", logo: "/images/obras/hospital-italiano.png", fit: "contain" },
+    { nombre: "Avalian", logo: "/images/obras/avalian.png", fit: "contain" },
+    { nombre: "Accord Salud", logo: "/images/obras/accord-salud.png", fit: "cover" },
+    { nombre: "Sancor Salud", logo: "/images/obras/sancor-salud.png", fit: "cover" },
+  ] as { nombre: string; logo: string; fit: "cover" | "contain" }[],
 };
 
 export const ubicaciones = {

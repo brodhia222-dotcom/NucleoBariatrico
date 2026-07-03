@@ -80,24 +80,24 @@ export function ObrasSociales() {
           </Reveal>
         </div>
 
-        {/* 3D tilt cards */}
+        {/* 3D tilt cards con logos reales */}
         <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
-          {obrasSociales.planes.map((nombre, i) => (
+          {obrasSociales.planes.map((plan, i) => (
             <motion.li
-              key={nombre}
+              key={plan.nombre}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={viewportOnce}
               transition={{ duration: 0.55, delay: i * 0.05, ease: easeEditorial }}
             >
-              <LogoCard label={nombre} />
+              <LogoCard plan={plan} />
             </motion.li>
           ))}
         </ul>
 
         <Reveal>
           <p className="caption text-center mt-8">
-            Logos pendientes — placeholder con nombre. Lista orientativa, consultá tu cobertura con el equipo.
+            Lista orientativa. Consultá tu cobertura con el equipo antes de iniciar el proceso.
           </p>
         </Reveal>
       </Container>
@@ -105,7 +105,11 @@ export function ObrasSociales() {
   );
 }
 
-function LogoCard({ label }: { label: string }) {
+function LogoCard({
+  plan,
+}: {
+  plan: { nombre: string; logo: string; fit: "cover" | "contain" };
+}) {
   const ref = useRef<HTMLDivElement>(null);
 
   const rawX = useMotionValue(0.5);
@@ -138,58 +142,25 @@ function LogoCard({ label }: { label: string }) {
     >
       <motion.div
         style={{ rotateX, rotateY }}
-        className="tilt-card relative grid aspect-[16/9] place-items-center overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] transition-shadow duration-300 hover:shadow-[var(--shadow-lg)]"
+        className="tilt-card relative grid aspect-[16/9] place-items-center overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-white transition-shadow duration-300 hover:shadow-[var(--shadow-lg)]"
       >
-        {/* Imagen de fondo suave (blur) — placeholder hasta tener los logos reales */}
-        <img
-          src="/images/obras-bg.jpg"
-          alt=""
-          aria-hidden
-          loading="lazy"
-          className="absolute inset-0 h-full w-full object-cover opacity-30"
-        />
-        {/* Overlay para legibilidad del nombre */}
-        <div
-          aria-hidden
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(180deg, color-mix(in srgb, var(--bg-elevated) 82%, transparent), color-mix(in srgb, var(--bg-elevated) 62%, transparent))",
-          }}
-        />
-        {/* Inner glow */}
-        <div
-          aria-hidden
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(120% 80% at 50% 0%, color-mix(in srgb, var(--accent) 8%, transparent), transparent 60%)",
-          }}
-        />
-        {/* Hover glow */}
-        <div
-          aria-hidden
-          className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-          style={{
-            background:
-              "radial-gradient(50% 50% at 50% 50%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 70%)",
-          }}
-        />
-        <span
-          className="relative font-display text-[color:var(--ink)] transition-transform duration-300 group-hover:scale-105"
-          style={{
-            fontSize: "clamp(17px, 1.9vw, 23px)",
-            letterSpacing: "-0.015em",
-            fontWeight: 400,
-            fontVariationSettings: '"opsz" 36',
-          }}
-        >
-          {label}
-        </span>
-        <span
-          aria-hidden
-          className="absolute top-3 right-3 block h-1.5 w-1.5 rounded-full bg-[color:var(--accent)] opacity-60"
-        />
+        {plan.fit === "cover" ? (
+          // Tile de marca con fondo de color propio → llena la tarjeta
+          <img
+            src={plan.logo}
+            alt={plan.nombre}
+            loading="lazy"
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]"
+          />
+        ) : (
+          // Logo sobre fondo claro → centrado con aire en tarjeta blanca
+          <img
+            src={plan.logo}
+            alt={plan.nombre}
+            loading="lazy"
+            className="relative max-h-[55%] max-w-[70%] object-contain transition-transform duration-300 group-hover:scale-105"
+          />
+        )}
       </motion.div>
     </div>
   );

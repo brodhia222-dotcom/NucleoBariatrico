@@ -207,7 +207,7 @@ export function IMCCalculator() {
                   ? {
                       backgroundColor: `color-mix(in srgb, color-mix(in srgb, var(--accent) ${Math.round(
                         markerPercent,
-                      )}%, var(--ink)) 26%, var(--bg))`,
+                      )}%, var(--ink)) 42%, var(--bg))`,
                     }
                   : undefined
               }
