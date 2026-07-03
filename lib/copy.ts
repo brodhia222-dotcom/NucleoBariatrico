@@ -52,10 +52,11 @@ export const diferencial = {
   items: [
     {
       badge: "01 · Equipo",
-      title: "Cirujana especializada al frente",
+      title: "Equipo especializado al frente",
       body: lorem.short,
       cta: "Conocer al equipo",
       href: "#equipo",
+      foto: "/images/proceso-evaluacion-integral.jpg",
     },
     {
       badge: "02 · Abordaje",
@@ -63,6 +64,7 @@ export const diferencial = {
       body: lorem.short,
       cta: "Ver proceso",
       href: "#proceso",
+      foto: "/images/diferencial-mirada.jpg",
     },
     {
       badge: "03 · Cobertura",
@@ -70,6 +72,7 @@ export const diferencial = {
       body: lorem.short,
       cta: "Consultar cobertura",
       href: "#obras-sociales",
+      foto: "/images/diferencial-cobertura.jpg",
     },
     {
       badge: "04 · Locaciones",
@@ -77,8 +80,16 @@ export const diferencial = {
       body: lorem.short,
       cta: "Ver ubicaciones",
       href: "#ubicaciones",
+      foto: null,
     },
-  ],
+  ] as {
+    badge: string;
+    title: string;
+    body: string;
+    cta: string;
+    href: string;
+    foto: string | null;
+  }[],
 };
 
 export const imcCalc = {
@@ -146,12 +157,12 @@ export const proceso = {
   headline: "Un recorrido continuo, no una operación aislada.",
   body: lorem.short,
   pasos: [
-    { n: "01", titulo: "Primera consulta", body: lorem.short, foto: "/images/proceso-primera-consulta.jpg" },
-    { n: "02", titulo: "Evaluación integral", body: lorem.short, foto: "/images/proceso-evaluacion-integral.jpg" },
-    { n: "03", titulo: "Cobertura y trámites", body: lorem.short, foto: "/images/proceso-tramites.jpg" },
-    { n: "04", titulo: "Cirugía", body: lorem.short, foto: "/images/proceso-cirugia.jpg" },
-    { n: "05", titulo: "Seguimiento", body: lorem.short, foto: "/images/proceso-seguimiento.jpg" },
-  ] as { n: string; titulo: string; body: string; foto: string | null }[],
+    { n: "01", titulo: "Primera consulta", body: lorem.short, foto: "/images/proceso-primera-consulta.jpg", fotoPos: "center 58%" },
+    { n: "02", titulo: "Evaluación integral", body: lorem.short, foto: "/images/proceso-evaluacion-integral.jpg", fotoPos: "center" },
+    { n: "03", titulo: "Cobertura y trámites", body: lorem.short, foto: "/images/proceso-tramites.jpg", fotoPos: "center" },
+    { n: "04", titulo: "Cirugía", body: lorem.short, foto: "/images/proceso-cirugia.jpg", fotoPos: "center 55%" },
+    { n: "05", titulo: "Seguimiento", body: lorem.short, foto: "/images/proceso-seguimiento.jpg", fotoPos: "center" },
+  ] as { n: string; titulo: string; body: string; foto: string | null; fotoPos?: string }[],
 };
 
 export const testimonios = {
@@ -244,7 +255,7 @@ export const ubicaciones = {
     },
     {
       nombre: "San Isidro",
-      direccion: "Lorem ipsum dolor sit amet · Zona Norte",
+      direccion: "Lorem ipsum dolor · Zona Norte",
       mapa: "https://maps.google.com/maps?q=San%20Isidro%2C%20Buenos%20Aires&t=&z=14&ie=UTF8&iwloc=&output=embed",
     },
   ],

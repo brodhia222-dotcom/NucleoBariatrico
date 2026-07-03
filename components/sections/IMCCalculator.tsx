@@ -10,6 +10,7 @@ import { Reveal } from "@/components/primitives/Reveal";
 import { calcularIMC } from "@/lib/imc";
 import { useIMC } from "@/lib/imc-context";
 import { imcCalc } from "@/lib/copy";
+import { cn } from "@/lib/utils";
 
 function imcToPercent(imc: number): number {
   const clamped = Math.max(15, Math.min(50, imc));
@@ -193,8 +194,24 @@ export function IMCCalculator() {
               </div>
             </div>
 
-            {/* RIGHT — result panel */}
-            <div className="flex flex-col justify-between gap-10 bg-[color:var(--bg)] p-8 lg:p-12">
+            {/* RIGHT — result panel con fondo vivo:
+                idle = ciclo lento entre tintes de marca;
+                con resultado = tono de la barra OMS en la posición del IMC */}
+            <div
+              className={cn(
+                "imc-bg flex flex-col justify-between gap-10 p-8 lg:p-12",
+                !resultado && "imc-bg-idle",
+              )}
+              style={
+                resultado && markerPercent !== null
+                  ? {
+                      backgroundColor: `color-mix(in srgb, color-mix(in srgb, var(--accent) ${Math.round(
+                        markerPercent,
+                      )}%, var(--ink)) 26%, var(--bg))`,
+                    }
+                  : undefined
+              }
+            >
               <span className="eyebrow">{imcCalc.labels.resultado}</span>
 
               <div className="flex flex-col items-start gap-4">
@@ -237,29 +254,31 @@ export function IMCCalculator() {
                 </AnimatePresence>
               </div>
 
-              {/* OMS gradient bar */}
-              <div className="flex flex-col gap-3">
-                <div className="relative h-1.5 rounded-full bg-[color:var(--border-strong)] overflow-hidden">
-                  <div
-                    aria-hidden
-                    className="absolute inset-y-0 left-0 right-0"
-                    style={{
-                      background:
-                        "linear-gradient(90deg, color-mix(in srgb, var(--ink) 40%, transparent) 0%, color-mix(in srgb, var(--ink) 60%, transparent) 42%, color-mix(in srgb, var(--accent) 80%, transparent) 60%, var(--accent) 90%)",
-                    }}
-                  />
-                  {markerPercent !== null && (
-                    <motion.div
-                      initial={{ left: "0%", opacity: 0 }}
-                      animate={{ left: `${markerPercent}%`, opacity: 1 }}
-                      transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-                      className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 h-4 w-4 rounded-full bg-[color:var(--ink)] border-2 border-[color:var(--bg)]"
-                      style={{ boxShadow: "0 0 0 3px color-mix(in srgb, var(--accent) 28%, transparent)" }}
+              {/* OMS gradient bar — con marco propio para que no se funda con el fondo vivo */}
+              <div className="flex flex-col gap-2.5">
+                <div className="rounded-full border border-[color:var(--border-strong)] bg-[color:var(--bg-elevated)] p-2 shadow-[var(--shadow-sm)]">
+                  <div className="relative h-2 rounded-full overflow-hidden">
+                    <div
                       aria-hidden
+                      className="absolute inset-y-0 left-0 right-0"
+                      style={{
+                        background:
+                          "linear-gradient(90deg, color-mix(in srgb, var(--ink) 40%, transparent) 0%, color-mix(in srgb, var(--ink) 60%, transparent) 42%, color-mix(in srgb, var(--accent) 80%, transparent) 60%, var(--accent) 90%)",
+                      }}
                     />
-                  )}
+                    {markerPercent !== null && (
+                      <motion.div
+                        initial={{ left: "0%", opacity: 0 }}
+                        animate={{ left: `${markerPercent}%`, opacity: 1 }}
+                        transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+                        className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 h-4 w-4 rounded-full bg-[color:var(--ink)] border-2 border-[color:var(--bg-elevated)]"
+                        style={{ boxShadow: "0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent)" }}
+                        aria-hidden
+                      />
+                    )}
+                  </div>
                 </div>
-                <div className="flex justify-between text-[10px] tracking-[0.16em] uppercase text-[color:var(--ink-soft)] font-mono tabular">
+                <div className="flex justify-between px-2 text-[10px] tracking-[0.16em] uppercase text-[color:var(--ink-soft)] font-mono tabular">
                   <span>15</span>
                   <span>25</span>
                   <span>30</span>

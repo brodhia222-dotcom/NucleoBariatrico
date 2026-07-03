@@ -140,6 +140,23 @@ function LogoCard({ label }: { label: string }) {
         style={{ rotateX, rotateY }}
         className="tilt-card relative grid aspect-[16/9] place-items-center overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] transition-shadow duration-300 hover:shadow-[var(--shadow-lg)]"
       >
+        {/* Imagen de fondo suave (blur) — placeholder hasta tener los logos reales */}
+        <img
+          src="/images/obras-bg.jpg"
+          alt=""
+          aria-hidden
+          loading="lazy"
+          className="absolute inset-0 h-full w-full object-cover opacity-30"
+        />
+        {/* Overlay para legibilidad del nombre */}
+        <div
+          aria-hidden
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, color-mix(in srgb, var(--bg-elevated) 82%, transparent), color-mix(in srgb, var(--bg-elevated) 62%, transparent))",
+          }}
+        />
         {/* Inner glow */}
         <div
           aria-hidden

@@ -103,8 +103,18 @@ function ExpandingCard({
       style={{ flexBasis: 0 }}
       className="group relative flex min-h-[240px] basis-0 overflow-hidden rounded-[var(--radius-xl)] text-left text-[color:var(--ink-inverse)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)] focus-visible:ring-offset-2 lg:min-h-0"
     >
-      {/* Imagen placeholder */}
-      <div aria-hidden className="placeholder absolute inset-0" style={{ borderRadius: 0 }} />
+      {/* Imagen de fondo o placeholder */}
+      {item.foto ? (
+        <img
+          src={item.foto}
+          alt=""
+          aria-hidden
+          loading="lazy"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      ) : (
+        <div aria-hidden className="placeholder absolute inset-0" style={{ borderRadius: 0 }} />
+      )}
 
       {/* Dark overlay */}
       <div
@@ -112,8 +122,8 @@ function ExpandingCard({
         className="absolute inset-0"
         style={{
           background: `linear-gradient(180deg, color-mix(in srgb, var(--bg-inverse) ${
-            index % 2 === 0 ? 28 : 38
-          }%, transparent) 0%, color-mix(in srgb, var(--bg-inverse) 88%, transparent) 100%)`,
+            index % 2 === 0 ? 30 : 40
+          }%, transparent) 0%, color-mix(in srgb, var(--bg-inverse) 90%, transparent) 100%)`,
         }}
       />
 

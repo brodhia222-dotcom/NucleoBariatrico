@@ -274,6 +274,23 @@ body {
   will-change: transform;
 }
 
+/* ---------- IMC RESULT PANEL BG ----------
+   Idle: ciclo muy lento entre tintes suaves de la marca.
+   Con resultado: el componente fija un backgroundColor inline
+   (mismo tono que la barra OMS en la posición del IMC) y la
+   transición lo acompaña. */
+@keyframes imc-bg-cycle {
+  0%   { background-color: color-mix(in srgb, var(--accent) 9%, var(--bg)); }
+  33%  { background-color: color-mix(in srgb, var(--ink) 11%, var(--bg)); }
+  66%  { background-color: color-mix(in srgb, var(--accent) 16%, var(--bg-subtle)); }
+  100% { background-color: color-mix(in srgb, var(--accent) 9%, var(--bg)); }
+}
+.imc-bg { transition: background-color 1.4s var(--ease-out); }
+.imc-bg-idle { animation: imc-bg-cycle 18s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .imc-bg-idle { animation: none; }
+}
+
 /* ---------- MARQUEE ---------- */
 @keyframes marquee {
   from { transform: translateX(0); }

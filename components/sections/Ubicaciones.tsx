@@ -53,13 +53,13 @@ export function Ubicaciones() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={viewportOnce}
                 transition={{ duration: 0.8, delay: i * 0.1, ease: easeEditorial }}
-                className="flex flex-col gap-6 overflow-hidden rounded-[var(--radius-xl)] bg-[color:var(--bg-elevated)] border border-[color:var(--border)]"
+                className="flex flex-col gap-5 overflow-hidden rounded-[var(--radius-xl)] bg-[color:var(--bg-elevated)] border border-[color:var(--border)]"
               >
                 {/* Foto sede */}
-                <div className="placeholder relative aspect-[16/10]" />
+                <div className="placeholder relative aspect-[2/1]" />
 
                 {/* Info */}
-                <div className="px-6 lg:px-8 flex flex-col gap-4">
+                <div className="px-6 lg:px-8 flex flex-col gap-3">
                   <h3
                     className="font-display"
                     style={{
@@ -72,20 +72,21 @@ export function Ubicaciones() {
                   >
                     {sede.nombre}
                   </h3>
-                  <dl className="grid grid-cols-2 gap-x-4 gap-y-3 border-t border-[color:var(--border)] pt-4">
+                  <dl className="grid grid-cols-2 gap-x-4 gap-y-3 border-t border-[color:var(--border)] pt-3">
                     <Detail label="Dirección" value={sede.direccion} />
                     <Detail label="Horario" value={meta.horario} />
                     <Detail label="Cómo llegar" value={meta.transporte} fullWidth />
                   </dl>
                 </div>
 
-                <div className="px-6 lg:px-8 pb-6 lg:pb-8">
+                {/* mt-auto ancla mapa + CTA abajo → tarjetas siempre simétricas */}
+                <div className="mt-auto px-6 lg:px-8">
                   <MapEmbed src={sede.mapa} title={`Mapa ${sede.nombre}`} />
                 </div>
 
                 <a
                   href="#contacto"
-                  className="group/cta flex items-center justify-between gap-3 border-t border-[color:var(--border)] px-6 lg:px-8 py-5 text-sm font-medium text-[color:var(--ink)] hover:bg-[color:var(--ink)] hover:text-[color:var(--ink-inverse)] transition-colors"
+                  className="group/cta flex items-center justify-between gap-3 border-t border-[color:var(--border)] px-6 lg:px-8 py-4 text-sm font-medium text-[color:var(--ink)] hover:bg-[color:var(--ink)] hover:text-[color:var(--ink-inverse)] transition-colors"
                 >
                   Pedir turno en {sede.nombre}
                   <ArrowUpRight

@@ -46,10 +46,10 @@ export function MapEmbed({
           title={title}
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-          className="aspect-[4/3] h-full w-full border-0"
+          className="aspect-video h-full w-full border-0"
         />
       ) : (
-        <div className="aspect-[4/3] w-full" />
+        <div className="aspect-video w-full" />
       )}
     </div>
   );

@@ -37,43 +37,44 @@ export function Proceso() {
           </Reveal>
         </div>
 
-        {/* Zigzag steps */}
-        <ol className="flex flex-col gap-14 lg:gap-24">
+        {/* Zigzag steps — compactos: foto contenida, 2 pasos por viewport aprox */}
+        <ol className="flex flex-col gap-10 lg:gap-14">
           {proceso.pasos.map((paso, i) => {
             const isReverse = i % 2 === 1;
             return (
               <motion.li
                 key={paso.n}
-                initial={{ opacity: 0, y: 32 }}
+                initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={viewportOnce}
-                transition={{ duration: 0.85, ease: easeEditorial }}
-                className={`grid items-center gap-8 lg:gap-16 lg:grid-cols-12 ${isReverse ? "lg:[direction:rtl]" : ""}`}
+                transition={{ duration: 0.75, ease: easeEditorial }}
+                className={`grid items-center gap-6 lg:gap-12 lg:grid-cols-12 ${isReverse ? "lg:[direction:rtl]" : ""}`}
               >
                 {/* Foto column */}
-                <div className={`relative lg:col-span-7 ${isReverse ? "lg:[direction:ltr]" : ""}`}>
+                <div className={`relative lg:col-span-5 ${isReverse ? "lg:[direction:ltr]" : ""}`}>
                   {paso.foto ? (
                     <img
                       src={paso.foto}
                       alt={paso.titulo}
                       loading="lazy"
-                      className="aspect-[16/10] w-full rounded-[var(--radius-lg)] object-cover"
+                      className="aspect-[4/3] w-full rounded-[var(--radius-lg)] object-cover"
+                      style={{ objectPosition: paso.fotoPos ?? "center" }}
                     />
                   ) : (
-                    <div className="placeholder relative aspect-[16/10] rounded-[var(--radius-lg)]" />
+                    <div className="placeholder relative aspect-[4/3] rounded-[var(--radius-lg)]" />
                   )}
                 </div>
 
                 {/* Text column */}
-                <div className={`lg:col-span-5 flex flex-col gap-4 ${isReverse ? "lg:[direction:ltr]" : ""}`}>
+                <div className={`lg:col-span-7 flex flex-col gap-3 ${isReverse ? "lg:[direction:ltr]" : ""}`}>
                   <span
                     className="font-display tabular text-[color:var(--accent)]"
                     style={{
-                      fontSize: "clamp(44px, 5vw, 68px)",
+                      fontSize: "clamp(34px, 3.6vw, 48px)",
                       lineHeight: 0.85,
-                      letterSpacing: "-0.04em",
+                      letterSpacing: "-0.035em",
                       fontWeight: 300,
-                      fontVariationSettings: '"opsz" 96',
+                      fontVariationSettings: '"opsz" 72',
                     }}
                   >
                     {paso.n}
@@ -81,16 +82,18 @@ export function Proceso() {
                   <h3
                     className="font-display"
                     style={{
-                      fontSize: "clamp(22px, 2.2vw, 30px)",
+                      fontSize: "clamp(20px, 2vw, 27px)",
                       lineHeight: 1.1,
-                      letterSpacing: "-0.02em",
+                      letterSpacing: "-0.018em",
                       fontWeight: 300,
                       fontVariationSettings: '"opsz" 48',
                     }}
                   >
                     {paso.titulo}
                   </h3>
-                  <p className="body text-[color:var(--ink-soft)] max-w-prose">{paso.body}</p>
+                  <p className="body text-[color:var(--ink-soft)]" style={{ maxWidth: "52ch" }}>
+                    {paso.body}
+                  </p>
                 </div>
               </motion.li>
             );
