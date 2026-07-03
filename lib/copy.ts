@@ -27,11 +27,13 @@ export const brand = {
   domain: "nucleobariatrico.com.ar",
 };
 
+// Ordenado según el orden real de las secciones en el scroll:
+// IMC → Diferencial → Equipo → Proceso → Testimonios → FAQ
 export const nav = {
   links: [
     { href: "#imc", label: "IMC" },
-    { href: "#proceso", label: "Proceso" },
     { href: "#equipo", label: "Equipo" },
+    { href: "#proceso", label: "Proceso" },
     { href: "#testimonios", label: "Testimonios" },
     { href: "#faq", label: "Preguntas" },
   ],
@@ -157,12 +159,14 @@ export const proceso = {
   headline: "Un recorrido continuo, no una operación aislada.",
   body: lorem.short,
   pasos: [
-    { n: "01", titulo: "Primera consulta", body: lorem.short, foto: "/images/proceso-primera-consulta.jpg", fotoPos: "center 58%" },
+    // La foto 01 es vertical (cara arriba, notebook abajo): necesita
+    // contenedor cuadrado para que entren ambas en el encuadre.
+    { n: "01", titulo: "Primera consulta", body: lorem.short, foto: "/images/proceso-primera-consulta.jpg", fotoPos: "center 48%", fotoAspect: "aspect-square" },
     { n: "02", titulo: "Evaluación integral", body: lorem.short, foto: "/images/proceso-evaluacion-integral.jpg", fotoPos: "center" },
     { n: "03", titulo: "Cobertura y trámites", body: lorem.short, foto: "/images/proceso-tramites.jpg", fotoPos: "center 40%" },
     { n: "04", titulo: "Cirugía", body: lorem.short, foto: "/images/proceso-cirugia.jpg", fotoPos: "center 55%" },
     { n: "05", titulo: "Seguimiento", body: lorem.short, foto: "/images/proceso-seguimiento.jpg", fotoPos: "center" },
-  ] as { n: string; titulo: string; body: string; foto: string | null; fotoPos?: string }[],
+  ] as { n: string; titulo: string; body: string; foto: string | null; fotoPos?: string; fotoAspect?: string }[],
 };
 
 export const testimonios = {
@@ -176,7 +180,7 @@ export const testimonios = {
       tiempo: "8 meses después de la cirugía",
       quote: lorem.quote,
       rating: 5,
-      foto: "/images/testimonio-1.jpg",
+      foto: null,
     },
     {
       type: "image" as const,
@@ -184,7 +188,7 @@ export const testimonios = {
       tiempo: "1 año y 2 meses",
       quote: lorem.quote,
       thumbnail: null,
-      foto: "/images/testimonio-2.jpg",
+      foto: null,
     },
     {
       type: "text" as const,
@@ -192,7 +196,7 @@ export const testimonios = {
       tiempo: "6 meses",
       quote: lorem.quote,
       rating: 5,
-      foto: "/images/testimonio-3.jpg",
+      foto: null,
     },
     {
       type: "video" as const,
@@ -201,7 +205,7 @@ export const testimonios = {
       quote: lorem.short,
       thumbnail: null,
       mediaUrl: null,
-      foto: "/images/testimonio-4.jpg",
+      foto: null,
     },
     {
       type: "text" as const,

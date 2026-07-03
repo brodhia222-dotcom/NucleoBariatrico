@@ -57,7 +57,7 @@ export function Proceso() {
                       src={paso.foto}
                       alt={paso.titulo}
                       loading="lazy"
-                      className="aspect-[16/9] w-full rounded-[var(--radius-lg)] object-cover"
+                      className={`${paso.fotoAspect ?? "aspect-[16/9]"} w-full rounded-[var(--radius-lg)] object-cover`}
                       style={{ objectPosition: paso.fotoPos ?? "center" }}
                     />
                   ) : (
