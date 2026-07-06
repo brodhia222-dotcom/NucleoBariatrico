@@ -61,7 +61,7 @@ export const diferencial = {
       body: "Cirujanos bariátricos con formación específica en obesidad. Conocé a las personas que van a acompañarte durante todo el recorrido.",
       cta: "Conocer al equipo",
       href: "#equipo",
-      foto: "/images/proceso-evaluacion-integral.jpg",
+      foto: "/images/diferencial-equipo.jpg",
     },
     {
       badge: "02 · Abordaje",
