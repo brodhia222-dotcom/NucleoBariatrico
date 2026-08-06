@@ -3,6 +3,7 @@ import { Hero } from "@/components/sections/Hero";
 import { IMCCalculator } from "@/components/sections/IMCCalculator";
 import { Diferencial } from "@/components/sections/Diferencial";
 import { Equipo } from "@/components/sections/Equipo";
+import { Tratamientos } from "@/components/sections/Tratamientos";
 import { Proceso } from "@/components/sections/Proceso";
 import { NoEstasSolo } from "@/components/sections/NoEstasSolo";
 import { Testimonios } from "@/components/sections/Testimonios";
@@ -21,6 +22,7 @@ export default function Page() {
         <IMCCalculator />
         <Diferencial />
         <Equipo />
+        <Tratamientos />
         <Proceso />
         <NoEstasSolo />
         <Testimonios />

@@ -7,15 +7,19 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import { ShieldCheck, ArrowUpRight, Info } from "@phosphor-icons/react";
+import { ShieldCheck, ArrowUpRight, Info, WhatsappLogo } from "@phosphor-icons/react";
 import { Container } from "@/components/primitives/Container";
 import { Section } from "@/components/primitives/Section";
 import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { Reveal } from "@/components/primitives/Reveal";
-import { obrasSociales } from "@/lib/copy";
+import { brand, obrasSociales } from "@/lib/copy";
 import { viewportOnce, easeEditorial } from "@/lib/motion";
 
 export function ObrasSociales() {
+  const whatsappHref = `https://wa.me/${brand.whatsappNumber.replace(/[^\d]/g, "")}?text=${encodeURIComponent(
+    "Hola, quiero consultar si mi obra social o prepaga cubre la cirugía.",
+  )}`;
+
   return (
     <Section id="obras-sociales" tone="default" className="relative overflow-hidden">
       <Container>
@@ -53,14 +57,14 @@ export function ObrasSociales() {
           </Reveal>
           <Reveal delay={0.15}>
             <a href={obrasSociales.cta.href} className="btn btn-ink group w-fit mt-2">
-                <ShieldCheck weight="regular" className="h-4 w-4" />
-                {obrasSociales.cta.label}
-                <ArrowUpRight
-                  weight="bold"
-                  className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                />
-              </a>
-            </Reveal>
+              <ShieldCheck weight="regular" className="h-4 w-4" />
+              {obrasSociales.cta.label}
+              <ArrowUpRight
+                weight="bold"
+                className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
+            </a>
+          </Reveal>
 
           <Reveal delay={0.2}>
             <div className="flex items-start gap-4 rounded-[var(--radius-lg)] bg-[color:var(--bg-elevated)] p-6 border border-[color:var(--border)] max-w-2xl mx-auto mt-4">
@@ -80,9 +84,10 @@ export function ObrasSociales() {
           </Reveal>
         </div>
 
-        {/* 3D tilt cards con logos reales */}
-        <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
-          {obrasSociales.planes.map((plan, i) => (
+        {/* 2 destacadas + tarjeta "otras" a WhatsApp — acotado a propósito
+            (no listamos convenios sin confirmar), centrado y compacto */}
+        <ul className="mx-auto grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-3">
+          {obrasSociales.destacadas.map((plan, i) => (
             <motion.li
               key={plan.nombre}
               initial={{ opacity: 0, y: 20 }}
@@ -93,6 +98,32 @@ export function ObrasSociales() {
               <LogoCard plan={plan} />
             </motion.li>
           ))}
+
+          <motion.li
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={viewportOnce}
+            transition={{ duration: 0.55, delay: obrasSociales.destacadas.length * 0.05, ease: easeEditorial }}
+          >
+            <a
+              href={whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative flex aspect-[16/9] flex-col items-center justify-center gap-2 overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[color:var(--ink)] p-4 text-center text-[color:var(--ink-inverse)] transition-shadow duration-300 hover:shadow-[var(--shadow-lg)]"
+            >
+              <span
+                aria-hidden
+                className="grid h-9 w-9 place-items-center rounded-full bg-[color:var(--color-whatsapp)]"
+              >
+                <WhatsappLogo weight="fill" className="h-4 w-4 text-white" />
+              </span>
+              <span className="text-sm font-medium leading-tight">{obrasSociales.otras.titulo}</span>
+              <span className="inline-flex items-center gap-1 text-[11px] tracking-wide text-[color:var(--ink-inverse)]/70 transition-colors group-hover:text-[color:var(--ink-inverse)]">
+                {obrasSociales.otras.cta}
+                <ArrowUpRight weight="bold" className="h-3 w-3" />
+              </span>
+            </a>
+          </motion.li>
         </ul>
 
         <Reveal>

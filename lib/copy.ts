@@ -30,11 +30,12 @@ export const brand = {
 };
 
 // Ordenado según el orden real de las secciones en el scroll:
-// IMC → Diferencial → Equipo → Proceso → Testimonios → FAQ
+// IMC → Diferencial → Equipo → Tratamientos → Proceso → Testimonios → FAQ
 export const nav = {
   links: [
     { href: "#imc", label: "IMC" },
     { href: "#equipo", label: "Equipo" },
+    { href: "#tratamientos", label: "Tratamientos" },
     { href: "#proceso", label: "Proceso" },
     { href: "#testimonios", label: "Testimonios" },
     { href: "#faq", label: "Preguntas" },
@@ -139,22 +140,84 @@ export const equipo = {
     {
       nombre: "Agustina",
       rol: "Cirujana Bariátrica",
+      // Bio pendiente — Agustina la envía en versión corta (reunión 2026-07-06)
       bio: lorem.medium,
       foto: "/images/equipo-agustina.jpg",
     },
     {
       nombre: "Sergio",
       rol: "Cirujano Bariátrico",
-      bio: lorem.medium,
+      // Bio real enviada por el equipo (reunión 2026-07-06)
+      bio: "Médico (Univ. de Mendoza), especialista en Cirugía General y en Cirugía Bariátrica y Metabólica, con experiencia en cirugía laparoscópica avanzada. Miembro de AAC, SACO e IFSO. Su enfoque combina indicación médica responsable, tratamiento integral de la obesidad y acompañamiento a largo plazo.",
       foto: "/images/equipo-sergio.jpg",
     },
     {
       nombre: "Nahuel",
       rol: "Cirujano Bariátrico",
-      bio: lorem.medium,
+      // Bio real enviada por el equipo (reunión 2026-07-06)
+      bio: "Médico egresado de la UBA, especialista en Cirugía General y en Cirugía Bariátrica y Metabólica. Miembro de SACO e IFSO. Propone un abordaje con visión integral de la obesidad, con decisiones médicas personalizadas y un seguimiento constante.",
       foto: "/images/equipo-nahuel.jpg",
     },
   ],
+};
+
+// Sección acordada en la reunión de equipo (2026-07-06): va entre Equipo
+// y Proceso. Agustina pidió navegación directa por nombre de tratamiento
+// (manga / bypass / balón / inyectables) en vez de solo categorías
+// técnicas. Sin marcas comerciales en lo farmacológico.
+export const tratamientos = {
+  eyebrow: "Tratamientos",
+  headline: "Un abordaje distinto para cada caso.",
+  body: "No hay un solo camino. Evaluamos tu situación y te proponemos el tratamiento — o la combinación de tratamientos — que mejor se adapte a vos.",
+  categorias: [
+    {
+      categoria: "Farmacológico",
+      opciones: [
+        {
+          id: "inyectables",
+          nombre: "Inyectables",
+          resumen: "Medicación bajo seguimiento médico.",
+          body: "Tratamiento con análogos GLP-1 y otras medicaciones inyectables, indicado según tu perfil metabólico. Puede usarse solo o combinado con otros abordajes, siempre con control médico periódico.",
+        },
+      ],
+    },
+    {
+      categoria: "No quirúrgico",
+      opciones: [
+        {
+          id: "balon",
+          nombre: "Balón gástrico",
+          resumen: "Dispositivo temporal y reversible.",
+          body: "Un dispositivo que ocupa espacio en el estómago para ayudarte a reducir las porciones. Es temporal, reversible y no requiere cirugía.",
+        },
+      ],
+    },
+    {
+      categoria: "Quirúrgico",
+      opciones: [
+        {
+          id: "manga",
+          nombre: "Manga gástrica",
+          resumen: "La técnica más utilizada.",
+          body: "Reduce el tamaño del estómago mediante cirugía laparoscópica. Es una de las técnicas más elegidas por sus resultados sostenidos en el tiempo.",
+        },
+        {
+          id: "bypass",
+          nombre: "Bypass gástrico",
+          resumen: "Para casos más avanzados.",
+          body: "Modifica el recorrido del sistema digestivo para reducir la absorción calórica. Se indica en casos de obesidad más avanzada o con comorbilidades asociadas.",
+        },
+      ],
+    },
+  ] as {
+    categoria: string;
+    opciones: { id: string; nombre: string; resumen: string; body: string }[];
+  }[],
+  reganancia: {
+    titulo: "¿Volviste a subir de peso después de la cirugía?",
+    body: "La re-ganancia de peso puede pasar, incluso años después de la cirugía. Si te operaste en otro lugar y necesitás retomar el seguimiento, también podemos ayudarte a evaluar tu caso.",
+    cta: "Consultar mi caso",
+  },
 };
 
 export const proceso = {
@@ -264,25 +327,26 @@ export const testimonios = {
 export const obrasSociales = {
   eyebrow: "Cobertura",
   headline: "Tu obra social puede cubrir la cirugía.",
-  body: "La cirugía bariátrica está incluida en el Programa Médico Obligatorio (PMO) y la mayoría de las obras sociales y prepagas la cubren. Solo necesitás un equipo efector habilitado que realice la práctica. Nosotros lo somos: gestionamos la autorización con vos.",
+  body: "La cirugía bariátrica está incluida en el Programa Médico Obligatorio (PMO). La cobertura exacta depende de tu obra social o prepaga y del plan que tengas — te la confirmamos por WhatsApp antes de tu primera consulta.",
   badge: "Consultá tu cobertura",
   cta: { label: "Hablar con el equipo", href: "#contacto" },
   notaEfector:
     "Es el equipo médico habilitado ante tu obra social para realizar una práctica cubierta. Como efectores de cirugía bariátrica, gestionamos tu autorización y te acompañamos con la cobertura de tu plan durante todo el proceso.",
-  logosPendiente: "Lorem ipsum logos pendiente.",
+  // Reunión 2026-07-06: mostrar solo 2 destacadas + "otras" (no afirmar
+  // coberturas específicas hasta confirmar convenios). OSDE confirmada en
+  // la charla; la segunda (Swiss Medical) es ejemplo hasta que el equipo
+  // clínico defina cuál destacar — cambiar acá cuando lo confirmen.
   // fit: "cover" = tile de marca con fondo propio (llena la tarjeta);
   //      "contain" = logo sobre fondo claro (centrado en tarjeta blanca)
-  planes: [
+  destacadas: [
     { nombre: "OSDE", logo: "/images/obras/osde.png", fit: "cover" },
     { nombre: "Swiss Medical", logo: "/images/obras/swiss-medical.png", fit: "contain" },
-    { nombre: "Galeno", logo: "/images/obras/galeno.png", fit: "cover" },
-    { nombre: "Medifé", logo: "/images/obras/medife.png", fit: "cover" },
-    { nombre: "Omint", logo: "/images/obras/omint.png", fit: "contain" },
-    { nombre: "Hospital Italiano", logo: "/images/obras/hospital-italiano.png", fit: "contain" },
-    { nombre: "Avalian", logo: "/images/obras/avalian.png", fit: "contain" },
-    { nombre: "Accord Salud", logo: "/images/obras/accord-salud.png", fit: "cover" },
-    { nombre: "Sancor Salud", logo: "/images/obras/sancor-salud.png", fit: "cover" },
   ] as { nombre: string; logo: string; fit: "cover" | "contain" }[],
+  otras: {
+    titulo: "¿Tenés otra obra social o prepaga?",
+    body: "Trabajamos con más convenios de los que podemos listar acá. Escribinos y te confirmamos tu cobertura en minutos.",
+    cta: "Consultar por WhatsApp",
+  },
 };
 
 export const ubicaciones = {
