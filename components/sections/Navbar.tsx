@@ -4,20 +4,20 @@ import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { List, X, ArrowUpRight } from "@phosphor-icons/react";
 import { brand, nav } from "@/lib/copy";
-import { useNavStyle } from "@/lib/nav-style-context";
+import { useNavStyle, type NavStyleKey } from "@/lib/nav-style-context";
 import { cn } from "@/lib/utils";
 
 type Tone = "light" | "dark";
 
 // Fondo del header por variante. "adaptive" es el comportamiento original
-// (transparente arriba, se tiñe al hacer scroll). Las otras 3 variantes
-// ("contrast"/"black"/"white") ahora pintan un color plano por sección
-// (ver toneForSection más abajo) vía inline style — acá solo aportan
+// (transparente arriba, se tiñe al hacer scroll). Las otras 2 variantes
+// ("black"/"white") ahora pintan un color plano por sección (ver
+// toneForSection más abajo) vía inline style — acá solo aportan
 // borde/sombra, ya que background-color transiciona nativo y suave gracias
 // a la clase "transition-[...]" del header (a diferencia de background-image,
 // que no cruza de forma confiable entre navegadores).
 function headerBgClass(
-  navStyle: "adaptive" | "contrast" | "black" | "white",
+  navStyle: NavStyleKey,
   scrolled: boolean,
   useInverseText: boolean,
 ) {
@@ -50,13 +50,12 @@ const SECTION_ORDER = [
   "contacto",
 ];
 
-// 3 paletas de 5 tonos cada una, ancladas a las escalas fijas de color
-// (--color-indigo-*/--color-beige-*/--color-orange-*, que el ThemePicker
-// nunca pisa) para que el contraste de texto quede siempre garantizado sin
-// importar la paleta semántica activa. Los tonos de cada paleta fueron
-// elegidos a mano (contraste estimado ≥ 4.5:1 contra su texto) — variantes
-// más claras de DARK_TONES o más oscuras de LIGHT_TONES quedan afuera por
-// no cumplir AA.
+// 2 paletas de 5 tonos cada una, ancladas a las escalas fijas de color
+// (--color-indigo-*/--color-beige-*, que el ThemePicker nunca pisa) para
+// que el contraste de texto quede siempre garantizado sin importar la
+// paleta semántica activa. Los tonos de cada paleta fueron elegidos a mano
+// (contraste estimado ≥ 4.5:1 contra su texto) — variantes más claras de
+// DARK_TONES o más oscuras de LIGHT_TONES quedan afuera por no cumplir AA.
 const DARK_TONES = [
   "var(--color-indigo-950)",
   "var(--color-indigo-900)",
@@ -71,14 +70,6 @@ const LIGHT_TONES = [
   "var(--color-beige-200)",
   "color-mix(in srgb, var(--color-beige-50) 85%, var(--accent) 15%)",
   "color-mix(in srgb, var(--color-beige-100) 82%, var(--accent) 18%)",
-];
-
-const WARM_TONES = [
-  "color-mix(in srgb, var(--color-indigo-950) 70%, var(--accent) 30%)",
-  "color-mix(in srgb, var(--color-indigo-900) 65%, var(--accent-hover) 35%)",
-  "color-mix(in srgb, var(--color-indigo-950) 68%, var(--color-orange-800) 32%)",
-  "color-mix(in srgb, var(--color-indigo-900) 72%, var(--color-orange-700) 28%)",
-  "color-mix(in srgb, var(--color-indigo-950) 75%, var(--accent) 25%)",
 ];
 
 function toneForSection(tones: string[], activeId: string) {
@@ -145,15 +136,12 @@ export function Navbar() {
 
   // useInverseText = "el texto/logo de la nav usa la versión clara (ink-inverse)".
   // - adaptive: sigue el tono de la sección, como siempre
-  // - contrast/black: sus paletas (WARM_TONES/DARK_TONES) son siempre oscuras,
-  //   así que el texto claro es seguro en todas las secciones
+  // - black: su paleta (DARK_TONES) es siempre oscura, texto claro fijo
   // - white: su paleta (LIGHT_TONES) es siempre clara, texto oscuro fijo
   const useInverseText = useMemo(() => {
     switch (navStyle) {
       case "adaptive":
         return isDark;
-      case "contrast":
-        return true;
       case "black":
         return true;
       case "white":
@@ -161,12 +149,10 @@ export function Navbar() {
     }
   }, [navStyle, isDark]);
 
-  // Color plano por sección para las 3 variantes dinámicas. "adaptive" no
+  // Color plano por sección para las 2 variantes dinámicas. "adaptive" no
   // pinta nada acá — su fondo sale de headerBgClass como siempre.
   const headerBgColor = useMemo(() => {
     switch (navStyle) {
-      case "contrast":
-        return toneForSection(WARM_TONES, activeId);
       case "black":
         return toneForSection(DARK_TONES, activeId);
       case "white":

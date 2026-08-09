@@ -10,7 +10,7 @@ import {
   type ReactNode,
 } from "react";
 
-export type NavStyleKey = "adaptive" | "contrast" | "black" | "white";
+export type NavStyleKey = "adaptive" | "black" | "white";
 
 export type NavStyleOption = {
   key: NavStyleKey;
@@ -23,11 +23,6 @@ export const navStyleOptions: NavStyleOption[] = [
     key: "adaptive",
     name: "Adaptativo (actual)",
     description: "Transparente arriba, se tiñe suave al hacer scroll",
-  },
-  {
-    key: "contrast",
-    name: "Cálido dinámico",
-    description: "Barra sólida en tonos índigo-naranja que cambia de tono en cada sección",
   },
   {
     key: "black",
