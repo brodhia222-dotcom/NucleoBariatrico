@@ -1,17 +1,46 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { List, X, ArrowUpRight } from "@phosphor-icons/react";
 import { brand, nav } from "@/lib/copy";
+import { useNavStyle } from "@/lib/nav-style-context";
 import { cn } from "@/lib/utils";
 
 type Tone = "light" | "dark";
+
+// Fondo del header por variante. "adaptive" es el comportamiento original
+// (transparente arriba, se tiñe al hacer scroll). Las otras 3 son siempre
+// sólidas — más contraste, sin depender del scroll.
+function headerBgClass(
+  navStyle: "adaptive" | "contrast" | "black" | "white",
+  scrolled: boolean,
+  useInverseText: boolean,
+) {
+  if (navStyle === "adaptive") {
+    return scrolled
+      ? useInverseText
+        ? "bg-[color:var(--bg-inverse)]/55 backdrop-blur-xl border-b border-[color:var(--ink-inverse)]/12"
+        : "bg-[color:var(--bg)]/75 backdrop-blur-xl border-b border-[color:var(--border)]"
+      : "bg-transparent border-b border-transparent";
+  }
+  if (navStyle === "contrast") {
+    return useInverseText
+      ? "bg-[color:var(--ink)] border-b border-[color:var(--ink-inverse)]/12 shadow-[var(--shadow-sm)]"
+      : "bg-[color:var(--ink-inverse)] border-b border-[color:var(--border)] shadow-[var(--shadow-sm)]";
+  }
+  if (navStyle === "black") {
+    return "bg-[color:var(--color-indigo-950)] border-b border-white/10 shadow-[var(--shadow-sm)]";
+  }
+  // white
+  return "bg-[color:var(--bg-elevated)] border-b border-[color:var(--border)] shadow-[var(--shadow-sm)]";
+}
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [tone, setTone] = useState<Tone>("dark"); // hero is dark
+  const { navStyle } = useNavStyle();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -27,7 +56,7 @@ export function Navbar() {
     };
   }, [open]);
 
-  // Tone detection — read data-nav-tone of the section overlapping the nav probe line
+  // Detección de tono: lee data-nav-tone de la sección que está bajo la nav
   useEffect(() => {
     const sections = Array.from(
       document.querySelectorAll<HTMLElement>("section[id], [data-nav-tone]"),
@@ -59,16 +88,30 @@ export function Navbar() {
 
   const isDark = tone === "dark";
 
+  // useInverseText = "el texto/logo de la nav usa la versión clara (ink-inverse)".
+  // - adaptive: sigue el tono de la sección, como siempre
+  // - contrast: la barra es del color OPUESTO a la sección, así que el texto
+  //   también se invierte respecto de isDark
+  // - black/white: fijo, no depende de la sección
+  const useInverseText = useMemo(() => {
+    switch (navStyle) {
+      case "adaptive":
+        return isDark;
+      case "contrast":
+        return !isDark;
+      case "black":
+        return true;
+      case "white":
+        return false;
+    }
+  }, [navStyle, isDark]);
+
   return (
     <>
       <header
         className={cn(
           "fixed inset-x-0 top-0 z-[400] transition-[background,backdrop-filter,border-color,color] duration-500",
-          scrolled
-            ? isDark
-              ? "bg-[color:var(--bg-inverse)]/55 backdrop-blur-xl border-b border-[color:var(--ink-inverse)]/12"
-              : "bg-[color:var(--bg)]/75 backdrop-blur-xl border-b border-[color:var(--border)]"
-            : "bg-transparent border-b border-transparent",
+          headerBgClass(navStyle, scrolled, useInverseText),
         )}
         style={{ height: "var(--nav-height)" }}
       >
@@ -80,7 +123,7 @@ export function Navbar() {
               alt="Nucleo Bariátrico"
               className={cn(
                 "h-16 w-auto transition-opacity duration-500",
-                isDark ? "opacity-0" : "opacity-100",
+                useInverseText ? "opacity-0" : "opacity-100",
               )}
             />
             <img
@@ -88,7 +131,7 @@ export function Navbar() {
               alt="Nucleo Bariátrico"
               className={cn(
                 "absolute inset-0 h-16 w-auto transition-opacity duration-500",
-                isDark ? "opacity-100" : "opacity-0",
+                useInverseText ? "opacity-100" : "opacity-0",
               )}
             />
           </a>
@@ -101,7 +144,7 @@ export function Navbar() {
                 href={link.href}
                 className={cn(
                   "text-[13px] font-medium transition-colors duration-300 relative group",
-                  isDark
+                  useInverseText
                     ? "text-[color:var(--ink-inverse)]/80 hover:text-[color:var(--ink-inverse)]"
                     : "text-[color:var(--ink-soft)] hover:text-[color:var(--ink)]",
                 )}
@@ -123,7 +166,7 @@ export function Navbar() {
               rel="noopener noreferrer"
               className={cn(
                 "text-[13px] transition-colors px-3 py-2 duration-500",
-                isDark
+                useInverseText
                   ? "text-[color:var(--ink-inverse)]/75 hover:text-[color:var(--ink-inverse)]"
                   : "text-[color:var(--ink-soft)] hover:text-[color:var(--ink)]",
               )}
@@ -145,7 +188,7 @@ export function Navbar() {
             onClick={() => setOpen(true)}
             className={cn(
               "lg:hidden grid h-10 w-10 place-items-center transition-colors duration-500",
-              isDark ? "text-[color:var(--ink-inverse)]" : "text-[color:var(--ink)]",
+              useInverseText ? "text-[color:var(--ink-inverse)]" : "text-[color:var(--ink)]",
             )}
             aria-label="Abrir menú"
           >

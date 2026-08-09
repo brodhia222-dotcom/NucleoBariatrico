@@ -13,7 +13,7 @@ const lorem = {
   long:
     "Lorem ipsum dolor sit amet consectetur adipiscing elit. Vestibulum ut libero in lectus laoreet faucibus. Curabitur in lectus nec urna venenatis fermentum non a tortor. Etiam at orci a leo bibendum dapibus. Ut imperdiet justo sit amet velit auctor, eu commodo nisl gravida.",
   quote:
-    "Lorem ipsum dolor sit amet consectetur. Nullam vitae libero ut elit faucibus consectetur — sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet consectetur. Nullam vitae libero ut elit faucibus consectetur, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
 };
 
 export const brand = {
@@ -168,7 +168,7 @@ export const equipo = {
 export const tratamientos = {
   eyebrow: "Tratamientos",
   headline: "Un abordaje distinto para cada caso.",
-  body: "No hay un solo camino. Evaluamos tu situación y te proponemos el tratamiento — o la combinación de tratamientos — que mejor se adapte a vos.",
+  body: "No hay un solo camino. Evaluamos tu situación y te proponemos el tratamiento, o la combinación de tratamientos, que mejor se adapte a vos.",
   categorias: [
     {
       categoria: "Farmacológico",
@@ -327,7 +327,7 @@ export const testimonios = {
 export const obrasSociales = {
   eyebrow: "Cobertura",
   headline: "Tu obra social puede cubrir la cirugía.",
-  body: "La cirugía bariátrica está incluida en el Programa Médico Obligatorio (PMO). La cobertura exacta depende de tu obra social o prepaga y del plan que tengas — te la confirmamos por WhatsApp antes de tu primera consulta.",
+  body: "La cirugía bariátrica está incluida en el Programa Médico Obligatorio (PMO). La cobertura exacta depende de tu obra social o prepaga y del plan que tengas. Te la confirmamos por WhatsApp antes de tu primera consulta.",
   badge: "Consultá tu cobertura",
   cta: { label: "Hablar con el equipo", href: "#contacto" },
   notaEfector:
@@ -378,12 +378,12 @@ export const noEstasSolo = {
   mensajesEntrantes: [
     {
       texto:
-        "Lorem ipsum dolor sit amet consectetur. Nullam vitae libero ut elit faucibus consectetur — sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "Lorem ipsum dolor sit amet consectetur. Nullam vitae libero ut elit faucibus consectetur, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       autor: "Una paciente · 6 meses post-cirugía",
     },
     {
       texto:
-        "Curabitur in lectus nec urna venenatis fermentum non a tortor. Etiam at orci a leo bibendum dapibus — ut imperdiet justo sit amet velit auctor.",
+        "Curabitur in lectus nec urna venenatis fermentum non a tortor. Etiam at orci a leo bibendum dapibus, ut imperdiet justo sit amet velit auctor.",
       autor: "Un paciente · 1 año post-cirugía",
     },
     {

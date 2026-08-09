@@ -247,7 +247,7 @@ export function NoEstasSolo() {
             transition={{ duration: 0.8, delay: 0.7 }}
             className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--ink-inverse)]/45 mt-2"
           >
-            — Equipo Nucleo Bariátrico
+            Equipo Nucleo Bariátrico
           </motion.div>
         </div>
       </Container>

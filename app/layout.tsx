@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { fraunces, manrope } from "@/lib/fonts";
 import { IMCProvider } from "@/lib/imc-context";
+import { NavStyleProvider } from "@/lib/nav-style-context";
 import { LenisProvider } from "@/components/LenisProvider";
 import { WhatsAppFloat } from "@/components/ui/WhatsAppFloat";
 import { ThemePicker } from "@/components/ui/ThemePicker";
+import { NavStylePicker } from "@/components/ui/NavStylePicker";
 import { brand } from "@/lib/copy";
 import { themes } from "@/lib/themes";
 import "./globals.css";
@@ -93,10 +95,13 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <IMCProvider>
-          <LenisProvider />
-          {children}
-          <WhatsAppFloat />
-          <ThemePicker />
+          <NavStyleProvider>
+            <LenisProvider />
+            {children}
+            <WhatsAppFloat />
+            <ThemePicker />
+            <NavStylePicker />
+          </NavStyleProvider>
         </IMCProvider>
       </body>
     </html>

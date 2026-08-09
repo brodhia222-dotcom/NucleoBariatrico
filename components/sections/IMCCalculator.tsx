@@ -228,7 +228,7 @@ export function IMCCalculator() {
                       : "color-mix(in srgb, var(--ink) 22%, transparent)",
                   }}
                 >
-                  {resultado ? <motion.span>{motionImcDisplay}</motion.span> : "—"}
+                  {resultado ? <motion.span>{motionImcDisplay}</motion.span> : "0.0"}
                 </span>
                 <AnimatePresence mode="wait">
                   <motion.p
