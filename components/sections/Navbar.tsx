@@ -10,8 +10,9 @@ import { cn } from "@/lib/utils";
 type Tone = "light" | "dark";
 
 // Fondo del header por variante. "adaptive" es el comportamiento original
-// (transparente arriba, se tiñe al hacer scroll). Las otras 3 son siempre
-// sólidas — más contraste, sin depender del scroll.
+// (transparente arriba, se tiñe al hacer scroll). "black"/"white" son
+// siempre sólidas y fijas. "contrast" ahora es un degradado dinámico que
+// se resuelve aparte (ver sectionGradients) — acá solo aporta borde/sombra.
 function headerBgClass(
   navStyle: "adaptive" | "contrast" | "black" | "white",
   scrolled: boolean,
@@ -25,9 +26,7 @@ function headerBgClass(
       : "bg-transparent border-b border-transparent";
   }
   if (navStyle === "contrast") {
-    return useInverseText
-      ? "bg-[color:var(--ink)] border-b border-[color:var(--ink-inverse)]/12 shadow-[var(--shadow-sm)]"
-      : "bg-[color:var(--ink-inverse)] border-b border-[color:var(--border)] shadow-[var(--shadow-sm)]";
+    return "border-b border-white/10 shadow-[var(--shadow-sm)]";
   }
   if (navStyle === "black") {
     return "bg-[color:var(--color-indigo-950)] border-b border-white/10 shadow-[var(--shadow-sm)]";
@@ -36,11 +35,57 @@ function headerBgClass(
   return "bg-[color:var(--bg-elevated)] border-b border-[color:var(--border)] shadow-[var(--shadow-sm)]";
 }
 
+// Degradado dinámico — 2 colores por sección, siempre anclados a
+// --color-indigo-950 (tono fijo, nunca lo pisa el ThemePicker) mezclado
+// con --accent (que sí sigue la paleta activa). Al mantener el indigo-950
+// como base dominante (65%+), el texto claro siempre lee bien sin importar
+// qué paleta esté activa. Ángulo y proporción varían por sección para que
+// se perciba movimiento real al scrollear, no solo un cambio de tinte.
+const GRADIENT_BASE = "var(--color-indigo-950)";
+const GRADIENT_ACCENT = "var(--accent)";
+
+function accentMix(pct: number) {
+  if (pct <= 0) return GRADIENT_BASE;
+  return `color-mix(in srgb, ${GRADIENT_BASE} ${100 - pct}%, ${GRADIENT_ACCENT} ${pct}%)`;
+}
+
+function gradient(angle: number, pctStart: number, pctEnd: number) {
+  return `linear-gradient(${angle}deg, ${accentMix(pctStart)}, ${accentMix(pctEnd)})`;
+}
+
+const sectionGradients: Record<string, string> = {
+  top: gradient(135, 0, 28),
+  imc: gradient(100, 22, 0),
+  diferencial: gradient(160, 0, 35),
+  equipo: gradient(120, 30, 0),
+  tratamientos: gradient(100, 0, 25),
+  proceso: gradient(150, 18, 0),
+  "no-estas-solo": gradient(135, 0, 12),
+  testimonios: gradient(110, 32, 0),
+  "obras-sociales": gradient(140, 0, 30),
+  ubicaciones: gradient(100, 20, 0),
+  faq: gradient(160, 0, 34),
+  contacto: gradient(130, 35, 0),
+};
+
+const DEFAULT_SECTION_ID = "top";
+
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [tone, setTone] = useState<Tone>("dark"); // hero is dark
+  const [activeId, setActiveId] = useState(DEFAULT_SECTION_ID);
   const { navStyle } = useNavStyle();
+
+  // Dos capas de degradado que se cruzan en opacidad — mismo truco que el
+  // crossfade de los 2 logos, generalizado a un background-image cualquiera
+  // (los gradientes no animan en transición directa entre sí de forma
+  // confiable entre navegadores, pero el fundido de opacidad sí).
+  const [gradLayers, setGradLayers] = useState({
+    a: sectionGradients[DEFAULT_SECTION_ID],
+    b: sectionGradients[DEFAULT_SECTION_ID],
+    front: "a" as "a" | "b",
+  });
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -56,7 +101,8 @@ export function Navbar() {
     };
   }, [open]);
 
-  // Detección de tono: lee data-nav-tone de la sección que está bajo la nav
+  // Detección de sección activa: lee data-nav-tone + id de la sección que
+  // está bajo la nav.
   useEffect(() => {
     const sections = Array.from(
       document.querySelectorAll<HTMLElement>("section[id], [data-nav-tone]"),
@@ -72,6 +118,7 @@ export function Navbar() {
         if (rect.top <= probeY && rect.bottom > probeY) {
           const t = (s.getAttribute("data-nav-tone") as Tone | null) ?? "light";
           setTone(t);
+          if (s.id) setActiveId(s.id);
           return;
         }
       }
@@ -86,19 +133,33 @@ export function Navbar() {
     };
   }, []);
 
+  // Cuando cambia la sección activa (y el estilo es "contrast"), escribe el
+  // nuevo degradado en la capa de atrás y la trae al frente con un fundido.
+  useEffect(() => {
+    if (navStyle !== "contrast") return;
+    const next = sectionGradients[activeId] ?? sectionGradients[DEFAULT_SECTION_ID];
+    setGradLayers((prev) => {
+      const current = prev.front === "a" ? prev.a : prev.b;
+      if (current === next) return prev;
+      return prev.front === "a"
+        ? { ...prev, b: next, front: "b" }
+        : { ...prev, a: next, front: "a" };
+    });
+  }, [activeId, navStyle]);
+
   const isDark = tone === "dark";
 
   // useInverseText = "el texto/logo de la nav usa la versión clara (ink-inverse)".
   // - adaptive: sigue el tono de la sección, como siempre
-  // - contrast: la barra es del color OPUESTO a la sección, así que el texto
-  //   también se invierte respecto de isDark
+  // - contrast: el degradado dinámico siempre queda oscuro (ver arriba), así
+  //   que el texto claro es seguro en todos los casos
   // - black/white: fijo, no depende de la sección
   const useInverseText = useMemo(() => {
     switch (navStyle) {
       case "adaptive":
         return isDark;
       case "contrast":
-        return !isDark;
+        return true;
       case "black":
         return true;
       case "white":
@@ -110,12 +171,27 @@ export function Navbar() {
     <>
       <header
         className={cn(
-          "fixed inset-x-0 top-0 z-[400] transition-[background,backdrop-filter,border-color,color] duration-500",
+          "fixed inset-x-0 top-0 z-[400] overflow-hidden transition-[background,backdrop-filter,border-color,color] duration-500",
           headerBgClass(navStyle, scrolled, useInverseText),
         )}
         style={{ height: "var(--nav-height)" }}
       >
-        <div className="flex h-full items-center justify-between px-4 lg:px-6">
+        {navStyle === "contrast" && (
+          <>
+            <div
+              aria-hidden
+              className="absolute inset-0 transition-opacity duration-700 ease-out"
+              style={{ backgroundImage: gradLayers.a, opacity: gradLayers.front === "a" ? 1 : 0 }}
+            />
+            <div
+              aria-hidden
+              className="absolute inset-0 transition-opacity duration-700 ease-out"
+              style={{ backgroundImage: gradLayers.b, opacity: gradLayers.front === "b" ? 1 : 0 }}
+            />
+          </>
+        )}
+
+        <div className="relative z-10 flex h-full items-center justify-between px-4 lg:px-6">
           {/* Logo */}
           <a href="#top" className="relative flex items-center">
             <img

@@ -26,8 +26,8 @@ export const navStyleOptions: NavStyleOption[] = [
   },
   {
     key: "contrast",
-    name: "Contraste inverso",
-    description: "Barra sólida: violeta sobre fondos claros, clara sobre fondos oscuros",
+    name: "Degradado dinámico",
+    description: "Barra sólida con degradado de 2 colores que cambia de tono en cada sección",
   },
   {
     key: "black",

@@ -179,9 +179,12 @@ body {
   color: #ffffff;
 }
 
-/* Evita palabras huérfanas colgadas en la última línea de los párrafos */
-p, blockquote, dd, figcaption {
-  text-wrap: pretty;
+/* Reparte las líneas del párrafo de forma pareja para que ninguna línea
+   (no solo la última) termine con 1-3 palabras sueltas. "balance" tiene un
+   límite interno del navegador (~6 líneas); en párrafos más largos hace
+   fallback silencioso a wrap normal, así que es seguro usarlo siempre. */
+p, blockquote, dd, figcaption, li {
+  text-wrap: balance;
 }
 
 /* ---------- TYPOGRAPHY UTILS ---------- */
