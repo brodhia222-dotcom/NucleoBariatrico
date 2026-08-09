@@ -26,18 +26,18 @@ export const navStyleOptions: NavStyleOption[] = [
   },
   {
     key: "contrast",
-    name: "Degradado dinámico",
-    description: "Barra sólida con degradado de 2 colores que cambia de tono en cada sección",
+    name: "Cálido dinámico",
+    description: "Barra sólida en tonos índigo-naranja que cambia de tono en cada sección",
   },
   {
     key: "black",
-    name: "Negro sólido",
-    description: "Barra oscura fija en toda la página",
+    name: "Oscuro dinámico",
+    description: "Barra sólida en tonos índigo oscuros que cambia de tono en cada sección",
   },
   {
     key: "white",
-    name: "Blanco sólido",
-    description: "Barra clara fija en toda la página",
+    name: "Claro dinámico",
+    description: "Barra sólida en tonos beige claros que cambia de tono en cada sección",
   },
 ];
 
