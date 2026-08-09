@@ -205,9 +205,7 @@ export const tratamientos = {
           id: "inyectables",
           nombre: "Inyectables",
           resumen: "Medicación bajo seguimiento médico.",
-          body: noOrphans(
-            "Tratamiento con análogos GLP-1 y otras medicaciones inyectables, indicado según tu perfil metabólico. Puede usarse solo o combinado con otros abordajes, siempre con control médico periódico."
-          ),
+          body: lorem.medium,
         },
       ],
     },
@@ -218,9 +216,7 @@ export const tratamientos = {
           id: "balon",
           nombre: "Balón gástrico",
           resumen: "Dispositivo temporal y reversible.",
-          body: noOrphans(
-            "Un dispositivo que ocupa espacio en el estómago para ayudarte a reducir las porciones. Es temporal, reversible y no requiere cirugía."
-          ),
+          body: lorem.short,
         },
       ],
     },
@@ -231,17 +227,13 @@ export const tratamientos = {
           id: "manga",
           nombre: "Manga gástrica",
           resumen: "La técnica más utilizada.",
-          body: noOrphans(
-            "Reduce el tamaño del estómago mediante cirugía laparoscópica. Es una de las técnicas más elegidas por sus resultados sostenidos en el tiempo."
-          ),
+          body: lorem.medium,
         },
         {
           id: "bypass",
           nombre: "Bypass gástrico",
           resumen: "Para casos más avanzados.",
-          body: noOrphans(
-            "Modifica el recorrido del sistema digestivo para reducir la absorción calórica. Se indica en casos de obesidad más avanzada o con comorbilidades asociadas."
-          ),
+          body: lorem.medium,
         },
       ],
     },
