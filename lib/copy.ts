@@ -102,7 +102,7 @@ export const diferencial = {
       ),
       cta: "Ver ubicaciones",
       href: "#ubicaciones",
-      foto: null,
+      foto: "/images/diferencial-sedes.jpg",
     },
   ] as {
     badge: string;
@@ -156,14 +156,16 @@ export const imcCalc = {
 
 export const equipo = {
   eyebrow: "El equipo",
-  headline: "3 Profesionales, una sola consulta.",
+  headline: "Un equipo que te acompaña en cada etapa.",
   body: null as string | null,
   miembros: [
     {
       nombre: "Agustina",
       rol: "Cirujana Bariátrica",
-      // Bio pendiente — Agustina la envía en versión corta (reunión 2026-07-06)
-      bio: lorem.medium,
+      // Bio real enviada por el equipo (2026-09), acortada al largo de las otras dos
+      bio: noOrphans(
+        "Médica egresada de la UNR, especialista en Cirugía General, con Fellowship en Cirugía Bariátrica y Metabólica (UBA). Experiencia en manga gástrica, bypass y cirugía de revisión. Miembro de SACO e IFSO. Su práctica combina una atención cercana, basada en la evidencia, con un seguimiento a largo plazo."
+      ),
       foto: "/images/equipo-agustina.jpg",
     },
     {
@@ -185,6 +187,23 @@ export const equipo = {
       foto: "/images/equipo-nahuel.jpg",
     },
   ],
+  // Otras disciplinas que forman parte del proceso. Se muestran debajo de los
+  // cirujanos en formato compacto; mientras no haya retrato (foto: null) se
+  // ve la inicial del nombre.
+  acompanamiento: {
+    eyebrow: "También te acompañan",
+    miembros: [
+      {
+        nombre: "Rocío",
+        rol: "Psicóloga",
+        // Bio enviada en PDF (2026-09), acortada al largo de las de los cirujanos
+        bio: noOrphans(
+          "Licenciada en Psicología (USAL) y psicoanalista, con práctica clínica desde 2008. Miembro de la Escuela Freudiana de Buenos Aires. En el equipo realiza las evaluaciones psicológicas prequirúrgicas: un espacio de escucha para preparar a cada paciente y acompañar los cambios que implica el tratamiento."
+        ),
+        foto: null,
+      },
+    ] as { nombre: string; rol: string; bio: string; foto: string | null }[],
+  },
 };
 
 // Sección acordada en la reunión de equipo (2026-07-06): va entre Equipo
@@ -255,8 +274,7 @@ export const proceso = {
   headline: "Un recorrido continuo, no una operación aislada.",
   body: null as string | null,
   pasos: [
-    // La foto 01 es vertical (cara arriba, notebook abajo): necesita
-    // contenedor cuadrado para que entren ambas en el encuadre.
+    // Fotos 01/03/05: sesión real del equipo (2026-09), ya recortadas a 4:3.
     // Copy de pasos 01/02/04/05 aprobado por Maya Vega (2026-07-03); el 03 se mantiene
     {
       n: "01",
@@ -265,8 +283,7 @@ export const proceso = {
         "Nos conocemos, escuchamos tu historia y respondemos todas tus dudas. Salís de la consulta sabiendo cuál es el abordaje más adecuado para vos y cuáles son los próximos pasos."
       ),
       foto: "/images/proceso-primera-consulta.jpg",
-      fotoPos: "center 48%",
-      fotoAspect: "aspect-square",
+      fotoAspect: "aspect-[4/3]",
     },
     {
       n: "02",
@@ -284,7 +301,7 @@ export const proceso = {
         "Te guiamos con la autorización de tu obra social y todo el papeleo. Nos encargamos de que los trámites no sean un obstáculo en tu recorrido."
       ),
       foto: "/images/proceso-tramites.jpg",
-      fotoPos: "center 40%",
+      fotoAspect: "aspect-[4/3]",
     },
     {
       n: "04",
@@ -302,7 +319,7 @@ export const proceso = {
         "El proceso no termina en el quirófano. Hacemos controles periódicos con todo el equipo durante el tiempo que tu caso lo requiera, porque el seguimiento a largo plazo es lo que permite sostener los resultados y cuidar tu salud en el tiempo."
       ),
       foto: "/images/proceso-seguimiento.jpg",
-      fotoPos: "center",
+      fotoAspect: "aspect-[4/3]",
     },
   ] as { n: string; titulo: string; body: string; foto: string | null; fotoPos?: string; fotoAspect?: string }[],
 };

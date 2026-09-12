@@ -80,6 +80,67 @@ export function Equipo() {
             </motion.li>
           ))}
         </ul>
+
+        {/* Otras disciplinas del proceso, en formato compacto debajo de los cirujanos */}
+        {equipo.acompanamiento.miembros.length > 0 && (
+          <div className="mt-14 border-t border-[color:var(--border)] pt-10 lg:mt-20 lg:pt-12">
+            <Reveal>
+              <Eyebrow>{equipo.acompanamiento.eyebrow}</Eyebrow>
+            </Reveal>
+            <ul className="mt-6 grid gap-8 md:grid-cols-2 lg:gap-10">
+              {equipo.acompanamiento.miembros.map((m, i) => (
+                <motion.li
+                  key={m.nombre}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={viewportOnce}
+                  transition={{ duration: 0.8, delay: i * 0.1, ease: easeEditorial }}
+                  className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-5"
+                >
+                  {m.foto ? (
+                    <img
+                      src={m.foto}
+                      alt={`${m.nombre} · ${m.rol}`}
+                      loading="lazy"
+                      className="h-20 w-20 shrink-0 rounded-[var(--radius-lg)] object-cover sm:h-24 sm:w-24"
+                    />
+                  ) : (
+                    <span
+                      aria-hidden
+                      className="grid h-20 w-20 shrink-0 place-items-center rounded-[var(--radius-lg)] bg-[color:var(--accent-soft)] font-display text-[color:var(--accent)] sm:h-24 sm:w-24"
+                      style={{
+                        fontSize: "40px",
+                        lineHeight: 1,
+                        fontWeight: 300,
+                        fontVariationSettings: '"opsz" 72',
+                      }}
+                    >
+                      {m.nombre.charAt(0)}
+                    </span>
+                  )}
+                  <div className="flex flex-col gap-2">
+                    <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--accent)]">
+                      {m.rol}
+                    </span>
+                    <h3
+                      className="font-display"
+                      style={{
+                        fontSize: "clamp(22px, 2.2vw, 30px)",
+                        lineHeight: 1.04,
+                        letterSpacing: "-0.022em",
+                        fontWeight: 300,
+                        fontVariationSettings: '"opsz" 56',
+                      }}
+                    >
+                      {m.nombre}
+                    </h3>
+                    <p className="body-sm text-[color:var(--ink-soft)] mt-1 max-w-[52ch]">{m.bio}</p>
+                  </div>
+                </motion.li>
+              ))}
+            </ul>
+          </div>
+        )}
       </Container>
     </Section>
   );

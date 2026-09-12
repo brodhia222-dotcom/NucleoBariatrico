@@ -35,6 +35,12 @@ export function noOrphans(text: string): string {
     }
   });
 
+  // 3) La última palabra del párrafo nunca queda sola en el último renglón
+  // (en párrafos largos "balance" deja de actuar y pasaba con "plazo.").
+  if (words.length >= 3) {
+    glueToNext[words.length - 2] = true;
+  }
+
   return words.reduce((out, word, i) => {
     if (i === 0) return word;
     return out + (glueToNext[i - 1] ? NBSP : " ") + word;
