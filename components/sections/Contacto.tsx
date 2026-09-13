@@ -9,6 +9,7 @@ import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { Reveal } from "@/components/primitives/Reveal";
 import { contacto, brand } from "@/lib/copy";
 import { useIMC } from "@/lib/imc-context";
+import { track } from "@/lib/analytics";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
@@ -69,6 +70,7 @@ export function Contacto() {
         throw new Error(body?.error ?? "Falló el envío");
       }
       setStatus("sent");
+      track("form_submit", { formulario: "contacto" });
       form.reset();
     } catch (err) {
       setStatus("error");
@@ -195,6 +197,12 @@ export function Contacto() {
             <Reveal>
               <form
                 onSubmit={onSubmit}
+                onFocusCapture={(e) => {
+                  const f = e.currentTarget;
+                  if (f.dataset.iniciado) return;
+                  f.dataset.iniciado = "1";
+                  track("form_start", { formulario: "contacto" });
+                }}
                 className="grid gap-5 rounded-[var(--radius-2xl)] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-8 lg:p-10 shadow-[var(--shadow-md)]"
               >
                 <span className="eyebrow mb-2">Formulario de consulta</span>

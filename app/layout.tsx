@@ -3,6 +3,7 @@ import { fraunces, manrope } from "@/lib/fonts";
 import { IMCProvider } from "@/lib/imc-context";
 import { NavStyleProvider } from "@/lib/nav-style-context";
 import { LenisProvider } from "@/components/LenisProvider";
+import { Analytics } from "@/components/Analytics";
 import { WhatsAppFloat } from "@/components/ui/WhatsAppFloat";
 import { ThemePicker } from "@/components/ui/ThemePicker";
 import { NavStylePicker } from "@/components/ui/NavStylePicker";
@@ -10,8 +11,17 @@ import { brand } from "@/lib/copy";
 import { themes } from "@/lib/themes";
 import "./globals.css";
 
+// Base de las URLs para compartir. En Vercel usa el dominio real del deploy (el de producción, o el link del
+// preview): hasta que nucleobariatrico.com.ar esté conectado, apuntar ahí deja el link sin vista previa.
+const sitio =
+  process.env.VERCEL_ENV === "production" && process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : process.env.VERCEL_BRANCH_URL
+      ? `https://${process.env.VERCEL_BRANCH_URL}`
+      : `https://${brand.domain}`;
+
 export const metadata: Metadata = {
-  metadataBase: new URL(`https://${brand.domain}`),
+  metadataBase: new URL(sitio),
   title: {
     default: `${brand.name} · ${brand.tagline}`,
     template: `%s · ${brand.name}`,
@@ -30,6 +40,7 @@ export const metadata: Metadata = {
     "manga gástrica",
     "equipo médico bariátrico",
   ],
+  alternates: { canonical: "/" },
   openGraph: {
     title: `${brand.name} · ${brand.tagline}`,
     description: "Acompañamiento médico integral para cirugía bariátrica.",
@@ -97,6 +108,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <IMCProvider>
           <NavStyleProvider>
             <LenisProvider />
+            <Analytics />
             {children}
             <WhatsAppFloat />
             <ThemePicker />

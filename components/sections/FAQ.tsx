@@ -51,8 +51,8 @@ export function FAQ() {
           {faq.items.map((item, i) => {
             const isOpen = openIdx === i;
             return (
-              <Reveal key={i} delay={i * 0.04}>
-                <li className="border-b border-[color:var(--border)]">
+              <li key={i} className="border-b border-[color:var(--border)]">
+                <Reveal delay={i * 0.04}>
                   <button
                     type="button"
                     onClick={() => setOpenIdx(isOpen ? null : i)}
@@ -101,8 +101,8 @@ export function FAQ() {
                       </motion.div>
                     )}
                   </AnimatePresence>
-                </li>
-              </Reveal>
+                </Reveal>
+              </li>
             );
           })}
         </ul>

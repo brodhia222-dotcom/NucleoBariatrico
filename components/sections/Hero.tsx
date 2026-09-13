@@ -115,7 +115,7 @@ function HeroHeadline({ reduced }: { reduced: boolean }) {
         <motion.span
           variants={
             reduced
-              ? { hidden: { opacity: 1 }, visible: { opacity: 1 } }
+              ? { hidden: { y: 0, opacity: 1 }, visible: { y: 0, opacity: 1 } }
               : {
                   hidden: { y: "108%" },
                   visible: { y: 0, transition: { duration: 0.95, ease: [0.16, 1, 0.3, 1] } },
@@ -130,7 +130,7 @@ function HeroHeadline({ reduced }: { reduced: boolean }) {
         <motion.span
           variants={
             reduced
-              ? { hidden: { opacity: 1 }, visible: { opacity: 1 } }
+              ? { hidden: { y: 0, opacity: 1 }, visible: { y: 0, opacity: 1 } }
               : {
                   hidden: { y: "108%" },
                   visible: { y: 0, transition: { duration: 0.95, ease: [0.16, 1, 0.3, 1] } },
