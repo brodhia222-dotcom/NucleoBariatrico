@@ -6,10 +6,9 @@
  *
  * 1) Palabras de hasta 3 letras (el, la, de, un, con, sin...) nunca quedan
  *    solas al final de un renglón: se pegan con espacio duro a la siguiente.
- * 2) Una conjunción de una letra (y, o, e, u) entre dos palabras que forman una
- *    sola idea ("bariátrica y metabólica") se pega también a la anterior, para
- *    que el par no se parta. Si antes hay una coma o después arranca otra frase
- *    ("formulario y un profesional"), no: ese corte es natural.
+ * 2) Pares puntuales que no se pueden partir ("bariátrica y metabólica", pedido
+ *    de Fede) se pegan a mano en copy.ts con  . Como regla general armaba
+ *    bloques largos ("hábitos y acompañamiento") y renglones desparejos.
  * 3) La última palabra del párrafo nunca queda sola en el último renglón.
  * 4) Los bloques pegados de más de 3 palabras y más de 22 caracteres se
  *    achican soltando palabras de 3 letras: los bloques largos no se pueden
@@ -35,15 +34,6 @@ export function noOrphans(text: string): string {
   for (let i = 0; i < n - 1; i++) {
     // Después de una coma o un punto el corte es natural: no se pega ("UBA, especialista")
     if (corta(i) && !/[,;:.]$/.test(words[i])) pegar[i] = true;
-    const conj = i + 1;
-    if (
-      CONJUNCTIONS.has(cores[conj]) &&
-      conj < n - 1 &&
-      !/[,;:.]$/.test(words[i]) &&
-      !corta(conj + 1)
-    ) {
-      pegar[i] = true;
-    }
   }
 
   if (n >= 3) pegar[n - 2] = true;

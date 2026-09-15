@@ -160,6 +160,8 @@ export function Contacto() {
                     </a>
                   </li>
                 )}
+                {/* Vuelve sola cuando se confirme el horario (lib/copy.ts); sin él repetía el párrafo de arriba */}
+                {contacto.horario && (
                 <li>
                   <div className="flex items-center gap-4 py-5">
                     <span
@@ -169,17 +171,12 @@ export function Contacto() {
                       <Clock weight="regular" className="h-5 w-5" />
                     </span>
                     <span className="flex flex-col">
-                      {contacto.horario ? (
-                        <>
-                          <span className="font-medium text-[color:var(--ink)]">{contacto.horario}</span>
-                          <span className="caption">Respuesta en menos de 24 hs hábiles</span>
-                        </>
-                      ) : (
-                        <span className="font-medium text-[color:var(--ink)]">Respuesta en menos de 24 hs hábiles</span>
-                      )}
+                      <span className="font-medium text-[color:var(--ink)]">{contacto.horario}</span>
+                      <span className="caption">Respuesta en menos de 24 hs hábiles</span>
                     </span>
                   </div>
                 </li>
+                )}
               </ul>
             </Reveal>
 

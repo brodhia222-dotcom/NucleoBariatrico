@@ -84,7 +84,18 @@ export function ObrasSociales() {
               viewport={viewportOnce}
               transition={{ duration: 0.55, delay: i * 0.05, ease: easeEditorial }}
             >
-              <LogoCard plan={plan} />
+              {/* Los logos se mueven con el cursor: que también se puedan tocar y lleven a consultar esa cobertura */}
+              <a
+                href={`https://wa.me/${brand.whatsappNumber.replace(/[^\d]/g, "")}?text=${encodeURIComponent(
+                  `Hola, tengo ${plan.nombre} y quiero consultar si cubre la cirugía.`,
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Consultar por WhatsApp la cobertura de ${plan.nombre}`}
+                className="block rounded-[var(--radius-lg)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)] focus-visible:ring-offset-2"
+              >
+                <LogoCard plan={plan} />
+              </a>
             </motion.li>
           ))}
         </ul>
@@ -108,11 +119,6 @@ export function ObrasSociales() {
           </div>
         </Reveal>
 
-        <Reveal>
-          <p className="caption text-center mt-6">
-            Lista orientativa. Consultá tu cobertura con el equipo antes de iniciar el proceso.
-          </p>
-        </Reveal>
       </Container>
     </Section>
   );

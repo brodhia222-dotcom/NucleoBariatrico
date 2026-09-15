@@ -63,10 +63,15 @@ export function Diferencial() {
 
         {/* Expanding cards — todas cerradas por default */}
         <Reveal>
-          {/* Al salir del grupo con el cursor se cierran todas */}
+          {/* Con cursor: la fila de 4 que se expande y se cierra al salir del grupo.
+              Sin cursor: todas abiertas, 1 por fila en celular y 2 en tablet (la fila de 4 quedaba angosta) */}
           <div
             onMouseLeave={() => setActive(null)}
-            className="flex flex-col gap-3 lg:flex-row lg:gap-3 lg:h-[520px]"
+            className={
+              esCelular
+                ? "grid gap-3 md:grid-cols-2"
+                : "flex flex-col gap-3 lg:flex-row lg:gap-3 lg:h-[520px]"
+            }
           >
             {diferencial.items.map((item, i) => {
               const Icon = icons[i] ?? icons[0];

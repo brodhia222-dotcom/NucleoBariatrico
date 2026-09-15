@@ -56,7 +56,7 @@ export const hero = {
   headline: ["Tu salud", "empieza", "acá."],
   // Copy aprobado por Maya Vega (2026-07-03)
   body: noOrphans(
-    "Somos un equipo especializado en cirugía bariátrica y metabólica. Abordamos la obesidad desde una mirada integral, con tratamientos médicos, farmacológicos y quirúrgicos adaptados a cada caso, y un acompañamiento que sostiene cada etapa del proceso, incluido el seguimiento a largo plazo."
+    "Somos un equipo especializado en cirugía bariátrica y metabólica. Abordamos la obesidad desde una mirada integral, con tratamientos médicos, farmacológicos y quirúrgicos adaptados a cada caso, y un acompañamiento que sostiene cada etapa del proceso, incluido el seguimiento a largo plazo."
   ),
   primary: { label: "Calcular mi IMC", href: "#imc" },
   secondary: { label: "Conocer al equipo", href: "#equipo" },
@@ -91,7 +91,7 @@ export const diferencial = {
       // Sin afirmar convenios (reunión 2026-07-06): solo lo confirmado del rol de efector.
       title: noOrphans("Te guiamos con la cobertura"),
       body: noOrphans(
-        "Gestionamos tu autorización ante la obra social y te acompañamos con la cobertura de tu plan durante todo el proceso."
+        "Hacemos el trámite de autorización con tu obra social."
       ),
       cta: "Consultar cobertura",
       href: "#obras-sociales",
@@ -168,7 +168,7 @@ export const equipo = {
       rol: "Cirujana Bariátrica",
       // Bio real enviada por el equipo (2026-09), acortada al largo de las otras dos
       bio: noOrphans(
-        "Médica egresada de la UNR, especialista en Cirugía General, con Fellowship en Cirugía Bariátrica y Metabólica (UBA). Experiencia en manga gástrica, bypass y cirugía de revisión. Miembro de SACO e IFSO. Su práctica combina una atención cercana, basada en la evidencia, con un seguimiento a largo plazo."
+        "Médica egresada de la UNR, especialista en Cirugía General, con Fellowship en Cirugía Bariátrica y Metabólica (UBA). Experiencia en manga gástrica, bypass y cirugía de revisión. Miembro de SACO e IFSO. Su práctica combina una atención cercana, basada en la evidencia, con un seguimiento a largo plazo."
       ),
       foto: "/images/equipo-agustina.jpg",
     },
@@ -177,7 +177,7 @@ export const equipo = {
       rol: "Cirujano Bariátrico",
       // Bio real enviada por el equipo (reunión 2026-07-06)
       bio: noOrphans(
-        "Médico (Univ. de Mendoza), especialista en Cirugía General y en Cirugía Bariátrica y Metabólica, con experiencia en cirugía laparoscópica avanzada. Miembro de AAC, SACO e IFSO. Su enfoque combina indicación médica responsable, tratamiento integral de la obesidad y acompañamiento a largo plazo."
+        "Médico (Univ. de Mendoza), especialista en Cirugía General y en Cirugía Bariátrica y Metabólica, con experiencia en cirugía laparoscópica avanzada. Miembro de AAC, SACO e IFSO. Su enfoque combina indicación médica responsable, tratamiento integral de la obesidad y acompañamiento a largo plazo."
       ),
       foto: "/images/equipo-sergio.jpg",
     },
@@ -186,7 +186,7 @@ export const equipo = {
       rol: "Cirujano Bariátrico",
       // Bio real enviada por el equipo (reunión 2026-07-06)
       bio: noOrphans(
-        "Médico egresado de la UBA, especialista en Cirugía General y en Cirugía Bariátrica y Metabólica. Miembro de SACO e IFSO. Propone un abordaje con visión integral de la obesidad, con decisiones médicas personalizadas y un seguimiento constante."
+        "Médico egresado de la UBA, especialista en Cirugía General y en Cirugía Bariátrica y Metabólica. Miembro de SACO e IFSO. Propone un abordaje con visión integral de la obesidad, con decisiones médicas personalizadas y un seguimiento constante."
       ),
       foto: "/images/equipo-nahuel.jpg",
     },
