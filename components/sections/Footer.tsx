@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, InstagramLogo, WhatsappLogo } from "@phosphor-icons/react";
+import { ArrowUpRight, WhatsappLogo } from "@phosphor-icons/react";
 import { Container } from "@/components/primitives/Container";
 import { brand, footer, nav } from "@/lib/copy";
 import { viewportOnce, easeEditorial } from "@/lib/motion";
@@ -23,7 +23,7 @@ export function Footer() {
             className="grid gap-8 lg:grid-cols-12 lg:gap-12 items-end py-14 lg:py-20"
           >
             <div className="lg:col-span-8">
-              <span className="font-mono text-[10px] tracking-[0.22em] uppercase opacity-65 mb-4 block">
+              <span className="font-mono text-[12px] tracking-[0.14em] uppercase opacity-65 mb-4 block">
                 ¿Listo para empezar?
               </span>
               <h2
@@ -79,31 +79,11 @@ export function Footer() {
             >
               {footer.tagline}
             </p>
-            <div className="flex items-center gap-3 mt-2">
-              <a
-                href={`https://wa.me/${brand.whatsappNumber.replace(/[^\d]/g, "")}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="WhatsApp"
-                className="grid h-9 w-9 place-items-center rounded-full border border-[color:var(--ink-inverse)]/15 hover:bg-[color:var(--color-whatsapp)] hover:border-[color:var(--color-whatsapp)] transition-colors"
-              >
-                <WhatsappLogo weight="regular" className="h-4 w-4" />
-              </a>
-              <a
-                href={brand.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="grid h-9 w-9 place-items-center rounded-full border border-[color:var(--ink-inverse)]/15 hover:bg-[color:var(--accent)] hover:border-[color:var(--accent)] transition-colors"
-              >
-                <InstagramLogo weight="regular" className="h-4 w-4" />
-              </a>
-            </div>
           </div>
 
           {/* Sitio */}
           <div className="lg:col-span-2 flex flex-col gap-4">
-            <p className="font-mono text-[10px] tracking-[0.22em] uppercase opacity-65">Sitio</p>
+            <p className="font-mono text-[12px] tracking-[0.14em] uppercase opacity-65">Sitio</p>
             <ul className="flex flex-col gap-2.5">
               {nav.links.map((l) => (
                 <li key={l.href}>
@@ -120,7 +100,7 @@ export function Footer() {
 
           {/* Contacto */}
           <div className="lg:col-span-2 flex flex-col gap-4">
-            <p className="font-mono text-[10px] tracking-[0.22em] uppercase opacity-65">Contacto</p>
+            <p className="font-mono text-[12px] tracking-[0.14em] uppercase opacity-65">Contacto</p>
             <ul className="flex flex-col gap-2.5">
               <li>
                 <a
@@ -132,12 +112,24 @@ export function Footer() {
                   WhatsApp
                 </a>
               </li>
+              {footer.contacto.email && (
+                <li>
+                  <a
+                    href={`mailto:${footer.contacto.email}`}
+                    className="text-sm text-[color:var(--ink-inverse)]/82 hover:text-[color:var(--ink-inverse)] transition-colors break-all"
+                  >
+                    {footer.contacto.email}
+                  </a>
+                </li>
+              )}
               <li>
                 <a
-                  href={`mailto:${footer.contacto.email}`}
-                  className="text-sm text-[color:var(--ink-inverse)]/82 hover:text-[color:var(--ink-inverse)] transition-colors break-all"
+                  href={brand.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-[color:var(--ink-inverse)]/82 hover:text-[color:var(--ink-inverse)] transition-colors"
                 >
-                  {footer.contacto.email}
+                  Instagram
                 </a>
               </li>
             </ul>
@@ -145,7 +137,7 @@ export function Footer() {
 
           {/* Ubicaciones */}
           <div className="lg:col-span-3 flex flex-col gap-4">
-            <p className="font-mono text-[10px] tracking-[0.22em] uppercase opacity-65">Ubicaciones</p>
+            <p className="font-mono text-[12px] tracking-[0.14em] uppercase opacity-65">Ubicaciones</p>
             <ul className="flex flex-col gap-4">
               {footer.sedes.map((s) => (
                 <li key={s.nombre}>

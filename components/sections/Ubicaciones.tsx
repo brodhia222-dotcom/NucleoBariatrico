@@ -7,12 +7,14 @@ import { Section } from "@/components/primitives/Section";
 import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { Reveal } from "@/components/primitives/Reveal";
 import { MapEmbed } from "@/components/ui/MapEmbed";
-import { ubicaciones } from "@/lib/copy";
+import { contacto, ubicaciones } from "@/lib/copy";
 import { viewportOnce, easeEditorial } from "@/lib/motion";
 
-const sedeMeta: { area: string; horario: string; transporte: string }[] = [
-  { area: "CABA", horario: "Lun a Vie · 09 – 19hs", transporte: "Subte B · Línea Mitre" },
-  { area: "Zona Norte", horario: "Lun a Vie · 09 – 19hs", transporte: "Tren Mitre · Estación San Isidro" },
+// Horario: sale de lib/copy.ts (contacto.horario). Cómo llegar: queda provisorio hasta tener
+// la dirección exacta de cada sede (no publicar líneas de transporte sin confirmar).
+const sedeMeta: { area: string; horario: string | null; transporte: string }[] = [
+  { area: "CABA", horario: contacto.horario, transporte: "Lorem ipsum dolor sit amet" },
+  { area: "Zona Norte", horario: contacto.horario, transporte: "Lorem ipsum dolor sit amet" },
 ];
 
 export function Ubicaciones() {
@@ -70,8 +72,8 @@ export function Ubicaciones() {
                     {sede.nombre}
                   </h3>
                   <dl className="grid grid-cols-2 gap-x-4 gap-y-3 border-t border-[color:var(--border)] pt-3">
-                    <Detail label="Dirección" value={sede.direccion} />
-                    <Detail label="Horario" value={meta.horario} />
+                    <Detail label="Dirección" value={sede.direccion} fullWidth={!meta.horario} />
+                    {meta.horario && <Detail label="Horario" value={meta.horario} />}
                     <Detail label="Cómo llegar" value={meta.transporte} fullWidth />
                   </dl>
                 </div>

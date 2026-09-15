@@ -53,7 +53,7 @@ export function NoEstasSolo() {
             transition={{ duration: 0.8, delay: 0.15 }}
             className="flex items-center"
           >
-            <span className="font-mono text-[10px] tracking-[0.24em] uppercase text-[color:var(--ink-inverse)]/70">
+            <span className="font-mono text-[12px] tracking-[0.14em] uppercase text-[color:var(--ink-inverse)]/70">
               {noEstasSolo.eyebrow}
             </span>
           </motion.div>
@@ -167,7 +167,7 @@ export function NoEstasSolo() {
                   className="mx-auto flex max-w-2xl flex-col items-stretch gap-5 rounded-[var(--radius-xl)] border border-[color:var(--ink-inverse)]/14 bg-[color:var(--ink-inverse)]/[0.04] p-6 lg:p-8 text-left"
                 >
                   <label className="flex flex-col gap-3">
-                    <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--ink-inverse)]/65">
+                    <span className="font-mono text-[12px] tracking-[0.14em] uppercase text-[color:var(--ink-inverse)]/65">
                       Tu mensaje (anónimo)
                     </span>
                     <textarea
@@ -245,7 +245,7 @@ export function NoEstasSolo() {
             whileInView={{ opacity: 1 }}
             viewport={viewportOnce}
             transition={{ duration: 0.8, delay: 0.7 }}
-            className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--ink-inverse)]/45 mt-2"
+            className="font-mono text-[12px] tracking-[0.14em] uppercase text-[color:var(--ink-inverse)]/45 mt-2"
           >
             Equipo Nucleo Bariátrico
           </motion.div>

@@ -164,7 +164,7 @@ export function IMCCalculator() {
               {/* OMS reference */}
               <div className="flex flex-col gap-3">
                 <span className="eyebrow">Referencia OMS</span>
-                <ul className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
+                <ul className="grid grid-cols-1 gap-x-6 gap-y-2 text-sm sm:grid-cols-2">
                   {imcCalc.categories.map((cat) => {
                     const isCurrent = resultado?.categoria === cat.label;
                     const labelColor = isCurrent
@@ -178,12 +178,12 @@ export function IMCCalculator() {
                         className="flex items-baseline justify-between gap-4 transition-colors duration-500"
                       >
                         <span
-                          className="font-medium transition-colors duration-500"
+                          className="font-medium whitespace-nowrap transition-colors duration-500"
                           style={{ color: labelColor }}
                         >
                           {cat.label}
                         </span>
-                        <span className="font-mono text-xs tabular text-[color:var(--ink-soft)]">
+                        <span className="font-mono text-xs tabular whitespace-nowrap text-[color:var(--ink-soft)]">
                           {cat.range}
                         </span>
                       </li>
@@ -278,7 +278,7 @@ export function IMCCalculator() {
                     )}
                   </div>
                 </div>
-                <div className="flex justify-between px-2 text-[10px] tracking-[0.16em] uppercase text-[color:var(--ink-soft)] font-mono tabular">
+                <div className="flex justify-between px-2 text-[12px] tracking-[0.16em] uppercase text-[color:var(--ink-soft)] font-mono tabular">
                   <span>15</span>
                   <span>25</span>
                   <span>30</span>

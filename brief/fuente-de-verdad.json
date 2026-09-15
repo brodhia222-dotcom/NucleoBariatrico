@@ -1,0 +1,83 @@
+{
+  "cliente": {
+    "nombre": "Nucleo Bariátrico",
+    "rubro": "Cirugía bariátrica y metabólica (equipo médico, no estética)",
+    "descripcion": "Equipo especializado en cirugía bariátrica y metabólica. Aborda la obesidad con tratamientos médicos, farmacológicos y quirúrgicos adaptados a cada caso y seguimiento a largo plazo. Atiende en Villa del Parque y San Isidro.",
+    "fuente": "Copy aprobado por Maya Vega (2026-07-03) y reunión con el equipo (2026-07-06)"
+  },
+  "accion_principal": {
+    "tipo": "whatsapp",
+    "detalle": "Escribir por WhatsApp para consultar o pedir turno; la calculadora de IMC lleva al contacto con el dato ya cargado"
+  },
+  "accion_secundaria": {
+    "tipo": "formulario",
+    "detalle": "Formulario de consulta con el IMC calculado"
+  },
+  "contacto": {
+    "whatsapp": [
+      { "valor": "5491156077780", "estado": "confirmado", "fuente": "reunión con el equipo 2026-07-06 (corregido y confirmado ahí)" }
+    ],
+    "telefonos": [],
+    "emails": [],
+    "direcciones": [
+      { "valor": "Villa del Parque, CABA (sede principal, falta calle y número)", "estado": "confirmado", "fuente": "reunión 2026-07-06" },
+      { "valor": "San Isidro, Zona Norte (falta calle y número)", "estado": "confirmado", "fuente": "reunión 2026-07-06" }
+    ],
+    "horarios": [],
+    "redes": [
+      { "valor": "https://www.instagram.com/nucleobariatrico/", "estado": "confirmado", "fuente": "material del equipo 2026-07-03" }
+    ],
+    "dominio": { "valor": "", "estado": "faltante" }
+  },
+  "servicios": [
+    { "nombre": "Inyectables (farmacológico, sin marcas comerciales)", "descripcion": "Nombre y categoría confirmados; descripción pendiente (lorem)", "estado": "confirmado", "fuente": "reunión 2026-07-06" },
+    { "nombre": "Balón gástrico (no quirúrgico)", "descripcion": "Nombre y categoría confirmados; descripción pendiente (lorem)", "estado": "confirmado", "fuente": "reunión 2026-07-06" },
+    { "nombre": "Manga gástrica (quirúrgico)", "descripcion": "Nombre y categoría confirmados; descripción pendiente (lorem)", "estado": "confirmado", "fuente": "reunión 2026-07-06" },
+    { "nombre": "Bypass gástrico (quirúrgico)", "descripcion": "Nombre y categoría confirmados; descripción pendiente (lorem)", "estado": "confirmado", "fuente": "reunión 2026-07-06" },
+    { "nombre": "Re-ganancia de peso y pacientes sin seguimiento", "descripcion": "Apartado separado", "estado": "confirmado", "fuente": "reunión 2026-07-06" }
+  ],
+  "proyectos": [],
+  "personas": [
+    { "nombre": "Agustina (Dra. María Agustina López)", "rol": "Cirujana Bariátrica", "bio": "lib/copy.ts, acortada de la bio enviada", "whatsapp": "", "estado": "confirmado", "fuente": "bio enviada por el equipo 2026-09" },
+    { "nombre": "Sergio", "rol": "Cirujano Bariátrico", "bio": "lib/copy.ts", "whatsapp": "", "estado": "confirmado", "fuente": "bio enviada por el equipo 2026-07" },
+    { "nombre": "Nahuel", "rol": "Cirujano Bariátrico", "bio": "lib/copy.ts", "whatsapp": "", "estado": "confirmado", "fuente": "bio enviada por el equipo 2026-07" },
+    { "nombre": "Rocío (Lic. María Rocío Gnavi)", "rol": "Psicóloga, psicoanalista (evaluación prequirúrgica)", "bio": "lib/copy.ts, acortada del PDF", "whatsapp": "", "estado": "confirmado", "fuente": "PDF Bio_Profesional_Maria_Rocio_Gnavi 2026-09" }
+  ],
+  "testimonios": [],
+  "preguntas_frecuentes": [],
+  "claims": [
+    { "texto": "La cirugía bariátrica está incluida en el Programa Médico Obligatorio (PMO)", "estado": "confirmado", "fuente": "copy aprobado por Maya Vega 2026-07-03" },
+    { "texto": "Un profesional del equipo responde en menos de 24 horas hábiles", "estado": "confirmado", "fuente": "copy aprobado por Maya Vega 2026-07-03" },
+    { "texto": "Rocío: práctica clínica desde 2008", "estado": "confirmado", "fuente": "PDF de la bio" },
+    { "texto": "Proceso, paso 02: un plan a tu medida para que llegues al tratamiento indicado en las mejores condiciones", "estado": "confirmado", "fuente": "copy de pasos aprobado por Maya Vega 2026-07-03" },
+    { "texto": "Como efectores de cirugía bariátrica, gestionan la autorización ante la obra social y acompañan con la cobertura durante el proceso", "estado": "confirmado", "fuente": "textos de Obras sociales del copy aprobado por Maya Vega 2026-07-03" },
+    { "texto": "Sergio: miembro de AAC, SACO e IFSO. Nahuel y Agustina: miembros de SACO e IFSO", "estado": "confirmado", "fuente": "bios enviadas" }
+  ],
+  "numeros": [
+    { "valor": "24", "significa": "horas hábiles de respuesta", "estado": "confirmado", "fuente": "copy aprobado 2026-07-03" },
+    { "valor": "2008", "significa": "inicio de la práctica clínica de Rocío", "estado": "confirmado", "fuente": "PDF de la bio" },
+    { "valor": "2", "significa": "puntos de atención (Villa del Parque y San Isidro)", "estado": "confirmado", "fuente": "reunión 2026-07-06" }
+  ],
+  "material_visual": {
+    "logos": ["public/logos/logo-indigo.png", "public/logos/logo-blanco.png", "public/logos/footer-logo.png"],
+    "fotos": "Retratos y grupal del equipo (2026-07) y sesión de consultorio (2026-09) en public/images",
+    "videos": []
+  },
+  "faltante": [
+    "Descripción corta de cada tratamiento: inyectables, balón gástrico, manga gástrica y bypass gástrico",
+    "Las 6 preguntas frecuentes con sus respuestas",
+    "Al menos 3 testimonios reales con autorización (nombre o inicial, tiempo desde la cirugía y la frase)",
+    "Dirección exacta (calle y número) de Villa del Parque y de San Isidro, y cómo llegar a cada una",
+    "Horarios de atención confirmados",
+    "Mail de contacto y dominio definitivos",
+    "Cuáles 2 obras sociales quieren destacar",
+    "Retrato de Rocío y fotos de cada sede (sin carteles de otras marcas)",
+    "Texto legal del pie de página"
+  ],
+  "dudoso": [
+    { "tema": "Mail publicado", "detalle": "El sitio muestra contacto@nucleobariatrico.com.ar, pero el mail y el dominio no están definidos (el equipo prefería algo como info@...). No confirmar hasta que exista la casilla." },
+    { "tema": "Horarios", "detalle": "Lunes a viernes de 9 a 19 fue una propuesta de la reunión, falta que la confirmen." },
+    { "tema": "Swiss Medical destacada", "detalle": "Se usa de ejemplo; la reunión mencionó OSDE y MEDICUS. Falta que el equipo elija las 2." },
+    { "tema": "Cómo llegar a cada sede", "detalle": "No figura en el material: no publicar líneas de subte o tren hasta tener la dirección." }
+  ]
+}

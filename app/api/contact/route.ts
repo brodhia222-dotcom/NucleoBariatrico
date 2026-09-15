@@ -122,8 +122,8 @@ export async function POST(req: NextRequest) {
   const to = process.env.CONTACT_TO_EMAIL ?? brand.email;
   const from = process.env.CONTACT_FROM_EMAIL ?? "Nucleo <onboarding@resend.dev>";
 
-  if (!apiKey) {
-    // Dev mode — keep demo UX intact without secrets configured.
+  // Sin clave de Resend o sin casilla de destino definida, la demo sigue funcionando sin enviar.
+  if (!apiKey || !to) {
     console.log("[contact:dev] payload", data);
     return NextResponse.json({ ok: true, devMode: true });
   }

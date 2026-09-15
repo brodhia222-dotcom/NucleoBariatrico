@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Heartbeat, UsersThree, ShieldCheck, MapPinLine, ArrowUpRight } from "@phosphor-icons/react";
 import type { ComponentType } from "react";
@@ -16,6 +16,16 @@ const icons: IconType[] = [UsersThree, Heartbeat, ShieldCheck, MapPinLine];
 
 export function Diferencial() {
   const [active, setActive] = useState<number | null>(null);
+  // Sin cursor (celular, o tablet con dedo en cualquier ancho) las tarjetas se muestran abiertas.
+  const [esCelular, setEsCelular] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 1023px), (hover: none)");
+    const actualizar = () => setEsCelular(mq.matches);
+    actualizar();
+    mq.addEventListener("change", actualizar);
+    return () => mq.removeEventListener("change", actualizar);
+  }, []);
 
   return (
     <Section id="diferencial" tone="elevated">
@@ -53,16 +63,20 @@ export function Diferencial() {
 
         {/* Expanding cards — todas cerradas por default */}
         <Reveal>
-          <div className="flex flex-col gap-3 lg:flex-row lg:gap-3 lg:h-[520px]">
+          {/* Al salir del grupo con el cursor se cierran todas */}
+          <div
+            onMouseLeave={() => setActive(null)}
+            className="flex flex-col gap-3 lg:flex-row lg:gap-3 lg:h-[520px]"
+          >
             {diferencial.items.map((item, i) => {
               const Icon = icons[i] ?? icons[0];
-              const isActive = i === active;
+              const isActive = esCelular || i === active;
               return (
                 <ExpandingCard
                   key={item.title}
                   index={i}
                   isActive={isActive}
-                  onActivate={() => setActive(isActive ? null : i)}
+                  onActivate={() => setActive(i)}
                   item={item}
                   Icon={Icon}
                 />
@@ -99,8 +113,8 @@ function ExpandingCard({
       whileInView={{ opacity: 1, y: 0 }}
       initial={{ opacity: 0, y: 20 }}
       viewport={viewportOnce}
-      style={{ flexBasis: 0 }}
-      className="group relative flex min-h-[240px] basis-0 cursor-pointer overflow-hidden rounded-[var(--radius-xl)] text-left text-[color:var(--ink-inverse)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)] focus-visible:ring-offset-2 lg:min-h-0"
+      // En celular las tarjetas van abiertas: toman el alto de su contenido (con base 0 se cortaba el texto)
+      className="group relative flex min-h-[240px] basis-auto lg:basis-0 cursor-pointer overflow-hidden rounded-[var(--radius-xl)] text-left text-[color:var(--ink-inverse)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)] focus-visible:ring-offset-2 lg:min-h-0"
     >
       {/* Imagen de fondo: textura tenue colapsada, revelada al expandir */}
       {item.foto ? (

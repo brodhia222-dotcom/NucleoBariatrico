@@ -58,6 +58,7 @@ const jsonLd = {
   name: brand.name,
   description: "Equipo médico especializado en cirugía bariátrica",
   url: `https://${brand.domain}`,
+  telephone: brand.whatsappNumber,
   medicalSpecialty: "Bariatrics",
   areaServed: { "@type": "Country", name: "Argentina" },
   location: [

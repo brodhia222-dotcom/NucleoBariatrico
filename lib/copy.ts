@@ -30,7 +30,9 @@ export const brand = {
   // Celular AR: se marca como +54 9 11 XXXX-XXXX para wa.me
   whatsappNumber: "+5491156077780",
   whatsappMessage: "Hola, me gustaría agendar una consulta.",
-  email: "contacto@nucleobariatrico.com.ar",
+  // Mail y dominio todavía sin definir (el equipo prefería algo como info@...).
+  // Mientras sea null no se muestra en el sitio: cargarlo acá cuando exista la casilla.
+  email: null as string | null,
   domain: "nucleobariatrico.com.ar",
   instagram: "https://www.instagram.com/nucleobariatrico/",
 };
@@ -66,7 +68,7 @@ export const diferencial = {
   items: [
     {
       badge: "01 · Equipo",
-      title: "Equipo especializado al frente",
+      title: noOrphans("Equipo especializado al frente"),
       body: noOrphans(
         "Cirujanos bariátricos con formación específica en obesidad. Conocé a las personas que van a acompañarte durante todo el recorrido."
       ),
@@ -76,7 +78,7 @@ export const diferencial = {
     },
     {
       badge: "02 · Abordaje",
-      title: "Mirada integral, no solo quirúrgica",
+      title: noOrphans("Mirada integral, no solo quirúrgica"),
       body: noOrphans(
         "La cirugía es una herramienta, no la meta. Trabajamos nutrición, hábitos y acompañamiento emocional para que el cambio sea sostenible."
       ),
@@ -86,9 +88,10 @@ export const diferencial = {
     },
     {
       badge: "03 · Cobertura",
-      title: "Obras sociales incluidas",
+      // Sin afirmar convenios (reunión 2026-07-06): solo lo confirmado del rol de efector.
+      title: noOrphans("Te guiamos con la cobertura"),
       body: noOrphans(
-        "Trabajamos con las principales obras sociales y prepagas, y te guiamos paso a paso en la autorización de tu cobertura."
+        "Gestionamos tu autorización ante la obra social y te acompañamos con la cobertura de tu plan durante todo el proceso."
       ),
       cta: "Consultar cobertura",
       href: "#obras-sociales",
@@ -96,13 +99,14 @@ export const diferencial = {
     },
     {
       badge: "04 · Locaciones",
-      title: "Dos puntos de atención",
+      title: noOrphans("2 puntos de atención"),
       body: noOrphans(
         "Atendemos en Villa del Parque y San Isidro, para que elijas el punto que te quede más cómodo. Mismo equipo, misma atención."
       ),
       cta: "Ver ubicaciones",
       href: "#ubicaciones",
-      foto: "/images/diferencial-sedes.jpg",
+      // Placeholder hasta tener fotos de las sedes (sin carteles de otras marcas)
+      foto: null,
     },
   ] as {
     badge: string;
@@ -133,10 +137,10 @@ export const imcCalc = {
   },
   categories: [
     { range: "< 18.5", label: "Bajo peso", color: "indigo" },
-    { range: "18.5 – 24.9", label: "Normal", color: "indigo" },
-    { range: "25 – 29.9", label: "Sobrepeso", color: "indigo" },
-    { range: "30 – 34.9", label: "Obesidad I", color: "orange" },
-    { range: "35 – 39.9", label: "Obesidad II", color: "orange" },
+    { range: "18.5 a 24.9", label: "Normal", color: "indigo" },
+    { range: "25 a 29.9", label: "Sobrepeso", color: "indigo" },
+    { range: "30 a 34.9", label: "Obesidad I", color: "orange" },
+    { range: "35 a 39.9", label: "Obesidad II", color: "orange" },
     { range: "≥ 40", label: "Obesidad III", color: "orange" },
   ],
   highIMCMessage: "Tu IMC sugiere que podemos ayudarte. Conversemos.",
@@ -274,7 +278,7 @@ export const proceso = {
   headline: "Un recorrido continuo, no una operación aislada.",
   body: null as string | null,
   pasos: [
-    // Fotos 01/03/05: sesión real del equipo (2026-09), ya recortadas a 4:3.
+    // Fotos 01/03/05: sesión real del equipo (2026-09), recortadas a 3:2 como el resto de los pasos.
     // Copy de pasos 01/02/04/05 aprobado por Maya Vega (2026-07-03); el 03 se mantiene
     {
       n: "01",
@@ -282,9 +286,7 @@ export const proceso = {
       body: noOrphans(
         "Nos conocemos, escuchamos tu historia y respondemos todas tus dudas. Salís de la consulta sabiendo cuál es el abordaje más adecuado para vos y cuáles son los próximos pasos."
       ),
-      foto: "/images/proceso-primera-consulta.jpg",
-      fotoAspect: "aspect-[4/3]",
-    },
+      foto: "/images/proceso-primera-consulta.jpg",    },
     {
       n: "02",
       titulo: "Evaluación integral",
@@ -300,9 +302,7 @@ export const proceso = {
       body: noOrphans(
         "Te guiamos con la autorización de tu obra social y todo el papeleo. Nos encargamos de que los trámites no sean un obstáculo en tu recorrido."
       ),
-      foto: "/images/proceso-tramites.jpg",
-      fotoAspect: "aspect-[4/3]",
-    },
+      foto: "/images/proceso-tramites.jpg",    },
     {
       n: "04",
       titulo: "Cirugía",
@@ -318,9 +318,7 @@ export const proceso = {
       body: noOrphans(
         "El proceso no termina en el quirófano. Hacemos controles periódicos con todo el equipo durante el tiempo que tu caso lo requiera, porque el seguimiento a largo plazo es lo que permite sostener los resultados y cuidar tu salud en el tiempo."
       ),
-      foto: "/images/proceso-seguimiento.jpg",
-      fotoAspect: "aspect-[4/3]",
-    },
+      foto: "/images/proceso-seguimiento.jpg",    },
   ] as { n: string; titulo: string; body: string; foto: string | null; fotoPos?: string; fotoAspect?: string }[],
 };
 
@@ -385,10 +383,10 @@ export const obrasSociales = {
   eyebrow: "Cobertura",
   headline: "Tu obra social puede cubrir la cirugía.",
   body: noOrphans(
-    "La cirugía bariátrica está incluida en el Programa Médico Obligatorio (PMO). La cobertura exacta depende de tu obra social o prepaga y del plan que tengas. Te la confirmamos por WhatsApp antes de tu primera consulta."
+    "La cirugía bariátrica está incluida en el Programa Médico Obligatorio (PMO). La cobertura exacta depende de tu obra social o prepaga y del plan que tengas. Te la confirmamos por WhatsApp antes de tu primera consulta."
   ),
   badge: "Consultá tu cobertura",
-  cta: { label: "Hablar con el equipo", href: "#contacto" },
+  cta: { label: "Consultar mi cobertura" },
   notaEfector: noOrphans(
     "Es el equipo médico habilitado ante tu obra social para realizar una práctica cubierta. Como efectores de cirugía bariátrica, gestionamos tu autorización y te acompañamos con la cobertura de tu plan durante todo el proceso."
   ),
@@ -483,6 +481,9 @@ export const faq = {
 
 export const contacto = {
   eyebrow: "Contacto",
+  // Horario sin confirmar (la reunión 2026-07-06 propuso Lun a Vie de 9 a 19): mientras sea null
+  // no se muestra. Cuando lo confirmen, cargarlo acá y aparece en Contacto y en las 2 sedes.
+  horario: null as string | null,
   headline: "Conversemos.",
   body: noOrphans(
     "Contanos tu situación en el formulario y un profesional del equipo te responde en menos de 24 horas hábiles. Sin compromiso y con total confidencialidad."

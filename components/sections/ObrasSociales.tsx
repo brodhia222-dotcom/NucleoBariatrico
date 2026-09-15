@@ -7,7 +7,7 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import { ShieldCheck, ArrowUpRight, Info, WhatsappLogo } from "@phosphor-icons/react";
+import { ArrowUpRight, Info, WhatsappLogo } from "@phosphor-icons/react";
 import { Container } from "@/components/primitives/Container";
 import { Section } from "@/components/primitives/Section";
 import { Eyebrow } from "@/components/primitives/Eyebrow";
@@ -55,17 +55,6 @@ export function ObrasSociales() {
           <Reveal delay={0.1}>
             <p className="body-lg text-[color:var(--ink-soft)] max-w-prose">{obrasSociales.body}</p>
           </Reveal>
-          <Reveal delay={0.15}>
-            <a href={obrasSociales.cta.href} className="btn btn-ink group w-fit mt-2">
-              <ShieldCheck weight="regular" className="h-4 w-4" />
-              {obrasSociales.cta.label}
-              <ArrowUpRight
-                weight="bold"
-                className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-              />
-            </a>
-          </Reveal>
-
           <Reveal delay={0.2}>
             <div className="flex items-start gap-4 rounded-[var(--radius-lg)] bg-[color:var(--bg-elevated)] p-6 border border-[color:var(--border)] max-w-2xl mx-auto mt-4">
               <span
@@ -84,9 +73,9 @@ export function ObrasSociales() {
           </Reveal>
         </div>
 
-        {/* 2 destacadas + tarjeta "otras" a WhatsApp — acotado a propósito
-            (no listamos convenios sin confirmar), centrado y compacto */}
-        <ul className="mx-auto grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-3">
+        {/* 2 destacadas lado a lado (no listamos convenios sin confirmar) y un solo botón a WhatsApp,
+            que sirve también para quien tiene otra obra social o prepaga */}
+        <ul className="mx-auto grid max-w-xl grid-cols-2 gap-3 sm:gap-4">
           {obrasSociales.destacadas.map((plan, i) => (
             <motion.li
               key={plan.nombre}
@@ -98,36 +87,29 @@ export function ObrasSociales() {
               <LogoCard plan={plan} />
             </motion.li>
           ))}
+        </ul>
 
-          <motion.li
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={viewportOnce}
-            transition={{ duration: 0.55, delay: obrasSociales.destacadas.length * 0.05, ease: easeEditorial }}
-          >
+        <Reveal>
+          <div className="mt-8 flex flex-col items-center gap-3 text-center">
+            <p className="body-sm text-[color:var(--ink-soft)]">{obrasSociales.otras.titulo}</p>
             <a
               href={whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative flex aspect-[16/9] flex-col items-center justify-center gap-2 overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[color:var(--ink)] p-4 text-center text-[color:var(--ink-inverse)] transition-shadow duration-300 hover:shadow-[var(--shadow-lg)]"
+              className="btn btn-ink group w-fit"
             >
-              <span
-                aria-hidden
-                className="grid h-9 w-9 place-items-center rounded-full bg-[color:var(--color-whatsapp)]"
-              >
-                <WhatsappLogo weight="fill" className="h-4 w-4 text-white" />
-              </span>
-              <span className="text-sm font-medium leading-tight">{obrasSociales.otras.titulo}</span>
-              <span className="inline-flex items-center gap-1 text-[11px] tracking-wide text-[color:var(--ink-inverse)]/70 transition-colors group-hover:text-[color:var(--ink-inverse)]">
-                {obrasSociales.otras.cta}
-                <ArrowUpRight weight="bold" className="h-3 w-3" />
-              </span>
+              <WhatsappLogo weight="fill" className="h-4 w-4" />
+              {obrasSociales.cta.label}
+              <ArrowUpRight
+                weight="bold"
+                className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
             </a>
-          </motion.li>
-        </ul>
+          </div>
+        </Reveal>
 
         <Reveal>
-          <p className="caption text-center mt-8">
+          <p className="caption text-center mt-6">
             Lista orientativa. Consultá tu cobertura con el equipo antes de iniciar el proceso.
           </p>
         </Reveal>

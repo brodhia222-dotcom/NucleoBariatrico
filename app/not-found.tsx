@@ -9,6 +9,9 @@ export default function NoEncontrada() {
     <main className="flex min-h-[80vh] items-center bg-[color:var(--bg)] text-[color:var(--ink)]">
       <Container className="py-24">
         <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 text-center">
+          <Link href="/" aria-label="Ir al inicio de Nucleo Bariátrico" className="mb-2">
+            <img src="/logos/logo-indigo.png" alt="Nucleo Bariátrico" className="h-16 w-auto" />
+          </Link>
           <span className="eyebrow">Página no encontrada</span>
           <h1
             className="font-display"

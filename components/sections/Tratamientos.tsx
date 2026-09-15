@@ -130,7 +130,7 @@ export function Tratamientos() {
                   </div>
 
                   <div className="relative z-10 flex flex-col gap-1 p-4 pt-0 text-[color:var(--ink-inverse)]">
-                    <span className="font-mono text-[9px] tracking-[0.2em] uppercase opacity-70">
+                    <span className="font-mono text-[12px] tracking-[0.14em] uppercase opacity-70">
                       {op.categoria}
                     </span>
                     <span
@@ -155,7 +155,9 @@ export function Tratamientos() {
         <Reveal delay={0.2}>
           <div className="mt-6 flex flex-col items-start gap-4 rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-[color:var(--bg)] p-6 lg:flex-row lg:items-center lg:justify-between lg:p-8">
             <div className="flex flex-col gap-1.5">
-              <p className="h4">{tratamientos.reganancia.titulo}</p>
+              <p className="h4" style={{ textWrap: "balance" }}>
+                {tratamientos.reganancia.titulo}
+              </p>
               <p className="body-sm text-[color:var(--ink-soft)] leading-relaxed max-w-[56ch]">
                 {tratamientos.reganancia.body}
               </p>
@@ -229,7 +231,7 @@ export function Tratamientos() {
                       return <OpenIcon weight="regular" className="h-5 w-5" />;
                     })()}
                   </span>
-                  <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--accent)]">
+                  <span className="font-mono text-[12px] tracking-[0.14em] uppercase text-[color:var(--accent)]">
                     {openOption.categoria}
                   </span>
                 </div>

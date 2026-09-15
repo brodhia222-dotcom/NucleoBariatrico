@@ -2,20 +2,22 @@
  * Ajustes tipográficos para que ningún renglón corte en un lugar raro.
  * Se aplica una sola vez, al definir cada string en copy.ts, así todos los
  * componentes que consumen ese texto quedan arreglados automáticamente.
- * "text-wrap: balance" (en globals.css) pareja el largo de las líneas, pero
- * no evita ninguno de estos dos casos puntuales — son técnicas complementarias.
+ * Los párrafos usan "text-wrap: pretty" (en globals.css); esto lo complementa.
  *
- * 1) Palabras de 1 a 3 letras (el, la, de, un, con, que...) nunca quedan
- *    solas al final de un renglón: se pegan con espacio duro a la palabra
- *    siguiente.
- * 2) Las conjunciones de una sola letra (y, o, e, u) además se pegan a la
- *    palabra ANTERIOR, no solo a la siguiente. Sin esto, un par como
- *    "bariátrica y metabólica" puede partirse "bariátrica" / "y metabólica"
- *    en renglones distintos — válido para balance/orphans, pero se lee raro
- *    porque son dos palabras que describen una sola idea en conjunto.
+ * 1) Palabras de hasta 3 letras (el, la, de, un, con, sin...) nunca quedan
+ *    solas al final de un renglón: se pegan con espacio duro a la siguiente.
+ * 2) Una conjunción de una letra (y, o, e, u) entre dos palabras que forman una
+ *    sola idea ("bariátrica y metabólica") se pega también a la anterior, para
+ *    que el par no se parta. Si antes hay una coma o después arranca otra frase
+ *    ("formulario y un profesional"), no: ese corte es natural.
+ * 3) La última palabra del párrafo nunca queda sola en el último renglón.
+ * 4) Los bloques pegados de más de 3 palabras y más de 22 caracteres se
+ *    achican soltando palabras de 3 letras: los bloques largos no se pueden
+ *    cortar y dejaban renglones muy desparejos (revisión 2026-09-15).
  */
 const NBSP = String.fromCharCode(160);
 const CONJUNCTIONS = new Set(["y", "o", "e", "u"]);
+const MAX_BLOQUE = 22;
 
 function core(word: string): string {
   return word.replace(/^[¿¡"'(«]+|[.,;:!?"')»]+$/g, "").toLowerCase();
@@ -23,26 +25,46 @@ function core(word: string): string {
 
 export function noOrphans(text: string): string {
   const words = text.split(" ");
-  const glueToNext = new Array<boolean>(words.length).fill(false);
+  const n = words.length;
+  if (n < 2) return text;
 
-  words.forEach((word, i) => {
-    const c = core(word);
-    if (c.length > 0 && c.length <= 3 && i < words.length - 1) {
-      glueToNext[i] = true;
-    }
-    if (CONJUNCTIONS.has(c) && i > 0) {
-      glueToNext[i - 1] = true;
-    }
-  });
+  const cores = words.map(core);
+  const corta = (i: number) => cores[i].length > 0 && cores[i].length <= 3;
+  const pegar = new Array<boolean>(n - 1).fill(false);
 
-  // 3) La última palabra del párrafo nunca queda sola en el último renglón
-  // (en párrafos largos "balance" deja de actuar y pasaba con "plazo.").
-  if (words.length >= 3) {
-    glueToNext[words.length - 2] = true;
+  for (let i = 0; i < n - 1; i++) {
+    // Después de una coma o un punto el corte es natural: no se pega ("UBA, especialista")
+    if (corta(i) && !/[,;:.]$/.test(words[i])) pegar[i] = true;
+    const conj = i + 1;
+    if (
+      CONJUNCTIONS.has(cores[conj]) &&
+      conj < n - 1 &&
+      !/[,;:.]$/.test(words[i]) &&
+      !corta(conj + 1)
+    ) {
+      pegar[i] = true;
+    }
   }
 
-  return words.reduce((out, word, i) => {
-    if (i === 0) return word;
-    return out + (glueToNext[i - 1] ? NBSP : " ") + word;
-  }, "");
+  if (n >= 3) pegar[n - 2] = true;
+
+  // 4) Achicar los bloques largos. Solo se sueltan palabras de 3 letras ("con", "que"):
+  // las de 1 o 2 letras ("y", "el", "de") y la última palabra no quedan nunca sueltas.
+  let inicio = 0;
+  for (let i = 0; i < n; i++) {
+    if (i < n - 1 && pegar[i]) continue;
+    let desde = inicio;
+    for (let k = inicio; k < i; k++) {
+      const palabras = i - desde + 1;
+      const largo = words.slice(desde, i + 1).join(" ").length;
+      if (palabras <= 3 || largo <= MAX_BLOQUE) break;
+      if (k < n - 2 && cores[k].length === 3 && !CONJUNCTIONS.has(cores[k])) {
+        pegar[k] = false;
+        desde = k + 1;
+      }
+    }
+    inicio = i + 1;
+  }
+
+  return words.reduce((out, word, i) => (i === 0 ? word : out + (pegar[i - 1] ? NBSP : " ") + word), "");
 }

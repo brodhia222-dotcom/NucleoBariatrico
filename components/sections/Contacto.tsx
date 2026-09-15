@@ -138,26 +138,28 @@ export function Contacto() {
                     <ArrowRight weight="bold" className="h-4 w-4 text-[color:var(--ink)] opacity-50 group-hover:opacity-100 transition-opacity" />
                   </a>
                 </li>
-                <li>
-                  <a
-                    href={`mailto:${brand.email}`}
-                    className="group flex items-center justify-between gap-4 py-5 hover:px-2 transition-all"
-                  >
-                    <span className="flex items-center gap-4">
-                      <span
-                        aria-hidden
-                        className="grid h-10 w-10 place-items-center rounded-full bg-[color:var(--accent-soft)] text-[color:var(--accent)]"
-                      >
-                        <EnvelopeSimple weight="regular" className="h-5 w-5" />
+                {brand.email && (
+                  <li>
+                    <a
+                      href={`mailto:${brand.email}`}
+                      className="group flex items-center justify-between gap-4 py-5 hover:px-2 transition-all"
+                    >
+                      <span className="flex items-center gap-4">
+                        <span
+                          aria-hidden
+                          className="grid h-10 w-10 place-items-center rounded-full bg-[color:var(--accent-soft)] text-[color:var(--accent)]"
+                        >
+                          <EnvelopeSimple weight="regular" className="h-5 w-5" />
+                        </span>
+                        <span className="flex flex-col">
+                          <span className="font-medium text-[color:var(--ink)]">Email</span>
+                          <span className="caption">{brand.email}</span>
+                        </span>
                       </span>
-                      <span className="flex flex-col">
-                        <span className="font-medium text-[color:var(--ink)]">Email</span>
-                        <span className="caption">{brand.email}</span>
-                      </span>
-                    </span>
-                    <ArrowRight weight="bold" className="h-4 w-4 text-[color:var(--ink)] opacity-50 group-hover:opacity-100 transition-opacity" />
-                  </a>
-                </li>
+                      <ArrowRight weight="bold" className="h-4 w-4 text-[color:var(--ink)] opacity-50 group-hover:opacity-100 transition-opacity" />
+                    </a>
+                  </li>
+                )}
                 <li>
                   <div className="flex items-center gap-4 py-5">
                     <span
@@ -167,8 +169,14 @@ export function Contacto() {
                       <Clock weight="regular" className="h-5 w-5" />
                     </span>
                     <span className="flex flex-col">
-                      <span className="font-medium text-[color:var(--ink)]">Lun a Vie · 09 – 19hs</span>
-                      <span className="caption">Respuesta &lt; 24 hs hábiles</span>
+                      {contacto.horario ? (
+                        <>
+                          <span className="font-medium text-[color:var(--ink)]">{contacto.horario}</span>
+                          <span className="caption">Respuesta en menos de 24 hs hábiles</span>
+                        </>
+                      ) : (
+                        <span className="font-medium text-[color:var(--ink)]">Respuesta en menos de 24 hs hábiles</span>
+                      )}
                     </span>
                   </div>
                 </li>

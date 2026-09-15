@@ -45,7 +45,7 @@ export function Proceso() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={viewportOnce}
                 transition={{ duration: 0.75, ease: easeEditorial }}
-                className={`grid items-center gap-5 lg:gap-8 lg:grid-cols-2 ${isReverse ? "lg:[direction:rtl]" : ""}`}
+                className={`grid items-center gap-5 lg:gap-10 lg:grid-cols-[5fr_7fr] ${isReverse ? "lg:[direction:rtl]" : ""}`}
               >
                 {/* Foto column */}
                 <div className={`relative ${isReverse ? "lg:[direction:ltr]" : ""}`}>
@@ -54,11 +54,11 @@ export function Proceso() {
                       src={paso.foto}
                       alt={paso.titulo}
                       loading="lazy"
-                      className={`${paso.fotoAspect ?? "aspect-[16/9]"} w-full rounded-[var(--radius-lg)] object-cover`}
+                      className={`${paso.fotoAspect ?? "aspect-[3/2]"} w-full rounded-[var(--radius-lg)] object-cover`}
                       style={{ objectPosition: paso.fotoPos ?? "center" }}
                     />
                   ) : (
-                    <div className="placeholder relative aspect-[16/9] rounded-[var(--radius-lg)]" />
+                    <div className="placeholder relative aspect-[3/2] rounded-[var(--radius-lg)]" />
                   )}
                 </div>
 
