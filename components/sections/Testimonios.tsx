@@ -1,18 +1,21 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Quotes } from "@phosphor-icons/react";
+import { ChatCenteredText, Quotes } from "@phosphor-icons/react";
 import { Container } from "@/components/primitives/Container";
 import { Section } from "@/components/primitives/Section";
 import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { Reveal } from "@/components/primitives/Reveal";
 import { testimonios } from "@/lib/copy";
+import { TestimonioForm } from "@/components/ui/TestimonioForm";
 import { easeEditorial, viewportOnce } from "@/lib/motion";
 
 export function Testimonios() {
   // Tomamos solo los primeros 4 — feature card grande arriba + 3 secundarios abajo
   const items = testimonios.items.slice(0, 4);
   const [main, ...rest] = items;
+  const [formAbierto, setFormAbierto] = useState(false);
 
   return (
     <Section id="testimonios" tone="elevated">
@@ -36,6 +39,21 @@ export function Testimonios() {
             >
               {testimonios.headline}
             </h2>
+          </Reveal>
+          {/* Los pacientes pueden dejar su experiencia; el equipo la revisa antes de publicarla */}
+          <Reveal delay={0.1}>
+            <div className="mt-2 flex flex-col items-center gap-3 sm:flex-row sm:gap-4">
+              <p className="body text-[color:var(--ink-soft)]">{testimonios.formulario.invitacion}</p>
+              <button
+                type="button"
+                onClick={() => setFormAbierto(true)}
+                aria-haspopup="dialog"
+                className="btn btn-ghost"
+              >
+                <ChatCenteredText weight="regular" className="h-4 w-4" />
+                {testimonios.formulario.boton}
+              </button>
+            </div>
           </Reveal>
         </div>
 
@@ -131,6 +149,7 @@ export function Testimonios() {
           ))}
         </ul>
       </Container>
+      <TestimonioForm abierto={formAbierto} onCerrar={() => setFormAbierto(false)} />
     </Section>
   );
 }

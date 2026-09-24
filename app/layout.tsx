@@ -23,11 +23,11 @@ const sitio =
 export const metadata: Metadata = {
   metadataBase: new URL(sitio),
   title: {
-    default: `${brand.name} · ${brand.tagline}`,
+    default: `Cirugía bariátrica en Villa del Parque · ${brand.name}`,
     template: `%s · ${brand.name}`,
   },
   description:
-    "Equipo médico especializado en cirugía bariátrica. Acompañamiento integral antes, durante y después del proceso. Villa del Parque y San Isidro.",
+    "Equipo de cirugía bariátrica en Villa del Parque, CABA: inyectables, balón gástrico, manga, bypass y reganancia de peso. Primera consulta presencial o virtual.",
   applicationName: brand.name,
   authors: [{ name: brand.name }],
   keywords: [
@@ -35,7 +35,6 @@ export const metadata: Metadata = {
     "obesidad",
     "Argentina",
     "Villa del Parque",
-    "San Isidro",
     "bypass gástrico",
     "manga gástrica",
     "equipo médico bariátrico",
@@ -61,18 +60,14 @@ const jsonLd = {
   telephone: brand.whatsappNumber,
   medicalSpecialty: "Bariatrics",
   areaServed: { "@type": "Country", name: "Argentina" },
-  location: [
-    {
-      "@type": "Place",
-      name: "Villa del Parque",
-      address: { "@type": "PostalAddress", addressLocality: "CABA", addressCountry: "AR" },
-    },
-    {
-      "@type": "Place",
-      name: "San Isidro",
-      address: { "@type": "PostalAddress", addressLocality: "San Isidro", addressCountry: "AR" },
-    },
-  ],
+  // Sede única (PDF de ajustes 2026-09-24)
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Simbrón 3327",
+    addressLocality: "Villa del Parque, Ciudad Autónoma de Buenos Aires",
+    addressRegion: "CABA",
+    addressCountry: "AR",
+  },
 };
 
 // Pre-paint theme application — evita flash del tema "default" antes de que

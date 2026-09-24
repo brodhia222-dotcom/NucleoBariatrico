@@ -2,16 +2,16 @@
   "cliente": {
     "nombre": "Nucleo Bariátrico",
     "rubro": "Cirugía bariátrica y metabólica (equipo médico, no estética)",
-    "descripcion": "Equipo especializado en cirugía bariátrica y metabólica. Aborda la obesidad con tratamientos médicos, farmacológicos y quirúrgicos adaptados a cada caso y seguimiento a largo plazo. Atiende en Villa del Parque y San Isidro.",
-    "fuente": "Copy aprobado por Maya Vega (2026-07-03) y reunión con el equipo (2026-07-06)"
+    "descripcion": "Equipo especializado en cirugía bariátrica y metabólica. Aborda la obesidad como enfermedad crónica, con tratamientos farmacológicos, no quirúrgicos y quirúrgicos adaptados a cada caso, siempre con acompañamiento nutricional y psicológico, y seguimiento a largo plazo con el equipo completo (cirujanos, nutricionistas y psicóloga). Atiende en Simbrón 3327, Villa del Parque, CABA (única sede por ahora); la primera consulta puede ser virtual.",
+    "fuente": "Copy aprobado por Maya Vega (2026-07-03), reunión con el equipo (2026-07-06) y PDF de ajustes del equipo 2026-09-24"
   },
   "accion_principal": {
     "tipo": "whatsapp",
-    "detalle": "Escribir por WhatsApp para consultar o pedir turno; la calculadora de IMC lleva al contacto con el dato ya cargado"
+    "detalle": "Escribir por WhatsApp para pedir la primera consulta (presencial en Villa del Parque o virtual) o para revisar qué cubre su plan. Es el canal que el equipo usa para confirmar cobertura caso por caso, y la calculadora de IMC lleva al contacto con el dato ya cargado."
   },
   "accion_secundaria": {
     "tipo": "formulario",
-    "detalle": "Formulario de consulta con el IMC calculado"
+    "detalle": "Formulario de consulta con el IMC calculado, para quien prefiere contar su situación por escrito y recibir respuesta de un profesional"
   },
   "contacto": {
     "whatsapp": [
@@ -20,8 +20,8 @@
     "telefonos": [],
     "emails": [],
     "direcciones": [
-      { "valor": "Villa del Parque, CABA (sede principal, falta calle y número)", "estado": "confirmado", "fuente": "reunión 2026-07-06" },
-      { "valor": "San Isidro, Zona Norte (falta calle y número)", "estado": "confirmado", "fuente": "reunión 2026-07-06" }
+      { "valor": "Simbrón 3327, Villa del Parque, CABA (única sede por ahora)", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Puntos de atención" },
+      { "valor": "Nombre del espacio donde atienden: el equipo escribió \"Bienetre\"; el cartel y el membrete del lugar dicen \"Bien Être Oasis\"", "estado": "dudoso", "fuente": "PDF de ajustes del equipo 2026-09-24 y fotos de la sesión 2026-09 (DSC01129 a DSC01144)" }
     ],
     "horarios": [],
     "redes": [
@@ -30,54 +30,143 @@
     "dominio": { "valor": "", "estado": "faltante" }
   },
   "servicios": [
-    { "nombre": "Inyectables (farmacológico, sin marcas comerciales)", "descripcion": "Nombre y categoría confirmados; descripción pendiente (lorem)", "estado": "confirmado", "fuente": "reunión 2026-07-06" },
-    { "nombre": "Balón gástrico (no quirúrgico)", "descripcion": "Nombre y categoría confirmados; descripción pendiente (lorem)", "estado": "confirmado", "fuente": "reunión 2026-07-06" },
-    { "nombre": "Manga gástrica (quirúrgico)", "descripcion": "Nombre y categoría confirmados; descripción pendiente (lorem)", "estado": "confirmado", "fuente": "reunión 2026-07-06" },
-    { "nombre": "Bypass gástrico (quirúrgico)", "descripcion": "Nombre y categoría confirmados; descripción pendiente (lorem)", "estado": "confirmado", "fuente": "reunión 2026-07-06" },
-    { "nombre": "Re-ganancia de peso y pacientes sin seguimiento", "descripcion": "Apartado separado", "estado": "confirmado", "fuente": "reunión 2026-07-06" }
+    {
+      "nombre": "Inyectables",
+      "categoria": "Farmacológico",
+      "subtitulo": "Tratamiento farmacológico",
+      "descripcion": "Indicamos medicación que actúa sobre el apetito y la saciedad: análogos de GLP-1 y agonistas duales GLP-1/GIP. Es un tratamiento médico con controles periódicos. Ajustamos la dosis según tu evolución y lo sostenemos con el equipo de nutrición y psicología. Puede ser el tratamiento principal o complementar un procedimiento, antes o después.",
+      "estado": "confirmado",
+      "fuente": "PDF de ajustes del equipo 2026-09-24, Tratamientos (sin marcas comerciales, pedido de la reunión 2026-07-06)"
+    },
+    {
+      "nombre": "Balón gástrico",
+      "categoria": "No quirúrgico",
+      "subtitulo": "Sin cirugía, sin endoscopia, sin anestesia",
+      "descripcion": "Una cápsula que se ingiere en una consulta de unos 15 minutos. En el estómago se convierte en un balón que genera saciedad durante aproximadamente 16 semanas y después se elimina de forma natural. Forma parte de un programa de seis meses con seguimiento nutricional y psicológico, para que los nuevos hábitos se sostengan cuando el balón ya no está.",
+      "estado": "confirmado",
+      "fuente": "PDF de ajustes del equipo 2026-09-24, Tratamientos"
+    },
+    {
+      "nombre": "Manga gástrica",
+      "categoria": "Quirúrgico",
+      "subtitulo": "Gastrectomía en manga",
+      "descripcion": "Reducimos el tamaño del estómago por vía laparoscópica. Disminuye la capacidad y también las hormonas que estimulan el apetito. Internación corta y seguimiento a largo plazo con todo el equipo.",
+      "estado": "confirmado",
+      "fuente": "PDF de ajustes del equipo 2026-09-24, Tratamientos"
+    },
+    {
+      "nombre": "Bypass gástrico",
+      "categoria": "Quirúrgico",
+      "subtitulo": "Bypass en Y de Roux",
+      "descripcion": "Creamos un estómago pequeño conectado directamente al intestino. Actúa sobre la cantidad de alimento y sobre la absorción, con un efecto metabólico marcado en enfermedades asociadas como la diabetes tipo 2. Cirugía laparoscópica, internación corta y controles de por vida.",
+      "estado": "confirmado",
+      "fuente": "PDF de ajustes del equipo 2026-09-24, Tratamientos"
+    },
+    {
+      "nombre": "Reganancia de peso",
+      "categoria": "Apartado propio, al final (el equipo lo considera su diferencial)",
+      "subtitulo": "Después de una cirugía bariátrica",
+      "descripcion": "Si te operaste y volviste a subir de peso, o te quedaste sin seguimiento, podemos retomar desde donde estás. La reganancia forma parte de la evolución de una enfermedad crónica y tiene tratamiento. Evaluamos tu cirugía previa, hecha con nosotros o con otro equipo, y definimos el camino: medicación, reorientación nutricional o cirugía de revisión.",
+      "estado": "confirmado",
+      "fuente": "PDF de ajustes del equipo 2026-09-24, Tratamientos"
+    }
   ],
   "proyectos": [],
   "personas": [
-    { "nombre": "Agustina (Dra. María Agustina López)", "rol": "Cirujana Bariátrica", "bio": "lib/copy.ts, acortada de la bio enviada", "whatsapp": "", "estado": "confirmado", "fuente": "bio enviada por el equipo 2026-09" },
-    { "nombre": "Sergio", "rol": "Cirujano Bariátrico", "bio": "lib/copy.ts", "whatsapp": "", "estado": "confirmado", "fuente": "bio enviada por el equipo 2026-07" },
-    { "nombre": "Nahuel", "rol": "Cirujano Bariátrico", "bio": "lib/copy.ts", "whatsapp": "", "estado": "confirmado", "fuente": "bio enviada por el equipo 2026-07" },
-    { "nombre": "Rocío (Lic. María Rocío Gnavi)", "rol": "Psicóloga, psicoanalista (evaluación prequirúrgica)", "bio": "lib/copy.ts, acortada del PDF", "whatsapp": "", "estado": "confirmado", "fuente": "PDF Bio_Profesional_Maria_Rocio_Gnavi 2026-09" }
+    { "nombre": "Agustina (Dra. María Agustina López)", "rol": "Cirujana Bariátrica", "bio": "lib/copy.ts, acortada de la bio enviada. Retrato nuevo: FotosNucleo/FotosEquipo/Agustina.jpg", "whatsapp": "", "estado": "confirmado", "fuente": "bio enviada por el equipo 2026-09; retrato nuevo en PDF de ajustes 2026-09-24" },
+    { "nombre": "Sergio", "rol": "Cirujano Bariátrico", "bio": "lib/copy.ts. Retrato nuevo: FotosNucleo/FotosEquipo/Sergio.ARW", "whatsapp": "", "estado": "confirmado", "fuente": "bio enviada por el equipo 2026-07; retrato nuevo en PDF de ajustes 2026-09-24" },
+    { "nombre": "Nahuel", "rol": "Cirujano Bariátrico", "bio": "lib/copy.ts. Retrato nuevo: 2 opciones (Nahuel1.jpg y Nahuel2.jpg), elige Fede o el equipo", "whatsapp": "", "estado": "confirmado", "fuente": "bio enviada por el equipo 2026-07; retratos nuevos en PDF de ajustes 2026-09-24" },
+    { "nombre": "Rocío (Lic. María Rocío Gnavi)", "rol": "Psicóloga, psicoanalista (evaluación prequirúrgica)", "bio": "lib/copy.ts, acortada del PDF. Retrato todavía sin identificar", "whatsapp": "", "estado": "confirmado", "fuente": "PDF Bio_Profesional_Maria_Rocio_Gnavi 2026-09" },
+    { "nombre": "Pendiente (no inventar: usar \"Nombre\" como placeholder)", "rol": "Nutricionistas (el PDF lo dice en plural; cantidad sin confirmar)", "bio": "Pendiente (lorem mientras tanto)", "whatsapp": "", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24: fotos de las nutricionistas y FAQ \"te acompaña el equipo completo: cirujanos, nutricionistas y psicóloga\". Confirmado que se suman al equipo; nombres, cantidad y bios faltan" }
   ],
   "testimonios": [],
-  "preguntas_frecuentes": [],
+  "formulario_testimonios": {
+    "estado": "confirmado",
+    "fuente": "PDF de ajustes del equipo 2026-09-24, Testimonios",
+    "moderacion": "Nada se publica sin revisión previa del equipo",
+    "campos": [
+      "Nombre o iniciales",
+      "Tratamiento (desplegable): Inyectables · Balón gástrico · Manga gástrica · Bypass gástrico · Reganancia de peso · Prefiero no decirlo",
+      "¿Cómo fue tu proceso con el equipo?",
+      "¿Qué cambió en tu vida desde que empezaste?",
+      "Foto (opcional): Podés sumar una foto actual o de tu antes y después",
+      "Consentimiento: Acepto que mi testimonio y mi foto se publiquen en la web de Nucleo Bariátrico"
+    ],
+    "boton": "Enviar testimonio",
+    "confirmacion": "Gracias por compartir tu experiencia. Vamos a revisarla antes de publicarla.",
+    "nota": "El equipo ya mandó a sus pacientes una plantilla para pedir testimonios; todavía no llegó ninguno."
+  },
+  "preguntas_frecuentes": [
+    { "grupo": "Tratamientos", "pregunta": "¿Cómo sé qué tratamiento es para mí?", "respuesta": "Lo definimos en la consulta. Evaluamos tu historia clínica, tus estudios y tu estado nutricional y emocional, y con esa información te indicamos el abordaje más adecuado para tu caso.", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Preguntas frecuentes" },
+    { "grupo": "Tratamientos", "pregunta": "¿En qué consiste el tratamiento con inyectables?", "respuesta": "Es un tratamiento médico con medicación que actúa sobre el apetito y la saciedad. Incluye controles periódicos para ajustar la dosis y seguimiento con nutrición y psicología, para que el descenso de peso venga acompañado de cambios que se sostengan.", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Preguntas frecuentes" },
+    { "grupo": "Tratamientos", "pregunta": "¿En qué consiste el programa de balón gástrico?", "respuesta": "El balón se coloca tragando una cápsula en una consulta breve, sin cirugía ni anestesia. Permanece unas 16 semanas en el estómago y se elimina de forma natural. El programa dura seis meses e incluye seguimiento nutricional y psicológico.", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Preguntas frecuentes" },
+    { "grupo": "Tratamientos", "pregunta": "¿En qué consiste la cirugía bariátrica con Nucleo?", "respuesta": "Es un proceso completo: primera consulta, evaluación integral, preparación, cirugía y seguimiento. Operamos con técnicas mínimamente invasivas e internación corta, y acompañamos tu evolución con todo el equipo durante el tiempo que tu caso lo requiera.", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Preguntas frecuentes (el PDF dice \"NÚCLEO\", se escribe Nucleo como en el resto del sitio)" },
+    { "grupo": "Tratamientos", "pregunta": "¿Quién puede hacerse una cirugía bariátrica?", "respuesta": "La indicación depende de tu IMC, de las enfermedades asociadas y de la evaluación del equipo. Podés calcular tu IMC con la calculadora de esta página como punto de partida, y en la consulta definimos si la cirugía es el camino indicado.", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Preguntas frecuentes (\"en nuestra web\" pasa a \"con la calculadora de esta página\")" },
+    { "grupo": "Tratamientos", "pregunta": "Me operé y volví a subir de peso. ¿Pueden ayudarme?", "respuesta": "Sí. La reganancia forma parte de la evolución de una enfermedad crónica y tiene tratamiento. Evaluamos tu cirugía previa, aunque la hayas hecho con otro equipo, y definimos cómo seguir.", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Preguntas frecuentes" },
+    { "grupo": "Cobertura", "pregunta": "¿Mi obra social cubre la medicación para bajar de peso?", "respuesta": "En general, no. La medicación para el tratamiento de la obesidad no está incluida en el Programa Médico Obligatorio, por lo que la mayoría de las obras sociales y prepagas no la cubren. En la consulta te orientamos sobre las opciones para tu caso.", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Preguntas frecuentes" },
+    { "grupo": "Cobertura", "pregunta": "¿Mi obra social cubre la cirugía?", "respuesta": "Depende de tu plan y de los requisitos médicos de cada cobertura. Escribinos por WhatsApp y revisamos tu caso.", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Preguntas frecuentes" },
+    { "grupo": "Consultas y seguimiento", "pregunta": "¿Hacen consultas virtuales?", "respuesta": "Sí. Podés hacer la primera consulta de forma virtual y continuar el proceso con nosotros.", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Preguntas frecuentes" },
+    { "grupo": "Consultas y seguimiento", "pregunta": "¿El seguimiento es solo con el cirujano?", "respuesta": "No. Durante todo el tratamiento te acompaña el equipo completo: cirujanos, nutricionistas y psicóloga.", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Preguntas frecuentes" },
+    { "grupo": "Consultas y seguimiento", "pregunta": "¿Cuánto tiempo dura el seguimiento?", "respuesta": "El que tu caso requiera. La obesidad es una enfermedad crónica, y el seguimiento a largo plazo es lo que permite sostener los resultados y cuidar tu salud en el tiempo.", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Preguntas frecuentes" }
+  ],
   "claims": [
-    { "texto": "La cirugía bariátrica está incluida en el Programa Médico Obligatorio (PMO)", "estado": "confirmado", "fuente": "copy aprobado por Maya Vega 2026-07-03" },
     { "texto": "Un profesional del equipo responde en menos de 24 horas hábiles", "estado": "confirmado", "fuente": "copy aprobado por Maya Vega 2026-07-03" },
     { "texto": "Rocío: práctica clínica desde 2008", "estado": "confirmado", "fuente": "PDF de la bio" },
+    { "texto": "Sergio: miembro de AAC, SACO e IFSO. Nahuel y Agustina: miembros de SACO e IFSO", "estado": "confirmado", "fuente": "bios enviadas" },
     { "texto": "Proceso, paso 02: un plan a tu medida para que llegues al tratamiento indicado en las mejores condiciones", "estado": "confirmado", "fuente": "copy de pasos aprobado por Maya Vega 2026-07-03" },
-    { "texto": "Como efectores de cirugía bariátrica, gestionan la autorización ante la obra social y acompañan con la cobertura durante el proceso", "estado": "confirmado", "fuente": "textos de Obras sociales del copy aprobado por Maya Vega 2026-07-03" },
-    { "texto": "Sergio: miembro de AAC, SACO e IFSO. Nahuel y Agustina: miembros de SACO e IFSO", "estado": "confirmado", "fuente": "bios enviadas" }
+    { "texto": "Proceso, paso 03 \"Preparación\" (reemplaza \"Cobertura y trámites\"): Con el plan definido, te acompañamos en cada paso previo a la cirugía: orientación nutricional, estudios prequirúrgicos y controles médicos. Llegás al quirófano con todo en orden y sabiendo qué esperar.", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Proceso" },
+    { "texto": "Tratamientos, título y bajada: Un abordaje para cada caso. La obesidad es una enfermedad crónica y no tiene una única respuesta. Evaluamos tu historia, tu salud y tus objetivos para indicarte el tratamiento adecuado, siempre con acompañamiento nutricional y psicológico.", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Tratamientos" },
+    { "texto": "El seguimiento es con el equipo completo: cirujanos, nutricionistas y psicóloga", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Preguntas frecuentes" },
+    { "texto": "La primera consulta puede ser virtual, y el proceso continúa con el equipo", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Preguntas frecuentes" },
+    { "texto": "Operan con técnicas mínimamente invasivas (laparoscópicas) e internación corta", "estado": "confirmado", "fuente": "copy aprobado 2026-07-03 (paso 04) y PDF de ajustes del equipo 2026-09-24 (Tratamientos y Preguntas frecuentes)" },
+    { "texto": "Evalúan cirugías previas hechas con el equipo o con otro equipo (reganancia y pacientes sin seguimiento)", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Tratamientos" },
+    { "texto": "Atendemos pacientes con distintas coberturas. Escribinos y revisamos tu caso para confirmarte qué incluye tu plan.", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Obras sociales (bloque de la home)" },
+    { "texto": "La cobertura varía según tu plan y el tratamiento indicado. Consultanos por WhatsApp y lo revisamos con vos.", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Obras sociales (sección con logos)" },
+    { "texto": "La cobertura de la cirugía depende del plan y de los requisitos médicos de cada cobertura", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Preguntas frecuentes" },
+    { "texto": "La medicación para el tratamiento de la obesidad no está incluida en el PMO; en general, la mayoría de las obras sociales y prepagas no la cubren", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Preguntas frecuentes" },
+    { "texto": "Obras sociales destacadas: OSDE y Medifé, más una opción \"Otras\" (reemplaza a Swiss Medical, que era ejemplo)", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Obras sociales" }
   ],
   "numeros": [
     { "valor": "24", "significa": "horas hábiles de respuesta", "estado": "confirmado", "fuente": "copy aprobado 2026-07-03" },
     { "valor": "2008", "significa": "inicio de la práctica clínica de Rocío", "estado": "confirmado", "fuente": "PDF de la bio" },
-    { "valor": "2", "significa": "puntos de atención (Villa del Parque y San Isidro)", "estado": "confirmado", "fuente": "reunión 2026-07-06" }
+    { "valor": "16", "significa": "semanas aproximadas que el balón gástrico permanece en el estómago (\"aproximadamente\" / \"unas\")", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Tratamientos y Preguntas frecuentes" },
+    { "valor": "6", "significa": "meses que dura el programa de balón gástrico (el PDF lo escribe \"seis\")", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Tratamientos y Preguntas frecuentes" },
+    { "valor": "15", "significa": "minutos aproximados de la consulta en la que se ingiere la cápsula del balón (\"unos\")", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Tratamientos" }
   ],
   "material_visual": {
     "logos": ["public/logos/logo-indigo.png", "public/logos/logo-blanco.png", "public/logos/footer-logo.png"],
-    "fotos": "Retratos y grupal del equipo (2026-07) y sesión de consultorio (2026-09) en public/images",
+    "logos_obras_sociales": ["public/images/obras/osde.png", "public/images/obras/medife.png"],
+    "fotos": "En sitio: retratos y grupal del equipo (2026-07) y sesión de consultorio (2026-09) en public/images. Nuevas 2026-09-24 en C:/Users/feded/Desktop/FotosNucleo: FotosEquipo (retratos nuevos de Agustina, Sergio y 2 opciones de Nahuel), Nutricionistas (45 fotos: 3 mujeres distintas por separado y grupales de las 3 con un cirujano; sin identificar quién es quién), FotosSecciones (Hero.jpeg nuevo y fotos del balón gástrico IMG_2314 a 2316), FotosLugar (misma sesión RAW ya procesada, incluye fotos de atención virtual y consulta según el equipo).",
     "videos": []
   },
   "faltante": [
-    "Descripción corta de cada tratamiento: inyectables, balón gástrico, manga gástrica y bypass gástrico",
-    "Las 6 preguntas frecuentes con sus respuestas",
-    "Al menos 3 testimonios reales con autorización (nombre o inicial, tiempo desde la cirugía y la frase)",
-    "Dirección exacta (calle y número) de Villa del Parque y de San Isidro, y cómo llegar a cada una",
-    "Horarios de atención confirmados",
-    "Mail de contacto y dominio definitivos",
-    "Cuáles 2 obras sociales quieren destacar",
-    "Retrato de Rocío y fotos de cada sede (sin carteles de otras marcas)",
-    "Texto legal del pie de página"
+    "Nutricionistas: nombre, título y una bio corta de cada una. En la carpeta de fotos hay 3 personas distintas: ¿nos confirman quién es quién? Si alguna es Rocío, avísennos para usar esa foto en su presentación.",
+    "Retrato de Rocío, si no está entre esas fotos.",
+    "¿Cómo se escribe el nombre del espacio de Simbrón 3327? Ustedes escribieron \"Bienetre\" y el cartel dice \"Bien Être Oasis\". Lo mostramos tal cual nos confirmen.",
+    "Horario de atención en Villa del Parque (y de las consultas virtuales, si es distinto).",
+    "Cómo llegar a Simbrón 3327: si quieren indicar colectivos, tren o estacionamiento, pásennos los datos. Si no, mostramos solo la dirección y el mapa.",
+    "Testimonios: ¿a qué mail o WhatsApp quieren que les lleguen los que se carguen desde la web, y quién los revisa antes de publicarlos?",
+    "Testimonios: ¿quieren sumar un dato de contacto (teléfono o mail, que no se publica) para poder verificar que es un paciente antes de aprobarlo?",
+    "Testimonios con foto de antes y después: ¿confirman que quieren publicarlas? En julio pidieron una portada con menos efecto de antes y después.",
+    "Cobertura: ¿siguen gestionando ustedes la autorización ante la obra social? El sitio decía que son efectores y que hacen el trámite; en el PDF nuevo no aparece, así que por ahora lo sacamos.",
+    "Cobertura: ¿quieren mantener la frase \"La cirugía bariátrica está incluida en el Programa Médico Obligatorio\"? Por ahora no la mostramos, para seguir su respuesta de que depende del plan y de los requisitos de cada cobertura.",
+    "Mail donde quieren recibir las consultas del formulario (el dominio y la casilla los dejamos listos nosotros cuando nos confirmen el nombre).",
+    "Si tienen, una foto real de quirófano o del procedimiento para el paso Cirugía (hoy es una foto de stock).",
+    "Texto legal del pie de página."
   ],
   "dudoso": [
-    { "tema": "Mail publicado", "detalle": "El sitio muestra contacto@nucleobariatrico.com.ar, pero el mail y el dominio no están definidos (el equipo prefería algo como info@...). No confirmar hasta que exista la casilla." },
-    { "tema": "Horarios", "detalle": "Lunes a viernes de 9 a 19 fue una propuesta de la reunión, falta que la confirmen." },
-    { "tema": "Swiss Medical destacada", "detalle": "Se usa de ejemplo; la reunión mencionó OSDE y MEDICUS. Falta que el equipo elija las 2." },
-    { "tema": "Cómo llegar a cada sede", "detalle": "No figura en el material: no publicar líneas de subte o tren hasta tener la dirección." }
+    { "tema": "Nombre del espacio de la sede", "detalle": "El equipo escribió \"Bienetre\"; el cartel y el membrete del lugar dicen \"Bien Être Oasis\" (Centro de Estética / Medicina & Bienestar). No publicar el nombre hasta que confirmen cómo se escribe. La dirección Simbrón 3327 sí está confirmada. Las fotos de la fachada (DSC01129 a DSC01144) y del anotador siguen sin usarse hasta que Fede o el equipo decidan si se puede mostrar el cartel de estética." },
+    { "tema": "San Isidro y Lomas de Zamora", "detalle": "No publicar. El PDF 2026-09-24 deja una sola sede \"por ahora\": Simbrón 3327, Villa del Parque. Tampoco \"2 puntos de atención\" ni \"Zona Norte\"." },
+    { "tema": "La cirugía bariátrica está incluida en el PMO", "detalle": "Venía del copy aprobado 2026-07-03. No se contradice en lo técnico, pero en el PDF nuevo el equipo respondió \"¿Mi obra social cubre la cirugía?\" con \"Depende de tu plan y de los requisitos médicos de cada cobertura\" y solo nombró el PMO para decir que la medicación no está incluida. Publicarlo al lado de esa respuesta sugiere que la cirugía siempre está cubierta. No publicar hasta que el equipo lo vuelva a confirmar." },
+    { "tema": "Rol de efector y gestión de la autorización", "detalle": "\"Como efectores de cirugía bariátrica, gestionamos tu autorización y te acompañamos con la cobertura\" y \"Hacemos el trámite de autorización con tu obra social\" (copy 2026-07-03). El PDF nuevo reemplazó el paso \"Cobertura y trámites\" por \"Preparación\" y la tarjeta de cobertura por \"Atendemos pacientes con distintas coberturas. Escribinos y revisamos tu caso\": ya no promete el trámite. Además, \"efector ante tu obra social\" sugiere que lo son ante cualquiera. No publicar hasta que lo confirmen." },
+    { "tema": "Convenios y tiempos de respuesta de cobertura", "detalle": "\"Trabajamos con más convenios de los que podemos listar acá\" y \"te confirmamos tu cobertura en minutos\" (obrasSociales.otras.body en lib/copy.ts, hoy no se muestra). No confirmado: la reunión pidió no afirmar convenios y el tiempo confirmado es 24 horas hábiles." },
+    { "tema": "Resúmenes viejos de los tratamientos", "detalle": "\"La técnica más utilizada\" (manga), \"Para casos más avanzados\" (bypass), \"Dispositivo temporal y reversible\" (balón) y \"Medicación bajo seguimiento médico\" (inyectables) no salen del material del equipo. Reemplazarlos por los subtítulos del PDF." },
+    { "tema": "Quiénes son las personas de la carpeta Nutricionistas", "detalle": "Hay 3 mujeres distintas: 2 con guardapolvo y 1 sin guardapolvo (chaleco negro y pañuelo). El PDF solo dice \"fotos de las nutris\" y en las preguntas frecuentes el equipo habla de \"psicóloga\" y \"nutricionistas\": podrían ser 2 nutricionistas y Rocío, o 3 nutricionistas. No asignar foto, nombre ni rol hasta que el equipo lo confirme." },
+    { "tema": "Fotos de antes y después en testimonios", "detalle": "El formulario del PDF las ofrece, pero en julio el equipo pidió una portada con menos efecto de antes y después. Confirmar con el equipo antes de publicar alguna." },
+    { "tema": "Placeholders con forma de dato", "detalle": "Testimonios de ejemplo con \"8 meses después de la cirugía\", \"1 año y 2 meses\" y 5 estrellas, y mensajes de \"No estás solo\" firmados \"Una paciente · 6 meses post-cirugía\": no son datos reales y no pueden quedar visibles en producción." },
+    { "tema": "Mail publicado", "detalle": "El sitio no muestra mail (brand.email = null). El equipo prefería algo como info@...; no publicar ninguno hasta que exista la casilla." },
+    { "tema": "Dominio", "detalle": "brand.domain = nucleobariatrico.com.ar se usa en la URL para compartir y en los datos para Google, pero el dominio no está registrado ni elegido (el equipo prefería .com). Confirmar antes del lanzamiento." },
+    { "tema": "Horarios", "detalle": "Lunes a viernes de 9 a 19 fue una propuesta de la reunión 2026-07-06; falta que la confirmen. Hoy el horario está oculto." },
+    { "tema": "Cómo llegar", "detalle": "Ya hay dirección, pero no hay indicaciones de transporte en el material. No publicar líneas de colectivo, tren o subte hasta que el equipo las pase." }
   ]
 }

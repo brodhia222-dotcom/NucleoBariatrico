@@ -137,7 +137,7 @@ export function Footer() {
 
           {/* Ubicaciones */}
           <div className="lg:col-span-3 flex flex-col gap-4">
-            <p className="font-mono text-[12px] tracking-[0.14em] uppercase opacity-65">Ubicaciones</p>
+            <p className="font-mono text-[12px] tracking-[0.14em] uppercase opacity-65">Dónde atendemos</p>
             <ul className="flex flex-col gap-4">
               {footer.sedes.map((s) => (
                 <li key={s.nombre}>

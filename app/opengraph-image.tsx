@@ -76,7 +76,7 @@ export default async function Image() {
               letterSpacing: "0.04em",
             }}
           >
-            Villa del Parque · San Isidro
+            Simbrón 3327 · Villa del Parque
           </span>
         </div>
       </div>

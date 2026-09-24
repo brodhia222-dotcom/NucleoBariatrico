@@ -70,7 +70,7 @@ export const diferencial = {
       badge: "01 · Equipo",
       title: noOrphans("Equipo especializado al frente"),
       body: noOrphans(
-        "Cirujanos bariátricos con formación específica en obesidad. Conocé a las personas que van a acompañarte durante todo el recorrido."
+        "Cirujanos bariátricos con formación específica en obesidad, junto a nutricionistas y psicóloga. Conocé a las personas que van a acompañarte durante todo el recorrido."
       ),
       cta: "Conocer al equipo",
       href: "#equipo",
@@ -88,25 +88,26 @@ export const diferencial = {
     },
     {
       badge: "03 · Cobertura",
-      // Sin afirmar convenios (reunión 2026-07-06): solo lo confirmado del rol de efector.
-      title: noOrphans("Te guiamos con la cobertura"),
+      // Texto del equipo (PDF de ajustes 2026-09-24)
+      title: noOrphans("Obras sociales y prepagas"),
       body: noOrphans(
-        "Hacemos el trámite de autorización con tu obra social."
+        "Atendemos pacientes con distintas coberturas. Escribinos y revisamos tu caso para confirmarte qué incluye tu plan."
       ),
       cta: "Consultar cobertura",
       href: "#obras-sociales",
       foto: "/images/diferencial-cobertura.jpg",
     },
     {
-      badge: "04 · Locaciones",
-      title: noOrphans("2 puntos de atención"),
+      badge: "04 · Dónde atendemos",
+      // Sede única por ahora (PDF de ajustes 2026-09-24): Simbrón 3327, Villa del Parque.
+      // La consulta virtual está confirmada en las preguntas frecuentes del mismo PDF.
+      title: noOrphans("Dónde atendemos"),
       body: noOrphans(
-        "Atendemos en Villa del Parque y San Isidro, para que elijas el punto que te quede más cómodo. Mismo equipo, misma atención."
+        "Te recibimos en Simbrón 3327, Villa del Parque. Si te queda más cómodo, la primera consulta también puede ser virtual."
       ),
-      cta: "Ver ubicaciones",
+      cta: "Cómo llegar",
       href: "#ubicaciones",
-      // Placeholder hasta tener fotos de las sedes (sin carteles de otras marcas)
-      foto: null,
+      foto: "/images/diferencial-sede.jpg",
     },
   ] as {
     badge: string;
@@ -206,69 +207,118 @@ export const equipo = {
         ),
         foto: null,
       },
+      // Nutricionistas (PDF de ajustes 2026-09-24): fotos de su sesión; nombres y bios todavía
+      // pendientes, por eso van "Nombre" y lorem. Confirmar quién es quién antes de cargarlos.
+      {
+        nombre: "Nombre",
+        rol: "Nutricionista",
+        bio: lorem.short,
+        foto: "/images/equipo-nutricionista-1.jpg",
+      },
+      {
+        nombre: "Nombre",
+        rol: "Nutricionista",
+        bio: lorem.short,
+        foto: "/images/equipo-nutricionista-2.jpg",
+      },
+      {
+        nombre: "Nombre",
+        rol: "Nutricionista",
+        bio: lorem.short,
+        foto: "/images/equipo-nutricionista-3.jpg",
+      },
     ] as { nombre: string; rol: string; bio: string; foto: string | null }[],
   },
 };
 
-// Sección acordada en la reunión de equipo (2026-07-06): va entre Equipo
-// y Proceso. Agustina pidió navegación directa por nombre de tratamiento
-// (manga / bypass / balón / inyectables) en vez de solo categorías
-// técnicas. Sin marcas comerciales en lo farmacológico.
+// Textos del equipo (PDF de ajustes 2026-09-24). Orden de menor a mayor
+// complejidad; la reganancia va aparte, al final, porque es el diferencial y
+// conviene que se lea separada. Cada tarjeta es un botón directo al detalle.
+// Sin marcas comerciales en lo farmacológico.
+export type Tratamiento = {
+  id: string;
+  nombre: string;
+  // Etiqueta corta de la tarjeta; el subtítulo completo va en el detalle
+  categoria: string;
+  subtitulo: string;
+  parrafos: string[];
+  foto: string | null;
+  fotoPos?: string;
+};
+
 export const tratamientos = {
   eyebrow: "Tratamientos",
-  headline: "Un abordaje distinto para cada caso.",
+  headline: "Un abordaje para cada caso.",
   body: noOrphans(
-    "No hay un solo camino. Evaluamos tu situación y te proponemos el tratamiento, o la combinación de tratamientos, que mejor se adapte a vos."
+    "La obesidad es una enfermedad crónica y no tiene una única respuesta. Evaluamos tu historia, tu salud y tus objetivos para indicarte el tratamiento adecuado, siempre con acompañamiento nutricional y psicológico."
   ),
-  categorias: [
+  opciones: [
     {
+      id: "inyectables",
+      nombre: "Inyectables",
       categoria: "Farmacológico",
-      opciones: [
-        {
-          id: "inyectables",
-          nombre: "Inyectables",
-          resumen: "Medicación bajo seguimiento médico.",
-          body: lorem.medium,
-        },
+      subtitulo: "Tratamiento farmacológico",
+      parrafos: [
+        noOrphans(
+          "Indicamos medicación que actúa sobre el apetito y la saciedad: análogos de GLP-1 y agonistas duales GLP-1/GIP. Es un tratamiento médico con controles periódicos. Ajustamos la dosis según tu evolución y lo sostenemos con el equipo de nutrición y psicología."
+        ),
+        noOrphans("Puede ser el tratamiento principal o complementar un procedimiento, antes o después."),
       ],
+      foto: "/images/tratamiento-inyectables.jpg",
     },
     {
-      categoria: "No quirúrgico",
-      opciones: [
-        {
-          id: "balon",
-          nombre: "Balón gástrico",
-          resumen: "Dispositivo temporal y reversible.",
-          body: lorem.short,
-        },
+      id: "balon",
+      nombre: "Balón gástrico",
+      categoria: "Sin cirugía",
+      subtitulo: "Sin cirugía, sin endoscopia, sin anestesia",
+      parrafos: [
+        noOrphans(
+          "Una cápsula que se ingiere en una consulta de unos 15 minutos. En el estómago se convierte en un balón que genera saciedad durante aproximadamente 16 semanas y después se elimina de forma natural."
+        ),
+        noOrphans(
+          "Forma parte de un programa de seis meses con seguimiento nutricional y psicológico, para que los nuevos hábitos se sostengan cuando el balón ya no está."
+        ),
       ],
+      foto: "/images/tratamiento-balon.jpg",
     },
     {
+      id: "manga",
+      nombre: "Manga gástrica",
       categoria: "Quirúrgico",
-      opciones: [
-        {
-          id: "manga",
-          nombre: "Manga gástrica",
-          resumen: "La técnica más utilizada.",
-          body: lorem.medium,
-        },
-        {
-          id: "bypass",
-          nombre: "Bypass gástrico",
-          resumen: "Para casos más avanzados.",
-          body: lorem.medium,
-        },
+      subtitulo: "Gastrectomía en manga",
+      parrafos: [
+        noOrphans(
+          "Reducimos el tamaño del estómago por vía laparoscópica. Disminuye la capacidad y también las hormonas que estimulan el apetito. Internación corta y seguimiento a largo plazo con todo el equipo."
+        ),
       ],
+      foto: "/images/tratamiento-manga.jpg",
     },
-  ] as {
-    categoria: string;
-    opciones: { id: string; nombre: string; resumen: string; body: string }[];
-  }[],
+    {
+      id: "bypass",
+      nombre: "Bypass gástrico",
+      categoria: "Quirúrgico",
+      subtitulo: "Bypass en Y de Roux",
+      parrafos: [
+        noOrphans(
+          "Creamos un estómago pequeño conectado directamente al intestino. Actúa sobre la cantidad de alimento y sobre la absorción, con un efecto metabólico marcado en enfermedades asociadas como la diabetes tipo 2. Cirugía laparoscópica, internación corta y controles de por vida."
+        ),
+      ],
+      foto: "/images/tratamiento-bypass.jpg",
+    },
+  ] as Tratamiento[],
   reganancia: {
-    titulo: "¿Volviste a subir de peso después de la cirugía?",
-    body: noOrphans(
-      "La re-ganancia de peso puede pasar, incluso años después de la cirugía. Si te operaste en otro lugar y necesitás retomar el seguimiento, también podemos ayudarte a evaluar tu caso."
-    ),
+    id: "reganancia",
+    nombre: "Reganancia de peso",
+    subtitulo: "Después de una cirugía bariátrica",
+    parrafos: [
+      noOrphans(
+        "Si te operaste y volviste a subir de peso, o te quedaste sin seguimiento, podemos retomar desde donde estás. La reganancia forma parte de la evolución de una enfermedad crónica y tiene tratamiento."
+      ),
+      noOrphans(
+        "Evaluamos tu cirugía previa, hecha con nosotros o con otro equipo, y definimos el camino: medicación, reorientación nutricional o cirugía de revisión."
+      ),
+    ],
+    foto: "/images/tratamiento-reganancia.jpg",
     cta: "Consultar mi caso",
   },
 };
@@ -278,8 +328,8 @@ export const proceso = {
   headline: "Un recorrido continuo, no una operación aislada.",
   body: null as string | null,
   pasos: [
-    // Fotos 01/03/05: sesión real del equipo (2026-09), recortadas a 3:2 como el resto de los pasos.
-    // Copy de pasos 01/02/04/05 aprobado por Maya Vega (2026-07-03); el 03 se mantiene
+    // Fotos reales del equipo (sesiones 2026-09), recortadas a 3:2 como el resto de los pasos.
+    // Copy de pasos 01/02/04/05 aprobado por Maya Vega (2026-07-03); el 03 es del PDF de ajustes 2026-09-24
     {
       n: "01",
       titulo: "Primera consulta",
@@ -298,11 +348,11 @@ export const proceso = {
     },
     {
       n: "03",
-      titulo: "Cobertura y trámites",
+      titulo: "Preparación",
       body: noOrphans(
-        "Te guiamos con la autorización de tu obra social y todo el papeleo. Nos encargamos de que los trámites no sean un obstáculo en tu recorrido."
+        "Con el plan definido, te acompañamos en cada paso previo a la cirugía: orientación nutricional, estudios prequirúrgicos y controles médicos. Llegás al quirófano con todo en orden y sabiendo qué esperar."
       ),
-      foto: "/images/proceso-tramites.jpg",    },
+      foto: "/images/proceso-preparacion.jpg",    },
     {
       n: "04",
       titulo: "Cirugía",
@@ -326,6 +376,29 @@ export const testimonios = {
   eyebrow: "Testimonios",
   headline: "Cambios reales, no promesas.",
   body: lorem.short,
+  // Formulario para que los pacientes dejen su experiencia (PDF de ajustes 2026-09-24).
+  // Todo lo que llega se revisa antes de publicarse.
+  formulario: {
+    invitacion: "¿Te atendiste con nosotros?",
+    boton: "Compartir mi experiencia",
+    titulo: "Contanos tu experiencia",
+    bajada: noOrphans("Tu testimonio puede ayudar a alguien que recién empieza. Lo revisamos antes de publicarlo."),
+    nombre: "Nombre o iniciales",
+    tratamiento: "Tratamiento",
+    tratamientoPlaceholder: "Elegí una opción",
+    tratamientos: ["Inyectables", "Balón gástrico", "Manga gástrica", "Bypass gástrico", "Reganancia de peso", "Prefiero no decirlo"],
+    proceso: "¿Cómo fue tu proceso con el equipo?",
+    cambio: "¿Qué cambió en tu vida desde que empezaste?",
+    foto: "Foto (opcional)",
+    fotoAyuda: "Podés sumar una foto actual o de tu antes y después.",
+    fotoBoton: "Elegir foto",
+    consentimiento: "Acepto que mi testimonio y mi foto se publiquen en la web de Nucleo Bariátrico.",
+    enviar: "Enviar testimonio",
+    enviando: "Enviando…",
+    gracias: noOrphans("Gracias por compartir tu experiencia. Vamos a revisarla antes de publicarla."),
+    error: "Algo no funcionó. Probá de nuevo o escribinos por WhatsApp.",
+    errorFoto: "No pudimos procesar esa foto. Probá con otra en JPG o PNG.",
+  },
   items: [
     {
       type: "text" as const,
@@ -381,50 +454,56 @@ export const testimonios = {
 
 export const obrasSociales = {
   eyebrow: "Cobertura",
-  headline: "Tu obra social puede cubrir la cirugía.",
+  // Mismo nombre que la tarjeta 03 de "Qué nos diferencia", que trae hasta acá
+  headline: "Obras sociales y prepagas.",
+  // Texto del equipo para la sección con logos (PDF de ajustes 2026-09-24)
   body: noOrphans(
-    "La cirugía bariátrica está incluida en el Programa Médico Obligatorio (PMO). La cobertura exacta depende de tu obra social o prepaga y del plan que tengas. Te la confirmamos por WhatsApp antes de tu primera consulta."
+    "La cobertura varía según tu plan y el tratamiento indicado. Consultanos por WhatsApp y lo revisamos con vos."
   ),
   badge: "Consultá tu cobertura",
   cta: { label: "Consultar mi cobertura" },
-  notaEfector: noOrphans(
-    "Es el equipo médico habilitado ante tu obra social para realizar una práctica cubierta. Como efectores de cirugía bariátrica, gestionamos tu autorización y te acompañamos con la cobertura de tu plan durante todo el proceso."
-  ),
-  // Reunión 2026-07-06: mostrar solo 2 destacadas + "otras" (no afirmar
-  // coberturas específicas hasta confirmar convenios). OSDE confirmada en
-  // la charla; la segunda (Swiss Medical) es ejemplo hasta que el equipo
-  // clínico defina cuál destacar — cambiar acá cuando lo confirmen.
+  // Destacadas confirmadas por el equipo (PDF de ajustes 2026-09-24): OSDE · Medifé · Otras.
   // fit: "cover" = tile de marca con fondo propio (llena la tarjeta);
   //      "contain" = logo sobre fondo claro (centrado en tarjeta blanca)
   destacadas: [
     { nombre: "OSDE", logo: "/images/obras/osde.png", fit: "cover" },
-    { nombre: "Swiss Medical", logo: "/images/obras/swiss-medical.png", fit: "contain" },
+    { nombre: "Medifé", logo: "/images/obras/medife.png", fit: "cover" },
   ] as { nombre: string; logo: string; fit: "cover" | "contain" }[],
   otras: {
-    titulo: "¿Tenés otra obra social o prepaga?",
-    body: noOrphans(
-      "Trabajamos con más convenios de los que podemos listar acá. Escribinos y te confirmamos tu cobertura en minutos."
-    ),
+    titulo: "Otras",
+    bajada: "Otras obras sociales y prepagas",
     cta: "Consultar por WhatsApp",
   },
 };
 
+// Sede única por ahora (PDF de ajustes 2026-09-24). San Isidro deja de figurar.
+// Cómo llegar: solo el link a Google Maps; no publicar líneas de transporte
+// hasta que el equipo las confirme.
 export const ubicaciones = {
   eyebrow: "Dónde encontrarnos",
-  headline: "2 puntos de atención.",
+  headline: "Dónde atendemos.",
   body: null as string | null,
   sedes: [
     {
       nombre: "Villa del Parque",
-      direccion: "Lorem ipsum dolor sit amet · CABA",
-      mapa: "https://maps.google.com/maps?q=Villa%20del%20Parque%2C%20CABA&t=&z=14&ie=UTF8&iwloc=&output=embed",
-    },
-    {
-      nombre: "San Isidro",
-      direccion: "Lorem ipsum dolor · Zona Norte",
-      mapa: "https://maps.google.com/maps?q=San%20Isidro%2C%20Buenos%20Aires&t=&z=14&ie=UTF8&iwloc=&output=embed",
+      direccion: "Simbrón 3327, Villa del Parque, CABA",
+      calle: "Simbrón 3327",
+      // Así lo escribió el equipo; el cartel del lugar dice "Bien Être". Confirmar cómo mostrarlo.
+      espacio: "Bienetre",
+      mapa: "https://maps.google.com/maps?q=Simbr%C3%B3n%203327%2C%20Villa%20del%20Parque%2C%20CABA&t=&z=16&ie=UTF8&iwloc=&output=embed",
+      comoLlegar: "https://www.google.com/maps/dir/?api=1&destination=Simbr%C3%B3n%203327%2C%20Villa%20del%20Parque%2C%20CABA",
+      fotos: [
+        { src: "/images/sede-fachada.jpg", alt: "Entrada del espacio en Simbrón 3327, Villa del Parque" },
+        { src: "/images/sede-interior-1.jpg", alt: "Acceso a los consultorios en Simbrón 3327" },
+        { src: "/images/sede-interior-2.jpg", alt: "Pasillo interior de la sede de Villa del Parque" },
+      ],
     },
   ],
+  virtual: {
+    titulo: "Consulta virtual",
+    texto: noOrphans("Podés hacer la primera consulta de forma virtual y continuar el proceso con nosotros."),
+    foto: "/images/sede-virtual.jpg",
+  },
 };
 
 export const noEstasSolo = {
@@ -466,23 +545,97 @@ export const noEstasSolo = {
   },
 };
 
+// Preguntas y respuestas del equipo (PDF de ajustes 2026-09-24), en 3 grupos.
 export const faq = {
   eyebrow: "Preguntas frecuentes",
   headline: "Lo que más nos consultan.",
-  items: [
-    { q: "Pregunta 1", a: lorem.medium },
-    { q: "Pregunta 2", a: lorem.medium },
-    { q: "Pregunta 3", a: lorem.medium },
-    { q: "Pregunta 4", a: lorem.medium },
-    { q: "Pregunta 5", a: lorem.medium },
-    { q: "Pregunta 6", a: lorem.medium },
+  grupos: [
+    {
+      titulo: "Tratamientos",
+      items: [
+        {
+          q: "¿Cómo sé qué tratamiento es para mí?",
+          a: noOrphans(
+            "Lo definimos en la consulta. Evaluamos tu historia clínica, tus estudios y tu estado nutricional y emocional, y con esa información te indicamos el abordaje más adecuado para tu caso."
+          ),
+        },
+        {
+          q: "¿En qué consiste el tratamiento con inyectables?",
+          a: noOrphans(
+            "Es un tratamiento médico con medicación que actúa sobre el apetito y la saciedad. Incluye controles periódicos para ajustar la dosis y seguimiento con nutrición y psicología, para que el descenso de peso venga acompañado de cambios que se sostengan."
+          ),
+        },
+        {
+          q: "¿En qué consiste el programa de balón gástrico?",
+          a: noOrphans(
+            "El balón se coloca tragando una cápsula en una consulta breve, sin cirugía ni anestesia. Permanece unas 16 semanas en el estómago y se elimina de forma natural. El programa dura seis meses e incluye seguimiento nutricional y psicológico."
+          ),
+        },
+        {
+          q: "¿En qué consiste la cirugía bariátrica con Nucleo?",
+          a: noOrphans(
+            "Es un proceso completo: primera consulta, evaluación integral, preparación, cirugía y seguimiento. Operamos con técnicas mínimamente invasivas e internación corta, y acompañamos tu evolución con todo el equipo durante el tiempo que tu caso lo requiera."
+          ),
+        },
+        {
+          q: "¿Quién puede hacerse una cirugía bariátrica?",
+          a: noOrphans(
+            "La indicación depende de tu IMC, de las enfermedades asociadas y de la evaluación del equipo. Podés calcular tu IMC en nuestra web como punto de partida, y en la consulta definimos si la cirugía es el camino indicado."
+          ),
+        },
+        {
+          q: "Me operé y volví a subir de peso. ¿Pueden ayudarme?",
+          a: noOrphans(
+            "Sí. La reganancia forma parte de la evolución de una enfermedad crónica y tiene tratamiento. Evaluamos tu cirugía previa, aunque la hayas hecho con otro equipo, y definimos cómo seguir."
+          ),
+        },
+      ],
+    },
+    {
+      titulo: "Cobertura",
+      items: [
+        {
+          q: "¿Mi obra social cubre la medicación para bajar de peso?",
+          a: noOrphans(
+            "En general, no. La medicación para el tratamiento de la obesidad no está incluida en el Programa Médico Obligatorio, por lo que la mayoría de las obras sociales y prepagas no la cubren. En la consulta te orientamos sobre las opciones para tu caso."
+          ),
+        },
+        {
+          q: "¿Mi obra social cubre la cirugía?",
+          a: noOrphans(
+            "Depende de tu plan y de los requisitos médicos de cada cobertura. Escribinos por WhatsApp y revisamos tu caso."
+          ),
+        },
+      ],
+    },
+    {
+      titulo: "Consultas y seguimiento",
+      items: [
+        {
+          q: "¿Hacen consultas virtuales?",
+          a: noOrphans("Sí. Podés hacer la primera consulta de forma virtual y continuar el proceso con nosotros."),
+        },
+        {
+          q: "¿El seguimiento es solo con el cirujano?",
+          a: noOrphans(
+            "No. Durante todo el tratamiento te acompaña el equipo completo: cirujanos, nutricionistas y psicóloga."
+          ),
+        },
+        {
+          q: "¿Cuánto tiempo dura el seguimiento?",
+          a: noOrphans(
+            "El que tu caso requiera. La obesidad es una enfermedad crónica, y el seguimiento a largo plazo es lo que permite sostener los resultados y cuidar tu salud en el tiempo."
+          ),
+        },
+      ],
+    },
   ],
 };
 
 export const contacto = {
   eyebrow: "Contacto",
   // Horario sin confirmar (la reunión 2026-07-06 propuso Lun a Vie de 9 a 19): mientras sea null
-  // no se muestra. Cuando lo confirmen, cargarlo acá y aparece en Contacto y en las 2 sedes.
+  // no se muestra. Cuando lo confirmen, cargarlo acá y aparece en Contacto y en la sede.
   horario: null as string | null,
   headline: "Conversemos.",
   body: noOrphans(
@@ -496,7 +649,7 @@ export const contacto = {
     mensaje: "Mensaje",
     enviar: "Enviar consulta",
     enviando: "Enviando…",
-    enviado: "Recibimos tu consulta. Te respondemos en menos de 24 hs.",
+    enviado: "Recibimos tu consulta. Te respondemos en menos de 24 horas hábiles.",
     error: "Algo no funcionó. Probá de nuevo o escribinos por WhatsApp.",
     imcAuto: "Tu IMC calculado",
   },

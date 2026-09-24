@@ -7,7 +7,7 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import { ArrowUpRight, Info, WhatsappLogo } from "@phosphor-icons/react";
+import { WhatsappLogo } from "@phosphor-icons/react";
 import { Container } from "@/components/primitives/Container";
 import { Section } from "@/components/primitives/Section";
 import { Eyebrow } from "@/components/primitives/Eyebrow";
@@ -17,7 +17,7 @@ import { viewportOnce, easeEditorial } from "@/lib/motion";
 
 export function ObrasSociales() {
   const whatsappHref = `https://wa.me/${brand.whatsappNumber.replace(/[^\d]/g, "")}?text=${encodeURIComponent(
-    "Hola, quiero consultar si mi obra social o prepaga cubre la cirugía.",
+    "Hola, quiero consultar qué cubre mi obra social o prepaga.",
   )}`;
 
   return (
@@ -40,42 +40,17 @@ export function ObrasSociales() {
                 textWrap: "balance",
               }}
             >
-              {obrasSociales.headline.split("cirugía").map((part, i, arr) =>
-                i === arr.length - 1 ? (
-                  part
-                ) : (
-                  <span key={i}>
-                    {part}
-                    <span className="italic-serif text-[color:var(--accent)]">cirugía</span>
-                  </span>
-                ),
-              )}
+              {obrasSociales.headline}
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
             <p className="body-lg text-[color:var(--ink-soft)] max-w-prose">{obrasSociales.body}</p>
           </Reveal>
-          <Reveal delay={0.2}>
-            <div className="flex items-start gap-4 rounded-[var(--radius-lg)] bg-[color:var(--bg-elevated)] p-6 border border-[color:var(--border)] max-w-2xl mx-auto mt-4">
-              <span
-                aria-hidden
-                className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[color:var(--accent-soft)] text-[color:var(--accent)]"
-              >
-                <Info weight="regular" className="h-5 w-5" />
-              </span>
-              <div className="flex flex-col gap-1 text-left">
-                <p className="h4">¿Qué es un efector?</p>
-                <p className="body-sm text-[color:var(--ink-soft)] leading-relaxed">
-                  {obrasSociales.notaEfector}
-                </p>
-              </div>
-            </div>
-          </Reveal>
         </div>
 
-        {/* 2 destacadas lado a lado (no listamos convenios sin confirmar) y un solo botón a WhatsApp,
-            que sirve también para quien tiene otra obra social o prepaga */}
-        <ul className="mx-auto grid max-w-xl grid-cols-2 gap-3 sm:gap-4">
+        {/* OSDE · Medifé · Otras (PDF de ajustes 2026-09-24): las 3 tarjetas llevan a WhatsApp;
+            la de "Otras" cubre a quien tiene otra obra social o prepaga */}
+        <ul className="mx-auto grid max-w-3xl grid-cols-3 gap-3 sm:gap-4">
           {obrasSociales.destacadas.map((plan, i) => (
             <motion.li
               key={plan.nombre}
@@ -84,10 +59,9 @@ export function ObrasSociales() {
               viewport={viewportOnce}
               transition={{ duration: 0.55, delay: i * 0.05, ease: easeEditorial }}
             >
-              {/* Los logos se mueven con el cursor: que también se puedan tocar y lleven a consultar esa cobertura */}
               <a
                 href={`https://wa.me/${brand.whatsappNumber.replace(/[^\d]/g, "")}?text=${encodeURIComponent(
-                  `Hola, tengo ${plan.nombre} y quiero consultar si cubre la cirugía.`,
+                  `Hola, tengo ${plan.nombre} y quiero consultar qué cubre mi plan.`,
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -98,26 +72,38 @@ export function ObrasSociales() {
               </a>
             </motion.li>
           ))}
-        </ul>
 
-        <Reveal>
-          <div className="mt-8 flex flex-col items-center gap-3 text-center">
-            <p className="body-sm text-[color:var(--ink-soft)]">{obrasSociales.otras.titulo}</p>
+          <motion.li
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={viewportOnce}
+            transition={{ duration: 0.55, delay: obrasSociales.destacadas.length * 0.05, ease: easeEditorial }}
+          >
             <a
               href={whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-ink group w-fit"
+              aria-label={`${obrasSociales.otras.bajada}: ${obrasSociales.otras.cta}`}
+              className="group relative flex aspect-square flex-col items-center justify-center gap-1.5 overflow-hidden rounded-[var(--radius-lg)] bg-[color:var(--ink)] p-3 text-center text-[color:var(--ink-inverse)] transition-shadow duration-300 hover:shadow-[var(--shadow-lg)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)] focus-visible:ring-offset-2 sm:aspect-[16/9] sm:gap-2"
             >
-              <WhatsappLogo weight="fill" className="h-4 w-4" />
-              {obrasSociales.cta.label}
-              <ArrowUpRight
-                weight="bold"
-                className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-              />
+              <span
+                aria-hidden
+                className="grid h-8 w-8 place-items-center rounded-full bg-[color:var(--color-whatsapp)] transition-transform duration-300 group-hover:scale-110 sm:h-9 sm:w-9"
+              >
+                <WhatsappLogo weight="fill" className="h-4 w-4 text-white" />
+              </span>
+              <span
+                className="font-display"
+                style={{ fontSize: "clamp(18px, 2vw, 24px)", lineHeight: 1.05, fontWeight: 400, fontVariationSettings: '"opsz" 36' }}
+              >
+                {obrasSociales.otras.titulo}
+              </span>
+              <span className="hidden text-[12px] leading-tight text-[color:var(--ink-inverse)]/75 sm:block">
+                {obrasSociales.otras.bajada}
+              </span>
             </a>
-          </div>
-        </Reveal>
+          </motion.li>
+        </ul>
 
       </Container>
     </Section>
@@ -161,7 +147,7 @@ function LogoCard({
     >
       <motion.div
         style={{ rotateX, rotateY }}
-        className="tilt-card relative grid aspect-[16/9] place-items-center overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-white transition-shadow duration-300 hover:shadow-[var(--shadow-lg)]"
+        className="tilt-card relative grid aspect-square sm:aspect-[16/9] place-items-center overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-white transition-shadow duration-300 hover:shadow-[var(--shadow-lg)]"
       >
         {plan.fit === "cover" ? (
           // Tile de marca con fondo de color propio → llena la tarjeta

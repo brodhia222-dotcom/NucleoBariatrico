@@ -81,65 +81,64 @@ export function Equipo() {
           ))}
         </ul>
 
-        {/* Otras disciplinas del proceso, en formato compacto debajo de los cirujanos */}
+        {/* Otras disciplinas del proceso (psicología y nutrición), más chicas que los cirujanos:
+            en fila con foto al costado en celular y tablet, en 4 columnas en compu */}
         {equipo.acompanamiento.miembros.length > 0 && (
           <div className="mt-14 border-t border-[color:var(--border)] pt-10 lg:mt-20 lg:pt-12">
             <Reveal>
               <Eyebrow>{equipo.acompanamiento.eyebrow}</Eyebrow>
             </Reveal>
-            <ul
-              className={`mt-6 grid gap-8 lg:gap-10 ${equipo.acompanamiento.miembros.length > 1 ? "md:grid-cols-2" : ""}`}
-            >
+            <ul className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
               {equipo.acompanamiento.miembros.map((m, i) => (
                 <motion.li
-                  key={m.nombre}
+                  key={`${m.rol}-${i}`}
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={viewportOnce}
-                  transition={{ duration: 0.8, delay: i * 0.1, ease: easeEditorial }}
-                  className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-5 lg:items-center lg:gap-8"
+                  transition={{ duration: 0.8, delay: i * 0.08, ease: easeEditorial }}
+                  className="group flex gap-4 lg:flex-col lg:gap-5"
                 >
-                  {m.foto ? (
-                    <img
-                      src={m.foto}
-                      alt={`${m.nombre} · ${m.rol}`}
-                      loading="lazy"
-                      className="h-20 w-20 shrink-0 rounded-[var(--radius-lg)] object-cover sm:h-24 sm:w-24"
-                    />
-                  ) : (
-                    <span
-                      aria-hidden
-                      className="grid h-20 w-20 shrink-0 place-items-center rounded-[var(--radius-lg)] bg-[color:var(--accent-soft)] font-display text-[color:var(--accent)] sm:h-24 sm:w-24"
-                      style={{
-                        fontSize: "40px",
-                        lineHeight: 1,
-                        fontWeight: 300,
-                        fontVariationSettings: '"opsz" 72',
-                      }}
-                    >
-                      {m.nombre.charAt(0)}
-                    </span>
-                  )}
-                  {/* Con una sola persona la fila usa todo el ancho: nombre a la izquierda, bio a la derecha */}
-                  <div className="flex flex-1 flex-col gap-2 lg:grid lg:grid-cols-[minmax(0,13rem)_1fr] lg:items-center lg:gap-10">
-                    <div className="flex flex-col gap-2">
-                      <span className="font-mono text-[12px] tracking-[0.14em] uppercase text-[color:var(--accent)]">
-                        {m.rol}
-                      </span>
-                      <h3
-                        className="font-display"
+                  <figure className="w-24 shrink-0 overflow-hidden rounded-[var(--radius-lg)] sm:w-28 lg:w-full">
+                    {m.foto ? (
+                      <img
+                        src={m.foto}
+                        alt={`${m.nombre} · ${m.rol}`}
+                        loading="lazy"
+                        className="aspect-[4/5] w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                        style={{ objectPosition: "center 20%" }}
+                      />
+                    ) : (
+                      <span
+                        aria-hidden
+                        className="grid aspect-[4/5] w-full place-items-center bg-[color:var(--accent-soft)] font-display text-[color:var(--accent)]"
                         style={{
-                          fontSize: "clamp(22px, 2.2vw, 30px)",
-                          lineHeight: 1.04,
-                          letterSpacing: "-0.022em",
+                          fontSize: "clamp(40px, 5vw, 72px)",
+                          lineHeight: 1,
                           fontWeight: 300,
-                          fontVariationSettings: '"opsz" 56',
+                          fontVariationSettings: '"opsz" 72',
                         }}
                       >
-                        {m.nombre}
-                      </h3>
-                    </div>
-                    <p className="body-sm text-[color:var(--ink-soft)] mt-1 max-w-[68ch] lg:mt-0">{m.bio}</p>
+                        {m.nombre.charAt(0)}
+                      </span>
+                    )}
+                  </figure>
+                  <div className="flex flex-1 flex-col gap-2">
+                    <span className="font-mono text-[12px] tracking-[0.14em] uppercase text-[color:var(--accent)]">
+                      {m.rol}
+                    </span>
+                    <h3
+                      className="font-display"
+                      style={{
+                        fontSize: "clamp(20px, 1.8vw, 24px)",
+                        lineHeight: 1.06,
+                        letterSpacing: "-0.02em",
+                        fontWeight: 300,
+                        fontVariationSettings: '"opsz" 48',
+                      }}
+                    >
+                      {m.nombre}
+                    </h3>
+                    <p className="body-sm text-[color:var(--ink-soft)] mt-1">{m.bio}</p>
                   </div>
                 </motion.li>
               ))}
