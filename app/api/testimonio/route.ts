@@ -106,6 +106,10 @@ export async function POST(req: NextRequest) {
 
   // Sin clave de Resend o sin casilla de destino definida, la demo funciona sin enviar nada.
   if (!apiKey || !to) {
+    if (process.env.VERCEL_ENV === "production") {
+      console.error(`[testimonio]: falta RESEND_API_KEY o la casilla de destino`);
+      return NextResponse.json({ ok: false, error: "No configurado" }, { status: 503 });
+    }
     console.log("[testimonio:dev]", { ...parsed.data, foto: adjunto ? `${adjunto.content.length} bytes` : null });
     return NextResponse.json({ ok: true, devMode: true });
   }

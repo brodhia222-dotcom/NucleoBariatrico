@@ -662,10 +662,13 @@ export const contacto = {
     error: "Algo no funcionó. Probá de nuevo o escribinos por WhatsApp.",
     imcAuto: "Tu IMC calculado",
   },
+  // Cubren los tratamientos sin cirugía, la reganancia y la consulta virtual (v6)
   motivos: [
-    "Quiero saber si soy candidato",
+    "Quiero saber qué tratamiento es para mí",
+    "Quiero agendar una primera consulta",
+    "Prefiero una consulta virtual",
+    "Ya me operé (reganancia o seguimiento)",
     "Tengo dudas sobre la cobertura",
-    "Quiero agendar primera consulta",
     "Otra consulta",
   ],
   whatsapp: { label: "Escribir por WhatsApp", href: "" },
@@ -677,7 +680,8 @@ export const footer = {
     whatsapp: brand.whatsappNumber,
     email: brand.email,
   },
-  sedes: ubicaciones.sedes.map((s) => ({ nombre: s.nombre, direccion: s.direccion })),
+  // Sin repetir el barrio: "Villa del Parque" arriba y "Simbrón 3327, CABA" abajo
+  sedes: ubicaciones.sedes.map((s) => ({ nombre: s.nombre, direccion: `${s.calle}, CABA` })),
   legal: lorem.long,
   copyright: `© ${new Date().getFullYear()} Nucleo Bariátrico. Todos los derechos reservados.`,
 };

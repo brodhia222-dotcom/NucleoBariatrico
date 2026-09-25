@@ -149,6 +149,12 @@ function LogoCard({
         style={{ rotateX, rotateY }}
         className="tilt-card relative grid aspect-square sm:aspect-[16/9] place-items-center overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-white transition-shadow duration-300 hover:shadow-[var(--shadow-lg)]"
       >
+        <span
+          aria-hidden
+          className="absolute bottom-2 right-2 z-10 grid h-7 w-7 place-items-center rounded-full bg-[color:var(--color-whatsapp)] shadow-[var(--shadow-sm)] sm:bottom-3 sm:right-3"
+        >
+          <WhatsappLogo weight="fill" className="h-3.5 w-3.5 text-white" />
+        </span>
         {plan.fit === "cover" ? (
           // Tile de marca con fondo de color propio → llena la tarjeta
           <img

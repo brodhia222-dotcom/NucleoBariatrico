@@ -85,7 +85,7 @@ export function Footer() {
           <div className="lg:col-span-2 flex flex-col gap-4">
             <p className="font-mono text-[12px] tracking-[0.14em] uppercase opacity-65">Sitio</p>
             <ul className="flex flex-col gap-2.5">
-              {nav.links.map((l) => (
+              {[...nav.links, { href: "#obras-sociales", label: "Obras sociales" }].map((l) => (
                 <li key={l.href}>
                   <a
                     href={l.href}
@@ -141,8 +141,10 @@ export function Footer() {
             <ul className="flex flex-col gap-4">
               {footer.sedes.map((s) => (
                 <li key={s.nombre}>
-                  <p className="text-sm font-medium text-[color:var(--ink-inverse)]">{s.nombre}</p>
-                  <p className="caption text-[color:var(--ink-inverse)]/58 mt-0.5">{s.direccion}</p>
+                  <a href="#ubicaciones" className="group block">
+                    <span className="block text-sm font-medium text-[color:var(--ink-inverse)] underline-offset-4 group-hover:underline">{s.nombre}</span>
+                    <span className="caption mt-0.5 block text-[color:var(--ink-inverse)]/58">{s.direccion}</span>
+                  </a>
                 </li>
               ))}
             </ul>

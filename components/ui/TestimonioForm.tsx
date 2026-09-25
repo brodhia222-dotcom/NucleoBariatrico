@@ -234,15 +234,17 @@ export function TestimonioForm({ abierto, onCerrar }: { abierto: boolean; onCerr
                     </label>
                   </div>
 
-                  <label className="flex flex-col gap-2" htmlFor={ids.proceso}>
-                    <span className="text-[15px] font-medium text-[color:var(--ink)]">{f.proceso}</span>
-                    <textarea id={ids.proceso} name="proceso" required rows={3} maxLength={3000} className={`${campo} resize-none py-3`} />
-                  </label>
+                  <div className="grid gap-4 lg:grid-cols-2">
+                    <label className="flex flex-col justify-between gap-2" htmlFor={ids.proceso}>
+                      <span className="text-[15px] font-medium text-[color:var(--ink)]">{f.proceso}</span>
+                      <textarea id={ids.proceso} name="proceso" required rows={3} maxLength={3000} className={`${campo} resize-none py-3`} />
+                    </label>
 
-                  <label className="flex flex-col gap-2" htmlFor={ids.cambio}>
-                    <span className="text-[15px] font-medium text-[color:var(--ink)]">{f.cambio}</span>
-                    <textarea id={ids.cambio} name="cambio" required rows={3} maxLength={3000} className={`${campo} resize-none py-3`} />
-                  </label>
+                    <label className="flex flex-col justify-between gap-2" htmlFor={ids.cambio}>
+                      <span className="text-[15px] font-medium text-[color:var(--ink)]">{f.cambio}</span>
+                      <textarea id={ids.cambio} name="cambio" required rows={3} maxLength={3000} className={`${campo} resize-none py-3`} />
+                    </label>
+                  </div>
 
                   {/* Foto opcional */}
                   <div className="flex flex-col gap-2">
@@ -255,9 +257,9 @@ export function TestimonioForm({ abierto, onCerrar }: { abierto: boolean; onCerr
                           <Camera weight="regular" className="h-6 w-6" />
                         </span>
                       )}
-                      <div className="flex flex-1 flex-col gap-2">
+                      <div className="flex flex-1 flex-col gap-2 lg:flex-row lg:items-center lg:justify-between lg:gap-4">
                         <p className="body-sm text-[color:var(--ink-soft)]">{f.fotoAyuda}</p>
-                        <div className="flex flex-wrap gap-2">
+                        <div className="flex shrink-0 flex-wrap gap-2">
                           <label htmlFor={ids.foto} className="btn btn-ghost cursor-pointer !px-4 !py-2 text-sm">
                             {foto ? "Cambiar foto" : f.fotoBoton}
                           </label>

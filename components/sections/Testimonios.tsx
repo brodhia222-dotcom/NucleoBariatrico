@@ -65,21 +65,24 @@ export function Testimonios() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={viewportOnce}
               transition={{ duration: 0.85, ease: easeEditorial }}
-              className="grid gap-8 lg:grid-cols-12 lg:gap-16 mb-16 lg:mb-20"
+              className={
+                main.foto
+                  ? "grid gap-8 lg:grid-cols-12 lg:gap-16 mb-16 lg:mb-20"
+                  : "mx-auto mb-16 max-w-4xl lg:mb-20"
+              }
             >
-              <div className="lg:col-span-5">
-                {main.foto ? (
+              {/* Sin foto, la cita va sola a lo ancho: la foto del formulario es opcional */}
+              {main.foto && (
+                <div className="lg:col-span-5">
                   <img
                     src={main.foto}
                     alt={`Testimonio de ${main.nombre}`}
                     loading="lazy"
                     className="aspect-[4/5] w-full rounded-[var(--radius-lg)] object-cover"
                   />
-                ) : (
-                  <div className="placeholder relative aspect-[4/5] rounded-[var(--radius-lg)] overflow-hidden" />
-                )}
-              </div>
-              <div className="lg:col-span-7 flex flex-col justify-between gap-6">
+                </div>
+              )}
+              <div className={main.foto ? "lg:col-span-7 flex flex-col justify-between gap-6" : "flex flex-col gap-6"}>
                 <Quotes weight="fill" className="h-9 w-9 text-[color:var(--accent)]" aria-hidden />
                 <blockquote
                   className="font-display italic-serif"
@@ -116,15 +119,13 @@ export function Testimonios() {
               transition={{ duration: 0.7, delay: i * 0.08, ease: easeEditorial }}
               className="flex flex-col gap-5"
             >
-              {t.foto ? (
+              {t.foto && (
                 <img
                   src={t.foto}
                   alt={`Testimonio de ${t.nombre}`}
                   loading="lazy"
                   className="aspect-[3/4] w-full rounded-[var(--radius-lg)] object-cover"
                 />
-              ) : (
-                <div className="placeholder relative aspect-[3/4] rounded-[var(--radius-lg)] overflow-hidden" />
               )}
               <Quotes weight="regular" className="h-5 w-5 text-[color:var(--accent)]" aria-hidden />
               <blockquote
