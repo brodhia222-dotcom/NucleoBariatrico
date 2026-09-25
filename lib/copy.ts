@@ -273,7 +273,7 @@ export const tratamientos = {
       id: "balon",
       nombre: "Balón gástrico",
       categoria: "Sin cirugía",
-      subtitulo: "Sin cirugía, sin endoscopia, sin anestesia",
+      subtitulo: "Sin cirugía, sin\u00A0endoscopia, sin\u00A0anestesia",
       parrafos: [
         noOrphans(
           "Una cápsula que se ingiere en una consulta de unos 15 minutos. En el estómago se convierte en un balón que genera saciedad durante aproximadamente 16 semanas y después se elimina de forma natural."
@@ -507,8 +507,8 @@ export const ubicaciones = {
   ],
   virtual: {
     titulo: "Consulta virtual",
-    texto: noOrphans("Podés hacer la primera consulta de forma virtual y continuar el proceso con nosotros."),
-    foto: "/images/sede-virtual.jpg",
+    // Distinto de la pregunta frecuente (que ya dice que se puede) y sin foto: la escena está en la tarjeta 4
+    texto: noOrphans("Si te queda lejos o preferís empezar desde casa, coordinamos tu primera consulta de forma virtual."),
   },
 };
 
@@ -588,7 +588,7 @@ export const faq = {
         {
           q: "¿Quién puede hacerse una cirugía bariátrica?",
           a: noOrphans(
-            "La indicación depende de tu IMC, de las enfermedades asociadas y de la evaluación del equipo. Podés calcular tu IMC en nuestra web como punto de partida, y en la consulta definimos si la cirugía es el camino indicado."
+            "La indicación depende de tu IMC, de las enfermedades asociadas y de la evaluación del equipo. Podés calcular tu IMC con la calculadora de esta página como punto de partida, y en la consulta definimos si la cirugía es el camino indicado."
           ),
           link: { href: "#imc", label: "Calcular mi IMC" },
         },

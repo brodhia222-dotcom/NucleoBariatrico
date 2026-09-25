@@ -158,7 +158,7 @@ export function TestimonioForm({ abierto, onCerrar }: { abierto: boolean; onCerr
               <X weight="bold" className="h-4 w-4" />
             </button>
 
-            <div data-lenis-prevent className="overflow-y-auto overscroll-contain p-6 sm:p-10">
+            <div data-lenis-prevent className="overflow-y-auto overscroll-contain p-6 sm:px-9 sm:py-8">
               {estado === "enviado" ? (
                 <div className="flex flex-col items-center gap-5 py-10 text-center">
                   <CheckCircle weight="fill" className="h-12 w-12 text-[color:var(--accent)]" aria-hidden />
@@ -184,7 +184,7 @@ export function TestimonioForm({ abierto, onCerrar }: { abierto: boolean; onCerr
                     iniciado.current = true;
                     track("form_start", { formulario: "testimonio" });
                   }}
-                  className="grid gap-5"
+                  className="grid gap-4"
                 >
                   <div className="flex flex-col gap-2 pr-10">
                     <h2
@@ -236,12 +236,12 @@ export function TestimonioForm({ abierto, onCerrar }: { abierto: boolean; onCerr
 
                   <label className="flex flex-col gap-2" htmlFor={ids.proceso}>
                     <span className="text-[15px] font-medium text-[color:var(--ink)]">{f.proceso}</span>
-                    <textarea id={ids.proceso} name="proceso" required rows={4} maxLength={3000} className={`${campo} resize-none py-3`} />
+                    <textarea id={ids.proceso} name="proceso" required rows={3} maxLength={3000} className={`${campo} resize-none py-3`} />
                   </label>
 
                   <label className="flex flex-col gap-2" htmlFor={ids.cambio}>
                     <span className="text-[15px] font-medium text-[color:var(--ink)]">{f.cambio}</span>
-                    <textarea id={ids.cambio} name="cambio" required rows={4} maxLength={3000} className={`${campo} resize-none py-3`} />
+                    <textarea id={ids.cambio} name="cambio" required rows={3} maxLength={3000} className={`${campo} resize-none py-3`} />
                   </label>
 
                   {/* Foto opcional */}
@@ -249,9 +249,9 @@ export function TestimonioForm({ abierto, onCerrar }: { abierto: boolean; onCerr
                     <span className="eyebrow">{f.foto}</span>
                     <div className="flex items-center gap-4 rounded-[12px] border border-dashed border-[color:var(--border-strong)] bg-[color:var(--bg)] p-3">
                       {foto ? (
-                        <img src={foto.url} alt="Foto elegida" className="h-16 w-16 shrink-0 rounded-[10px] object-cover" />
+                        <img src={foto.url} alt="Foto elegida" className="h-12 w-12 shrink-0 rounded-[10px] object-cover" />
                       ) : (
-                        <span aria-hidden className="grid h-16 w-16 shrink-0 place-items-center rounded-[10px] bg-[color:var(--bg-subtle)] text-[color:var(--ink-soft)]">
+                        <span aria-hidden className="grid h-12 w-12 shrink-0 place-items-center rounded-[10px] bg-[color:var(--bg-subtle)] text-[color:var(--ink-soft)]">
                           <Camera weight="regular" className="h-6 w-6" />
                         </span>
                       )}

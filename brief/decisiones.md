@@ -38,6 +38,10 @@ Lo que pidió o aprobó el cliente (o Fede para este cliente). No se repite en o
 - Equipo: retratos nuevos de los 3 médicos (de Nahuel se eligió Nahuel2; Nahuel1 queda como alternativa en brief/fotos/v6/equipo-nahuel-alt.jpg). "También te acompañan": Rocío (con inicial) + 3 nutricionistas con foto, "Nombre" y lorem hasta que manden nombres y bios. Ojo: la nutricionista del pañuelo (sin guardapolvo) podría ser otra persona; confirmar quién es quién.
 - Hero: foto nueva del equipo (misma escena antes/después, más ancha y con las caras cortadas).
 - SEO: título "Cirugía bariátrica en Villa del Parque · Nucleo Bariátrico" y descripción con los tratamientos.
+- Tras la 1ª pasada del crítico (v6): tarjeta 4 pasa a "Presencial o virtual" con foto de consulta virtual vista desde atrás (DSC01035); tarjeta 2 con las 3 nutricionistas solas; Preparación con la vista amplia del consultorio (DSC01090); Reganancia con el equipo revisando papeles (DSC01027); bypass con instrumental quirúrgico sin caras (Unsplash) para no repetir quirófanos. Retocada la B de Bien Être bordada en los guardapolvos de Nahuel y Agustina y la banderita del suéter de Sergio. El cartel verde de la fachada se deja a propósito en "Dónde atendemos" (es lo que el paciente busca al llegar); si el equipo prefiere sacarlo, se retoca. El nombre del espacio no se muestra hasta confirmar cómo se escribe.
+- "Qué nos diferencia" sin cursor (celular y tablet): foto arriba y texto abajo, para que ningún título ni ícono tape una cara.
+- Tras la 2ª pasada del crítico (v6): portada sin caja detrás del párrafo, solo un halo claro más firme; la consulta virtual de "Dónde atendemos" va sin foto (la escena ya está en la tarjeta 4) y con texto propio; formulario de testimonios más compacto para que entre en una pantalla de compu; retocadas las B bordadas que quedaban en otras 4 fotos (incluida la del cartel "Consultorio 4").
+- A decidir por Fede: unificar "Dejar un mensaje" (No estás solo) con el formulario de testimonios, así no hay dos formularios para pacientes.
 
 ## Técnico
 - robots en noindex hasta el lanzamiento real.

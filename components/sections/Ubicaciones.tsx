@@ -135,20 +135,16 @@ export function Ubicaciones() {
               href={virtualHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="group grid grid-cols-[96px_1fr] items-center gap-4 overflow-hidden rounded-[var(--radius-xl)] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-3 pr-5 transition-shadow hover:shadow-[var(--shadow-md)] sm:grid-cols-[120px_1fr]"
+              className="group flex items-start gap-4 rounded-[var(--radius-xl)] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-6 transition-shadow hover:shadow-[var(--shadow-md)] lg:p-8"
             >
-              <img
-                src={ubicaciones.virtual.foto}
-                alt=""
+              <span
                 aria-hidden
-                loading="lazy"
-                className="aspect-square w-full rounded-[var(--radius-lg)] object-cover"
-              />
+                className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[color:var(--accent-soft)] text-[color:var(--accent)]"
+              >
+                <VideoCamera weight="regular" className="h-5 w-5" />
+              </span>
               <span className="flex flex-col gap-1">
-                <span className="flex items-center gap-2 font-medium text-[color:var(--ink)]">
-                  <VideoCamera weight="regular" className="h-4 w-4 text-[color:var(--accent)]" aria-hidden />
-                  {ubicaciones.virtual.titulo}
-                </span>
+                <span className="font-medium text-[color:var(--ink)]">{ubicaciones.virtual.titulo}</span>
                 <span className="body-sm text-[color:var(--ink-soft)]">{ubicaciones.virtual.texto}</span>
                 <span className="mt-1 inline-flex items-center gap-1 text-sm font-medium text-[color:var(--ink)]">
                   Coordinar por WhatsApp

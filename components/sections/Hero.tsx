@@ -44,7 +44,7 @@ export function Hero() {
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 62% 55% at 50% 52%, color-mix(in srgb, var(--bg-elevated) 78%, transparent) 0%, color-mix(in srgb, var(--bg-elevated) 45%, transparent) 55%, transparent 100%)",
+            "radial-gradient(ellipse 60% 58% at 50% 55%, color-mix(in srgb, var(--bg-elevated) 86%, transparent) 0%, color-mix(in srgb, var(--bg-elevated) 62%, transparent) 50%, transparent 100%)",
         }}
       />
 
@@ -69,9 +69,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 1.1 }}
-            className="body-lg max-w-[52ch] rounded-[var(--radius-lg)] px-4 py-2 text-[color:var(--ink-soft)]"
-            // Velo suave solo detrás del párrafo para que se lea sobre las zonas oscuras de la foto
-            style={{ background: "color-mix(in srgb, var(--bg-elevated) 62%, transparent)", backdropFilter: "blur(2px)" }}
+            className="body-lg max-w-[52ch] text-[color:var(--ink-soft)]"
           >
             {hero.body}
           </motion.p>
