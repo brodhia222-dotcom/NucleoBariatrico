@@ -44,15 +44,15 @@ export function Ubicaciones() {
         </div>
 
         <div className="grid gap-6 lg:grid-cols-12 lg:gap-8">
-          {/* Fotos del lugar */}
+          {/* Fotos del lugar: la fila de abajo se estira hasta el final de la columna de al lado */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={viewportOnce}
             transition={{ duration: 0.8, ease: easeEditorial }}
-            className="grid grid-cols-2 gap-3 lg:col-span-7 lg:gap-4"
+            className="flex flex-col gap-3 lg:col-span-7 lg:gap-4"
           >
-            <figure className="col-span-2 overflow-hidden rounded-[var(--radius-xl)]">
+            <figure className="overflow-hidden rounded-[var(--radius-xl)]">
               <img
                 src={principal.src}
                 alt={principal.alt}
@@ -60,16 +60,18 @@ export function Ubicaciones() {
                 className="aspect-[2/1] w-full object-cover transition-transform duration-700 hover:scale-[1.02]"
               />
             </figure>
-            {resto.map((f) => (
-              <figure key={f.src} className="overflow-hidden rounded-[var(--radius-lg)]">
-                <img
-                  src={f.src}
-                  alt={f.alt}
-                  loading="lazy"
-                  className="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-[1.03]"
-                />
-              </figure>
-            ))}
+            <div className="grid flex-1 grid-cols-2 gap-3 lg:gap-4">
+              {resto.map((f) => (
+                <figure key={f.src} className="overflow-hidden rounded-[var(--radius-lg)] lg:h-full">
+                  <img
+                    src={f.src}
+                    alt={f.alt}
+                    loading="lazy"
+                    className="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-[1.03] lg:aspect-auto lg:h-full lg:min-h-[200px]"
+                  />
+                </figure>
+              ))}
+            </div>
           </motion.div>
 
           {/* Datos, mapa y consulta virtual */}
@@ -101,11 +103,9 @@ export function Ubicaciones() {
                   >
                     {sede.nombre}
                   </h3>
-                  <p className="body text-[color:var(--ink)]">{sede.calle}</p>
-                  <p className="body-sm text-[color:var(--ink-soft)]">
-                    Espacio {sede.espacio} · CABA
-                    {contacto.horario ? ` · ${contacto.horario}` : ""}
-                  </p>
+                  <p className="body text-[color:var(--ink)]">{sede.calle}, CABA</p>
+                  {/* El nombre del espacio se muestra cuando el equipo confirme cómo se escribe */}
+                  {contacto.horario && <p className="body-sm text-[color:var(--ink-soft)]">{contacto.horario}</p>}
                 </div>
               </div>
 

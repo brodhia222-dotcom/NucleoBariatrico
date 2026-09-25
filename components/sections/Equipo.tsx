@@ -88,7 +88,7 @@ export function Equipo() {
             <Reveal>
               <Eyebrow>{equipo.acompanamiento.eyebrow}</Eyebrow>
             </Reveal>
-            <ul className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+            <ul className="mt-6 grid gap-6 md:grid-cols-2 lg:gap-x-12 lg:gap-y-8">
               {equipo.acompanamiento.miembros.map((m, i) => (
                 <motion.li
                   key={`${m.rol}-${i}`}
@@ -96,9 +96,9 @@ export function Equipo() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={viewportOnce}
                   transition={{ duration: 0.8, delay: i * 0.08, ease: easeEditorial }}
-                  className="group flex gap-4 lg:flex-col lg:gap-5"
+                  className="group flex items-start gap-4 sm:gap-5"
                 >
-                  <figure className="w-24 shrink-0 overflow-hidden rounded-[var(--radius-lg)] sm:w-28 lg:w-full">
+                  <figure className="w-24 shrink-0 overflow-hidden rounded-[var(--radius-lg)] sm:w-28">
                     {m.foto ? (
                       <img
                         src={m.foto}
@@ -112,7 +112,7 @@ export function Equipo() {
                         aria-hidden
                         className="grid aspect-[4/5] w-full place-items-center bg-[color:var(--accent-soft)] font-display text-[color:var(--accent)]"
                         style={{
-                          fontSize: "clamp(40px, 5vw, 72px)",
+                          fontSize: "44px",
                           lineHeight: 1,
                           fontWeight: 300,
                           fontVariationSettings: '"opsz" 72',

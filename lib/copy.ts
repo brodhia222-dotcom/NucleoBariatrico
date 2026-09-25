@@ -98,16 +98,17 @@ export const diferencial = {
       foto: "/images/diferencial-cobertura.jpg",
     },
     {
-      badge: "04 · Dónde atendemos",
+      badge: "04 · Atención",
       // Sede única por ahora (PDF de ajustes 2026-09-24): Simbrón 3327, Villa del Parque.
       // La consulta virtual está confirmada en las preguntas frecuentes del mismo PDF.
-      title: noOrphans("Dónde atendemos"),
+      // La foto no repite ninguna de la sección "Dónde atendemos".
+      title: noOrphans("Presencial o virtual"),
       body: noOrphans(
-        "Te recibimos en Simbrón 3327, Villa del Parque. Si te queda más cómodo, la primera consulta también puede ser virtual."
+        "Te recibimos en Simbrón 3327, Villa del Parque, y la primera consulta también puede ser virtual."
       ),
-      cta: "Cómo llegar",
+      cta: "Ver dónde atendemos",
       href: "#ubicaciones",
-      foto: "/images/diferencial-sede.jpg",
+      foto: "/images/diferencial-virtual.jpg",
     },
   ] as {
     badge: string;
@@ -244,6 +245,8 @@ export type Tratamiento = {
   parrafos: string[];
   foto: string | null;
   fotoPos?: string;
+  // Versión apaisada para la banda de foto de la ventana en celular (si no, se usa la foto)
+  fotoHorizontal?: string;
 };
 
 export const tratamientos = {
@@ -280,6 +283,7 @@ export const tratamientos = {
         ),
       ],
       foto: "/images/tratamiento-balon.jpg",
+      fotoHorizontal: "/images/tratamiento-balon-horizontal.jpg",
     },
     {
       id: "manga",
@@ -395,7 +399,9 @@ export const testimonios = {
     consentimiento: "Acepto que mi testimonio y mi foto se publiquen en la web de Nucleo Bariátrico.",
     enviar: "Enviar testimonio",
     enviando: "Enviando…",
-    gracias: noOrphans("Gracias por compartir tu experiencia. Vamos a revisarla antes de publicarla."),
+    // El texto del equipo, en 2 renglones (una oración cada uno)
+    gracias: "Gracias por compartir tu experiencia.",
+    graciasDetalle: "Vamos a revisarla antes de publicarla.",
     error: "Algo no funcionó. Probá de nuevo o escribinos por WhatsApp.",
     errorFoto: "No pudimos procesar esa foto. Probá con otra en JPG o PNG.",
   },
@@ -546,6 +552,8 @@ export const noEstasSolo = {
 };
 
 // Preguntas y respuestas del equipo (PDF de ajustes 2026-09-24), en 3 grupos.
+export type PreguntaFrecuente = { q: string; a: string; link?: { href: string; label: string } };
+
 export const faq = {
   eyebrow: "Preguntas frecuentes",
   headline: "Lo que más nos consultan.",
@@ -582,6 +590,7 @@ export const faq = {
           a: noOrphans(
             "La indicación depende de tu IMC, de las enfermedades asociadas y de la evaluación del equipo. Podés calcular tu IMC en nuestra web como punto de partida, y en la consulta definimos si la cirugía es el camino indicado."
           ),
+          link: { href: "#imc", label: "Calcular mi IMC" },
         },
         {
           q: "Me operé y volví a subir de peso. ¿Pueden ayudarme?",
@@ -629,7 +638,7 @@ export const faq = {
         },
       ],
     },
-  ],
+  ] as { titulo: string; items: PreguntaFrecuente[] }[],
 };
 
 export const contacto = {

@@ -49,7 +49,11 @@ export function TestimonioForm({ abierto, onCerrar }: { abierto: boolean; onCerr
   useEffect(() => {
     if (!abierto) return;
     document.body.style.overflow = "hidden";
-    const t = setTimeout(() => primerCampo.current?.focus(), 250);
+    // En celular no se pone el foco solo: levantaría el teclado encima del formulario
+    const conCursor = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    const t = setTimeout(() => {
+      if (conCursor) primerCampo.current?.focus();
+    }, 250);
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onCerrar();
     };
@@ -158,13 +162,16 @@ export function TestimonioForm({ abierto, onCerrar }: { abierto: boolean; onCerr
               {estado === "enviado" ? (
                 <div className="flex flex-col items-center gap-5 py-10 text-center">
                   <CheckCircle weight="fill" className="h-12 w-12 text-[color:var(--accent)]" aria-hidden />
-                  <p
-                    id={ids.titulo}
-                    className="font-display max-w-[30ch]"
-                    style={{ fontSize: "clamp(22px, 2.4vw, 28px)", lineHeight: 1.2, fontWeight: 300 }}
-                  >
-                    {f.gracias}
-                  </p>
+                  <div className="flex flex-col gap-2">
+                    <p
+                      id={ids.titulo}
+                      className="font-display"
+                      style={{ fontSize: "clamp(22px, 2.4vw, 28px)", lineHeight: 1.2, fontWeight: 300, textWrap: "balance" }}
+                    >
+                      {f.gracias}
+                    </p>
+                    <p className="body text-[color:var(--ink-soft)]">{f.graciasDetalle}</p>
+                  </div>
                   <button type="button" onClick={onCerrar} className="btn btn-ghost">
                     Cerrar
                   </button>
@@ -228,12 +235,12 @@ export function TestimonioForm({ abierto, onCerrar }: { abierto: boolean; onCerr
                   </div>
 
                   <label className="flex flex-col gap-2" htmlFor={ids.proceso}>
-                    <span className="eyebrow normal-case tracking-normal text-sm font-medium text-[color:var(--ink)]">{f.proceso}</span>
+                    <span className="text-[15px] font-medium text-[color:var(--ink)]">{f.proceso}</span>
                     <textarea id={ids.proceso} name="proceso" required rows={4} maxLength={3000} className={`${campo} resize-none py-3`} />
                   </label>
 
                   <label className="flex flex-col gap-2" htmlFor={ids.cambio}>
-                    <span className="eyebrow normal-case tracking-normal text-sm font-medium text-[color:var(--ink)]">{f.cambio}</span>
+                    <span className="text-[15px] font-medium text-[color:var(--ink)]">{f.cambio}</span>
                     <textarea id={ids.cambio} name="cambio" required rows={4} maxLength={3000} className={`${campo} resize-none py-3`} />
                   </label>
 

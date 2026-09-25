@@ -69,7 +69,9 @@ export function Hero() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 1.1 }}
-            className="body-lg max-w-[52ch] text-[color:var(--ink-soft)]"
+            className="body-lg max-w-[52ch] rounded-[var(--radius-lg)] px-4 py-2 text-[color:var(--ink-soft)]"
+            // Velo suave solo detrás del párrafo para que se lea sobre las zonas oscuras de la foto
+            style={{ background: "color-mix(in srgb, var(--bg-elevated) 62%, transparent)", backdropFilter: "blur(2px)" }}
           >
             {hero.body}
           </motion.p>

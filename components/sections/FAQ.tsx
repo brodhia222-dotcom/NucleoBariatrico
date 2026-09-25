@@ -77,10 +77,7 @@ export function FAQ() {
                       transition={{ type: "spring", stiffness: 380, damping: 34 }}
                     />
                   )}
-                  <span className="relative">
-                    {g.titulo}
-                    <span className={`ml-2 tabular ${activo ? "opacity-70" : "opacity-60"}`}>{g.items.length}</span>
-                  </span>
+                  <span className="relative">{g.titulo}</span>
                 </button>
               );
             })}
@@ -140,8 +137,16 @@ export function FAQ() {
                           transition={{ duration: 0.45, ease: [0.65, 0, 0.35, 1] }}
                           className="overflow-hidden"
                         >
-                          <div className="pr-12 pb-7 max-w-3xl">
+                          <div className="pb-7 max-w-3xl sm:pr-12">
                             <p className="body-lg text-[color:var(--ink-soft)] leading-relaxed">{item.a}</p>
+                            {item.link && (
+                              <a
+                                href={item.link.href}
+                                className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-[color:var(--ink)] underline decoration-[color:var(--accent)] underline-offset-4 hover:decoration-2"
+                              >
+                                {item.link.label}
+                              </a>
+                            )}
                           </div>
                         </motion.div>
                       )}

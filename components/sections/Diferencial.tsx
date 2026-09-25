@@ -77,20 +77,76 @@ export function Diferencial() {
               const Icon = icons[i] ?? icons[0];
               const isActive = esCelular || i === active;
               return (
-                <ExpandingCard
-                  key={item.title}
-                  index={i}
-                  isActive={isActive}
-                  onActivate={() => setActive(i)}
-                  item={item}
-                  Icon={Icon}
-                />
+                esCelular ? (
+                  <TouchCard key={item.title} item={item} Icon={Icon} />
+                ) : (
+                  <ExpandingCard
+                    key={item.title}
+                    index={i}
+                    isActive={isActive}
+                    onActivate={() => setActive(i)}
+                    item={item}
+                    Icon={Icon}
+                  />
+                )
               );
             })}
           </div>
         </Reveal>
       </Container>
     </Section>
+  );
+}
+
+// Sin cursor (celular y tablet): foto arriba y texto abajo sobre el violeta, así ningún título
+// ni ícono queda encima de una cara.
+function TouchCard({ item, Icon }: { item: (typeof diferencial)["items"][number]; Icon: IconType }) {
+  return (
+    <motion.a
+      href={item.href}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={viewportOnce}
+      transition={{ duration: 0.6, ease: easeEditorial }}
+      className="group flex flex-col overflow-hidden rounded-[var(--radius-xl)] bg-[color:var(--bg-inverse)] text-left text-[color:var(--ink-inverse)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)] focus-visible:ring-offset-2"
+    >
+      <div className="relative aspect-[16/10] overflow-hidden">
+        {item.foto ? (
+          <img src={item.foto} alt="" aria-hidden loading="lazy" className="h-full w-full object-cover" />
+        ) : (
+          <div aria-hidden className="placeholder h-full w-full" style={{ borderRadius: 0 }} />
+        )}
+      </div>
+      <div className="flex flex-1 flex-col gap-3 p-6">
+        <div className="flex items-start justify-between gap-4">
+          <h3
+            className="font-display"
+            style={{
+              fontSize: "clamp(22px, 2.4vw, 28px)",
+              lineHeight: 1.06,
+              letterSpacing: "-0.02em",
+              fontWeight: 300,
+              fontVariationSettings: '"opsz" 56',
+              textWrap: "balance",
+            }}
+          >
+            {item.title}
+          </h3>
+          <span
+            aria-hidden
+            className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[color:var(--ink-inverse)]/12 text-[color:var(--ink-inverse)]"
+          >
+            <Icon weight="regular" className="h-5 w-5" />
+          </span>
+        </div>
+        <p className="body-sm opacity-85">{item.body}</p>
+        <span className="mt-auto inline-flex items-center gap-2 pt-2 text-xs font-medium tracking-wide">
+          <span className="block h-px w-8 bg-[color:var(--accent)]" />
+          {item.cta}
+          <ArrowUpRight weight="bold" className="h-3.5 w-3.5 opacity-80" />
+        </span>
+      </div>
+    </motion.a>
   );
 }
 

@@ -17,16 +17,27 @@ function whatsappDe(texto: string) {
   return `https://wa.me/${brand.whatsappNumber.replace(/[^\d]/g, "")}?text=${encodeURIComponent(texto)}`;
 }
 
-function Foto({ op, className }: { op: { foto: string | null; nombre: string; fotoPos?: string }; className?: string }) {
+function Foto({
+  op,
+  className,
+  apaisadaEnCelular = false,
+}: {
+  op: { foto: string | null; nombre: string; fotoPos?: string; fotoHorizontal?: string };
+  className?: string;
+  apaisadaEnCelular?: boolean;
+}) {
   return op.foto ? (
-    <img
-      src={op.foto}
-      alt=""
-      aria-hidden
-      loading="lazy"
-      className={`h-full w-full object-cover ${className ?? ""}`}
-      style={{ objectPosition: op.fotoPos ?? "center" }}
-    />
+    <picture>
+      {apaisadaEnCelular && op.fotoHorizontal && <source media="(max-width: 767px)" srcSet={op.fotoHorizontal} />}
+      <img
+        src={op.foto}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className={`h-full w-full object-cover ${className ?? ""}`}
+        style={{ objectPosition: op.fotoPos ?? "center" }}
+      />
+    </picture>
   ) : (
     <div aria-hidden className={`placeholder h-full w-full ${className ?? ""}`} style={{ borderRadius: 0 }} />
   );
@@ -206,7 +217,7 @@ export function Tratamientos() {
 
             <motion.div
               layoutId={`tratamiento-${openOption.id}`}
-              className="relative z-10 flex max-h-[calc(100dvh-2rem)] w-full max-w-3xl flex-col overflow-hidden rounded-[var(--radius-2xl)] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] shadow-[var(--shadow-lg)] md:h-[520px] md:flex-row"
+              className="relative z-10 flex max-h-[calc(100dvh-2rem)] w-full max-w-3xl flex-col overflow-hidden rounded-[var(--radius-2xl)] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] shadow-[var(--shadow-lg)] md:min-h-[420px] md:flex-row"
               role="dialog"
               aria-modal="true"
               aria-label={openOption.nombre}
@@ -223,9 +234,9 @@ export function Tratamientos() {
 
               <motion.div
                 layoutId={`tratamiento-${openOption.id}-media`}
-                className="relative h-44 shrink-0 overflow-hidden md:h-auto md:w-2/5"
+                className="relative h-48 shrink-0 overflow-hidden md:h-auto md:w-2/5"
               >
-                <Foto op={openOption} />
+                <Foto op={openOption} apaisadaEnCelular />
               </motion.div>
 
               <motion.div
@@ -236,7 +247,10 @@ export function Tratamientos() {
                 data-lenis-prevent
                 className="flex flex-1 flex-col gap-4 overflow-y-auto overscroll-contain p-7 lg:p-10"
               >
-                <span className="font-mono text-[12px] tracking-[0.12em] uppercase text-[color:var(--accent)] pr-10">
+                <span
+                  className="font-mono text-[12px] tracking-[0.12em] uppercase text-[color:var(--accent)] pr-10"
+                  style={{ textWrap: "balance" }}
+                >
                   {openOption.subtitulo}
                 </span>
 
@@ -263,7 +277,7 @@ export function Tratamientos() {
                   href={whatsappDe(`Hola, quiero consultar por ${openOption.nombre.toLowerCase()}.`)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn btn-primary group mt-auto w-fit"
+                  className="btn btn-primary group mt-2 w-fit"
                 >
                   Consultar por este tratamiento
                   <ArrowRight
