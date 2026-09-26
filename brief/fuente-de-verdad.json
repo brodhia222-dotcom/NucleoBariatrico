@@ -24,6 +24,7 @@
       { "valor": "Nombre del espacio donde atienden: el equipo escribió \"Bienetre\"; el cartel y el membrete del lugar dicen \"Bien Être Oasis\"", "estado": "dudoso", "fuente": "PDF de ajustes del equipo 2026-09-24 y fotos de la sesión 2026-09 (DSC01129 a DSC01144)" }
     ],
     "horarios": [],
+    "horarios_nota": { "valor": "No se publica horario: no atienden fijo en la sede, se organizan según las consultas que van teniendo", "estado": "confirmado", "fuente": "account manager vía Fede 2026-09-26" },
     "redes": [
       { "valor": "https://www.instagram.com/nucleobariatrico/", "estado": "confirmado", "fuente": "material del equipo 2026-07-03" }
     ],
@@ -143,7 +144,6 @@
     "Nutricionistas: nombre, título y una bio corta de cada una. En la carpeta de fotos hay 3 personas distintas: ¿nos confirman quién es quién? Si alguna es Rocío, avísennos para usar esa foto en su presentación.",
     "Retrato de Rocío, si no está entre esas fotos.",
     "¿Cómo se escribe el nombre del espacio de Simbrón 3327? Ustedes escribieron \"Bienetre\" y el cartel dice \"Bien Être Oasis\". Lo mostramos tal cual nos confirmen.",
-    "Horario de atención en Villa del Parque (y de las consultas virtuales, si es distinto).",
     "Cómo llegar a Simbrón 3327: si quieren indicar colectivos, tren o estacionamiento, pásennos los datos. Si no, mostramos solo la dirección y el mapa.",
     "Testimonios: ¿a qué mail o WhatsApp quieren que les lleguen los que se carguen desde la web, y quién los revisa antes de publicarlos?",
     "Testimonios: ¿quieren sumar un dato de contacto (teléfono o mail, que no se publica) para poder verificar que es un paciente antes de aprobarlo?",
@@ -166,7 +166,6 @@
     { "tema": "Placeholders con forma de dato", "detalle": "Testimonios de ejemplo con \"8 meses después de la cirugía\", \"1 año y 2 meses\" y 5 estrellas, y mensajes de \"No estás solo\" firmados \"Una paciente · 6 meses post-cirugía\": no son datos reales y no pueden quedar visibles en producción." },
     { "tema": "Mail publicado", "detalle": "El sitio no muestra mail (brand.email = null). El equipo prefería algo como info@...; no publicar ninguno hasta que exista la casilla." },
     { "tema": "Dominio", "detalle": "brand.domain = nucleobariatrico.com.ar se usa en la URL para compartir y en los datos para Google, pero el dominio no está registrado ni elegido (el equipo prefería .com). Confirmar antes del lanzamiento." },
-    { "tema": "Horarios", "detalle": "Lunes a viernes de 9 a 19 fue una propuesta de la reunión 2026-07-06; falta que la confirmen. Hoy el horario está oculto." },
     { "tema": "Cómo llegar", "detalle": "Ya hay dirección, pero no hay indicaciones de transporte en el material. No publicar líneas de colectivo, tren o subte hasta que el equipo las pase." }
   ]
 }

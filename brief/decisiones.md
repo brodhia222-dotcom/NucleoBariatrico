@@ -45,5 +45,10 @@ Lo que pidió o aprobó el cliente (o Fede para este cliente). No se repite en o
 - Quedan como están (bajas del crítico): tarjeta 3 de "Qué nos diferencia" con el mismo escritorio que Proceso 01, detalles de fondo en los retratos de Agustina y Sergio, pestañas de preguntas en 2 + 1 en celular.
 - A decidir por Fede: unificar "Dejar un mensaje" (No estás solo) con el formulario de testimonios, así no hay dos formularios para pacientes.
 
+## Después de la entrega v6 (account manager, 2026-09-26)
+- Horarios: no se publican. No atienden fijo en la sede; se organizan según las consultas que van teniendo. La web ya no los muestra en ningún lado.
+- Lo único pendiente del equipo: bios de las nutricionistas y testimonios. Los testimonios van a ir llegando con el tiempo (la account manager les pasó una plantilla de mensaje para sus pacientes). Se cargan cuando Fede los pase.
+- No se le reenvía al equipo la lista de pendientes del checkpoint v6: el resto se resuelve de nuestro lado (nombre del espacio sin mostrar, cartel de la fachada queda, "Cómo llegar" con Google Maps, retrato de Rocío con inicial).
+
 ## Técnico
 - robots en noindex hasta el lanzamiento real.

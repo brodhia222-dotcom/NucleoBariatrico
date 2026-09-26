@@ -643,8 +643,8 @@ export const faq = {
 
 export const contacto = {
   eyebrow: "Contacto",
-  // Horario sin confirmar (la reunión 2026-07-06 propuso Lun a Vie de 9 a 19): mientras sea null
-  // no se muestra. Cuando lo confirmen, cargarlo acá y aparece en Contacto y en la sede.
+  // Sin horario a propósito (account manager, 2026-09-26): no atienden fijo en la sede, se organizan
+  // según las consultas. Si algún día lo publican, cargarlo acá y aparece en Contacto y en la sede.
   horario: null as string | null,
   headline: "Conversemos.",
   body: noOrphans(
