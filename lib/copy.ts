@@ -194,8 +194,7 @@ export const equipo = {
     },
   ],
   // Otras disciplinas que forman parte del proceso. Se muestran debajo de los
-  // cirujanos en formato compacto; mientras no haya retrato (foto: null) se
-  // ve la inicial del nombre.
+  // cirujanos en formato compacto; sin retrato (foto: null) se ve la inicial del nombre.
   acompanamiento: {
     eyebrow: "También te acompañan",
     miembros: [
@@ -206,27 +205,22 @@ export const equipo = {
         bio: noOrphans(
           "Licenciada en Psicología (USAL) y psicoanalista, con práctica clínica desde 2008. Miembro de la Escuela Freudiana de Buenos Aires. En el equipo realiza las evaluaciones psicológicas prequirúrgicas: un espacio de escucha para preparar a cada paciente y acompañar los cambios que implica el tratamiento."
         ),
-        foto: null,
+        // La del pañuelo de la carpeta Nutricionistas es Rocío (account manager, 2026-09-28)
+        foto: "/images/equipo-rocio.jpg",
       },
-      // Nutricionistas (PDF de ajustes 2026-09-24): fotos de su sesión; nombres y bios todavía
-      // pendientes, por eso van "Nombre" y lorem. Confirmar quién es quién antes de cargarlos.
+      // Nutricionistas (account manager, 2026-09-28): Lic. Solange Leban y Lic. Débora Salamon.
+      // Solo el nombre, como el resto del equipo. Bios todavía pendientes, por eso va lorem.
       {
-        nombre: "Nombre",
+        nombre: "Solange",
         rol: "Nutricionista",
         bio: lorem.short,
-        foto: "/images/equipo-nutricionista-1.jpg",
+        foto: "/images/equipo-solange.jpg",
       },
       {
-        nombre: "Nombre",
+        nombre: "Débora",
         rol: "Nutricionista",
         bio: lorem.short,
-        foto: "/images/equipo-nutricionista-2.jpg",
-      },
-      {
-        nombre: "Nombre",
-        rol: "Nutricionista",
-        bio: lorem.short,
-        foto: "/images/equipo-nutricionista-3.jpg",
+        foto: "/images/equipo-debora.jpg",
       },
     ] as { nombre: string; rol: string; bio: string; foto: string | null }[],
   },

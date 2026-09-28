@@ -49,6 +49,7 @@ Lo que pidió o aprobó el cliente (o Fede para este cliente). No se repite en o
 - Horarios: no se publican. No atienden fijo en la sede; se organizan según las consultas que van teniendo. La web ya no los muestra en ningún lado.
 - Lo único pendiente del equipo: bios de las nutricionistas y testimonios. Los testimonios van a ir llegando con el tiempo (la account manager les pasó una plantilla de mensaje para sus pacientes). Se cargan cuando Fede los pase.
 - No se le reenvía al equipo la lista de pendientes del checkpoint v6: el resto se resuelve de nuestro lado (nombre del espacio sin mostrar, cartel de la fachada queda, "Cómo llegar" con Google Maps, retrato de Rocío con inicial).
+- Equipo (account manager, 2026-09-28): la del pañuelo es Rocío, la psicóloga; su foto pasa a su presentación. Las nutricionistas son 2: Lic. Solange Leban (camisa rosa) y Lic. Débora Salamon (brazos cruzados). Se muestran solo con el nombre, como el resto del equipo; bios pendientes (lorem). La tarjeta 2 de "Qué nos diferencia" (las 3 juntas) queda igual: son las 2 nutricionistas y la psicóloga, justo lo que cuenta la tarjeta.
 
 ## Técnico
 - robots en noindex hasta el lanzamiento real.

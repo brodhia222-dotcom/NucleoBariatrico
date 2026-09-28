@@ -141,8 +141,7 @@
     "videos": []
   },
   "faltante": [
-    "Nutricionistas: nombre, título y una bio corta de cada una. En la carpeta de fotos hay 3 personas distintas: ¿nos confirman quién es quién? Si alguna es Rocío, avísennos para usar esa foto en su presentación.",
-    "Retrato de Rocío, si no está entre esas fotos.",
+    "Nutricionistas: una bio corta de cada una (Lic. Solange Leban y Lic. Débora Salamon).",
     "¿Cómo se escribe el nombre del espacio de Simbrón 3327? Ustedes escribieron \"Bienetre\" y el cartel dice \"Bien Être Oasis\". Lo mostramos tal cual nos confirmen.",
     "Cómo llegar a Simbrón 3327: si quieren indicar colectivos, tren o estacionamiento, pásennos los datos. Si no, mostramos solo la dirección y el mapa.",
     "Testimonios: ¿a qué mail o WhatsApp quieren que les lleguen los que se carguen desde la web, y quién los revisa antes de publicarlos?",
@@ -161,7 +160,6 @@
     { "tema": "Rol de efector y gestión de la autorización", "detalle": "\"Como efectores de cirugía bariátrica, gestionamos tu autorización y te acompañamos con la cobertura\" y \"Hacemos el trámite de autorización con tu obra social\" (copy 2026-07-03). El PDF nuevo reemplazó el paso \"Cobertura y trámites\" por \"Preparación\" y la tarjeta de cobertura por \"Atendemos pacientes con distintas coberturas. Escribinos y revisamos tu caso\": ya no promete el trámite. Además, \"efector ante tu obra social\" sugiere que lo son ante cualquiera. No publicar hasta que lo confirmen." },
     { "tema": "Convenios y tiempos de respuesta de cobertura", "detalle": "\"Trabajamos con más convenios de los que podemos listar acá\" y \"te confirmamos tu cobertura en minutos\" (obrasSociales.otras.body en lib/copy.ts, hoy no se muestra). No confirmado: la reunión pidió no afirmar convenios y el tiempo confirmado es 24 horas hábiles." },
     { "tema": "Resúmenes viejos de los tratamientos", "detalle": "\"La técnica más utilizada\" (manga), \"Para casos más avanzados\" (bypass), \"Dispositivo temporal y reversible\" (balón) y \"Medicación bajo seguimiento médico\" (inyectables) no salen del material del equipo. Reemplazarlos por los subtítulos del PDF." },
-    { "tema": "Quiénes son las personas de la carpeta Nutricionistas", "detalle": "Hay 3 mujeres distintas: 2 con guardapolvo y 1 sin guardapolvo (chaleco negro y pañuelo). El PDF solo dice \"fotos de las nutris\" y en las preguntas frecuentes el equipo habla de \"psicóloga\" y \"nutricionistas\": podrían ser 2 nutricionistas y Rocío, o 3 nutricionistas. No asignar foto, nombre ni rol hasta que el equipo lo confirme." },
     { "tema": "Fotos de antes y después en testimonios", "detalle": "El formulario del PDF las ofrece, pero en julio el equipo pidió una portada con menos efecto de antes y después. Confirmar con el equipo antes de publicar alguna." },
     { "tema": "Placeholders con forma de dato", "detalle": "Testimonios de ejemplo con \"8 meses después de la cirugía\", \"1 año y 2 meses\" y 5 estrellas, y mensajes de \"No estás solo\" firmados \"Una paciente · 6 meses post-cirugía\": no son datos reales y no pueden quedar visibles en producción." },
     { "tema": "Mail publicado", "detalle": "El sitio no muestra mail (brand.email = null). El equipo prefería algo como info@...; no publicar ninguno hasta que exista la casilla." },
