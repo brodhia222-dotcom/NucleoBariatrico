@@ -82,13 +82,14 @@ export function Equipo() {
         </ul>
 
         {/* Otras disciplinas del proceso (psicología y nutrición), más chicas que los cirujanos:
-            en fila con foto al costado en celular y tablet, en 4 columnas en compu */}
+            en celular foto al costado; desde tablet, 3 columnas alineadas con las de los cirujanos
+            y la foto arriba, para que el texto no quede angosto */}
         {equipo.acompanamiento.miembros.length > 0 && (
           <div className="mt-14 border-t border-[color:var(--border)] pt-10 lg:mt-20 lg:pt-12">
             <Reveal>
               <Eyebrow>{equipo.acompanamiento.eyebrow}</Eyebrow>
             </Reveal>
-            <ul className="mt-6 grid gap-6 md:grid-cols-2 lg:gap-x-12 lg:gap-y-8">
+            <ul className="mt-6 grid gap-6 md:grid-cols-3 md:gap-8 lg:gap-10">
               {equipo.acompanamiento.miembros.map((m, i) => (
                 <motion.li
                   key={`${m.rol}-${i}`}
@@ -96,7 +97,7 @@ export function Equipo() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={viewportOnce}
                   transition={{ duration: 0.8, delay: i * 0.08, ease: easeEditorial }}
-                  className="group flex items-start gap-4 sm:gap-5"
+                  className="group flex items-start gap-4 sm:gap-5 md:flex-col md:gap-4"
                 >
                   <figure className="w-24 shrink-0 overflow-hidden rounded-[var(--radius-lg)] sm:w-28">
                     {m.foto ? (
