@@ -51,6 +51,7 @@ Lo que pidió o aprobó el cliente (o Fede para este cliente). No se repite en o
 - No se le reenvía al equipo la lista de pendientes del checkpoint v6: el resto se resuelve de nuestro lado (nombre del espacio sin mostrar, cartel de la fachada queda, "Cómo llegar" con Google Maps, retrato de Rocío con inicial).
 - Equipo (account manager, 2026-09-28): la del pañuelo es Rocío, la psicóloga; su foto pasa a su presentación. Las nutricionistas son 2: Lic. Solange Leban (camisa rosa) y Lic. Débora Salamon (brazos cruzados). Se muestran solo con el nombre, como el resto del equipo; bios pendientes (lorem). La tarjeta 2 de "Qué nos diferencia" (las 3 juntas) queda igual: son las 2 nutricionistas y la psicóloga, justo lo que cuenta la tarjeta.
 - "También te acompañan" (pedido de Fede, 2026-09-28): 3 columnas alineadas con las de los cirujanos para no dejar un hueco (eran 3 personas en 2 columnas); desde tablet la foto va arriba del texto, en celular sigue al costado.
+- Equipo (pedido de Fede, 2026-09-28, reemplaza el punto anterior de las 3 columnas): psicóloga y nutricionistas con la misma tarjeta y la misma foto que los cirujanos, en una segunda fila separada solo por una línea fina; se sacó el rótulo "También te acompañan". Las 3 fotos se recortaron de nuevo desde los originales (_Q5A2272 Rocío, _Q5A2169 Solange, _Q5A2203 Débora) a 1200x1500 con la cara al mismo alto y tamaño que los cirujanos; la de Débora, corrida para dejar afuera la esquina de la pared.
 
 ## Técnico
 - robots en noindex hasta el lanzamiento real.

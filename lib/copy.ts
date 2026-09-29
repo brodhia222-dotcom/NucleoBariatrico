@@ -193,10 +193,10 @@ export const equipo = {
       foto: "/images/equipo-nahuel.jpg",
     },
   ],
-  // Otras disciplinas que forman parte del proceso. Se muestran debajo de los
-  // cirujanos en formato compacto; sin retrato (foto: null) se ve la inicial del nombre.
+  // Psicóloga y nutricionistas: misma tarjeta y mismo tamaño que los cirujanos, en una
+  // segunda fila separada por una línea fina, sin rótulo (pedido de Fede, 2026-09-28).
+  // Sin retrato (foto: null) se ve la inicial del nombre.
   acompanamiento: {
-    eyebrow: "También te acompañan",
     miembros: [
       {
         nombre: "Rocío",
