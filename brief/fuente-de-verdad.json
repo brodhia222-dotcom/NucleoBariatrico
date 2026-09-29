@@ -125,7 +125,7 @@
     { "texto": "La cobertura varía según tu plan y el tratamiento indicado. Consultanos por WhatsApp y lo revisamos con vos.", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Obras sociales (sección con logos)" },
     { "texto": "La cobertura de la cirugía depende del plan y de los requisitos médicos de cada cobertura", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Preguntas frecuentes" },
     { "texto": "La medicación para el tratamiento de la obesidad no está incluida en el PMO; en general, la mayoría de las obras sociales y prepagas no la cubren", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Preguntas frecuentes" },
-    { "texto": "Obras sociales destacadas: OSDE y Medifé, más una opción \"Otras\" (reemplaza a Swiss Medical, que era ejemplo)", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Obras sociales" }
+    { "texto": "Obras sociales destacadas: OSDE y Medicus, más una opción \"Otras\" (Medicus reemplaza a Medifé; antes Swiss Medical era ejemplo)", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24 y aviso del equipo vía Fede 2026-09-29" }
   ],
   "numeros": [
     { "valor": "24", "significa": "horas hábiles de respuesta", "estado": "confirmado", "fuente": "copy aprobado 2026-07-03" },
@@ -136,7 +136,7 @@
   ],
   "material_visual": {
     "logos": ["public/logos/logo-indigo.png", "public/logos/logo-blanco.png", "public/logos/footer-logo.png"],
-    "logos_obras_sociales": ["public/images/obras/osde.png", "public/images/obras/medife.png"],
+    "logos_obras_sociales": ["public/images/obras/osde.png", "public/images/obras/medicus.svg (logo oficial de medicus.com.ar, en blanco sobre el azul de la marca #002564)"],
     "fotos": "En sitio: retratos y grupal del equipo (2026-07) y sesión de consultorio (2026-09) en public/images. Nuevas 2026-09-24 en C:/Users/feded/Desktop/FotosNucleo: FotosEquipo (retratos nuevos de Agustina, Sergio y 2 opciones de Nahuel), Nutricionistas (45 fotos: 3 mujeres distintas por separado y grupales de las 3 con un cirujano; sin identificar quién es quién), FotosSecciones (Hero.jpeg nuevo y fotos del balón gástrico IMG_2314 a 2316), FotosLugar (misma sesión RAW ya procesada, incluye fotos de atención virtual y consulta según el equipo).",
     "videos": []
   },

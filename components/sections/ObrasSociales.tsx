@@ -48,7 +48,7 @@ export function ObrasSociales() {
           </Reveal>
         </div>
 
-        {/* OSDE · Medifé · Otras (PDF de ajustes 2026-09-24): las 3 tarjetas llevan a WhatsApp;
+        {/* OSDE · Medicus · Otras: las 3 tarjetas llevan a WhatsApp;
             la de "Otras" cubre a quien tiene otra obra social o prepaga */}
         <ul className="mx-auto grid max-w-3xl grid-cols-3 gap-3 sm:gap-4">
           {obrasSociales.destacadas.map((plan, i) => (

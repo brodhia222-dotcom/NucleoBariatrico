@@ -54,5 +54,7 @@ Lo que pidió o aprobó el cliente (o Fede para este cliente). No se repite en o
 - Equipo (pedido de Fede, 2026-09-28, reemplaza el punto anterior de las 3 columnas): psicóloga y nutricionistas con la misma tarjeta y la misma foto que los cirujanos, en una segunda fila separada solo por una línea fina; se sacó el rótulo "También te acompañan". Las 3 fotos se recortaron de nuevo desde los originales (_Q5A2272 Rocío, _Q5A2169 Solange, _Q5A2203 Débora) a 1200x1500 con la cara al mismo alto y tamaño que los cirujanos; la de Débora, corrida para dejar afuera la esquina de la pared.
 - "Dónde atendemos" (pedido de Fede, 2026-09-28: las fotos "quedaron raras"): 2 fotos verticales lado a lado, que terminan a la altura de la columna del mapa. Fachada entera de frente (DSC01141), recortada sin el roll-up de estética y con la patente y la marca del auto tapadas; número 3327 con el cartel en la entrada (DSC01144). Se sacaron la puerta suelta (DSC01129) y el pasillo con gente de espaldas (DSC01097): el interior ya aparece en Proceso y en "Qué nos diferencia".
 
+- Obras sociales (aviso del equipo vía Fede, 2026-09-29): Medicus reemplaza a Medifé. El equipo nunca mandó el logo de Medicus (no está en FotosNucleo/ObrasSociales), así que se usó el oficial de medicus.com.ar (el SVG de su encabezado) en blanco sobre su azul de marca #002564, con el mismo formato que la tarjeta de OSDE. El mensaje de WhatsApp de la tarjeta dice "Hola, tengo Medicus y quiero consultar qué cubre mi plan.".
+
 ## Técnico
 - robots en noindex hasta el lanzamiento real.

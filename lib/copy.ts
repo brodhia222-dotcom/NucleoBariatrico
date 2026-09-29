@@ -462,12 +462,14 @@ export const obrasSociales = {
   ),
   badge: "Consultá tu cobertura",
   cta: { label: "Consultar mi cobertura" },
-  // Destacadas confirmadas por el equipo (PDF de ajustes 2026-09-24): OSDE · Medifé · Otras.
+  // Destacadas confirmadas por el equipo: OSDE · Medicus · Otras. Medicus reemplaza a Medifé
+  // (aviso del equipo vía Fede, 2026-09-29); su logo es el oficial de medicus.com.ar, en blanco
+  // sobre el azul de la marca (#002564), igual que la tarjeta de OSDE.
   // fit: "cover" = tile de marca con fondo propio (llena la tarjeta);
   //      "contain" = logo sobre fondo claro (centrado en tarjeta blanca)
   destacadas: [
     { nombre: "OSDE", logo: "/images/obras/osde.png", fit: "cover" },
-    { nombre: "Medifé", logo: "/images/obras/medife.png", fit: "cover" },
+    { nombre: "Medicus", logo: "/images/obras/medicus.svg", fit: "cover" },
   ] as { nombre: string; logo: string; fit: "cover" | "contain" }[],
   otras: {
     titulo: "Otras",

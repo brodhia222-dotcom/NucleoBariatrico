@@ -335,7 +335,7 @@ Correcciones hechas: "NÚCLEO" pasa a "Nucleo" (pregunta 4) y "en nuestra web" a
 - **Descripción para compartir (Open Graph):** Cirugía bariátrica y metabólica con seguimiento de cirujanos, nutricionistas y psicóloga. Villa del Parque, CABA.
 - **Pre-título del hero (opcional, suma ubicación sin tocar el título):** Cirugía bariátrica · Villa del Parque, CABA
 - **Datos para Google (JSON-LD):** una sola sede, `streetAddress` "Simbrón 3327", barrio Villa del Parque, `addressLocality` "Ciudad Autónoma de Buenos Aires", país AR. Sin San Isidro. El nombre del espacio va recién cuando lo confirmen.
-- **Búsquedas reales a las que responde la página:** cirugía bariátrica CABA · cirujano bariátrico Villa del Parque · manga gástrica CABA · bypass gástrico CABA · balón gástrico sin endoscopia · balón gástrico en cápsula · reganancia de peso después de manga gástrica · volví a subir de peso después del bypass · tratamiento con GLP-1 para la obesidad · cirugía bariátrica OSDE · cirugía bariátrica Medifé · consulta bariátrica virtual. Sin marcas comerciales de medicamentos, ni siquiera en las palabras clave (pedido del equipo).
+- **Búsquedas reales a las que responde la página:** cirugía bariátrica CABA · cirujano bariátrico Villa del Parque · manga gástrica CABA · bypass gástrico CABA · balón gástrico sin endoscopia · balón gástrico en cápsula · reganancia de peso después de manga gástrica · volví a subir de peso después del bypass · tratamiento con GLP-1 para la obesidad · cirugía bariátrica OSDE · cirugía bariátrica Medicus · consulta bariátrica virtual. Sin marcas comerciales de medicamentos, ni siquiera en las palabras clave (pedido del equipo).
 - El sitio sigue en `noindex` hasta el lanzamiento.
 
 ---
