@@ -492,10 +492,12 @@ export const ubicaciones = {
       espacio: "Bienetre",
       mapa: "https://maps.google.com/maps?q=Simbr%C3%B3n%203327%2C%20Villa%20del%20Parque%2C%20CABA&t=&z=16&ie=UTF8&iwloc=&output=embed",
       comoLlegar: "https://www.google.com/maps/dir/?api=1&destination=Simbr%C3%B3n%203327%2C%20Villa%20del%20Parque%2C%20CABA",
+      // Las fotos del lugar son verticales (así se sacaron): la fachada entera de frente (DSC01141,
+      // sin el roll-up de estética y con la patente difuminada) y el número de la entrada (DSC01144).
+      // pos: qué parte queda a la vista cuando la columna es más angosta que la foto.
       fotos: [
-        { src: "/images/sede-fachada.jpg", alt: "Entrada del espacio en Simbrón 3327, Villa del Parque" },
-        { src: "/images/sede-interior-1.jpg", alt: "Acceso a los consultorios en Simbrón 3327" },
-        { src: "/images/sede-interior-2.jpg", alt: "Pasillo interior de la sede de Villa del Parque" },
+        { src: "/images/sede-fachada.jpg", alt: "Fachada de Simbrón 3327, con el arco de entrada", pos: "82% 50%" },
+        { src: "/images/sede-numero.jpg", alt: "Número 3327 y cartel en la entrada", pos: "70% 50%" },
       ],
     },
   ],

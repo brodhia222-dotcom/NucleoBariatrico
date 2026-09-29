@@ -14,7 +14,6 @@ import { viewportOnce, easeEditorial } from "@/lib/motion";
 // (contacto.horario) y aparece solo cuando esté confirmado.
 export function Ubicaciones() {
   const sede = ubicaciones.sedes[0];
-  const [principal, ...resto] = sede.fotos;
   const virtualHref = `https://wa.me/${brand.whatsappNumber.replace(/[^\d]/g, "")}?text=${encodeURIComponent(
     "Hola, quiero coordinar una primera consulta virtual.",
   )}`;
@@ -44,34 +43,26 @@ export function Ubicaciones() {
         </div>
 
         <div className="grid gap-6 lg:grid-cols-12 lg:gap-8">
-          {/* Fotos del lugar: la fila de abajo se estira hasta el final de la columna de al lado */}
+          {/* Fotos del lugar: son verticales, así que van lado a lado y enteras (en compu, a la
+              altura de la columna de al lado). Fachada de frente y número de la entrada. */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={viewportOnce}
             transition={{ duration: 0.8, ease: easeEditorial }}
-            className="flex flex-col gap-3 lg:col-span-7 lg:gap-4"
+            className="grid grid-cols-2 gap-3 lg:col-span-7 lg:gap-4"
           >
-            <figure className="overflow-hidden rounded-[var(--radius-xl)]">
-              <img
-                src={principal.src}
-                alt={principal.alt}
-                loading="lazy"
-                className="aspect-[2/1] w-full object-cover transition-transform duration-700 hover:scale-[1.02]"
-              />
-            </figure>
-            <div className="grid flex-1 grid-cols-2 gap-3 lg:gap-4">
-              {resto.map((f) => (
-                <figure key={f.src} className="overflow-hidden rounded-[var(--radius-lg)] lg:h-full">
-                  <img
-                    src={f.src}
-                    alt={f.alt}
-                    loading="lazy"
-                    className="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-[1.03] lg:aspect-auto lg:h-full lg:min-h-[200px]"
-                  />
-                </figure>
-              ))}
-            </div>
+            {sede.fotos.map((f) => (
+              <figure key={f.src} className="overflow-hidden rounded-[var(--radius-xl)] lg:h-full">
+                <img
+                  src={f.src}
+                  alt={f.alt}
+                  loading="lazy"
+                  className="aspect-[9/16] w-full object-cover transition-transform duration-700 hover:scale-[1.02] lg:aspect-auto lg:h-full"
+                  style={{ objectPosition: f.pos }}
+                />
+              </figure>
+            ))}
           </motion.div>
 
           {/* Datos, mapa y consulta virtual */}
