@@ -75,7 +75,7 @@ export default async function Image() {
               letterSpacing: "0.04em",
             }}
           >
-            Simbrón 3327 · Villa del Parque
+            Villa del Parque · Lomas de Zamora
           </span>
         </div>
       </div>

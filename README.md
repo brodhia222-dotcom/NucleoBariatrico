@@ -1,6 +1,6 @@
 # Nucleo Bariátrico — Landing
 
-Sitio web para el equipo médico de cirugía bariátrica de la Dra. Agustina y Sergio (Villa del Parque + San Isidro).
+Sitio web para el equipo médico de cirugía bariátrica de la Dra. Agustina y Sergio (Villa del Parque + Lomas de Zamora).
 
 ## Stack
 

@@ -141,7 +141,8 @@ export function Footer() {
             <ul className="flex flex-col gap-4">
               {footer.sedes.map((s) => (
                 <li key={s.nombre}>
-                  <a href="#ubicaciones" className="group block">
+                  {/* data-sede: "Dónde atendemos" abre la pestaña de esta sede */}
+                  <a href="#ubicaciones" data-sede={s.id} className="group block">
                     <span className="block text-sm font-medium text-[color:var(--ink-inverse)] underline-offset-4 group-hover:underline">{s.nombre}</span>
                     <span className="caption mt-0.5 block text-[color:var(--ink-inverse)]/58">{s.direccion}</span>
                   </a>

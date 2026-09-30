@@ -2,12 +2,12 @@
   "cliente": {
     "nombre": "Nucleo Bariátrico",
     "rubro": "Cirugía bariátrica y metabólica (equipo médico, no estética)",
-    "descripcion": "Equipo especializado en cirugía bariátrica y metabólica. Aborda la obesidad como enfermedad crónica, con tratamientos farmacológicos, no quirúrgicos y quirúrgicos adaptados a cada caso, siempre con acompañamiento nutricional y psicológico, y seguimiento a largo plazo con el equipo completo (cirujanos, nutricionistas y psicóloga). Atiende en Simbrón 3327, Villa del Parque, CABA (única sede por ahora); la primera consulta puede ser virtual.",
-    "fuente": "Copy aprobado por Maya Vega (2026-07-03), reunión con el equipo (2026-07-06) y PDF de ajustes del equipo 2026-09-24"
+    "descripcion": "Equipo especializado en cirugía bariátrica y metabólica. Aborda la obesidad como enfermedad crónica, con tratamientos farmacológicos, no quirúrgicos y quirúrgicos adaptados a cada caso, siempre con acompañamiento nutricional y psicológico, y seguimiento a largo plazo con el equipo completo (cirujanos, nutricionistas y psicóloga). Atiende en 2 sedes: Simbrón 3327, Villa del Parque (CABA), y General Bartolomé Mitre 185, Lomas de Zamora (en el Centro Médico Las Lomitas, visto en las fotos). La primera consulta puede ser virtual.",
+    "fuente": "Copy aprobado por Maya Vega (2026-07-03), reunión con el equipo (2026-07-06), PDF de ajustes del equipo 2026-09-24 y mensaje de Maya Vega 2026-09-29 (sede de Lomas de Zamora)"
   },
   "accion_principal": {
     "tipo": "whatsapp",
-    "detalle": "Escribir por WhatsApp para pedir la primera consulta (presencial en Villa del Parque o virtual) o para revisar qué cubre su plan. Es el canal que el equipo usa para confirmar cobertura caso por caso, y la calculadora de IMC lleva al contacto con el dato ya cargado."
+    "detalle": "Escribir por WhatsApp para pedir la primera consulta (presencial en Villa del Parque o en Lomas de Zamora, o virtual) o para revisar qué cubre su plan. Es el canal que el equipo usa para confirmar cobertura caso por caso. Cada sede tiene su botón \"Pedir turno\" con la sede ya escrita en el mensaje, y la calculadora de IMC lleva al contacto con el dato ya cargado."
   },
   "accion_secundaria": {
     "tipo": "formulario",
@@ -20,11 +20,40 @@
     "telefonos": [],
     "emails": [],
     "direcciones": [
-      { "valor": "Simbrón 3327, Villa del Parque, CABA (única sede por ahora)", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Puntos de atención" },
-      { "valor": "Nombre del espacio donde atienden: el equipo escribió \"Bienetre\"; el cartel y el membrete del lugar dicen \"Bien Être Oasis\"", "estado": "dudoso", "fuente": "PDF de ajustes del equipo 2026-09-24 y fotos de la sesión 2026-09 (DSC01129 a DSC01144)" }
+      {
+        "valor": "Simbrón 3327, Villa del Parque, CABA",
+        "estado": "confirmado",
+        "fuente": "PDF de ajustes del equipo 2026-09-24, Puntos de atención"
+      },
+      {
+        "valor": "Nombre del espacio de Simbrón 3327: el equipo escribió \"Bienetre\"; el cartel y el membrete del lugar dicen \"Bien Être Oasis\"",
+        "estado": "dudoso",
+        "fuente": "PDF de ajustes del equipo 2026-09-24 y fotos de la sesión 2026-09 (DSC01129 a DSC01144)"
+      },
+      {
+        "valor": "General Bartolomé Mitre 185, Lomas de Zamora, Provincia de Buenos Aires",
+        "estado": "confirmado",
+        "fuente": "mensaje de Maya Vega (equipo) 2026-09-29, vía Fede: \"Si pueden agregar lomas de Zamora acá les mando la dirección: General Bartolomé Mitre 185\"",
+        "nota": "Verificada el 2026-09-30: Google Maps la resuelve a \"Gral. Bartolomé Mitre 185, Lomas de Zamora, Provincia de Buenos Aires\" y OpenStreetMap la ubica en el mismo punto (ciudad de Lomas de Zamora, barrio Lomitas). No hay otro Mitre 185 en el partido. En la tarjeta se lee \"General Bartolomé Mitre 185\" debajo del título \"Lomas de Zamora\"."
+      },
+      {
+        "valor": "Centro Médico Las Lomitas (lugar donde atienden en Lomas de Zamora)",
+        "estado": "confirmado",
+        "fuente": "visto en las fotos que mandó el equipo el 2026-09-29 (FotosNucleo/UltimasFotosyVideos): cartel de la fachada \"CENTRO MÉDICO / LAS LOMITAS\" con el número 185, el mismo cartel sobre la recepción e Instagram @cm.laslomitas en el vidrio",
+        "nota": "Se muestra en la tarjeta de la sede, debajo de la dirección. A diferencia de Villa del Parque no hay duda de ortografía: se lee igual en los 3 lugares. Es un centro médico (no de estética) y es lo que la persona busca al llegar. El equipo no lo escribió: si prefiere que no figure, se saca (espacio: null)."
+      }
     ],
     "horarios": [],
-    "horarios_nota": { "valor": "No se publica horario: no atienden fijo en la sede, se organizan según las consultas que van teniendo", "estado": "confirmado", "fuente": "account manager vía Fede 2026-09-26" },
+    "horarios_nota": {
+      "valor": "No se publica horario en ninguna de las 2 sedes: no atienden en horario fijo, se organizan según las consultas que van teniendo",
+      "estado": "confirmado",
+      "fuente": "account manager vía Fede 2026-09-26 (Villa del Parque) y decisión del equipo vía Fede 2026-09-30 (Lomas de Zamora)"
+    },
+    "como_llegar": {
+      "valor": "En las 2 sedes, solo el link a Google Maps (botón \"Cómo llegar\"), sin líneas de transporte",
+      "estado": "confirmado",
+      "fuente": "decisión 2026-09-26 (Villa del Parque) y pedido vía Fede 2026-09-30 (Lomas de Zamora)"
+    },
     "redes": [
       { "valor": "https://www.instagram.com/nucleobariatrico/", "estado": "confirmado", "fuente": "material del equipo 2026-07-03" }
     ],
@@ -76,9 +105,28 @@
   "personas": [
     { "nombre": "Agustina (Dra. María Agustina López)", "rol": "Cirujana Bariátrica", "bio": "lib/copy.ts, acortada de la bio enviada. Retrato nuevo: FotosNucleo/FotosEquipo/Agustina.jpg", "whatsapp": "", "estado": "confirmado", "fuente": "bio enviada por el equipo 2026-09; retrato nuevo en PDF de ajustes 2026-09-24" },
     { "nombre": "Sergio", "rol": "Cirujano Bariátrico", "bio": "lib/copy.ts. Retrato nuevo: FotosNucleo/FotosEquipo/Sergio.ARW", "whatsapp": "", "estado": "confirmado", "fuente": "bio enviada por el equipo 2026-07; retrato nuevo en PDF de ajustes 2026-09-24" },
-    { "nombre": "Nahuel", "rol": "Cirujano Bariátrico", "bio": "lib/copy.ts. Retrato nuevo: 2 opciones (Nahuel1.jpg y Nahuel2.jpg), elige Fede o el equipo", "whatsapp": "", "estado": "confirmado", "fuente": "bio enviada por el equipo 2026-07; retratos nuevos en PDF de ajustes 2026-09-24" },
-    { "nombre": "Rocío (Lic. María Rocío Gnavi)", "rol": "Psicóloga, psicoanalista (evaluación prequirúrgica)", "bio": "lib/copy.ts, acortada del PDF. Retrato todavía sin identificar", "whatsapp": "", "estado": "confirmado", "fuente": "PDF Bio_Profesional_Maria_Rocio_Gnavi 2026-09" },
-    { "nombre": "Pendiente (no inventar: usar \"Nombre\" como placeholder)", "rol": "Nutricionistas (el PDF lo dice en plural; cantidad sin confirmar)", "bio": "Pendiente (lorem mientras tanto)", "whatsapp": "", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24: fotos de las nutricionistas y FAQ \"te acompaña el equipo completo: cirujanos, nutricionistas y psicóloga\". Confirmado que se suman al equipo; nombres, cantidad y bios faltan" }
+    { "nombre": "Nahuel", "rol": "Cirujano Bariátrico", "bio": "lib/copy.ts. Retrato: Nahuel2 (elegido en v6); Nahuel1 queda como alternativa en brief/fotos/v6/equipo-nahuel-alt.jpg", "whatsapp": "", "estado": "confirmado", "fuente": "bio enviada por el equipo 2026-07; retratos nuevos en PDF de ajustes 2026-09-24" },
+    { "nombre": "Rocío (Lic. María Rocío Gnavi)", "rol": "Psicóloga, psicoanalista (evaluación prequirúrgica)", "bio": "lib/copy.ts, acortada del PDF. Retrato: la foto del pañuelo de la carpeta Nutricionistas (_Q5A2272)", "whatsapp": "", "estado": "confirmado", "fuente": "PDF Bio_Profesional_Maria_Rocio_Gnavi 2026-09; retrato identificado por la account manager 2026-09-28" },
+    {
+      "nombre": "Solange (Lic. Solange Leban)",
+      "rol": "Nutricionista",
+      "bio": "Solange Leban es Licenciada en Nutrición, especializada en obesidad y enfermedades cardiometabólicas, cambio de hábitos y abordaje cognitivo-conductual. Cuenta con amplia experiencia en acompañamiento nutricional para descenso de peso y en trabajo interdisciplinario. Su enfoque combina estrategias nutricionales personalizadas y recursos para favorecer cambios de hábitos sostenibles y acompañar a cada paciente en las distintas etapas de su proceso.",
+      "bio_sitio": "Licenciada en Nutrición, especializada en obesidad y enfermedades cardiometabólicas, cambio de hábitos y abordaje cognitivo-conductual. Experiencia en acompañamiento nutricional para el descenso de peso y en trabajo interdisciplinario. Trabaja con estrategias personalizadas para que los cambios se sostengan.",
+      "whatsapp": "",
+      "estado": "confirmado",
+      "fuente": "bio textual enviada por el equipo vía Maya Vega y Fede 2026-09-29 (brief/material/ajustes-2026-09-29.md); nombre y retrato (camisa rosa, _Q5A2169): account manager 2026-09-28",
+      "nota": "En el sitio va solo \"Solange\", como el resto del equipo. La versión del sitio (309 caracteres) conserva título, especialidades y experiencia; saca \"amplia\" y la frase general del final."
+    },
+    {
+      "nombre": "Débora (Lic. Débora Salamón)",
+      "rol": "Nutricionista",
+      "bio": "Débora Salamón es Licenciada en Nutrición, egresada de la Universidad de Buenos Aires y diplomada en abordaje integral de la persona con obesidad. Su práctica combina una atención basada en la evidencia con un enfoque transdisciplinario, acompañando a cada persona en el logro de sus objetivos de salud. Es miembro del grupo de estudio de obesidad de la Asociación Argentina de Licenciados en Nutrición.",
+      "bio_sitio": "Licenciada en Nutrición, egresada de la UBA y diplomada en abordaje integral de la persona con obesidad. Miembro del grupo de estudio de obesidad de la Asociación Argentina de Licenciados en Nutrición. Su práctica combina una atención basada en la evidencia con un enfoque transdisciplinario.",
+      "whatsapp": "",
+      "estado": "confirmado",
+      "fuente": "bio textual enviada por el equipo vía Maya Vega y Fede 2026-09-29 (brief/material/ajustes-2026-09-29.md); nombre y retrato (brazos cruzados, _Q5A2203): account manager 2026-09-28",
+      "nota": "Apellido con tilde: Salamón, como lo escribió el equipo en la bio. La account manager lo había escrito sin tilde (Salamon) el 2026-09-28; vale el de la bio. El sitio solo muestra \"Débora\". La versión del sitio (292 caracteres) conserva UBA, diplomatura y el grupo de estudio de la AALN; saca la frase general sobre los objetivos de salud."
+    }
   ],
   "testimonios": [],
   "formulario_testimonios": {
@@ -95,7 +143,7 @@
     ],
     "boton": "Enviar testimonio",
     "confirmacion": "Gracias por compartir tu experiencia. Vamos a revisarla antes de publicarla.",
-    "nota": "El equipo ya mandó a sus pacientes una plantilla para pedir testimonios; todavía no llegó ninguno."
+    "nota": "La account manager les pasó a sus pacientes una plantilla para pedir testimonios; van a ir llegando con el tiempo y se cargan cuando Fede los pase (2026-09-26). Todavía no llegó ninguno."
   },
   "preguntas_frecuentes": [
     { "grupo": "Tratamientos", "pregunta": "¿Cómo sé qué tratamiento es para mí?", "respuesta": "Lo definimos en la consulta. Evaluamos tu historia clínica, tus estudios y tu estado nutricional y emocional, y con esa información te indicamos el abordaje más adecuado para tu caso.", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Preguntas frecuentes" },
@@ -114,6 +162,9 @@
     { "texto": "Un profesional del equipo responde en menos de 24 horas hábiles", "estado": "confirmado", "fuente": "copy aprobado por Maya Vega 2026-07-03" },
     { "texto": "Rocío: práctica clínica desde 2008", "estado": "confirmado", "fuente": "PDF de la bio" },
     { "texto": "Sergio: miembro de AAC, SACO e IFSO. Nahuel y Agustina: miembros de SACO e IFSO", "estado": "confirmado", "fuente": "bios enviadas" },
+    { "texto": "Solange: Licenciada en Nutrición, especializada en obesidad y enfermedades cardiometabólicas, cambio de hábitos y abordaje cognitivo-conductual, con experiencia en acompañamiento nutricional para descenso de peso y en trabajo interdisciplinario", "estado": "confirmado", "fuente": "bio enviada por el equipo 2026-09-29" },
+    { "texto": "Débora: Licenciada en Nutrición egresada de la UBA, diplomada en abordaje integral de la persona con obesidad, miembro del grupo de estudio de obesidad de la Asociación Argentina de Licenciados en Nutrición (AALN)", "estado": "confirmado", "fuente": "bio enviada por el equipo 2026-09-29" },
+    { "texto": "Atienden en 2 sedes: Simbrón 3327, Villa del Parque (CABA), y General Bartolomé Mitre 185, Lomas de Zamora", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24 y mensaje de Maya Vega 2026-09-29" },
     { "texto": "Proceso, paso 02: un plan a tu medida para que llegues al tratamiento indicado en las mejores condiciones", "estado": "confirmado", "fuente": "copy de pasos aprobado por Maya Vega 2026-07-03" },
     { "texto": "Proceso, paso 03 \"Preparación\" (reemplaza \"Cobertura y trámites\"): Con el plan definido, te acompañamos en cada paso previo a la cirugía: orientación nutricional, estudios prequirúrgicos y controles médicos. Llegás al quirófano con todo en orden y sabiendo qué esperar.", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Proceso" },
     { "texto": "Tratamientos, título y bajada: Un abordaje para cada caso. La obesidad es una enfermedad crónica y no tiene una única respuesta. Evaluamos tu historia, tu salud y tus objetivos para indicarte el tratamiento adecuado, siempre con acompañamiento nutricional y psicológico.", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Tratamientos" },
@@ -132,38 +183,44 @@
     { "valor": "2008", "significa": "inicio de la práctica clínica de Rocío", "estado": "confirmado", "fuente": "PDF de la bio" },
     { "valor": "16", "significa": "semanas aproximadas que el balón gástrico permanece en el estómago (\"aproximadamente\" / \"unas\")", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Tratamientos y Preguntas frecuentes" },
     { "valor": "6", "significa": "meses que dura el programa de balón gástrico (el PDF lo escribe \"seis\")", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Tratamientos y Preguntas frecuentes" },
-    { "valor": "15", "significa": "minutos aproximados de la consulta en la que se ingiere la cápsula del balón (\"unos\")", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Tratamientos" }
+    { "valor": "15", "significa": "minutos aproximados de la consulta en la que se ingiere la cápsula del balón (\"unos\")", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Tratamientos" },
+    { "valor": "2", "significa": "sedes: Villa del Parque (CABA) y Lomas de Zamora", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24 y mensaje de Maya Vega 2026-09-29" }
   ],
   "material_visual": {
     "logos": ["public/logos/logo-indigo.png", "public/logos/logo-blanco.png", "public/logos/footer-logo.png"],
     "logos_obras_sociales": ["public/images/obras/osde.png", "public/images/obras/medicus.svg (logo oficial de medicus.com.ar, en blanco sobre el azul de la marca #002564)"],
-    "fotos": "En sitio: retratos y grupal del equipo (2026-07) y sesión de consultorio (2026-09) en public/images. Nuevas 2026-09-24 en C:/Users/feded/Desktop/FotosNucleo: FotosEquipo (retratos nuevos de Agustina, Sergio y 2 opciones de Nahuel), Nutricionistas (45 fotos: 3 mujeres distintas por separado y grupales de las 3 con un cirujano; sin identificar quién es quién), FotosSecciones (Hero.jpeg nuevo y fotos del balón gástrico IMG_2314 a 2316), FotosLugar (misma sesión RAW ya procesada, incluye fotos de atención virtual y consulta según el equipo).",
-    "videos": []
+    "fotos": "En sitio: retratos y grupal del equipo (2026-07) y sesión de consultorio (2026-09) en public/images. Nuevas 2026-09-24 en C:/Users/feded/Desktop/FotosNucleo: FotosEquipo (retratos nuevos de Agustina, Sergio y 2 opciones de Nahuel), Nutricionistas (45 fotos: Rocío, Solange y Débora por separado y grupales de las 3 con un cirujano), FotosSecciones (Hero.jpeg nuevo y fotos del balón gástrico IMG_2314 a 2316), FotosLugar (misma sesión RAW ya procesada, incluye fotos de atención virtual y consulta según el equipo). Sede de Lomas de Zamora, 2026-09-29, en FotosNucleo/UltimasFotosyVideos: 8 fotos verticales de WhatsApp (fachada de día y 2 al atardecer, 3 de recepción, sala de espera y pasillo, 2 del consultorio). Sin personas.",
+    "videos": [
+      { "archivo": "FotosNucleo/UltimasFotosyVideos/WhatsApp Video 2026-09-29 at 16.00.56.mp4", "duracion": "4,0 s", "contenido": "Llegada a la fachada al atardecer hasta la puerta. Al final se leen el teléfono de turnos del centro y el vinilo de otro profesional (ver dudoso)" },
+      { "archivo": "FotosNucleo/UltimasFotosyVideos/WhatsApp Video 2026-09-29 at 16.00.56 (1).mp4", "duracion": "8,5 s", "contenido": "Recepción con el cartel del centro y sala de espera con bancos azules; termina mirando al pasillo" },
+      { "archivo": "FotosNucleo/UltimasFotosyVideos/WhatsApp Video 2026-09-29 at 16.00.55 (1).mp4", "duracion": "18,3 s", "contenido": "Sala de espera, pasillo, puerta del consultorio 3 y entrada al consultorio" },
+      { "archivo": "FotosNucleo/UltimasFotosyVideos/WhatsApp Video 2026-09-29 at 16.00.55.mp4", "duracion": "16,0 s", "contenido": "Consultorio por dentro: escritorio, camilla y mesada" }
+    ],
+    "videos_nota": "Los 4 son verticales de 464x832 y sin personas. Fuente: Maya Vega vía Fede 2026-09-29 (\"lo último que me enviaron los docs\")."
   },
   "faltante": [
-    "Nutricionistas: una bio corta de cada una (Lic. Solange Leban y Lic. Débora Salamon).",
-    "¿Cómo se escribe el nombre del espacio de Simbrón 3327? Ustedes escribieron \"Bienetre\" y el cartel dice \"Bien Être Oasis\". Lo mostramos tal cual nos confirmen.",
-    "Cómo llegar a Simbrón 3327: si quieren indicar colectivos, tren o estacionamiento, pásennos los datos. Si no, mostramos solo la dirección y el mapa.",
-    "Testimonios: ¿a qué mail o WhatsApp quieren que les lleguen los que se carguen desde la web, y quién los revisa antes de publicarlos?",
-    "Testimonios: ¿quieren sumar un dato de contacto (teléfono o mail, que no se publica) para poder verificar que es un paciente antes de aprobarlo?",
-    "Testimonios con foto de antes y después: ¿confirman que quieren publicarlas? En julio pidieron una portada con menos efecto de antes y después.",
-    "Cobertura: ¿siguen gestionando ustedes la autorización ante la obra social? El sitio decía que son efectores y que hacen el trámite; en el PDF nuevo no aparece, así que por ahora lo sacamos.",
-    "Cobertura: ¿quieren mantener la frase \"La cirugía bariátrica está incluida en el Programa Médico Obligatorio\"? Por ahora no la mostramos, para seguir su respuesta de que depende del plan y de los requisitos de cada cobertura.",
-    "Mail donde quieren recibir las consultas del formulario (el dominio y la casilla los dejamos listos nosotros cuando nos confirmen el nombre).",
-    "Si tienen, una foto real de quirófano o del procedimiento para el paso Cirugía (hoy es una foto de stock).",
-    "Texto legal del pie de página."
+    "Antes de publicar: el mail donde quieren recibir las consultas del formulario (el dominio y la casilla los dejamos listos nosotros cuando nos confirmen el nombre).",
+    "Antes de publicar: el texto legal del pie de página.",
+    "Cuando lleguen: los testimonios de sus pacientes. Para el formulario de la web, ¿a qué mail o WhatsApp quieren que les lleguen y quién los revisa antes de publicarlos?",
+    "Opcional: en los testimonios, ¿quieren sumar un dato de contacto (teléfono o mail, que no se publica) para verificar que es un paciente antes de aprobarlo?",
+    "Opcional: testimonios con foto de antes y después, ¿confirman que quieren publicarlas? En julio pidieron una portada con menos efecto de antes y después.",
+    "Opcional: cobertura, ¿siguen gestionando ustedes la autorización ante la obra social? El sitio decía que son efectores y que hacen el trámite; en el PDF de septiembre no aparece, así que por ahora no lo mostramos.",
+    "Opcional: cobertura, ¿quieren mantener la frase \"La cirugía bariátrica está incluida en el Programa Médico Obligatorio\"? Por ahora no la mostramos, para seguir su respuesta de que depende del plan y de los requisitos de cada cobertura.",
+    "Opcional: si tienen, una foto real de quirófano o del procedimiento para el paso Cirugía (hoy es una foto de stock)."
   ],
   "dudoso": [
-    { "tema": "Nombre del espacio de la sede", "detalle": "El equipo escribió \"Bienetre\"; el cartel y el membrete del lugar dicen \"Bien Être Oasis\" (Centro de Estética / Medicina & Bienestar). No publicar el nombre hasta que confirmen cómo se escribe. La dirección Simbrón 3327 sí está confirmada. Las fotos de la fachada (DSC01129 a DSC01144) y del anotador siguen sin usarse hasta que Fede o el equipo decidan si se puede mostrar el cartel de estética." },
-    { "tema": "San Isidro y Lomas de Zamora", "detalle": "No publicar. El PDF 2026-09-24 deja una sola sede \"por ahora\": Simbrón 3327, Villa del Parque. Tampoco \"2 puntos de atención\" ni \"Zona Norte\"." },
+    { "tema": "Nombre del espacio de Villa del Parque", "detalle": "El equipo escribió \"Bienetre\"; el cartel y el membrete del lugar dicen \"Bien Être Oasis\" (Centro de Estética, Medicina y Bienestar). No se muestra y no se le pregunta al equipo (decisión 2026-09-26). La dirección Simbrón 3327 sí está confirmada, y la fachada ya se usa en \"Dónde atendemos\" (DSC01141 y DSC01144, recortadas sin el roll-up de estética y con la patente tapada)." },
+    { "tema": "San Isidro", "detalle": "No publicar: salió del sitio con el PDF 2026-09-24. Tampoco \"Zona Norte\". Lomas de Zamora, que antes figuraba acá, quedó confirmada el 2026-09-29 (ver contacto.direcciones)." },
+    { "tema": "Terceros visibles en la fachada de Lomas de Zamora", "detalle": "En las 3 fotos de la fachada y al final del video de llegada (4 s) se ven: el vinilo y el cartel redondo de otro profesional (\"Dr. Iván Brener, médico cirujano plástico\"), una pantalla con la foto, el nombre y los horarios de otras médicas del centro, y en el vidrio el teléfono de turnos del centro (11 3170-4223, con ícono de WhatsApp), su Instagram (@cm.laslomitas) y la lista de especialidades del centro. Nada de eso es de Nucleo y no se publica: retocar o recortar antes de usar la foto (mismo criterio que el roll-up de estética y la patente en Villa del Parque). Con el teléfono a la vista alguien puede escribirle al centro en vez de al equipo, y \"cirujano plástico\" es la asociación con estética que el equipo quiso evitar. El cartel \"Centro Médico Las Lomitas\" y el 185 quedan: es lo que la persona busca al llegar." },
+    { "tema": "Código postal y coordenadas de las sedes", "detalle": "Google devuelve C1417EUI para Simbrón 3327 y B1832JDB para General Bartolomé Mitre 185. No los dio el equipo: no van en el sitio ni en los datos para Google." },
     { "tema": "La cirugía bariátrica está incluida en el PMO", "detalle": "Venía del copy aprobado 2026-07-03. No se contradice en lo técnico, pero en el PDF nuevo el equipo respondió \"¿Mi obra social cubre la cirugía?\" con \"Depende de tu plan y de los requisitos médicos de cada cobertura\" y solo nombró el PMO para decir que la medicación no está incluida. Publicarlo al lado de esa respuesta sugiere que la cirugía siempre está cubierta. No publicar hasta que el equipo lo vuelva a confirmar." },
     { "tema": "Rol de efector y gestión de la autorización", "detalle": "\"Como efectores de cirugía bariátrica, gestionamos tu autorización y te acompañamos con la cobertura\" y \"Hacemos el trámite de autorización con tu obra social\" (copy 2026-07-03). El PDF nuevo reemplazó el paso \"Cobertura y trámites\" por \"Preparación\" y la tarjeta de cobertura por \"Atendemos pacientes con distintas coberturas. Escribinos y revisamos tu caso\": ya no promete el trámite. Además, \"efector ante tu obra social\" sugiere que lo son ante cualquiera. No publicar hasta que lo confirmen." },
-    { "tema": "Convenios y tiempos de respuesta de cobertura", "detalle": "\"Trabajamos con más convenios de los que podemos listar acá\" y \"te confirmamos tu cobertura en minutos\" (obrasSociales.otras.body en lib/copy.ts, hoy no se muestra). No confirmado: la reunión pidió no afirmar convenios y el tiempo confirmado es 24 horas hábiles." },
-    { "tema": "Resúmenes viejos de los tratamientos", "detalle": "\"La técnica más utilizada\" (manga), \"Para casos más avanzados\" (bypass), \"Dispositivo temporal y reversible\" (balón) y \"Medicación bajo seguimiento médico\" (inyectables) no salen del material del equipo. Reemplazarlos por los subtítulos del PDF." },
+    { "tema": "Convenios y tiempos de respuesta de cobertura", "detalle": "\"Trabajamos con más convenios de los que podemos listar acá\" y \"te confirmamos tu cobertura en minutos\". No confirmado: la reunión pidió no afirmar convenios y el tiempo confirmado es 24 horas hábiles." },
+    { "tema": "Resúmenes viejos de los tratamientos", "detalle": "\"La técnica más utilizada\" (manga), \"Para casos más avanzados\" (bypass), \"Dispositivo temporal y reversible\" (balón) y \"Medicación bajo seguimiento médico\" (inyectables) no salen del material del equipo. Se usan los subtítulos del PDF." },
     { "tema": "Fotos de antes y después en testimonios", "detalle": "El formulario del PDF las ofrece, pero en julio el equipo pidió una portada con menos efecto de antes y después. Confirmar con el equipo antes de publicar alguna." },
     { "tema": "Placeholders con forma de dato", "detalle": "Testimonios de ejemplo con \"8 meses después de la cirugía\", \"1 año y 2 meses\" y 5 estrellas, y mensajes de \"No estás solo\" firmados \"Una paciente · 6 meses post-cirugía\": no son datos reales y no pueden quedar visibles en producción." },
     { "tema": "Mail publicado", "detalle": "El sitio no muestra mail (brand.email = null). El equipo prefería algo como info@...; no publicar ninguno hasta que exista la casilla." },
     { "tema": "Dominio", "detalle": "brand.domain = nucleobariatrico.com.ar se usa en la URL para compartir y en los datos para Google, pero el dominio no está registrado ni elegido (el equipo prefería .com). Confirmar antes del lanzamiento." },
-    { "tema": "Cómo llegar", "detalle": "Ya hay dirección, pero no hay indicaciones de transporte en el material. No publicar líneas de colectivo, tren o subte hasta que el equipo las pase." }
+    { "tema": "Cómo llegar", "detalle": "En las 2 sedes el botón \"Cómo llegar\" abre Google Maps. No publicar líneas de colectivo, tren ni estacionamiento: no están en el material (decisión confirmada vía Fede 2026-09-30)." }
   ]
 }

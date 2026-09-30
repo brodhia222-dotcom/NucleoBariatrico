@@ -23,20 +23,25 @@ const sitio =
 export const metadata: Metadata = {
   metadataBase: new URL(sitio),
   title: {
-    default: `Cirugía bariátrica en Villa del Parque · ${brand.name}`,
+    default: `Cirugía bariátrica en CABA y Lomas · ${brand.name}`,
     template: `%s · ${brand.name}`,
   },
   description:
-    "Equipo de cirugía bariátrica en Villa del Parque, CABA: inyectables, balón gástrico, manga, bypass y reganancia de peso. Primera consulta presencial o virtual.",
+    "Cirugía bariátrica en Villa del Parque (CABA) y Lomas de Zamora: inyectables, balón, manga, bypass y reganancia de peso. Primera consulta presencial o virtual.",
   applicationName: brand.name,
   authors: [{ name: brand.name }],
   keywords: [
     "cirugía bariátrica",
     "obesidad",
     "Argentina",
+    "CABA",
     "Villa del Parque",
+    "Lomas de Zamora",
+    "zona sur",
     "bypass gástrico",
     "manga gástrica",
+    "balón gástrico",
+    "reganancia de peso",
     "equipo médico bariátrico",
   ],
   alternates: { canonical: "/" },
@@ -55,12 +60,12 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "MedicalBusiness",
   name: brand.name,
-  description: "Equipo médico especializado en cirugía bariátrica",
+  description: "Equipo médico especializado en cirugía bariátrica y metabólica",
   url: `https://${brand.domain}`,
   telephone: brand.whatsappNumber,
-  medicalSpecialty: "Bariatrics",
   areaServed: { "@type": "Country", name: "Argentina" },
-  // Sede única (PDF de ajustes 2026-09-24)
+  sameAs: [brand.instagram],
+  // Sede principal en address; las 2 sedes en location. medicalSpecialty no existe en MedicalBusiness.
   address: {
     "@type": "PostalAddress",
     streetAddress: "Simbrón 3327",
@@ -68,6 +73,30 @@ const jsonLd = {
     addressRegion: "CABA",
     addressCountry: "AR",
   },
+  location: [
+    {
+      "@type": "Place",
+      name: `${brand.name} · Villa del Parque`,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Simbrón 3327",
+        addressLocality: "Villa del Parque, Ciudad Autónoma de Buenos Aires",
+        addressRegion: "CABA",
+        addressCountry: "AR",
+      },
+    },
+    {
+      "@type": "Place",
+      name: `${brand.name} · Lomas de Zamora`,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "General Bartolomé Mitre 185",
+        addressLocality: "Lomas de Zamora",
+        addressRegion: "Provincia de Buenos Aires",
+        addressCountry: "AR",
+      },
+    },
+  ],
 };
 
 // Pre-paint theme application — evita flash del tema "default" antes de que

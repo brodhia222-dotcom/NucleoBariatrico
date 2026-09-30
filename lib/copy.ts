@@ -99,12 +99,12 @@ export const diferencial = {
     },
     {
       badge: "04 · Atención",
-      // Sede única por ahora (PDF de ajustes 2026-09-24): Simbrón 3327, Villa del Parque.
+      // 2 sedes: Villa del Parque (PDF de ajustes 2026-09-24) y Lomas de Zamora (Maya Vega, 2026-09-29).
       // La consulta virtual está confirmada en las preguntas frecuentes del mismo PDF.
       // La foto no repite ninguna de la sección "Dónde atendemos".
       title: noOrphans("Presencial o virtual"),
       body: noOrphans(
-        "Te recibimos en Simbrón 3327, Villa del Parque, y la primera consulta también puede ser virtual."
+        "Te recibimos en Villa del Parque y en Lomas de Zamora. La primera consulta también puede ser virtual."
       ),
       cta: "Ver dónde atendemos",
       href: "#ubicaciones",
@@ -208,18 +208,22 @@ export const equipo = {
         // La del pañuelo de la carpeta Nutricionistas es Rocío (account manager, 2026-09-28)
         foto: "/images/equipo-rocio.jpg",
       },
-      // Nutricionistas (account manager, 2026-09-28): Lic. Solange Leban y Lic. Débora Salamon.
-      // Solo el nombre, como el resto del equipo. Bios todavía pendientes, por eso va lorem.
+      // Nutricionistas: Lic. Solange Leban y Lic. Débora Salamón (con tilde, como en la bio del equipo).
+      // Solo el nombre, como el resto del equipo. Bios del equipo (2026-09-29), acortadas al largo de las demás.
       {
         nombre: "Solange",
         rol: "Nutricionista",
-        bio: lorem.short,
+        bio: noOrphans(
+          "Licenciada en Nutrición, especializada en obesidad y enfermedades cardiometabólicas, cambio de hábitos y abordaje cognitivo-conductual. Experiencia en acompañamiento nutricional para el descenso de peso y en trabajo interdisciplinario. Trabaja con estrategias personalizadas para que los cambios se sostengan."
+        ),
         foto: "/images/equipo-solange.jpg",
       },
       {
         nombre: "Débora",
         rol: "Nutricionista",
-        bio: lorem.short,
+        bio: noOrphans(
+          "Licenciada en Nutrición, egresada de la UBA y diplomada en abordaje integral de la persona con obesidad. Miembro del grupo de estudio de obesidad de la Asociación Argentina de Licenciados en Nutrición. Su práctica combina una atención basada en la evidencia con un enfoque transdisciplinario."
+        ),
         foto: "/images/equipo-debora.jpg",
       },
     ] as { nombre: string; rol: string; bio: string; foto: string | null }[],
@@ -478,35 +482,87 @@ export const obrasSociales = {
   },
 };
 
-// Sede única por ahora (PDF de ajustes 2026-09-24). San Isidro deja de figurar.
-// Cómo llegar: solo el link a Google Maps; no publicar líneas de transporte
-// hasta que el equipo las confirme.
+// 2 sedes: Villa del Parque (PDF de ajustes 2026-09-24) y Lomas de Zamora (Maya Vega, 2026-09-29).
+// San Isidro no figura. En las 2, sin horario y "Cómo llegar" solo con Google Maps, sin líneas de transporte.
+// Qué se muestra de cada sede a la izquierda: fotos o un video corto en loop (mudo, con pausa).
+// pos: qué parte queda a la vista cuando la columna es más angosta que la pieza (object-position).
+export type MediaSede =
+  | { tipo: "foto"; src: string; alt: string; pos?: string }
+  | { tipo: "video"; src: string; poster: string; alt: string; pos?: string };
+
+export type Sede = {
+  id: string;
+  nombre: string;
+  // Dirección completa (mapa, datos para Google) y la línea corta que se ve debajo del nombre
+  direccion: string;
+  lineaDireccion: string;
+  calle: string;
+  // Nombre del centro donde atienden; solo se muestra si está confirmado cómo se escribe
+  espacio: string | null;
+  mapa: string;
+  comoLlegar: string;
+  // Mensaje de WhatsApp del botón "Pedir turno" de la sede
+  turno: string;
+  media: MediaSede[];
+  // Recorrido completo en video, en una ventana con controles
+  recorrido?: { src: string; poster: string; boton: string; titulo: string; alt: string };
+};
+
 export const ubicaciones = {
   eyebrow: "Dónde encontrarnos",
   headline: "Dónde atendemos.",
   body: null as string | null,
+  pestanas: "Sedes",
   sedes: [
     {
+      id: "villa-del-parque",
       nombre: "Villa del Parque",
       direccion: "Simbrón 3327, Villa del Parque, CABA",
+      lineaDireccion: "Simbrón 3327, CABA",
       calle: "Simbrón 3327",
-      // Así lo escribió el equipo; el cartel del lugar dice "Bien Être". Confirmar cómo mostrarlo.
-      espacio: "Bienetre",
+      // El equipo escribió "Bienetre" y el cartel dice "Bien Être": no se muestra hasta confirmar
+      espacio: null,
       mapa: "https://maps.google.com/maps?q=Simbr%C3%B3n%203327%2C%20Villa%20del%20Parque%2C%20CABA&t=&z=16&ie=UTF8&iwloc=&output=embed",
       comoLlegar: "https://www.google.com/maps/dir/?api=1&destination=Simbr%C3%B3n%203327%2C%20Villa%20del%20Parque%2C%20CABA",
+      turno: "Hola, quiero pedir un turno en la sede de Villa del Parque.",
       // Las fotos del lugar son verticales (así se sacaron): la fachada entera de frente (DSC01141,
       // sin el roll-up de estética y con la patente difuminada) y el número de la entrada (DSC01144).
-      // pos: qué parte queda a la vista cuando la columna es más angosta que la foto.
-      fotos: [
-        { src: "/images/sede-fachada.jpg", alt: "Fachada de Simbrón 3327, con el arco de entrada", pos: "82% 50%" },
-        { src: "/images/sede-numero.jpg", alt: "Número 3327 y cartel en la entrada", pos: "70% 50%" },
+      media: [
+        { tipo: "foto", src: "/images/sede-fachada.jpg", alt: "Fachada de Simbrón 3327, con el arco de entrada", pos: "82% 50%" },
+        { tipo: "foto", src: "/images/sede-numero.jpg", alt: "Número 3327 y cartel en la entrada", pos: "70% 50%" },
       ],
     },
-  ],
+    {
+      // Sede nueva (Maya Vega, 2026-09-29). Fotos y videos del equipo: fachada, recepción,
+      // sala de espera, pasillo y consultorio.
+      id: "lomas-de-zamora",
+      nombre: "Lomas de Zamora",
+      direccion: "General Bartolomé Mitre 185, Lomas de Zamora, Provincia de Buenos Aires",
+      // La zona ya está en el título: la línea de abajo lleva solo la calle (como Villa del Parque)
+      lineaDireccion: "General Bartolomé Mitre 185",
+      calle: "General Bartolomé Mitre 185",
+      // Visto en las fotos del equipo (cartel de la fachada y de la recepción); se saca con null si no lo quieren
+      espacio: "Centro Médico Las Lomitas",
+      mapa: "https://maps.google.com/maps?q=General%20Bartolom%C3%A9%20Mitre%20185%2C%20Lomas%20de%20Zamora%2C%20Provincia%20de%20Buenos%20Aires&t=&z=16&ie=UTF8&iwloc=&output=embed",
+      comoLlegar: "https://www.google.com/maps/dir/?api=1&destination=General%20Bartolom%C3%A9%20Mitre%20185%2C%20Lomas%20de%20Zamora%2C%20Provincia%20de%20Buenos%20Aires",
+      turno: "Hola, quiero pedir un turno en la sede de Lomas de Zamora.",
+      media: [
+        { tipo: "foto", src: "/images/sede-lomas-fachada.jpg", alt: "Fachada del Centro Médico Las Lomitas al atardecer, con el número 185 sobre la puerta", pos: "50% 50%" },
+        { tipo: "video", src: "/videos/sede-lomas-loop.mp4", poster: "/images/sede-lomas-loop.jpg", alt: "Recepción y sala de espera de la sede de Lomas de Zamora", pos: "50% 50%" },
+      ],
+      recorrido: {
+        src: "/videos/sede-lomas-recorrido.mp4",
+        poster: "/images/sede-lomas-recorrido.jpg",
+        boton: "Ver recorrido",
+        titulo: "Recorrido por la sede de Lomas de Zamora",
+        alt: "Recorrido en video por la sede de Lomas de Zamora: la recepción, la sala de espera, el pasillo y un consultorio",
+      },
+    },
+  ] as Sede[],
   virtual: {
     titulo: "Consulta virtual",
     // Distinto de la pregunta frecuente (que ya dice que se puede) y sin foto: la escena está en la tarjeta 4
-    texto: noOrphans("Si te queda lejos o preferís empezar desde casa, coordinamos tu primera consulta de forma virtual."),
+    texto: noOrphans("Si ninguna sede te queda cerca o preferís empezar desde casa, coordinamos tu primera consulta de forma virtual."),
   },
 };
 
@@ -642,7 +698,7 @@ export const faq = {
 export const contacto = {
   eyebrow: "Contacto",
   // Sin horario a propósito (account manager, 2026-09-26): no atienden fijo en la sede, se organizan
-  // según las consultas. Si algún día lo publican, cargarlo acá y aparece en Contacto y en la sede.
+  // según las consultas. Si algún día lo publican, cargarlo acá y aparece en Contacto y en las 2 sedes.
   horario: null as string | null,
   headline: "Conversemos.",
   body: noOrphans(
@@ -679,7 +735,7 @@ export const footer = {
     email: brand.email,
   },
   // Sin repetir el barrio: "Villa del Parque" arriba y "Simbrón 3327, CABA" abajo
-  sedes: ubicaciones.sedes.map((s) => ({ nombre: s.nombre, direccion: `${s.calle}, CABA` })),
+  sedes: ubicaciones.sedes.map((s) => ({ id: s.id, nombre: s.nombre, direccion: s.lineaDireccion })),
   legal: lorem.long,
   copyright: `© ${new Date().getFullYear()} Nucleo Bariátrico. Todos los derechos reservados.`,
 };

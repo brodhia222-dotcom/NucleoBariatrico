@@ -1,5 +1,7 @@
 # Contenido · Nucleo Bariátrico · Ronda de ajustes 2026-09-24
 
+> **Ronda vigente: v7 (2026-09-30), al final de este archivo.** Pisa lo que abajo se dice sobre sede única (Dónde atendemos, tarjeta 04 de "Qué nos diferencia", SEO, datos para Google y pie).
+
 Fuente: PDF de ajustes del equipo (transcripto en `brief/material/ajustes-2026-09-24.md`) y `brief/fuente-de-verdad.json`.
 Alcance: la landing sigue siendo una sola página con el mismo orden de secciones. Acá está solo lo que cambia en esta ronda; lo que no figura queda como está.
 Reglas de escritura aplicadas: texto del equipo textual (solo tipeos y puntuación), marca "Nucleo" o "Nucleo Bariátrico" (nunca "NÚCLEO"), "reganancia" sin guion, sin guiones largos, ningún dato nuevo.
@@ -346,3 +348,198 @@ Correcciones hechas: "NÚCLEO" pasa a "Nucleo" (pregunta 4) y "en nuestra web" a
 2. **Testimonios en "No estás solo"** y sección Testimonios oculta hasta tener 3 aprobados: es mi recomendación para no tener dos formularios ni ejemplos falsos. La alternativa es dejar el formulario en Testimonios y sacar el anónimo de "No estás solo".
 3. **Repetición entre preguntas frecuentes y Tratamientos:** recomiendo cargarlas igual (ver sección 11).
 4. **Fotos de antes y después** en el formulario: el texto del equipo las ofrece; conviene confirmarlo antes de publicar la primera.
+
+---
+
+# Ronda v7 (2026-09-30) · Sede de Lomas de Zamora y bios de nutrición
+
+**Fuente:** `brief/material/ajustes-2026-09-29.md` (mensajes de Maya Vega y bios textuales), fotos y videos de `Desktop/FotosNucleo/UltimasFotosyVideos` y `brief/fuente-de-verdad.json` (actualizado hoy).
+**Alcance:** la página no cambia de orden. Cambian "Dónde atendemos" (2 sedes con pestañas), los textos que daban por hecho una sola sede, el SEO y los datos para Google, y las bios de Solange y Débora. Esta ronda pisa lo que las secciones de arriba dicen sobre "sede única".
+**"Texto actual"** es lo que hoy está en la rama `v6-lomas-y-bios`, incluidos los valores provisorios que ya cargó el constructor.
+
+## 1. Dónde atendemos (#ubicaciones)
+
+**Objetivo:** que cada persona encuentre la sede que le queda cerca, reconozca el lugar cuando llega y pida turno en esa sede sin salir de la sección.
+
+**Forma visual:** 2 pestañas con el nombre de la zona. Cada pestaña muestra sus 2 piezas verticales (fotos o video) y su tarjeta: nombre, dirección, lugar si corresponde, mapa y botones. La consulta virtual queda afuera de las pestañas, debajo, porque vale para las 2 (así lo armó el constructor, y está bien). Las 2 pestañas juntas miden unos 300 px y entran en un celular de 360 px; si en algún ancho se parten, achicar el relleno antes que abreviar los nombres.
+
+### Datos de cada sede (`ubicaciones.sedes`)
+
+| Campo | Villa del Parque | Lomas de Zamora |
+|---|---|---|
+| Pestaña y título de la tarjeta (`nombre`) | Villa del Parque | Lomas de Zamora |
+| Línea debajo del título, también en el pie (`lineaDireccion`) | Simbrón 3327, CABA | General Bartolomé Mitre 185 |
+| Lugar, debajo de la dirección (`espacio`) | `null` (no se muestra) | Centro Médico Las Lomitas |
+| Dirección completa, para el mapa y Google (`direccion`) | Simbrón 3327, Villa del Parque, CABA | General Bartolomé Mitre 185, Lomas de Zamora, Provincia de Buenos Aires |
+| `calle` (va en el nombre del mapa) | Simbrón 3327 | General Bartolomé Mitre 185 |
+| Horario | No se publica | No se publica |
+| Cómo llegar | Solo Google Maps | Solo Google Maps |
+| Mensaje de WhatsApp de "Pedir turno" (`turno`) | Hola, quiero pedir un turno en la sede de Villa del Parque. | Hola, quiero pedir un turno en la sede de Lomas de Zamora. |
+
+Nombre de la lista de pestañas para lectores de pantalla (`ubicaciones.pestanas`): **Sedes** (queda igual).
+
+**Por qué "General Bartolomé Mitre 185", sin "Lomas de Zamora" ni "Gral.":** es la regla que ya usa Villa del Parque: el título dice la zona y la línea de abajo, la calle, sin repetir. A Villa del Parque se le suma "CABA" porque es un barrio; Lomas de Zamora ya es la ciudad. Además, "Gral. Bartolomé Mitre 185, Lomas de Zamora" (42 caracteres) no entra en un renglón de la tarjeta ni de la columna del pie y deja "Zamora" colgada; "General Bartolomé Mitre 185" (27) entra. "General" va completo porque así lo escribió el equipo. La provincia sigue en el mapa, en los datos para Google y en la descripción.
+
+**Por qué mostrar "Centro Médico Las Lomitas" (y en Villa del Parque no):** en Villa del Parque no se muestra porque el equipo escribió "Bienetre" y el cartel dice "Bien Être Oasis". En Lomas no hay duda: el nombre se lee igual en el cartel de la fachada, en el de la recepción y en el Instagram del vidrio. Es un centro médico, no de estética, y es lo que la persona busca con la mirada al llegar (por el mismo motivo se dejó el cartel verde en la foto de Villa del Parque). Queda anotado como "visto en las fotos": si el equipo prefiere que no figure, se saca con `espacio: null`.
+
+### URLs de Google Maps de Lomas
+
+- `mapa`: `https://maps.google.com/maps?q=General%20Bartolom%C3%A9%20Mitre%20185%2C%20Lomas%20de%20Zamora%2C%20Provincia%20de%20Buenos%20Aires&t=&z=16&ie=UTF8&iwloc=&output=embed`
+- `comoLlegar`: `https://www.google.com/maps/dir/?api=1&destination=General%20Bartolom%C3%A9%20Mitre%20185%2C%20Lomas%20de%20Zamora%2C%20Provincia%20de%20Buenos%20Aires`
+
+Codifican exactamente `direccion`, como las de Villa del Parque. Verificado hoy: Google resuelve la dirección a "Gral. Bartolomé Mitre 185, B1832JDB Lomas de Zamora, Provincia de Buenos Aires" y OpenStreetMap la pone en el mismo punto (barrio Lomitas); no hay otro Mitre 185 en el partido. Las que cargó el constructor (terminan en "Buenos Aires") caen en el mismo punto: el cambio es para que dirección, mapa y botón digan lo mismo.
+
+### Fotos y video de Lomas
+
+| Pieza | Clave | Texto actual | Texto nuevo |
+|---|---|---|---|
+| Foto de la fachada al atardecer | `sedes[1].media[0].alt` | Fachada del Centro Médico Las Lomitas, en Bartolomé Mitre 185 | Fachada del Centro Médico Las Lomitas al atardecer, con el número 185 sobre la puerta |
+| Video corto en loop (el de recepción y sala de espera, 8,5 s) | `sedes[1].media[1].alt` | Recepción y sala de espera de la sede de Lomas de Zamora | Queda igual |
+| Botón que abre el recorrido | `sedes[1].recorrido.boton` | Ver recorrido | Queda igual |
+| Nombre de la ventana del recorrido | `sedes[1].recorrido.titulo` | Recorrido por la sede de Lomas de Zamora | Queda igual |
+| Video del recorrido completo, dentro de la ventana | clave nueva, por ejemplo `sedes[1].recorrido.alt`, como `aria-label` del video | (no tiene) | Recorrido en video por la sede de Lomas de Zamora: la recepción, la sala de espera, el pasillo y un consultorio |
+
+- **Botón "Ver recorrido":** va sobre el video, en una pastilla de un renglón. En celular esa pieza mide unos 160 px de ancho: "Ver el recorrido en video" (25 caracteres) no entra; "Ver recorrido" sí, y el ícono de play ya dice que es un video.
+- **Si el recorrido incluye la llegada a la fachada**, el texto del video pasa a "Recorrido en video por la sede de Lomas de Zamora: la llegada, la recepción, la sala de espera, el pasillo y un consultorio". Conviene que arranque en la recepción (ver el punto siguiente).
+- **Si el loop usa otro clip:** pasillo (18 s) "Pasillo de la sede de Lomas de Zamora, de la sala de espera al consultorio"; consultorio (16 s) "Consultorio de la sede de Lomas de Zamora". La llegada (4 s) no sirve de loop.
+
+### Antes de publicar: terceros en la fachada (director de arte)
+
+En las 3 fotos de la fachada y en el último segundo del video de llegada se ven cosas que no son de Nucleo:
+- el vinilo "Dr. Iván Brener · Médico cirujano plástico" en el vidrio y su cartel redondo en la pared de la derecha;
+- una pantalla con la foto, el nombre y los horarios de otras médicas del centro;
+- en el vidrio de la puerta, "Turnos y consultas 11 3170-4223" con ícono de WhatsApp, "@cm.laslomitas" y la lista de especialidades del centro.
+
+Retocarlos o recortarlos, con el mismo criterio que el roll-up de estética y la patente en Villa del Parque. El teléfono es lo más importante: si se lee, alguien puede escribirle al centro en vez de al equipo. Y "cirujano plástico" es justo la asociación con estética que el equipo quiso evitar. El cartel "Centro Médico Las Lomitas" y el 185 quedan. El video de llegada no se retoca fácil: que el recorrido arranque en la recepción (la foto ya muestra la entrada) o que corte antes de que se lea el vidrio. Ningún video muestra personas.
+
+### Botones de la tarjeta
+
+- **Pedir turno** abre WhatsApp con el mensaje de la sede (`turno`). Es la acción principal del sitio, así que recomiendo que sea el botón relleno y "Cómo llegar" el secundario (hoy es al revés: "Cómo llegar" relleno y "Pedir turno" con borde). "Cómo llegar" le sirve sobre todo a quien ya tiene turno. Decide Fede.
+- **Ver recorrido** es un tercer nivel: pastilla sobre el video, solo en Lomas.
+- Nombres para lectores de pantalla (opcional; los botones se llaman igual en las 2 pestañas): "Pedir turno en la sede de Villa del Parque por WhatsApp" / "Pedir turno en la sede de Lomas de Zamora por WhatsApp", y "Cómo llegar a la sede de Villa del Parque (abre Google Maps)" / "Cómo llegar a la sede de Lomas de Zamora (abre Google Maps)".
+- Pie: cada sede lleva a "Dónde atendemos", que abre en la pestaña que esté activa (al entrar, Villa del Parque). Si se puede, que cada link abra la pestaña de su sede.
+
+## 2. Tabla de cambios
+
+| Clave de `lib/copy.ts` o archivo | Texto actual | Texto nuevo |
+|---|---|---|
+| `diferencial.items[3].body` | Te recibimos en Simbrón 3327, Villa del Parque, y la primera consulta también puede ser virtual. | Te recibimos en Villa del Parque y en Lomas de Zamora. La primera consulta también puede ser virtual. |
+| `diferencial.items[3]`, comentario | Sede única por ahora (PDF de ajustes 2026-09-24): Simbrón 3327, Villa del Parque. | 2 sedes: Villa del Parque (PDF de ajustes 2026-09-24) y Lomas de Zamora (Maya Vega, 2026-09-29). |
+| `equipo.acompanamiento.miembros[1].bio` (Solange) | `lorem.short` | Licenciada en Nutrición, especializada en obesidad y enfermedades cardiometabólicas, cambio de hábitos y abordaje cognitivo-conductual. Experiencia en acompañamiento nutricional para el descenso de peso y en trabajo interdisciplinario. Trabaja con estrategias personalizadas para que los cambios se sostengan. |
+| `equipo.acompanamiento.miembros[2].bio` (Débora) | `lorem.short` | Licenciada en Nutrición, egresada de la UBA y diplomada en abordaje integral de la persona con obesidad. Miembro del grupo de estudio de obesidad de la Asociación Argentina de Licenciados en Nutrición. Su práctica combina una atención basada en la evidencia con un enfoque transdisciplinario. |
+| Comentario arriba de Solange | Nutricionistas (account manager, 2026-09-28): Lic. Solange Leban y Lic. Débora Salamon. Solo el nombre, como el resto del equipo. Bios todavía pendientes, por eso va lorem. | Nutricionistas: Lic. Solange Leban y Lic. Débora Salamón (con tilde, como en la bio del equipo). Solo el nombre, como el resto del equipo. Bios del equipo (2026-09-29), acortadas al largo de las demás. |
+| Comentario arriba de `ubicaciones` | Sede única por ahora (PDF de ajustes 2026-09-24). San Isidro deja de figurar. Cómo llegar: solo el link a Google Maps; no publicar líneas de transporte hasta que el equipo las confirme. | 2 sedes: Villa del Parque (PDF de ajustes 2026-09-24) y Lomas de Zamora (Maya Vega, 2026-09-29). San Isidro no figura. En las 2, sin horario y "Cómo llegar" solo con Google Maps, sin líneas de transporte. |
+| `ubicaciones.sedes[1].lineaDireccion` | Gral. Bartolomé Mitre 185, Lomas de Zamora | General Bartolomé Mitre 185 |
+| `ubicaciones.sedes[1].mapa` | `...Mitre%20185%2C%20Lomas%20de%20Zamora%2C%20Buenos%20Aires&t=...` | URL de la sección 1 |
+| `ubicaciones.sedes[1].comoLlegar` | `...Lomas%20de%20Zamora%2C%20Buenos%20Aires` | URL de la sección 1 |
+| `ubicaciones.sedes[1].media[0].alt` | Fachada del Centro Médico Las Lomitas, en Bartolomé Mitre 185 | Fachada del Centro Médico Las Lomitas al atardecer, con el número 185 sobre la puerta |
+| `ubicaciones.sedes[1].recorrido.alt` (clave nueva, opcional) | (no tiene) | Recorrido en video por la sede de Lomas de Zamora: la recepción, la sala de espera, el pasillo y un consultorio |
+| `ubicaciones.virtual.texto` | Si te queda lejos o preferís empezar desde casa, coordinamos tu primera consulta de forma virtual. | Si ninguna sede te queda cerca o preferís empezar desde casa, coordinamos tu primera consulta de forma virtual. |
+| `contacto.horario`, comentario | ...aparece en Contacto y en la sede. | ...aparece en Contacto y en las 2 sedes. |
+| `footer.sedes` | Ya toma `lineaDireccion` | Sin cambios: queda "Villa del Parque / Simbrón 3327, CABA" y "Lomas de Zamora / General Bartolomé Mitre 185" |
+| `app/layout.tsx`, `title.default` | Cirugía bariátrica en Villa del Parque · ${brand.name} | Cirugía bariátrica en CABA y Lomas · ${brand.name} |
+| `app/layout.tsx`, `description` | Equipo de cirugía bariátrica en Villa del Parque, CABA: inyectables, balón gástrico, manga, bypass y reganancia de peso. Primera consulta presencial o virtual. | Cirugía bariátrica en Villa del Parque (CABA) y Lomas de Zamora: inyectables, balón, manga, bypass y reganancia de peso. Primera consulta presencial o virtual. |
+| `app/layout.tsx`, `keywords` | cirugía bariátrica, obesidad, Argentina, Villa del Parque, bypass gástrico, manga gástrica, equipo médico bariátrico | cirugía bariátrica, obesidad, Argentina, CABA, Villa del Parque, Lomas de Zamora, zona sur, bypass gástrico, manga gástrica, balón gástrico, reganancia de peso, equipo médico bariátrico |
+| `app/layout.tsx`, `jsonLd` | Una sede, con `medicalSpecialty: "Bariatrics"` | Ver sección 4 |
+| `app/layout.tsx`, comentario del JSON-LD | Sede única (PDF de ajustes 2026-09-24) | Sede principal en address; las 2 sedes en location |
+| `app/opengraph-image.tsx`, línea de abajo | Simbrón 3327 · Villa del Parque | Villa del Parque · Lomas de Zamora |
+| `README.md`, línea 3 | (Villa del Parque + San Isidro) | (Villa del Parque + Lomas de Zamora) |
+
+**Quedan como están (ya correctos en la rama):** `ubicaciones.eyebrow` y `headline`, `ubicaciones.pestanas`, toda la sede de Villa del Parque (con `espacio: null`), y de Lomas `nombre`, `direccion`, `calle`, `espacio`, `turno`, `media[1].alt`, `recorrido.boton` y `recorrido.titulo`. En la tarjeta 04 quedan el título "Presencial o virtual", el botón y la foto.
+
+## 3. Bios de las nutricionistas
+
+Mismo formato que las de los cirujanos y Rocío: tercera persona, sin el nombre (ya está arriba), empezando por el título. Las del sitio miden entre 242 y 301 caracteres.
+
+**Solange** (309 caracteres)
+> Licenciada en Nutrición, especializada en obesidad y enfermedades cardiometabólicas, cambio de hábitos y abordaje cognitivo-conductual. Experiencia en acompañamiento nutricional para el descenso de peso y en trabajo interdisciplinario. Trabaja con estrategias personalizadas para que los cambios se sostengan.
+
+Queda todo lo duro: título, las 4 especialidades y la experiencia en descenso de peso y en trabajo interdisciplinario. Sale "amplia" (la única valoración de la bio) y la frase general del final ("acompañar a cada paciente en las distintas etapas de su proceso"). El cierre no usa "combina" porque ya está en las bios de Agustina, Sergio y Débora.
+
+**Débora** (292 caracteres)
+> Licenciada en Nutrición, egresada de la UBA y diplomada en abordaje integral de la persona con obesidad. Miembro del grupo de estudio de obesidad de la Asociación Argentina de Licenciados en Nutrición. Su práctica combina una atención basada en la evidencia con un enfoque transdisciplinario.
+
+Quedan UBA, la diplomatura y el grupo de estudio de la AALN, con el nombre completo de la asociación como lo escribió el equipo. La membresía va antes del enfoque, como en las demás bios. Sale "acompañando a cada persona en el logro de sus objetivos de salud". "Universidad de Buenos Aires" pasa a "UBA", como en las bios de Nahuel y Agustina.
+
+Apellido: el equipo escribe **Salamón**, con tilde; la account manager lo había pasado sin tilde. En la fuente de verdad queda Salamón. El sitio solo muestra "Débora".
+
+## 4. SEO y datos para Google
+
+- **Título (54 caracteres, contando " · Nucleo Bariátrico"):** Cirugía bariátrica en CABA y Lomas · Nucleo Bariátrico
+  Arranca por lo que se busca. "Lomas de Zamora" completo no entra (61). "Lomas" es como se la nombra, y la descripción trae el nombre completo: una búsqueda con "Lomas de Zamora" encuentra las 2 cosas.
+- **Descripción (159 caracteres):** Cirugía bariátrica en Villa del Parque (CABA) y Lomas de Zamora: inyectables, balón, manga, bypass y reganancia de peso. Primera consulta presencial o virtual.
+- **Palabras clave:** cirugía bariátrica, obesidad, Argentina, CABA, Villa del Parque, Lomas de Zamora, zona sur, bypass gástrico, manga gástrica, balón gástrico, reganancia de peso, equipo médico bariátrico. Sin marcas de medicamentos.
+- **Imagen para compartir, línea de abajo:** Villa del Parque · Lomas de Zamora. El título y la descripción para compartir (Open Graph) no nombran sede: quedan igual.
+- **Búsquedas reales a las que responde:** cirugía bariátrica Lomas de Zamora · cirujano bariátrico zona sur · manga gástrica Lomas de Zamora · balón gástrico zona sur · nutricionista obesidad Lomas de Zamora · cirugía bariátrica CABA · cirujano bariátrico Villa del Parque · consulta bariátrica virtual.
+- El sitio sigue en `noindex` hasta el lanzamiento.
+
+### JSON-LD propuesto (completo)
+
+El de hoy tiene un error: `medicalSpecialty` no es una propiedad de `MedicalBusiness` (schema.org la define para Hospital, MedicalClinic, MedicalOrganization y Physician) y "Bariatrics" no es uno de los valores permitidos. Se saca, y la especialidad queda dicha en `description`. `MedicalBusiness` sigue siendo el tipo que mejor describe a un equipo que atiende en espacios de terceros. `address` lleva la sede principal (Villa del Parque) y `location`, las 2 sedes. `sameAs` suma el Instagram (confirmado). Sin código postal ni coordenadas: no los dio el equipo.
+
+Así se ve ya armado. `name`, `url`, `telephone` y `sameAs` salen de `brand` (no escribirlos a mano); la URL depende de `brand.domain`, que sigue sin confirmar.
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalBusiness",
+  "name": "Nucleo Bariátrico",
+  "description": "Equipo médico especializado en cirugía bariátrica y metabólica",
+  "url": "https://nucleobariatrico.com.ar",
+  "telephone": "+5491156077780",
+  "areaServed": { "@type": "Country", "name": "Argentina" },
+  "sameAs": ["https://www.instagram.com/nucleobariatrico/"],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Simbrón 3327",
+    "addressLocality": "Villa del Parque, Ciudad Autónoma de Buenos Aires",
+    "addressRegion": "CABA",
+    "addressCountry": "AR"
+  },
+  "location": [
+    {
+      "@type": "Place",
+      "name": "Nucleo Bariátrico · Villa del Parque",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Simbrón 3327",
+        "addressLocality": "Villa del Parque, Ciudad Autónoma de Buenos Aires",
+        "addressRegion": "CABA",
+        "addressCountry": "AR"
+      }
+    },
+    {
+      "@type": "Place",
+      "name": "Nucleo Bariátrico · Lomas de Zamora",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "General Bartolomé Mitre 185",
+        "addressLocality": "Lomas de Zamora",
+        "addressRegion": "Provincia de Buenos Aires",
+        "addressCountry": "AR"
+      }
+    }
+  ]
+}
+```
+
+Si Fede prefiere conservar una especialidad, el tipo tiene que pasar a `MedicalClinic` con `"medicalSpecialty": "https://schema.org/Surgical"`. No lo recomiendo: "clínica" describe un establecimiento propio, y no cambia cómo se ve el resultado en Google.
+
+## 5. Revisado y sin cambios
+
+- **Preguntas frecuentes:** ninguna asume una sola sede; "¿Hacen consultas virtuales?" sigue bien. No sumo una pregunta sobre sedes: ya están en "Dónde atendemos" y cada contenido vive en un solo lugar.
+- **Hero, calculadora, equipo, tratamientos, proceso, cobertura, contacto, "No estás solo", botón flotante y página 404:** no nombran sede.
+- **Pie:** la columna "Dónde atendemos" ya lista las 2 sedes desde `ubicaciones.sedes`.
+
+## 6. Jerarquía de botones (esta ronda)
+
+- Principal en todo el sitio: WhatsApp. Sin cambios en nav, hero, calculadora ni botón flotante.
+- Dónde atendemos: "Pedir turno" de cada sede como botón principal (recomendado), "Cómo llegar" secundario y "Ver recorrido" como pastilla sobre el video. La consulta virtual sigue como tarjeta con link.
+- No se suman botones de contacto en otras secciones.
+
+## 7. Avisos para Fede
+
+1. **Fachada de Lomas con datos de terceros** (teléfono de turnos del centro, un cirujano plástico, horarios de otras médicas): retocar antes de publicar. Es lo único que frena la foto.
+2. **Nombre del centro visible:** decidí mostrar "Centro Médico Las Lomitas" en la tarjeta. Lo vimos en las fotos; el equipo no lo escribió. Se saca con una línea si prefieren que no figure.
+3. **Botones de la sede:** recomiendo invertirlos para que "Pedir turno" sea el relleno.
+4. **Formulario de contacto:** no pregunta la sede. Si al equipo le sirve saberlo de entrada, se puede sumar un campo opcional ("¿Dónde preferís atenderte?": Villa del Parque · Lomas de Zamora · Virtual). No lo agrego: el botón de cada sede ya manda la sede escrita, y cada campo de más alarga el formulario.
