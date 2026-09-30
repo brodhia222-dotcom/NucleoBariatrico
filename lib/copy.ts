@@ -546,8 +546,10 @@ export const ubicaciones = {
       mapa: "https://maps.google.com/maps?q=General%20Bartolom%C3%A9%20Mitre%20185%2C%20Lomas%20de%20Zamora%2C%20Provincia%20de%20Buenos%20Aires&t=&z=16&ie=UTF8&iwloc=&output=embed",
       comoLlegar: "https://www.google.com/maps/dir/?api=1&destination=General%20Bartolom%C3%A9%20Mitre%20185%2C%20Lomas%20de%20Zamora%2C%20Provincia%20de%20Buenos%20Aires",
       turno: "Hola, quiero pedir un turno en la sede de Lomas de Zamora.",
+      // Fachada retocada (sin el cartel del cirujano plástico, la pantalla con otra médica ni la lista de
+      // especialidades del centro) y recortada sin el 185, que en compu quedaba cortado ("85").
       media: [
-        { tipo: "foto", src: "/images/sede-lomas-fachada.jpg", alt: "Fachada del Centro Médico Las Lomitas al atardecer, con el número 185 sobre la puerta", pos: "50% 50%" },
+        { tipo: "foto", src: "/images/sede-lomas-fachada.jpg", alt: "Fachada del Centro Médico Las Lomitas al atardecer, con el cartel encendido", pos: "30% 0%" },
         { tipo: "video", src: "/videos/sede-lomas-loop.mp4", poster: "/images/sede-lomas-loop.jpg", alt: "Recepción y sala de espera de la sede de Lomas de Zamora", pos: "50% 50%" },
       ],
       recorrido: {

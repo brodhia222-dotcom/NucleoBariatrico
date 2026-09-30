@@ -66,3 +66,14 @@ En las grupales _Q5A2220–2226 aparece también un hombre de anteojos con suét
 > 6. **Una imagen para la portada que no sea "antes y después"**, horizontal y grande (de 2400 px de ancho o más). Por ejemplo, todo el equipo junto (cirujanos, nutricionistas y psicóloga) con espacio libre en el centro para el texto, o una escena de consulta.
 > 7. **Balón gástrico:** si tienen fotos propias, o de la marca con permiso de uso, de la cápsula y el balón en mejor resolución (1000 px o más) y en vertical. Y confirmarnos si las tres imágenes que mandaron se pueden usar en la web.
 > 8. **Opcional:** a Sergio con guardapolvo blanco, para que los tres retratos queden parejos (hoy él está con ambo azul). También fotos reales del equipo en quirófano para el paso "Cirugía", que hoy usa una foto de stock.
+
+## Ronda v7 · Lomas de Zamora (2026-09-30)
+
+Material: `Desktop/FotosNucleo/UltimasFotosyVideos` (8 fotos y 4 videos de WhatsApp, todos de la sede nueva: Centro Médico Las Lomitas, General Bartolomé Mitre 185). Hojas de contactos y recortes en `brief/fotos/v7/`.
+
+| Lugar | Archivo | Original | Por qué | Avisos |
+|---|---|---|---|---|
+| Dónde atendemos · Lomas, pieza 1 (foto) | `public/images/sede-lomas-fachada.jpg` · 800x1778 | "16.00.56" (2268x4032, al atardecer) | Carteles encendidos, se lee "Centro Médico Las Lomitas". | Retocado: el cartel redondo "Dr. Iván Brener · Cirujano plástico" (queda solo la B), el calco con la misma B en la vidriera, la pantalla con otra médica y sus horarios (desenfocada) y la lista de especialidades del centro en el vidrio (desenfocada). Recortado sin el 185: en compu quedaba cortado ("85"). object-position `30% 0%`: arriba se ve el cartel entero y en 1024 px se corta el final de "MÉDICO" antes que el principio de "CENTRO". |
+| Dónde atendemos · Lomas, pieza 2 (video en loop) | `public/videos/sede-lomas-loop.mp4` · 464x832, 7,5 s, 613 KB, sin audio + póster `sede-lomas-loop.jpg` | video "16.00.56 (1)" y comienzo de "16.00.55 (1)" | Recepción, sala de espera y pasillo; cierra con un fundido al primer cuadro. | Resolución de WhatsApp (464 px de ancho): se ve bien al tamaño de la pieza. |
+| Ventana "Ver recorrido" | `public/videos/sede-lomas-recorrido.mp4` · 464x832, 31,6 s, 3 MB, sin audio + póster `sede-lomas-recorrido.jpg` | los 4 videos en orden: llegada, recepción y espera, pasillo, consultorio 3 | Recorrido completo de la llegada al consultorio. | Arranca en la vereda: los carteles del vidrio y el cartel del cirujano aparecen, pero a esa resolución no se leen (revisado cuadro por cuadro). Sin personas. |
+| (sin usar) | `brief/fotos/v7/sede-lomas-interior.jpg` y `-alt` | fotos de recepción 720x1280 | Respaldo del video. | El póster del loop ya muestra la recepción. |

@@ -26,7 +26,12 @@ export function Ubicaciones() {
   const reducir = useReducedMotion();
   const pestanas = useRef<(HTMLButtonElement | null)[]>([]);
   const sede = sedes[activa];
-  const cerrarRecorrido = useCallback(() => setRecorrido(null), []);
+  // Al cerrar el recorrido, el foco vuelve al botón que lo abrió
+  const disparador = useRef<HTMLElement | null>(null);
+  const cerrarRecorrido = useCallback(() => {
+    setRecorrido(null);
+    requestAnimationFrame(() => disparador.current?.focus());
+  }, []);
 
   const virtualHref = whatsapp("Hola, quiero coordinar una primera consulta virtual.");
 
@@ -135,7 +140,8 @@ export function Ubicaciones() {
           transition={{ duration: 0.8, ease: easeEditorial }}
           className="grid gap-6 lg:grid-cols-12 lg:gap-8"
         >
-          {/* Piezas del lugar: verticales, lado a lado y enteras (en compu, a la altura de la columna de al lado) */}
+          {/* Piezas del lugar: verticales, lado a lado. En compu no aportan alto propio (van en absolute):
+              la altura la marca la columna de datos y las piezas la llenan, así nunca queda un hueco */}
           <AnimatePresence mode="wait" initial={false}>
             <motion.div key={`piezas-${sede.id}`} {...cambio} className="grid grid-cols-2 gap-3 lg:col-span-7 lg:gap-4">
               {sede.media.map((m) => (
@@ -145,14 +151,21 @@ export function Ubicaciones() {
                       src={m.src}
                       alt={m.alt}
                       loading="lazy"
-                      className="aspect-[9/16] w-full object-cover transition-transform duration-700 hover:scale-[1.02] lg:aspect-auto lg:h-full"
+                      className="aspect-[9/16] w-full object-cover transition-transform duration-700 hover:scale-[1.02] lg:absolute lg:inset-0 lg:aspect-auto lg:h-full"
                       style={{ objectPosition: m.pos }}
                     />
                   ) : (
                     <VideoLoop
                       pieza={m}
                       recorrido={sede.recorrido}
-                      onRecorrido={sede.recorrido ? () => setRecorrido(sede.recorrido!) : undefined}
+                      onRecorrido={
+                        sede.recorrido
+                          ? (boton) => {
+                              disparador.current = boton;
+                              setRecorrido(sede.recorrido!);
+                            }
+                          : undefined
+                      }
                     />
                   )}
                 </figure>
@@ -267,7 +280,7 @@ function VideoLoop({
 }: {
   pieza: Extract<MediaSede, { tipo: "video" }>;
   recorrido?: Recorrido;
-  onRecorrido?: () => void;
+  onRecorrido?: (boton: HTMLButtonElement) => void;
 }) {
   const ref = useRef<HTMLVideoElement>(null);
   const reducir = useReducedMotion();
@@ -318,7 +331,7 @@ function VideoLoop({
         preload="none"
         poster={pieza.poster}
         aria-label={pieza.alt}
-        className="aspect-[9/16] w-full object-cover lg:aspect-auto lg:h-full"
+        className="aspect-[9/16] w-full object-cover lg:absolute lg:inset-0 lg:aspect-auto lg:h-full"
         style={{ objectPosition: pieza.pos }}
       >
         <source src={pieza.src} type="video/mp4" />
@@ -336,7 +349,7 @@ function VideoLoop({
       {recorrido && onRecorrido && (
         <button
           type="button"
-          onClick={onRecorrido}
+          onClick={(e) => onRecorrido(e.currentTarget)}
           aria-haspopup="dialog"
           className="absolute bottom-2.5 left-1/2 inline-flex -translate-x-1/2 items-center gap-2 whitespace-nowrap rounded-full bg-[color:var(--bg-elevated)] px-3.5 py-2 text-[13px] font-medium text-[color:var(--ink)] shadow-[var(--shadow-md)] transition-colors hover:bg-[color:var(--ink)] hover:text-[color:var(--ink-inverse)] sm:bottom-3 sm:px-4 sm:text-sm"
         >
@@ -352,7 +365,6 @@ function VideoLoop({
 function RecorridoVentana({ recorrido, onCerrar }: { recorrido: Recorrido | null; onCerrar: () => void }) {
   useEffect(() => {
     if (!recorrido) return;
-    const previo = document.activeElement as HTMLElement | null;
     document.body.style.overflow = "hidden";
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onCerrar();
@@ -361,7 +373,6 @@ function RecorridoVentana({ recorrido, onCerrar }: { recorrido: Recorrido | null
     return () => {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", onKey);
-      previo?.focus?.();
     };
   }, [recorrido, onCerrar]);
 
