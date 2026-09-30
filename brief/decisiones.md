@@ -63,6 +63,7 @@ Lo que pidió o aprobó el cliente (o Fede para este cliente). No se repite en o
 - Retoques de la fachada de Lomas: fuera el cartel del cirujano plástico, la pantalla con otra médica y la lista de especialidades del centro; sin el 185 (en compu quedaba "85").
 - En compu las piezas de la sede no aportan alto propio: las marca la columna de datos, para que nunca quede un hueco entre las dos columnas.
 - Bios de Solange y Débora (Salamón), acortadas al largo de las demás. Tarjeta 04 de "Qué nos diferencia", consulta virtual, SEO, JSON-LD (2 sedes en location; sin medicalSpecialty) e imagen para compartir, por 2 sedes.
+- Tras la 1ª pasada del crítico (v7): arreglado el desborde de costado en celular que venía del 25/9 (el select de motivos del formulario ensanchaba la página; también está en el link v5); manito en todos los botones; las ventanas (recorrido, tratamientos, testimonios) ya no dejan scrollear la página de atrás; botones de la sede a lo ancho en celular y en 1024; renglón del centro reservado para que nada salte al cambiar de pestaña; mapas montados una vez; "Ver recorrido" con ícono de película (no el ▶ de reproducir); las piezas ya no se agrandan con el cursor; la ventana retiene el foco; "cognitivo‑conductual" con guion que no corta.
 - A decidir por Fede o el equipo: mostrar o no el nombre del centro de Lomas; sumar o no la sede al formulario de contacto (hoy no, porque el botón de cada sede ya la manda escrita).
 
 ## Técnico

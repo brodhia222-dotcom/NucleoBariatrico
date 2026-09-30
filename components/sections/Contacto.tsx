@@ -86,7 +86,8 @@ export function Contacto() {
         className="pointer-events-none absolute top-0 left-0 right-0 h-px bg-[color:var(--accent)] opacity-60"
       />
       <Container>
-        <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+        {/* grid-cols-1 y min-w-0: el select de motivos (opciones largas) no puede ensanchar la página en celular */}
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16">
           {/* LEFT — visual + contact options */}
           <div className="lg:col-span-5 flex flex-col gap-8">
             <Reveal>
@@ -208,7 +209,7 @@ export function Contacto() {
                   f.dataset.iniciado = "1";
                   track("form_start", { formulario: "contacto" });
                 }}
-                className="grid gap-5 rounded-[var(--radius-2xl)] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-8 lg:p-10 shadow-[var(--shadow-md)]"
+                className="grid grid-cols-1 gap-5 rounded-[var(--radius-2xl)] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-8 lg:p-10 shadow-[var(--shadow-md)]"
               >
                 <span className="eyebrow mb-2">Formulario de consulta</span>
 
@@ -228,14 +229,14 @@ export function Contacto() {
                 </div>
                 <FormField id={idEmail} name="email" label={contacto.labels.email} type="email" required />
 
-                <label className="flex flex-col gap-2">
+                <label className="flex min-w-0 flex-col gap-2">
                   <span className="eyebrow">{contacto.labels.motivo}</span>
                   <select
                     id={idMotivo}
                     name="motivo"
                     required
                     defaultValue=""
-                    className="h-12 rounded-[10px] border border-[color:var(--border-strong)] bg-[color:var(--bg)] px-4 text-[color:var(--ink)] outline-none focus:border-[color:var(--ink)]"
+                    className="h-12 w-full min-w-0 rounded-[10px] border border-[color:var(--border-strong)] bg-[color:var(--bg)] px-4 text-[color:var(--ink)] outline-none focus:border-[color:var(--ink)]"
                   >
                     <option value="" disabled>
                       Elegí un motivo

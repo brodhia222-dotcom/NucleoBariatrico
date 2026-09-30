@@ -130,7 +130,7 @@ export function TestimonioForm({ abierto, onCerrar }: { abierto: boolean; onCerr
   return (
     <AnimatePresence>
       {abierto && (
-        <div className="fixed inset-0 z-[900] flex items-end justify-center p-0 sm:items-center sm:p-6">
+        <div data-lenis-prevent className="fixed inset-0 z-[900] flex items-end justify-center p-0 sm:items-center sm:p-6">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

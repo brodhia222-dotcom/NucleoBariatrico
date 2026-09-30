@@ -214,7 +214,7 @@ export const equipo = {
         nombre: "Solange",
         rol: "Nutricionista",
         bio: noOrphans(
-          "Licenciada en Nutrición, especializada en obesidad y enfermedades cardiometabólicas, cambio de hábitos y abordaje cognitivo-conductual. Experiencia en acompañamiento nutricional para el descenso de peso y en trabajo interdisciplinario. Trabaja con estrategias personalizadas para que los cambios se sostengan."
+          "Licenciada en Nutrición, especializada en obesidad y enfermedades cardiometabólicas, cambio de hábitos y abordaje cognitivo\u2011conductual. Experiencia en acompañamiento nutricional para el descenso de peso y en trabajo interdisciplinario. Trabaja con estrategias personalizadas para que los cambios se sostengan."
         ),
         foto: "/images/equipo-solange.jpg",
       },
@@ -557,7 +557,7 @@ export const ubicaciones = {
         poster: "/images/sede-lomas-recorrido.jpg",
         boton: "Ver recorrido",
         titulo: "Recorrido por la sede de Lomas de Zamora",
-        alt: "Recorrido en video por la sede de Lomas de Zamora: la recepción, la sala de espera, el pasillo y un consultorio",
+        alt: "Recorrido en video por la sede de Lomas de Zamora: la llegada, la recepción, la sala de espera, el pasillo y un consultorio",
       },
     },
   ] as Sede[],

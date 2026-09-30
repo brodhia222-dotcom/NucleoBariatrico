@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight, MapPin, Pause, Play, VideoCamera, WhatsappLogo, X } from "@phosphor-icons/react";
+import { ArrowUpRight, FilmStrip, MapPin, Pause, Play, VideoCamera, WhatsappLogo, X } from "@phosphor-icons/react";
 import { Container } from "@/components/primitives/Container";
 import { Section } from "@/components/primitives/Section";
 import { Eyebrow } from "@/components/primitives/Eyebrow";
@@ -26,6 +26,7 @@ export function Ubicaciones() {
   const reducir = useReducedMotion();
   const pestanas = useRef<(HTMLButtonElement | null)[]>([]);
   const sede = sedes[activa];
+  const conEspacio = sedes.some((s) => s.espacio);
   // Al cerrar el recorrido, el foco vuelve al botón que lo abrió
   const disparador = useRef<HTMLElement | null>(null);
   const cerrarRecorrido = useCallback(() => {
@@ -151,7 +152,7 @@ export function Ubicaciones() {
                       src={m.src}
                       alt={m.alt}
                       loading="lazy"
-                      className="aspect-[9/16] w-full object-cover transition-transform duration-700 hover:scale-[1.02] lg:absolute lg:inset-0 lg:aspect-auto lg:h-full"
+                      className="aspect-[9/16] w-full object-cover lg:absolute lg:inset-0 lg:aspect-auto lg:h-full"
                       style={{ objectPosition: m.pos }}
                     />
                   ) : (
@@ -175,13 +176,9 @@ export function Ubicaciones() {
 
           {/* Datos, mapa y consulta virtual */}
           <div className="flex flex-col gap-4 lg:col-span-5">
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.article
-                key={`datos-${sede.id}`}
-                {...cambio}
-                className="flex flex-col gap-5 rounded-[var(--radius-xl)] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-6 lg:p-8"
-              >
-                <div className="flex items-start gap-4">
+            <article className="flex flex-col gap-5 rounded-[var(--radius-xl)] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-6 lg:p-8">
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div key={`datos-${sede.id}`} {...cambio} className="flex items-start gap-4">
                   <span
                     aria-hidden
                     className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[color:var(--accent-soft)] text-[color:var(--accent)]"
@@ -202,20 +199,37 @@ export function Ubicaciones() {
                       {sede.nombre}
                     </h3>
                     <p className="body text-[color:var(--ink)]">{sede.lineaDireccion}</p>
-                    {sede.espacio && <p className="body-sm text-[color:var(--ink-soft)]">{sede.espacio}</p>}
+                    {/* Si alguna sede muestra el nombre del centro, el renglón se reserva en todas: al cambiar de pestaña nada salta */}
+                    {conEspacio && (
+                      <p className={`body-sm text-[color:var(--ink-soft)] ${sede.espacio ? "" : "invisible"}`} aria-hidden={!sede.espacio}>
+                        {sede.espacio ?? "\u00A0"}
+                      </p>
+                    )}
                     {contacto.horario && <p className="body-sm text-[color:var(--ink-soft)]">{contacto.horario}</p>}
                   </div>
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Los mapas se montan una sola vez y se alternan: al volver a una sede no se recargan */}
+              {sedes.map((s) => (
+                <div key={s.id} hidden={s.id !== sede.id}>
+                  <MapEmbed src={s.mapa} title={`Mapa de ${s.calle}, ${s.nombre}`} />
                 </div>
+              ))}
 
-                <MapEmbed key={sede.id} src={sede.mapa} title={`Mapa de ${sede.calle}, ${sede.nombre}`} />
-
-                <div className="flex flex-wrap gap-3">
+              {/* En celular y en la columna angosta de 1024 van a lo ancho, uno debajo del otro y del mismo ancho */}
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={`botones-${sede.id}`}
+                  {...cambio}
+                  className="flex flex-col gap-3 sm:flex-row sm:flex-wrap lg:flex-col xl:flex-row"
+                >
                   <a
                     href={whatsapp(sede.turno)}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Pedir turno en la sede de ${sede.nombre} por WhatsApp`}
-                    className="btn btn-ink"
+                    className="btn btn-ink w-full justify-center sm:w-auto lg:w-full xl:w-auto"
                   >
                     <WhatsappLogo weight="regular" className="h-4 w-4" />
                     Pedir turno
@@ -225,7 +239,7 @@ export function Ubicaciones() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Cómo llegar a la sede de ${sede.nombre} (abre Google Maps)`}
-                    className="btn btn-ghost group"
+                    className="btn btn-ghost group w-full justify-center sm:w-auto lg:w-full xl:w-auto"
                   >
                     Cómo llegar
                     <ArrowUpRight
@@ -233,9 +247,9 @@ export function Ubicaciones() {
                       className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                     />
                   </a>
-                </div>
-              </motion.article>
-            </AnimatePresence>
+                </motion.div>
+              </AnimatePresence>
+            </article>
 
             {/* Consulta virtual (confirmada en las preguntas frecuentes del equipo) */}
             <a
@@ -298,7 +312,7 @@ function VideoLoop({
     }
     const io = new IntersectionObserver(
       ([e]) => {
-        if (e.isIntersecting && !pausadoPorUsuario.current) v.play().catch(() => {});
+        if (e.isIntersecting && !pausadoPorUsuario.current) v.play().catch(() => setPausado(true));
         else v.pause();
       },
       { threshold: 0.3 },
@@ -313,7 +327,7 @@ function VideoLoop({
     if (v.paused) {
       pausadoPorUsuario.current = false;
       setPausado(false);
-      v.play().catch(() => {});
+      v.play().catch(() => setPausado(true));
     } else {
       pausadoPorUsuario.current = true;
       setPausado(true);
@@ -353,7 +367,7 @@ function VideoLoop({
           aria-haspopup="dialog"
           className="absolute bottom-2.5 left-1/2 inline-flex -translate-x-1/2 items-center gap-2 whitespace-nowrap rounded-full bg-[color:var(--bg-elevated)] px-3.5 py-2 text-[13px] font-medium text-[color:var(--ink)] shadow-[var(--shadow-md)] transition-colors hover:bg-[color:var(--ink)] hover:text-[color:var(--ink-inverse)] sm:bottom-3 sm:px-4 sm:text-sm"
         >
-          <Play weight="fill" className="h-3.5 w-3.5 text-[color:var(--accent)]" />
+          <FilmStrip weight="regular" className="h-4 w-4 text-[color:var(--accent)]" />
           {recorrido.boton}
         </button>
       )}
@@ -363,11 +377,21 @@ function VideoLoop({
 
 // Recorrido completo en una ventana, con los controles del navegador. Escape o el fondo la cierran.
 function RecorridoVentana({ recorrido, onCerrar }: { recorrido: Recorrido | null; onCerrar: () => void }) {
+  const ventana = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     if (!recorrido) return;
     document.body.style.overflow = "hidden";
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onCerrar();
+      if (e.key === "Tab" && ventana.current) {
+        const enfocables = [...ventana.current.querySelectorAll<HTMLElement>("button, video[controls]")];
+        if (!enfocables.length) return;
+        e.preventDefault();
+        const i = enfocables.indexOf(document.activeElement as HTMLElement);
+        const siguiente = e.shiftKey ? (i <= 0 ? enfocables.length - 1 : i - 1) : (i + 1) % enfocables.length;
+        enfocables[siguiente].focus();
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => {
@@ -379,7 +403,7 @@ function RecorridoVentana({ recorrido, onCerrar }: { recorrido: Recorrido | null
   return (
     <AnimatePresence>
       {recorrido && (
-        <div className="fixed inset-0 z-[900] flex items-center justify-center p-4">
+        <div data-lenis-prevent className="fixed inset-0 z-[900] flex items-center justify-center p-4">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -389,6 +413,7 @@ function RecorridoVentana({ recorrido, onCerrar }: { recorrido: Recorrido | null
             className="absolute inset-0 bg-[color:var(--bg-inverse)]/70 backdrop-blur-md"
           />
           <motion.div
+            ref={ventana}
             role="dialog"
             aria-modal="true"
             aria-label={recorrido.titulo}

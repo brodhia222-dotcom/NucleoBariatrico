@@ -357,3 +357,11 @@ p, blockquote, dd, figcaption, li {
     scroll-behavior: auto !important;
   }
 }
+
+/* Tailwind v4 deja los <button> con la flecha: la manito avisa que se pueden tocar */
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+}
