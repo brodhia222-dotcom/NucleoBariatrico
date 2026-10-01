@@ -70,15 +70,18 @@ function Miembro({ m, i }: { m: Persona; i: number }) {
       transition={{ duration: 0.8, delay: i * 0.1, ease: easeEditorial }}
       className="group grid grid-cols-[88px_1fr] items-center gap-x-4 gap-y-3 md:flex md:flex-col md:items-stretch md:gap-4"
     >
-      {/* Desde tablet, retrato de pecho para arriba (4:3, antes 4:5): la página era muy larga. Todos los
-          retratos tienen la cara a la misma altura, así que el mismo recorte sirve para los 6 */}
+      {/* Desde tablet, retrato apaisado (4:3, antes 4:5): la página era muy larga. Como el recorte dejaba
+          mucho aire arriba y las caras quedaban hundidas (Fede, 2026-10-01), la foto se acerca y se sube:
+          la cabeza ocupa del 6 al 67 % del alto y la cara queda centrada a lo ancho. En celular (miniatura
+          cuadrada) se acerca más, para que la cara llene el cuadro. Los 6 retratos tienen la cara en el
+          mismo lugar del archivo, así que el mismo encuadre sirve para todos. */}
       <figure className="relative overflow-hidden rounded-[var(--radius-lg)]">
         {m.foto ? (
           <img
             src={m.foto}
             alt={`${m.nombre} · ${m.rol}`}
             loading="lazy"
-            className="aspect-square w-full object-cover md:aspect-[4/3]"
+            className="aspect-square w-full origin-[45.8%_15%] scale-[1.5] object-cover md:aspect-[4/3] md:origin-[41.6%_65.3%] md:scale-[1.2]"
             style={{ objectPosition: "center 3%" }}
           />
         ) : (
