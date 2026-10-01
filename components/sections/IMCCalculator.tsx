@@ -106,7 +106,7 @@ export function IMCCalculator() {
               <p className="body text-[color:var(--ink-soft)] max-w-[44ch]">{imcCalc.body}</p>
 
               <form onSubmit={onCalcular} className="flex flex-col gap-5">
-                <div className="grid gap-4 sm:grid-cols-2">
+                <div className="grid grid-cols-2 gap-3 sm:gap-4">
                   <Field
                     label={imcCalc.labels.peso}
                     value={peso}

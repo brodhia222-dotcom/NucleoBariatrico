@@ -85,7 +85,7 @@ export function Footer() {
           <div className="col-span-2 lg:col-span-2 flex flex-col gap-4">
             <p className="font-mono text-[12px] tracking-[0.14em] uppercase opacity-65">Sitio</p>
             <ul className="grid grid-cols-2 gap-x-6 gap-y-2.5 lg:flex lg:flex-col">
-              {[...nav.links, { href: "#obras-sociales", label: "Obras sociales" }].map((l) => (
+              {[...nav.links, { href: "#obras-sociales", label: "Obras sociales" }, { href: "#ubicaciones", label: "Sedes" }].map((l) => (
                 <li key={l.href}>
                   <a
                     href={l.href}

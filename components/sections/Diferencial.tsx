@@ -69,7 +69,7 @@ export function Diferencial() {
             onMouseLeave={() => setActive(null)}
             className={
               esCelular
-                ? "grid gap-3 md:grid-cols-2"
+                ? "grid grid-cols-2 gap-3"
                 : "flex flex-col gap-3 lg:flex-row lg:gap-3 lg:h-[440px]"
             }
           >
@@ -110,7 +110,7 @@ function TouchCard({ item, Icon }: { item: (typeof diferencial)["items"][number]
       transition={{ duration: 0.6, ease: easeEditorial }}
       className="group flex flex-col overflow-hidden rounded-[var(--radius-xl)] bg-[color:var(--bg-inverse)] text-left text-[color:var(--ink-inverse)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)] focus-visible:ring-offset-2"
     >
-      <div className="relative aspect-[5/2] overflow-hidden">
+      <div className="relative aspect-[4/3] overflow-hidden sm:aspect-[5/2]">
         {item.foto ? (
           <img
             src={item.foto}
@@ -124,12 +124,12 @@ function TouchCard({ item, Icon }: { item: (typeof diferencial)["items"][number]
           <div aria-hidden className="placeholder h-full w-full" style={{ borderRadius: 0 }} />
         )}
       </div>
-      <div className="flex flex-1 flex-col gap-2 p-4 sm:p-5">
+      <div className="flex flex-1 flex-col gap-2 p-3.5 sm:p-5">
         <div className="flex items-start justify-between gap-4">
           <h3
             className="font-display"
             style={{
-              fontSize: "clamp(22px, 2.4vw, 28px)",
+              fontSize: "clamp(17px, 2.4vw, 28px)",
               lineHeight: 1.06,
               letterSpacing: "-0.02em",
               fontWeight: 300,
@@ -141,16 +141,23 @@ function TouchCard({ item, Icon }: { item: (typeof diferencial)["items"][number]
           </h3>
           <span
             aria-hidden
-            className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[color:var(--ink-inverse)]/12 text-[color:var(--ink-inverse)]"
+            className="hidden h-10 w-10 shrink-0 place-items-center rounded-full bg-[color:var(--ink-inverse)]/12 text-[color:var(--ink-inverse)] sm:grid"
           >
             <Icon weight="regular" className="h-5 w-5" />
           </span>
         </div>
-        <p className="body-sm opacity-85">{item.body}</p>
-        <span className="mt-auto inline-flex items-center gap-2 pt-2 text-xs font-medium tracking-wide">
+        <p className="body-sm hidden opacity-85 sm:block">{item.body}</p>
+        <span className="mt-auto hidden items-center gap-2 pt-2 text-xs font-medium tracking-wide sm:inline-flex">
           <span className="block h-px w-8 bg-[color:var(--accent)]" />
           {item.cta}
           <ArrowUpRight weight="bold" className="h-3.5 w-3.5 opacity-80" />
+        </span>
+        {/* En celular: solo la flecha (la tarjeta entera es el link) */}
+        <span
+          aria-hidden
+          className="mt-auto grid h-7 w-7 place-items-center self-end rounded-full bg-[color:var(--ink-inverse)]/14 sm:hidden"
+        >
+          <ArrowUpRight weight="bold" className="h-3.5 w-3.5" />
         </span>
       </div>
     </motion.a>
@@ -233,10 +240,10 @@ function ExpandingCard({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
-              className="flex flex-1 items-end lg:items-center"
+              className="flex flex-1 items-end"
             >
               <h3
-                className="font-display lg:[writing-mode:vertical-rl] lg:rotate-180"
+                className="font-display lg:max-h-[270px] lg:[writing-mode:vertical-rl] lg:rotate-180"
                 style={{
                   fontSize: "22px",
                   lineHeight: 1.08,

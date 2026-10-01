@@ -1,6 +1,8 @@
 "use client";
 
+import { useId, useState } from "react";
 import { motion } from "framer-motion";
+import { CaretDown } from "@phosphor-icons/react";
 import { Container } from "@/components/primitives/Container";
 import { Section } from "@/components/primitives/Section";
 import { Eyebrow } from "@/components/primitives/Eyebrow";
@@ -58,6 +60,8 @@ export function Equipo() {
 type Persona = { nombre: string; rol: string; bio: string; foto: string | null };
 
 function Miembro({ m, i }: { m: Persona; i: number }) {
+  const [abierta, setAbierta] = useState(false);
+  const idBio = useId();
   return (
     <motion.li
       initial={{ opacity: 0, y: 24 }}
@@ -110,8 +114,27 @@ function Miembro({ m, i }: { m: Persona; i: number }) {
         >
           {m.nombre}
         </h3>
+        <button
+          type="button"
+          onClick={() => setAbierta((v) => !v)}
+          aria-expanded={abierta}
+          aria-controls={idBio}
+          className="mt-1 inline-flex w-fit items-center gap-1 text-sm font-medium text-[color:var(--ink)] underline-offset-4 hover:underline md:hidden"
+        >
+          {abierta ? "Ocultar bio" : "Ver bio"}
+          <CaretDown weight="bold" className={`h-3.5 w-3.5 transition-transform duration-300 ${abierta ? "rotate-180" : ""}`} />
+        </button>
       </div>
-      <p className="col-span-2 body-sm text-[color:var(--ink-soft)] md:max-w-[38ch]">{m.bio}</p>
+      {/* En celular la bio arranca cerrada y se abre con "Ver bio": la sección medía 2 pantallas.
+          Desde tablet se ve siempre. */}
+      <div
+        id={idBio}
+        className={`col-span-2 grid transition-[grid-template-rows] duration-300 ease-out md:grid-rows-[1fr] ${
+          abierta ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+        }`}
+      >
+        <p className="overflow-hidden body-sm text-[color:var(--ink-soft)] md:max-w-[38ch]">{m.bio}</p>
+      </div>
     </motion.li>
   );
 }

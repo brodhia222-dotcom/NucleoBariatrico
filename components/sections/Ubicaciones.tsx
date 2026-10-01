@@ -2,7 +2,7 @@
 
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, FilmStrip, VideoCamera, WhatsappLogo, X } from "@phosphor-icons/react";
+import { ArrowUpRight, Play, VideoCamera, WhatsappLogo, X } from "@phosphor-icons/react";
 import { Container } from "@/components/primitives/Container";
 import { Section } from "@/components/primitives/Section";
 import { Eyebrow } from "@/components/primitives/Eyebrow";
@@ -17,8 +17,9 @@ const whatsapp = (texto: string) =>
 type Recorrido = NonNullable<Sede["recorrido"]>;
 
 // Las 2 sedes a la vista, una al lado de la otra y separadas por una línea (pedido de Fede, 2026-10-01:
-// sin pestañas, todo claro y compacto). Cada sede: su fachada, dirección, mapa chico y botones.
-// En celular van una debajo de la otra, con la línea entre las dos. La consulta virtual queda debajo.
+// sin pestañas, todo claro y compacto). Las 2 tienen el mismo esqueleto (nombre, dirección, un renglón
+// gris, mapa y botones) y la misma altura: la foto toma el alto de los datos y los botones van al pie,
+// así quedan parejas. En celular y tablet van una debajo de la otra. La consulta virtual queda debajo.
 export function Ubicaciones() {
   const sedes = ubicaciones.sedes;
   const [recorrido, setRecorrido] = useState<Recorrido | null>(null);
@@ -60,12 +61,14 @@ export function Ubicaciones() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewportOnce}
           transition={{ duration: 0.8, ease: easeEditorial }}
-          className="grid gap-6 rounded-[var(--radius-2xl)] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-5 sm:p-6 lg:grid-cols-[1fr_auto_1fr] lg:gap-8 lg:p-8 xl:gap-10"
+          className="grid gap-5 rounded-[var(--radius-2xl)] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4 sm:gap-6 sm:p-6 lg:grid-cols-[1fr_auto_1fr] lg:gap-7 lg:p-7 xl:gap-10 xl:p-8"
         >
           {sedes.map((sede, i) => (
             <Fragment key={sede.id}>
-              {/* La línea que separa las sedes: vertical en compu, horizontal en celular y tablet */}
-              {i > 0 && <div aria-hidden className="h-px bg-[color:var(--border-strong)] lg:h-auto lg:w-px" />}
+              {/* La barra que separa las sedes: vertical en compu, horizontal en celular y tablet */}
+              {i > 0 && (
+                <div aria-hidden className="h-0.5 rounded-full bg-[color:var(--border-strong)] lg:h-auto lg:w-0.5" />
+              )}
               <SedeBloque
                 sede={sede}
                 onRecorrido={
@@ -86,7 +89,7 @@ export function Ubicaciones() {
           href={virtualHref}
           target="_blank"
           rel="noopener noreferrer"
-          className="group mt-4 flex items-start gap-4 rounded-[var(--radius-xl)] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-5 transition-shadow hover:shadow-[var(--shadow-md)] sm:items-center lg:px-8"
+          className="group mt-4 flex items-start gap-4 rounded-[var(--radius-xl)] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4 transition-shadow hover:shadow-[var(--shadow-md)] sm:items-center sm:p-5 lg:px-7 xl:px-8"
         >
           <span
             aria-hidden
@@ -115,59 +118,78 @@ export function Ubicaciones() {
   );
 }
 
-// Una sede: la fachada (vertical, entera) a la izquierda y los datos a la derecha.
+// Una sede: la fachada a la izquierda (llena el alto de la columna de datos) y los datos a la derecha.
 function SedeBloque({ sede, onRecorrido }: { sede: Sede; onRecorrido?: (boton: HTMLButtonElement) => void }) {
   return (
-    <article className="grid grid-cols-[112px_1fr] items-start gap-4 sm:grid-cols-[150px_1fr] sm:gap-6 xl:grid-cols-[190px_1fr]">
-      <figure className="relative overflow-hidden rounded-[var(--radius-lg)]">
+    <article className="grid grid-cols-[100px_1fr] gap-4 sm:grid-cols-[150px_1fr] sm:gap-6 lg:grid-cols-[136px_1fr] lg:gap-5 xl:grid-cols-[170px_1fr] xl:gap-6">
+      <figure className="relative min-h-[180px] overflow-hidden rounded-[var(--radius-lg)]">
         <img
           src={sede.foto.src}
           alt={sede.foto.alt}
           loading="lazy"
-          className="aspect-[9/16] w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover"
           style={{ objectPosition: sede.foto.pos }}
         />
+        {/* El recorrido se abre desde la misma foto: play al centro abajo, como la miniatura de un video */}
         {sede.recorrido && onRecorrido && (
           <button
             type="button"
             onClick={(e) => onRecorrido(e.currentTarget)}
             aria-haspopup="dialog"
             aria-label={sede.recorrido.titulo}
-            className="absolute bottom-2 left-1/2 inline-flex -translate-x-1/2 items-center gap-1.5 whitespace-nowrap rounded-full bg-[color:var(--bg-elevated)] px-3 py-1.5 text-[12px] font-medium text-[color:var(--ink)] shadow-[var(--shadow-md)] transition-colors hover:bg-[color:var(--ink)] hover:text-[color:var(--ink-inverse)] sm:bottom-3 sm:text-[13px]"
+            className="group absolute inset-0 flex flex-col items-center justify-end gap-1.5 pb-3 text-[color:var(--ink-inverse)] focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[color:var(--accent)]"
           >
-            <FilmStrip weight="regular" className="h-3.5 w-3.5 text-[color:var(--accent)]" />
-            {sede.recorrido.boton}
+            <span
+              aria-hidden
+              className="absolute inset-x-0 bottom-0 h-1/2"
+              style={{
+                background:
+                  "linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--bg-inverse) 82%, transparent) 100%)",
+              }}
+            />
+            <span
+              aria-hidden
+              className="relative grid h-10 w-10 place-items-center rounded-full bg-[color:var(--bg-elevated)] text-[color:var(--accent)] shadow-[var(--shadow-md)] transition-transform duration-300 group-hover:scale-110"
+            >
+              <Play weight="fill" className="h-4 w-4 translate-x-px" />
+            </span>
+            <span className="relative text-[12px] font-medium sm:text-[13px]">{sede.recorrido.boton}</span>
           </button>
         )}
       </figure>
 
-      <div className="flex min-w-0 flex-col gap-4">
+      <div className="flex min-w-0 flex-col gap-3 sm:gap-4">
         <div className="flex flex-col gap-1">
           <h3
             className="font-display"
             style={{
-              fontSize: "clamp(22px, 2vw, 28px)",
-              lineHeight: 1.06,
+              fontSize: "clamp(21px, 1.9vw, 27px)",
+              lineHeight: 1.08,
               letterSpacing: "-0.02em",
               fontWeight: 300,
               fontVariationSettings: '"opsz" 48',
+              textWrap: "balance",
             }}
           >
             {sede.nombre}
           </h3>
-          <p className="body text-[color:var(--ink)]">{sede.lineaDireccion}</p>
-          {sede.espacio && <p className="body-sm text-[color:var(--ink-soft)]">{sede.espacio}</p>}
+          <p className="body text-[color:var(--ink)]" style={{ textWrap: "balance" }}>
+            {sede.lineaDireccion}
+          </p>
+          <p className="body-sm text-[color:var(--ink-soft)]" style={{ textWrap: "balance" }}>
+            {sede.detalle}
+          </p>
           {contacto.horario && <p className="body-sm text-[color:var(--ink-soft)]">{contacto.horario}</p>}
         </div>
 
-        {/* Mapa chico desde tablet; en celular alcanza con "Cómo llegar" */}
+        {/* Mapa desde tablet: crece para llenar el alto; en celular alcanza con "Cómo llegar" */}
         <MapEmbed
           src={sede.mapa}
           title={`Mapa de ${sede.calle}, ${sede.nombre}`}
-          className="hidden h-28 sm:block xl:h-32"
+          className="hidden min-h-[120px] flex-1 sm:block sm:max-h-[160px] lg:max-h-none"
         />
 
-        <div className="flex flex-col gap-2 sm:flex-row sm:gap-3 lg:flex-col lg:gap-2">
+        <div className="mt-auto flex flex-col gap-2 sm:flex-row sm:gap-3 lg:flex-col lg:gap-2">
           <a
             href={whatsapp(sede.turno)}
             target="_blank"

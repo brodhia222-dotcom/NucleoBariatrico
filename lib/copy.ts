@@ -370,7 +370,9 @@ export const proceso = {
       body: noOrphans(
         "El proceso no termina en el quirófano. Hacemos controles periódicos con todo el equipo durante el tiempo que tu caso lo requiera, porque el seguimiento a largo plazo es lo que permite sostener los resultados y cuidar tu salud en el tiempo."
       ),
-      foto: "/images/proceso-seguimiento.jpg",    },
+      foto: "/images/proceso-seguimiento.jpg",
+      fotoPos: "10% 50%",
+    },
   ] as { n: string; titulo: string; body: string; foto: string | null; fotoPos?: string; fotoAspect?: string }[],
 };
 
@@ -491,8 +493,9 @@ export type Sede = {
   direccion: string;
   lineaDireccion: string;
   calle: string;
-  // Nombre del centro donde atienden; solo se muestra si está confirmado cómo se escribe
-  espacio: string | null;
+  // Renglón gris debajo de la dirección, en las 2 sedes para que queden parejas: la ciudad o el
+  // nombre del centro donde atienden (solo si está confirmado cómo se escribe)
+  detalle: string;
   mapa: string;
   comoLlegar: string;
   // Mensaje de WhatsApp del botón "Pedir turno" de la sede
@@ -512,10 +515,10 @@ export const ubicaciones = {
       id: "villa-del-parque",
       nombre: "Villa del Parque",
       direccion: "Simbrón 3327, Villa del Parque, CABA",
-      lineaDireccion: "Simbrón 3327, CABA",
+      lineaDireccion: "Simbrón 3327",
       calle: "Simbrón 3327",
-      // El equipo escribió "Bienetre" y el cartel dice "Bien Être": no se muestra hasta confirmar
-      espacio: null,
+      // El nombre del espacio no se muestra: el equipo escribió "Bienetre" y el cartel dice "Bien Être"
+      detalle: "CABA",
       mapa: "https://maps.google.com/maps?q=Simbr%C3%B3n%203327%2C%20Villa%20del%20Parque%2C%20CABA&t=&z=16&ie=UTF8&iwloc=&output=embed",
       comoLlegar: "https://www.google.com/maps/dir/?api=1&destination=Simbr%C3%B3n%203327%2C%20Villa%20del%20Parque%2C%20CABA",
       turno: "Hola, quiero pedir un turno en la sede de Villa del Parque.",
@@ -531,8 +534,8 @@ export const ubicaciones = {
       // La zona ya está en el título: la línea de abajo lleva solo la calle (como Villa del Parque)
       lineaDireccion: "General Bartolomé Mitre 185",
       calle: "General Bartolomé Mitre 185",
-      // Visto en las fotos del equipo (cartel de la fachada y de la recepción); se saca con null si no lo quieren
-      espacio: "Centro Médico Las Lomitas",
+      // Visto en las fotos del equipo (cartel de la fachada y de la recepción); si no lo quieren, "Provincia de Buenos Aires"
+      detalle: "Centro Médico Las Lomitas",
       mapa: "https://maps.google.com/maps?q=General%20Bartolom%C3%A9%20Mitre%20185%2C%20Lomas%20de%20Zamora%2C%20Provincia%20de%20Buenos%20Aires&t=&z=16&ie=UTF8&iwloc=&output=embed",
       comoLlegar: "https://www.google.com/maps/dir/?api=1&destination=General%20Bartolom%C3%A9%20Mitre%20185%2C%20Lomas%20de%20Zamora%2C%20Provincia%20de%20Buenos%20Aires",
       turno: "Hola, quiero pedir un turno en la sede de Lomas de Zamora.",
