@@ -24,7 +24,7 @@ export function FAQ() {
   return (
     <Section id="faq" tone="default">
       <Container>
-        <div className="flex flex-col items-center text-center gap-4 mb-10 lg:mb-14">
+        <div className="flex flex-col items-center text-center gap-4 mb-8 lg:mb-10">
           <Reveal>
             <Eyebrow>{faq.eyebrow}</Eyebrow>
           </Reveal>
@@ -101,7 +101,7 @@ export function FAQ() {
                     <button
                       type="button"
                       onClick={() => setOpenIdx(isOpen ? null : i)}
-                      className="group flex w-full items-center justify-between gap-6 py-6 lg:py-7 text-left"
+                      className="group flex w-full items-center justify-between gap-6 py-4 lg:py-5 text-left"
                       aria-expanded={isOpen}
                     >
                       <span
@@ -137,7 +137,7 @@ export function FAQ() {
                           transition={{ duration: 0.45, ease: [0.65, 0, 0.35, 1] }}
                           className="overflow-hidden"
                         >
-                          <div className="pb-7 max-w-3xl sm:pr-12">
+                          <div className="pb-5 max-w-3xl sm:pr-12">
                             <p className="body-lg text-[color:var(--ink-soft)] leading-relaxed">{item.a}</p>
                             {item.link && (
                               <a
@@ -158,7 +158,7 @@ export function FAQ() {
           </AnimatePresence>
 
           <Reveal delay={0.1}>
-            <div className="mt-10 flex flex-col items-center gap-3 text-center">
+            <div className="mt-8 flex flex-col items-center gap-3 text-center">
               <p className="body-sm text-[color:var(--ink-soft)]">¿No encontraste tu pregunta?</p>
               <a
                 href={`https://wa.me/${brand.whatsappNumber.replace(/[^\d]/g, "")}`}

@@ -122,7 +122,7 @@ export function Contacto() {
                     href={whatsappHref}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center justify-between gap-4 py-5 hover:px-2 transition-all"
+                    className="group flex items-center justify-between gap-4 py-4 hover:px-2 transition-all"
                   >
                     <span className="flex items-center gap-4">
                       <span
@@ -143,7 +143,7 @@ export function Contacto() {
                   <li>
                     <a
                       href={`mailto:${brand.email}`}
-                      className="group flex items-center justify-between gap-4 py-5 hover:px-2 transition-all"
+                      className="group flex items-center justify-between gap-4 py-4 hover:px-2 transition-all"
                     >
                       <span className="flex items-center gap-4">
                         <span
@@ -164,7 +164,7 @@ export function Contacto() {
                 {/* Vuelve sola cuando se confirme el horario (lib/copy.ts); sin él repetía el párrafo de arriba */}
                 {contacto.horario && (
                 <li>
-                  <div className="flex items-center gap-4 py-5">
+                  <div className="flex items-center gap-4 py-4">
                     <span
                       aria-hidden
                       className="grid h-10 w-10 place-items-center rounded-full bg-[color:var(--bg-subtle)] text-[color:var(--ink)]"
@@ -209,7 +209,7 @@ export function Contacto() {
                   f.dataset.iniciado = "1";
                   track("form_start", { formulario: "contacto" });
                 }}
-                className="grid grid-cols-1 gap-5 rounded-[var(--radius-2xl)] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-8 lg:p-10 shadow-[var(--shadow-md)]"
+                className="grid grid-cols-1 gap-5 rounded-[var(--radius-2xl)] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-6 lg:p-8 shadow-[var(--shadow-md)]"
               >
                 <span className="eyebrow mb-2">Formulario de consulta</span>
 

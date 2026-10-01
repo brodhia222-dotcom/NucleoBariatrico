@@ -24,7 +24,7 @@ export function ObrasSociales() {
     <Section id="obras-sociales" tone="default" className="relative overflow-hidden">
       <Container>
         {/* Header */}
-        <div className="flex flex-col items-center text-center gap-5 mb-12 lg:mb-16">
+        <div className="flex flex-col items-center text-center gap-4 mb-8 lg:mb-10">
           <Reveal>
             <Eyebrow>{obrasSociales.eyebrow}</Eyebrow>
           </Reveal>

@@ -21,7 +21,7 @@ export function Testimonios() {
     <Section id="testimonios" tone="elevated">
       <Container>
         {/* Header */}
-        <div className="flex flex-col items-center text-center gap-4 mb-14 lg:mb-20">
+        <div className="flex flex-col items-center text-center gap-4 mb-8 lg:mb-10">
           <Reveal>
             <Eyebrow>{testimonios.eyebrow}</Eyebrow>
           </Reveal>
@@ -67,8 +67,8 @@ export function Testimonios() {
               transition={{ duration: 0.85, ease: easeEditorial }}
               className={
                 main.foto
-                  ? "grid gap-8 lg:grid-cols-12 lg:gap-16 mb-16 lg:mb-20"
-                  : "mx-auto mb-16 max-w-4xl lg:mb-20"
+                  ? "grid gap-8 lg:grid-cols-12 lg:gap-16 mb-10 lg:mb-12"
+                  : "mx-auto mb-10 max-w-4xl lg:mb-12"
               }
             >
               {/* Sin foto, la cita va sola a lo ancho: la foto del formulario es opcional */}
@@ -109,7 +109,7 @@ export function Testimonios() {
         )}
 
         {/* Secondary grid */}
-        <ul className="grid gap-6 md:grid-cols-3 lg:gap-8 border-t border-[color:var(--border)] pt-12 lg:pt-16">
+        <ul className="grid gap-6 md:grid-cols-3 lg:gap-8 border-t border-[color:var(--border)] pt-8 lg:pt-10">
           {rest.map((t, i) => (
             <motion.li
               key={`${t.nombre}-${i}`}

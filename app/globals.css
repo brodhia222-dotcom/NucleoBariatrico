@@ -99,7 +99,7 @@
   --space-16: 64px;
   --space-24: 96px;
 
-  --section-y:       clamp(48px, 5.5vw, 84px);
+  --section-y:       clamp(40px, 4.2vw, 64px); /* antes 48-84: todo se veía gigante (Fede, 2026-10-01) */
   --section-x:       max(20px, 5vw);
   --container-max:   1280px;
 

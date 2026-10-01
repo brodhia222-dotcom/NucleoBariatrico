@@ -20,7 +20,7 @@ export function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={viewportOnce}
             transition={{ duration: 0.8, ease: easeEditorial }}
-            className="grid gap-8 lg:grid-cols-12 lg:gap-12 items-end py-14 lg:py-20"
+            className="grid gap-8 lg:grid-cols-12 lg:gap-12 items-end py-10 lg:py-14"
           >
             <div className="lg:col-span-8">
               <span className="font-mono text-[12px] tracking-[0.14em] uppercase opacity-65 mb-4 block">
@@ -69,9 +69,9 @@ export function Footer() {
 
       {/* Main footer */}
       <Container>
-        <div className="py-12 lg:py-16 grid gap-10 lg:grid-cols-12 lg:gap-16">
+        <div className="py-10 lg:py-12 grid grid-cols-2 gap-x-6 gap-y-8 lg:grid-cols-12 lg:gap-16">
           {/* Brand */}
-          <div className="lg:col-span-5 flex flex-col gap-5">
+          <div className="col-span-2 lg:col-span-5 flex flex-col gap-5">
             <img src="/logos/footer-logo.png" alt="Nucleo Bariátrico" className="h-7 w-auto self-start" />
             <p
               className="font-display italic text-[color:var(--ink-inverse)]/82 max-w-[28ch]"
@@ -82,9 +82,9 @@ export function Footer() {
           </div>
 
           {/* Sitio */}
-          <div className="lg:col-span-2 flex flex-col gap-4">
+          <div className="col-span-2 lg:col-span-2 flex flex-col gap-4">
             <p className="font-mono text-[12px] tracking-[0.14em] uppercase opacity-65">Sitio</p>
-            <ul className="flex flex-col gap-2.5">
+            <ul className="grid grid-cols-2 gap-x-6 gap-y-2.5 lg:flex lg:flex-col">
               {[...nav.links, { href: "#obras-sociales", label: "Obras sociales" }].map((l) => (
                 <li key={l.href}>
                   <a
@@ -141,8 +141,7 @@ export function Footer() {
             <ul className="flex flex-col gap-4">
               {footer.sedes.map((s) => (
                 <li key={s.nombre}>
-                  {/* data-sede: "Dónde atendemos" abre la pestaña de esta sede */}
-                  <a href="#ubicaciones" data-sede={s.id} className="group block">
+                  <a href="#ubicaciones" className="group block">
                     <span className="block text-sm font-medium text-[color:var(--ink-inverse)] underline-offset-4 group-hover:underline">{s.nombre}</span>
                     <span className="caption mt-0.5 block text-[color:var(--ink-inverse)]/58">{s.direccion}</span>
                   </a>

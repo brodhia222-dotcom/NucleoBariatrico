@@ -13,7 +13,7 @@ export function Equipo() {
     <Section id="equipo" tone="subtle">
       <Container>
         {/* Header — título + descripción debajo del eyebrow, no al lado */}
-        <div className="flex flex-col items-center text-center gap-4 mb-14 lg:mb-20">
+        <div className="flex flex-col items-center text-center gap-4 mb-8 lg:mb-10">
           <Reveal>
             <Eyebrow>{equipo.eyebrow}</Eyebrow>
           </Reveal>
@@ -35,7 +35,7 @@ export function Equipo() {
         </div>
 
         {/* 3 retratos — sin numerales, sin tags */}
-        <ul className="grid gap-8 md:grid-cols-3 lg:gap-10">
+        <ul className="grid gap-7 md:grid-cols-3 md:gap-8 lg:gap-10">
           {equipo.miembros.map((m, i) => (
             <Miembro key={m.nombre} m={m} i={i} />
           ))}
@@ -44,7 +44,7 @@ export function Equipo() {
         {/* Psicóloga y nutricionistas: mismo tamaño que los cirujanos, en una segunda fila
             separada solo por una línea fina (pedido de Fede, 2026-09-28) */}
         {equipo.acompanamiento.miembros.length > 0 && (
-          <ul className="mt-12 grid gap-8 border-t border-[color:var(--border)] pt-12 md:grid-cols-3 lg:mt-16 lg:gap-10 lg:pt-16">
+          <ul className="mt-8 grid gap-7 border-t border-[color:var(--border)] pt-8 md:grid-cols-3 md:gap-8 lg:mt-10 lg:gap-10 lg:pt-10">
             {equipo.acompanamiento.miembros.map((m, i) => (
               <Miembro key={`${m.rol}-${m.nombre}`} m={m} i={i} />
             ))}
@@ -64,22 +64,24 @@ function Miembro({ m, i }: { m: Persona; i: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={viewportOnce}
       transition={{ duration: 0.8, delay: i * 0.1, ease: easeEditorial }}
-      className="group flex flex-col gap-5"
+      className="group grid grid-cols-[88px_1fr] items-center gap-x-4 gap-y-3 md:flex md:flex-col md:items-stretch md:gap-4"
     >
+      {/* Desde tablet, retrato de pecho para arriba (4:3, antes 4:5): la página era muy larga. Todos los
+          retratos tienen la cara a la misma altura, así que el mismo recorte sirve para los 6 */}
       <figure className="relative overflow-hidden rounded-[var(--radius-lg)]">
         {m.foto ? (
           <img
             src={m.foto}
             alt={`${m.nombre} · ${m.rol}`}
             loading="lazy"
-            className="aspect-[4/5] w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-            style={{ objectPosition: "center 22%" }}
+            className="aspect-square w-full object-cover md:aspect-[4/3]"
+            style={{ objectPosition: "center 3%" }}
           />
         ) : (
           // Sin retrato todavía: la inicial, nunca una caja vacía
           <span
             aria-hidden
-            className="grid aspect-[4/5] w-full place-items-center bg-[color:var(--accent-soft)] font-display text-[color:var(--accent)]"
+            className="grid aspect-square w-full place-items-center bg-[color:var(--accent-soft)] font-display text-[color:var(--accent)] md:aspect-[4/3]"
             style={{
               fontSize: "clamp(64px, 8vw, 120px)",
               lineHeight: 1,
@@ -108,8 +110,8 @@ function Miembro({ m, i }: { m: Persona; i: number }) {
         >
           {m.nombre}
         </h3>
-        <p className="body-sm text-[color:var(--ink-soft)] mt-1 max-w-[38ch]">{m.bio}</p>
       </div>
+      <p className="col-span-2 body-sm text-[color:var(--ink-soft)] md:max-w-[38ch]">{m.bio}</p>
     </motion.li>
   );
 }

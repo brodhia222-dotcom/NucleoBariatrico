@@ -77,7 +77,7 @@ export function IMCCalculator() {
     <Section id="imc" tone="default">
       <Container>
         {/* Header */}
-        <div className="flex flex-col items-center text-center gap-4 mb-12 lg:mb-16">
+        <div className="flex flex-col items-center text-center gap-4 mb-8 lg:mb-10">
           <Reveal>
             <Eyebrow>{imcCalc.eyebrow}</Eyebrow>
           </Reveal>
@@ -102,7 +102,7 @@ export function IMCCalculator() {
         <Reveal>
           <div className="grid gap-px overflow-hidden rounded-[var(--radius-2xl)] border border-[color:var(--border)] bg-[color:var(--border)] lg:grid-cols-2 shadow-[var(--shadow-sm)]">
             {/* LEFT — form */}
-            <div className="flex flex-col gap-7 bg-[color:var(--bg-elevated)] p-8 lg:p-12">
+            <div className="flex flex-col gap-5 bg-[color:var(--bg-elevated)] p-6 lg:p-9">
               <p className="body text-[color:var(--ink-soft)] max-w-[44ch]">{imcCalc.body}</p>
 
               <form onSubmit={onCalcular} className="flex flex-col gap-5">
@@ -199,7 +199,7 @@ export function IMCCalculator() {
                 con resultado = tono de la barra OMS en la posición del IMC */}
             <div
               className={cn(
-                "imc-bg flex flex-col justify-between gap-10 p-8 lg:p-12",
+                "imc-bg flex flex-col justify-between gap-8 p-6 lg:p-9",
                 !resultado && "imc-bg-idle",
               )}
               style={

@@ -69,7 +69,7 @@ export function Tratamientos() {
     <Section id="tratamientos" tone="elevated">
       <Container>
         {/* Header */}
-        <div className="flex flex-col items-center text-center gap-4 mb-12 lg:mb-16">
+        <div className="flex flex-col items-center text-center gap-4 mb-8 lg:mb-10">
           <Reveal>
             <Eyebrow>{tratamientos.eyebrow}</Eyebrow>
           </Reveal>
@@ -111,7 +111,7 @@ export function Tratamientos() {
                   onClick={() => setOpenId(op.id)}
                   aria-haspopup="dialog"
                   aria-label={`${op.nombre}: ver el detalle`}
-                  className="group relative flex h-64 w-full flex-col justify-end overflow-hidden rounded-[var(--radius-xl)] text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)] focus-visible:ring-offset-2 lg:h-80"
+                  className="group relative flex h-48 w-full flex-col justify-end overflow-hidden rounded-[var(--radius-xl)] text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)] focus-visible:ring-offset-2 sm:h-56 lg:h-64"
                 >
                   <motion.div
                     layoutId={`${layoutId}-media`}
@@ -162,12 +162,12 @@ export function Tratamientos() {
             id="reganancia"
             className="mt-5 grid overflow-hidden rounded-[var(--radius-xl)] border border-[color:var(--border)] bg-[color:var(--bg)] lg:mt-6 lg:grid-cols-[5fr_7fr]"
           >
-            <div className="relative aspect-[16/10] lg:aspect-auto lg:min-h-[340px]">
+            <div className="relative aspect-[2/1] lg:aspect-auto lg:min-h-[260px]">
               <div className="absolute inset-0">
                 <Foto op={reganancia} />
               </div>
             </div>
-            <div className="flex flex-col gap-4 p-6 sm:p-8 lg:p-10">
+            <div className="flex flex-col gap-3 p-5 sm:p-7 lg:p-8">
               <span className="font-mono text-[12px] tracking-[0.12em] uppercase text-[color:var(--accent)]">
                 {reganancia.subtitulo}
               </span>

@@ -31,7 +31,7 @@ export function Diferencial() {
     <Section id="diferencial" tone="elevated">
       <Container>
         {/* Header */}
-        <div className="flex flex-col items-center text-center gap-4 mb-12 lg:mb-16">
+        <div className="flex flex-col items-center text-center gap-4 mb-8 lg:mb-10">
           <Reveal>
             <Eyebrow>{diferencial.eyebrow}</Eyebrow>
           </Reveal>
@@ -70,7 +70,7 @@ export function Diferencial() {
             className={
               esCelular
                 ? "grid gap-3 md:grid-cols-2"
-                : "flex flex-col gap-3 lg:flex-row lg:gap-3 lg:h-[520px]"
+                : "flex flex-col gap-3 lg:flex-row lg:gap-3 lg:h-[440px]"
             }
           >
             {diferencial.items.map((item, i) => {
@@ -110,14 +110,21 @@ function TouchCard({ item, Icon }: { item: (typeof diferencial)["items"][number]
       transition={{ duration: 0.6, ease: easeEditorial }}
       className="group flex flex-col overflow-hidden rounded-[var(--radius-xl)] bg-[color:var(--bg-inverse)] text-left text-[color:var(--ink-inverse)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)] focus-visible:ring-offset-2"
     >
-      <div className="relative aspect-[16/10] overflow-hidden">
+      <div className="relative aspect-[5/2] overflow-hidden">
         {item.foto ? (
-          <img src={item.foto} alt="" aria-hidden loading="lazy" className="h-full w-full object-cover" />
+          <img
+            src={item.foto}
+            alt=""
+            aria-hidden
+            loading="lazy"
+            className="h-full w-full object-cover"
+            style={{ objectPosition: "center 35%" }}
+          />
         ) : (
           <div aria-hidden className="placeholder h-full w-full" style={{ borderRadius: 0 }} />
         )}
       </div>
-      <div className="flex flex-1 flex-col gap-3 p-6">
+      <div className="flex flex-1 flex-col gap-2 p-4 sm:p-5">
         <div className="flex items-start justify-between gap-4">
           <h3
             className="font-display"

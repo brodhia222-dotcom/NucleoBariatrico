@@ -1,14 +1,14 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight, FilmStrip, MapPin, Pause, Play, VideoCamera, WhatsappLogo, X } from "@phosphor-icons/react";
+import { Fragment, useCallback, useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowUpRight, FilmStrip, VideoCamera, WhatsappLogo, X } from "@phosphor-icons/react";
 import { Container } from "@/components/primitives/Container";
 import { Section } from "@/components/primitives/Section";
 import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { Reveal } from "@/components/primitives/Reveal";
 import { MapEmbed } from "@/components/ui/MapEmbed";
-import { brand, contacto, ubicaciones, type MediaSede, type Sede } from "@/lib/copy";
+import { brand, contacto, ubicaciones, type Sede } from "@/lib/copy";
 import { viewportOnce, easeEditorial } from "@/lib/motion";
 
 const whatsapp = (texto: string) =>
@@ -16,17 +16,12 @@ const whatsapp = (texto: string) =>
 
 type Recorrido = NonNullable<Sede["recorrido"]>;
 
-// Dos sedes con pestañas (como las de Preguntas frecuentes). Cada sede muestra a la izquierda dos
-// piezas verticales (fotos o un video corto en loop) y a la derecha dirección, mapa y botones.
-// La consulta virtual queda fija debajo, para las dos sedes.
+// Las 2 sedes a la vista, una al lado de la otra y separadas por una línea (pedido de Fede, 2026-10-01:
+// sin pestañas, todo claro y compacto). Cada sede: su fachada, dirección, mapa chico y botones.
+// En celular van una debajo de la otra, con la línea entre las dos. La consulta virtual queda debajo.
 export function Ubicaciones() {
   const sedes = ubicaciones.sedes;
-  const [activa, setActiva] = useState(0);
   const [recorrido, setRecorrido] = useState<Recorrido | null>(null);
-  const reducir = useReducedMotion();
-  const pestanas = useRef<(HTMLButtonElement | null)[]>([]);
-  const sede = sedes[activa];
-  const conEspacio = sedes.some((s) => s.espacio);
   // Al cerrar el recorrido, el foco vuelve al botón que lo abrió
   const disparador = useRef<HTMLElement | null>(null);
   const cerrarRecorrido = useCallback(() => {
@@ -35,34 +30,6 @@ export function Ubicaciones() {
   }, []);
 
   const virtualHref = whatsapp("Hola, quiero coordinar una primera consulta virtual.");
-
-  // Los links con data-sede (en el pie) abren la pestaña de esa sede al bajar a la sección
-  useEffect(() => {
-    const alHacerClic = (e: MouseEvent) => {
-      const link = (e.target as Element | null)?.closest?.("a[data-sede]");
-      if (!link) return;
-      const i = sedes.findIndex((s) => s.id === link.getAttribute("data-sede"));
-      if (i >= 0) setActiva(i);
-    };
-    document.addEventListener("click", alHacerClic);
-    return () => document.removeEventListener("click", alHacerClic);
-  }, [sedes]);
-
-  // Flechas izquierda y derecha para moverse entre pestañas
-  const onTeclas = (e: React.KeyboardEvent) => {
-    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
-    e.preventDefault();
-    const siguiente = (activa + (e.key === "ArrowRight" ? 1 : -1) + sedes.length) % sedes.length;
-    setActiva(siguiente);
-    pestanas.current[siguiente]?.focus();
-  };
-
-  const cambio = {
-    initial: reducir ? { opacity: 1 } : { opacity: 0, y: 10 },
-    animate: { opacity: 1, y: 0 },
-    exit: reducir ? { opacity: 1 } : { opacity: 0, y: -6 },
-    transition: { duration: reducir ? 0 : 0.28, ease: easeEditorial },
-  };
 
   return (
     <Section id="ubicaciones" tone="subtle">
@@ -88,196 +55,59 @@ export function Ubicaciones() {
           </Reveal>
         </div>
 
-        {sedes.length > 1 && (
-          <div
-            role="tablist"
-            aria-label={ubicaciones.pestanas}
-            onKeyDown={onTeclas}
-            className="mx-auto mb-8 flex w-fit max-w-full flex-wrap justify-center gap-2 lg:mb-10"
-          >
-            {sedes.map((s, i) => {
-              const on = i === activa;
-              return (
-                <button
-                  key={s.id}
-                  ref={(el) => {
-                    pestanas.current[i] = el;
-                  }}
-                  type="button"
-                  role="tab"
-                  id={`sede-tab-${s.id}`}
-                  aria-selected={on}
-                  aria-controls="sede-panel"
-                  tabIndex={on ? 0 : -1}
-                  onClick={() => setActiva(i)}
-                  className={`relative rounded-full px-5 py-2.5 text-sm font-medium transition-colors ${
-                    on
-                      ? "text-[color:var(--ink-inverse)]"
-                      : "text-[color:var(--ink-soft)] hover:text-[color:var(--ink)] border border-[color:var(--border)]"
-                  }`}
-                >
-                  {on && (
-                    <motion.span
-                      layoutId="sede-tab-activa"
-                      aria-hidden
-                      className="absolute inset-0 rounded-full bg-[color:var(--ink)]"
-                      transition={{ type: "spring", stiffness: 380, damping: 34 }}
-                    />
-                  )}
-                  <span className="relative">{s.nombre}</span>
-                </button>
-              );
-            })}
-          </div>
-        )}
-
         <motion.div
-          id="sede-panel"
-          role={sedes.length > 1 ? "tabpanel" : undefined}
-          aria-labelledby={sedes.length > 1 ? `sede-tab-${sede.id}` : undefined}
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewportOnce}
           transition={{ duration: 0.8, ease: easeEditorial }}
-          className="grid gap-6 lg:grid-cols-12 lg:gap-8"
+          className="grid gap-6 rounded-[var(--radius-2xl)] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-5 sm:p-6 lg:grid-cols-[1fr_auto_1fr] lg:gap-8 lg:p-8 xl:gap-10"
         >
-          {/* Piezas del lugar: verticales, lado a lado. En compu no aportan alto propio (van en absolute):
-              la altura la marca la columna de datos y las piezas la llenan, así nunca queda un hueco */}
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div key={`piezas-${sede.id}`} {...cambio} className="grid grid-cols-2 gap-3 lg:col-span-7 lg:gap-4">
-              {sede.media.map((m) => (
-                <figure key={m.src} className="relative overflow-hidden rounded-[var(--radius-xl)] lg:h-full">
-                  {m.tipo === "foto" ? (
-                    <img
-                      src={m.src}
-                      alt={m.alt}
-                      loading="lazy"
-                      className="aspect-[9/16] w-full object-cover lg:absolute lg:inset-0 lg:aspect-auto lg:h-full"
-                      style={{ objectPosition: m.pos }}
-                    />
-                  ) : (
-                    <VideoLoop
-                      pieza={m}
-                      recorrido={sede.recorrido}
-                      onRecorrido={
-                        sede.recorrido
-                          ? (boton) => {
-                              disparador.current = boton;
-                              setRecorrido(sede.recorrido!);
-                            }
-                          : undefined
+          {sedes.map((sede, i) => (
+            <Fragment key={sede.id}>
+              {/* La línea que separa las sedes: vertical en compu, horizontal en celular y tablet */}
+              {i > 0 && <div aria-hidden className="h-px bg-[color:var(--border-strong)] lg:h-auto lg:w-px" />}
+              <SedeBloque
+                sede={sede}
+                onRecorrido={
+                  sede.recorrido
+                    ? (boton) => {
+                        disparador.current = boton;
+                        setRecorrido(sede.recorrido!);
                       }
-                    />
-                  )}
-                </figure>
-              ))}
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Datos, mapa y consulta virtual */}
-          <div className="flex flex-col gap-4 lg:col-span-5">
-            <article className="flex flex-col gap-5 rounded-[var(--radius-xl)] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-6 lg:p-8">
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.div key={`datos-${sede.id}`} {...cambio} className="flex items-start gap-4">
-                  <span
-                    aria-hidden
-                    className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[color:var(--accent-soft)] text-[color:var(--accent)]"
-                  >
-                    <MapPin weight="regular" className="h-5 w-5" />
-                  </span>
-                  <div className="flex flex-col gap-1">
-                    <h3
-                      className="font-display"
-                      style={{
-                        fontSize: "clamp(22px, 2.2vw, 30px)",
-                        lineHeight: 1.04,
-                        letterSpacing: "-0.022em",
-                        fontWeight: 300,
-                        fontVariationSettings: '"opsz" 48',
-                      }}
-                    >
-                      {sede.nombre}
-                    </h3>
-                    <p className="body text-[color:var(--ink)]">{sede.lineaDireccion}</p>
-                    {/* Si alguna sede muestra el nombre del centro, el renglón se reserva en todas: al cambiar de pestaña nada salta */}
-                    {conEspacio && (
-                      <p className={`body-sm text-[color:var(--ink-soft)] ${sede.espacio ? "" : "invisible"}`} aria-hidden={!sede.espacio}>
-                        {sede.espacio ?? "\u00A0"}
-                      </p>
-                    )}
-                    {contacto.horario && <p className="body-sm text-[color:var(--ink-soft)]">{contacto.horario}</p>}
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-
-              {/* Los mapas se montan una sola vez y se alternan: al volver a una sede no se recargan */}
-              {sedes.map((s) => (
-                <div key={s.id} hidden={s.id !== sede.id}>
-                  <MapEmbed src={s.mapa} title={`Mapa de ${s.calle}, ${s.nombre}`} />
-                </div>
-              ))}
-
-              {/* En celular y en la columna angosta de 1024 van a lo ancho, uno debajo del otro y del mismo ancho */}
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.div
-                  key={`botones-${sede.id}`}
-                  {...cambio}
-                  className="flex flex-col gap-3 sm:flex-row sm:flex-wrap lg:flex-col xl:flex-row"
-                >
-                  <a
-                    href={whatsapp(sede.turno)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Pedir turno en la sede de ${sede.nombre} por WhatsApp`}
-                    className="btn btn-ink w-full justify-center sm:w-auto lg:w-full xl:w-auto"
-                  >
-                    <WhatsappLogo weight="regular" className="h-4 w-4" />
-                    Pedir turno
-                  </a>
-                  <a
-                    href={sede.comoLlegar}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Cómo llegar a la sede de ${sede.nombre} (abre Google Maps)`}
-                    className="btn btn-ghost group w-full justify-center sm:w-auto lg:w-full xl:w-auto"
-                  >
-                    Cómo llegar
-                    <ArrowUpRight
-                      weight="bold"
-                      className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                    />
-                  </a>
-                </motion.div>
-              </AnimatePresence>
-            </article>
-
-            {/* Consulta virtual (confirmada en las preguntas frecuentes del equipo) */}
-            <a
-              href={virtualHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-start gap-4 rounded-[var(--radius-xl)] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-6 transition-shadow hover:shadow-[var(--shadow-md)] lg:p-8"
-            >
-              <span
-                aria-hidden
-                className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[color:var(--accent-soft)] text-[color:var(--accent)]"
-              >
-                <VideoCamera weight="regular" className="h-5 w-5" />
-              </span>
-              <span className="flex flex-col gap-1">
-                <span className="font-medium text-[color:var(--ink)]">{ubicaciones.virtual.titulo}</span>
-                <span className="body-sm text-[color:var(--ink-soft)]">{ubicaciones.virtual.texto}</span>
-                <span className="mt-1 inline-flex items-center gap-1 text-sm font-medium text-[color:var(--ink)]">
-                  Coordinar por WhatsApp
-                  <ArrowUpRight
-                    weight="bold"
-                    className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                  />
-                </span>
-              </span>
-            </a>
-          </div>
+                    : undefined
+                }
+              />
+            </Fragment>
+          ))}
         </motion.div>
+
+        {/* Consulta virtual (confirmada en las preguntas frecuentes del equipo), para las 2 sedes */}
+        <a
+          href={virtualHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group mt-4 flex items-start gap-4 rounded-[var(--radius-xl)] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-5 transition-shadow hover:shadow-[var(--shadow-md)] sm:items-center lg:px-8"
+        >
+          <span
+            aria-hidden
+            className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[color:var(--accent-soft)] text-[color:var(--accent)]"
+          >
+            <VideoCamera weight="regular" className="h-5 w-5" />
+          </span>
+          <span className="flex flex-1 flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+            <span className="flex flex-col gap-0.5">
+              <span className="font-medium text-[color:var(--ink)]">{ubicaciones.virtual.titulo}</span>
+              <span className="body-sm text-[color:var(--ink-soft)]">{ubicaciones.virtual.texto}</span>
+            </span>
+            <span className="inline-flex shrink-0 items-center gap-1 text-sm font-medium text-[color:var(--ink)]">
+              Coordinar por WhatsApp
+              <ArrowUpRight
+                weight="bold"
+                className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
+            </span>
+          </span>
+        </a>
       </Container>
 
       <RecorridoVentana recorrido={recorrido} onCerrar={cerrarRecorrido} />
@@ -285,97 +115,90 @@ export function Ubicaciones() {
   );
 }
 
-// Video corto del lugar: mudo, en loop, arranca solo cuando se ve y se frena al salir de pantalla.
-// Tiene botón de pausa (se mueve más de 5 s) y con movimiento reducido queda quieto en el póster.
-function VideoLoop({
-  pieza,
-  recorrido,
-  onRecorrido,
-}: {
-  pieza: Extract<MediaSede, { tipo: "video" }>;
-  recorrido?: Recorrido;
-  onRecorrido?: (boton: HTMLButtonElement) => void;
-}) {
-  const ref = useRef<HTMLVideoElement>(null);
-  const reducir = useReducedMotion();
-  const pausadoPorUsuario = useRef(false);
-  const [pausado, setPausado] = useState(false);
-
-  useEffect(() => {
-    const v = ref.current;
-    if (!v) return;
-    if (reducir) {
-      v.pause();
-      pausadoPorUsuario.current = true;
-      setPausado(true);
-      return;
-    }
-    const io = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting && !pausadoPorUsuario.current) v.play().catch(() => setPausado(true));
-        else v.pause();
-      },
-      { threshold: 0.3 },
-    );
-    io.observe(v);
-    return () => io.disconnect();
-  }, [reducir]);
-
-  const alternar = () => {
-    const v = ref.current;
-    if (!v) return;
-    if (v.paused) {
-      pausadoPorUsuario.current = false;
-      setPausado(false);
-      v.play().catch(() => setPausado(true));
-    } else {
-      pausadoPorUsuario.current = true;
-      setPausado(true);
-      v.pause();
-    }
-  };
-
+// Una sede: la fachada (vertical, entera) a la izquierda y los datos a la derecha.
+function SedeBloque({ sede, onRecorrido }: { sede: Sede; onRecorrido?: (boton: HTMLButtonElement) => void }) {
   return (
-    <>
-      <video
-        ref={ref}
-        muted
-        loop
-        playsInline
-        preload="none"
-        poster={pieza.poster}
-        aria-label={pieza.alt}
-        className="aspect-[9/16] w-full object-cover lg:absolute lg:inset-0 lg:aspect-auto lg:h-full"
-        style={{ objectPosition: pieza.pos }}
-      >
-        <source src={pieza.src} type="video/mp4" />
-      </video>
+    <article className="grid grid-cols-[112px_1fr] items-start gap-4 sm:grid-cols-[150px_1fr] sm:gap-6 xl:grid-cols-[190px_1fr]">
+      <figure className="relative overflow-hidden rounded-[var(--radius-lg)]">
+        <img
+          src={sede.foto.src}
+          alt={sede.foto.alt}
+          loading="lazy"
+          className="aspect-[9/16] w-full object-cover"
+          style={{ objectPosition: sede.foto.pos }}
+        />
+        {sede.recorrido && onRecorrido && (
+          <button
+            type="button"
+            onClick={(e) => onRecorrido(e.currentTarget)}
+            aria-haspopup="dialog"
+            aria-label={sede.recorrido.titulo}
+            className="absolute bottom-2 left-1/2 inline-flex -translate-x-1/2 items-center gap-1.5 whitespace-nowrap rounded-full bg-[color:var(--bg-elevated)] px-3 py-1.5 text-[12px] font-medium text-[color:var(--ink)] shadow-[var(--shadow-md)] transition-colors hover:bg-[color:var(--ink)] hover:text-[color:var(--ink-inverse)] sm:bottom-3 sm:text-[13px]"
+          >
+            <FilmStrip weight="regular" className="h-3.5 w-3.5 text-[color:var(--accent)]" />
+            {sede.recorrido.boton}
+          </button>
+        )}
+      </figure>
 
-      <button
-        type="button"
-        onClick={alternar}
-        aria-label={pausado ? "Reproducir el video" : "Pausar el video"}
-        className="absolute right-2.5 top-2.5 grid h-9 w-9 place-items-center rounded-full bg-[color:var(--bg-elevated)] text-[color:var(--ink)] shadow-[var(--shadow-sm)] transition-colors hover:bg-[color:var(--ink)] hover:text-[color:var(--ink-inverse)] sm:right-3 sm:top-3"
-      >
-        {pausado ? <Play weight="fill" className="h-3.5 w-3.5" /> : <Pause weight="fill" className="h-3.5 w-3.5" />}
-      </button>
+      <div className="flex min-w-0 flex-col gap-4">
+        <div className="flex flex-col gap-1">
+          <h3
+            className="font-display"
+            style={{
+              fontSize: "clamp(22px, 2vw, 28px)",
+              lineHeight: 1.06,
+              letterSpacing: "-0.02em",
+              fontWeight: 300,
+              fontVariationSettings: '"opsz" 48',
+            }}
+          >
+            {sede.nombre}
+          </h3>
+          <p className="body text-[color:var(--ink)]">{sede.lineaDireccion}</p>
+          {sede.espacio && <p className="body-sm text-[color:var(--ink-soft)]">{sede.espacio}</p>}
+          {contacto.horario && <p className="body-sm text-[color:var(--ink-soft)]">{contacto.horario}</p>}
+        </div>
 
-      {recorrido && onRecorrido && (
-        <button
-          type="button"
-          onClick={(e) => onRecorrido(e.currentTarget)}
-          aria-haspopup="dialog"
-          className="absolute bottom-2.5 left-1/2 inline-flex -translate-x-1/2 items-center gap-2 whitespace-nowrap rounded-full bg-[color:var(--bg-elevated)] px-3.5 py-2 text-[13px] font-medium text-[color:var(--ink)] shadow-[var(--shadow-md)] transition-colors hover:bg-[color:var(--ink)] hover:text-[color:var(--ink-inverse)] sm:bottom-3 sm:px-4 sm:text-sm"
-        >
-          <FilmStrip weight="regular" className="h-4 w-4 text-[color:var(--accent)]" />
-          {recorrido.boton}
-        </button>
-      )}
-    </>
+        {/* Mapa chico desde tablet; en celular alcanza con "Cómo llegar" */}
+        <MapEmbed
+          src={sede.mapa}
+          title={`Mapa de ${sede.calle}, ${sede.nombre}`}
+          className="hidden h-28 sm:block xl:h-32"
+        />
+
+        <div className="flex flex-col gap-2 sm:flex-row sm:gap-3 lg:flex-col lg:gap-2">
+          <a
+            href={whatsapp(sede.turno)}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Pedir turno en la sede de ${sede.nombre} por WhatsApp`}
+            className="btn btn-ink w-full justify-center sm:w-auto lg:w-full"
+          >
+            <WhatsappLogo weight="regular" className="h-4 w-4" />
+            Pedir turno
+          </a>
+          <a
+            href={sede.comoLlegar}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Cómo llegar a la sede de ${sede.nombre} (abre Google Maps)`}
+            className="btn btn-ghost group w-full justify-center sm:w-auto lg:w-full"
+          >
+            Cómo llegar
+            <ArrowUpRight
+              weight="bold"
+              className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            />
+          </a>
+        </div>
+      </div>
+    </article>
   );
 }
 
-// Recorrido completo en una ventana, con los controles del navegador. Escape o el fondo la cierran.
+// Recorrido completo en una ventana, con los controles del navegador. Escape o el fondo la cierran,
+// retiene el foco y frena el scroll de la página de atrás.
 function RecorridoVentana({ recorrido, onCerrar }: { recorrido: Recorrido | null; onCerrar: () => void }) {
   const ventana = useRef<HTMLDivElement>(null);
 

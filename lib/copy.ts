@@ -352,7 +352,7 @@ export const proceso = {
       n: "03",
       titulo: "Preparación",
       body: noOrphans(
-        "Con el plan definido, te acompañamos en cada paso previo a la cirugía: orientación nutricional, estudios prequirúrgicos y controles médicos. Llegás al quirófano con todo en orden y sabiendo qué esperar."
+        "Con el plan definido, te acompañamos en cada paso previo a la cirugía: orientación nutricional, estudios prequirúrgicos y controles médicos. Llegás al quirófano con todo en orden y sabiendo\u00A0qué esperar."
       ),
       foto: "/images/proceso-preparacion.jpg",    },
     {
@@ -484,12 +484,6 @@ export const obrasSociales = {
 
 // 2 sedes: Villa del Parque (PDF de ajustes 2026-09-24) y Lomas de Zamora (Maya Vega, 2026-09-29).
 // San Isidro no figura. En las 2, sin horario y "Cómo llegar" solo con Google Maps, sin líneas de transporte.
-// Qué se muestra de cada sede a la izquierda: fotos o un video corto en loop (mudo, con pausa).
-// pos: qué parte queda a la vista cuando la columna es más angosta que la pieza (object-position).
-export type MediaSede =
-  | { tipo: "foto"; src: string; alt: string; pos?: string }
-  | { tipo: "video"; src: string; poster: string; alt: string; pos?: string };
-
 export type Sede = {
   id: string;
   nombre: string;
@@ -503,7 +497,8 @@ export type Sede = {
   comoLlegar: string;
   // Mensaje de WhatsApp del botón "Pedir turno" de la sede
   turno: string;
-  media: MediaSede[];
+  // Fachada vertical (así se sacaron las fotos del lugar). pos: object-position si se recorta
+  foto: { src: string; alt: string; pos?: string };
   // Recorrido completo en video, en una ventana con controles
   recorrido?: { src: string; poster: string; boton: string; titulo: string; alt: string };
 };
@@ -512,7 +507,6 @@ export const ubicaciones = {
   eyebrow: "Dónde encontrarnos",
   headline: "Dónde atendemos.",
   body: null as string | null,
-  pestanas: "Sedes",
   sedes: [
     {
       id: "villa-del-parque",
@@ -525,12 +519,8 @@ export const ubicaciones = {
       mapa: "https://maps.google.com/maps?q=Simbr%C3%B3n%203327%2C%20Villa%20del%20Parque%2C%20CABA&t=&z=16&ie=UTF8&iwloc=&output=embed",
       comoLlegar: "https://www.google.com/maps/dir/?api=1&destination=Simbr%C3%B3n%203327%2C%20Villa%20del%20Parque%2C%20CABA",
       turno: "Hola, quiero pedir un turno en la sede de Villa del Parque.",
-      // Las fotos del lugar son verticales (así se sacaron): la fachada entera de frente (DSC01141,
-      // sin el roll-up de estética y con la patente difuminada) y el número de la entrada (DSC01144).
-      media: [
-        { tipo: "foto", src: "/images/sede-fachada.jpg", alt: "Fachada de Simbrón 3327, con el arco de entrada", pos: "82% 50%" },
-        { tipo: "foto", src: "/images/sede-numero.jpg", alt: "Número 3327 y cartel en la entrada", pos: "70% 50%" },
-      ],
+      // Fachada entera de frente (DSC01141, sin el roll-up de estética y con la patente difuminada)
+      foto: { src: "/images/sede-fachada.jpg", alt: "Fachada de Simbrón 3327, con el arco de entrada y el número", pos: "50% 50%" },
     },
     {
       // Sede nueva (Maya Vega, 2026-09-29). Fotos y videos del equipo: fachada, recepción,
@@ -548,10 +538,7 @@ export const ubicaciones = {
       turno: "Hola, quiero pedir un turno en la sede de Lomas de Zamora.",
       // Fachada retocada (sin el cartel del cirujano plástico, la pantalla con otra médica ni la lista de
       // especialidades del centro) y recortada sin el 185, que en compu quedaba cortado ("85").
-      media: [
-        { tipo: "foto", src: "/images/sede-lomas-fachada.jpg", alt: "Fachada del Centro Médico Las Lomitas al atardecer, con el cartel encendido", pos: "30% 0%" },
-        { tipo: "video", src: "/videos/sede-lomas-loop.mp4", poster: "/images/sede-lomas-loop.jpg", alt: "Recepción y sala de espera de la sede de Lomas de Zamora", pos: "50% 50%" },
-      ],
+      foto: { src: "/images/sede-lomas-fachada.jpg", alt: "Fachada del Centro Médico Las Lomitas al atardecer, con el cartel encendido", pos: "50% 0%" },
       recorrido: {
         src: "/videos/sede-lomas-recorrido.mp4",
         poster: "/images/sede-lomas-recorrido.jpg",
@@ -737,7 +724,7 @@ export const footer = {
     email: brand.email,
   },
   // Sin repetir el barrio: "Villa del Parque" arriba y "Simbrón 3327, CABA" abajo
-  sedes: ubicaciones.sedes.map((s) => ({ id: s.id, nombre: s.nombre, direccion: s.lineaDireccion })),
+  sedes: ubicaciones.sedes.map((s) => ({ nombre: s.nombre, direccion: s.lineaDireccion })),
   legal: lorem.long,
   copyright: `© ${new Date().getFullYear()} Nucleo Bariátrico. Todos los derechos reservados.`,
 };
