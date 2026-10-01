@@ -502,16 +502,23 @@ export type Sede = {
   comoLlegar: string;
   // Mensaje de WhatsApp del botón "Pedir turno" de la sede
   turno: string;
-  // Fachada vertical (así se sacaron las fotos del lugar). pos: object-position si se recorta
-  foto: { src: string; alt: string; pos?: string };
-  // Recorrido completo en video, en una ventana con controles
-  recorrido?: { src: string; poster: string; boton: string; titulo: string; alt: string };
+  // Fachada vertical (así se sacaron las fotos del lugar). pos: object-position si se recorta;
+  // completa: la versión entera, para el visor. etiqueta: lo que dice el visor al mostrarla.
+  foto: { src: string; alt: string; etiqueta: string; pos?: string; completa?: string };
+  // Más fotos del lugar: 3 miniaturas debajo de cada sede (mini, 3:2) que se abren en el visor junto
+  // con la fachada y el video. Todas verticales, como las mandó el equipo. pos: qué parte de la
+  // miniatura queda a la vista cuando se muestra más apaisada (tablet y compu), para no cortar caras ni logos.
+  galeria: { src: string; mini: string; alt: string; etiqueta: string; pos?: string }[];
+  // Recorrido completo en video: es lo primero que muestra el visor de la sede
+  recorrido?: { src: string; poster: string; boton: string; titulo: string; alt: string; etiqueta: string };
 };
 
 export const ubicaciones = {
   eyebrow: "Dónde encontrarnos",
   headline: "Dónde atendemos.",
   body: null as string | null,
+  // Botón sobre la fachada de las sedes sin video (las que tienen recorrido dicen "Ver recorrido")
+  verFotos: "Ver fotos",
   sedes: [
     {
       id: "villa-del-parque",
@@ -525,7 +532,36 @@ export const ubicaciones = {
       comoLlegar: "https://www.google.com/maps/dir/?api=1&destination=Simbr%C3%B3n%203327%2C%20Villa%20del%20Parque%2C%20CABA",
       turno: "Hola, quiero pedir un turno en la sede de Villa del Parque.",
       // Fachada entera de frente (DSC01141, sin el roll-up de estética y con la patente difuminada)
-      foto: { src: "/images/sede-fachada.jpg", alt: "Fachada de Simbrón 3327, con el arco de entrada y el número", pos: "50% 50%" },
+      foto: {
+        src: "/images/sede-fachada.jpg",
+        alt: "Fachada de Simbrón 3327, con el arco de entrada y el número",
+        etiqueta: "Fachada",
+        pos: "50% 50%",
+      },
+      // De esta sede no hay video ni fotos del interior sin gente: va lo que hay de la sesión de fotos
+      // (DSC01144, DSC01129 sin el banner de estética y DSC01030 sin el logo de la laptop ni el bordado).
+      galeria: [
+        {
+          src: "/images/sede-numero.jpg",
+          mini: "/images/sede-numero-mini.jpg",
+          alt: "Número 3327 y cartel verde en el arco de entrada",
+          etiqueta: "Número y cartel de la entrada",
+        },
+        {
+          src: "/images/sede-entrada.jpg",
+          mini: "/images/sede-entrada-mini.jpg",
+          alt: "Puerta de la casa, pasando la reja",
+          etiqueta: "Puerta de la casa",
+          pos: "50% 15%",
+        },
+        {
+          src: "/images/sede-consultorio.jpg",
+          mini: "/images/sede-consultorio-mini.jpg",
+          alt: "Agustina en su escritorio, en el consultorio de Villa del Parque",
+          etiqueta: "Consultorio",
+          pos: "50% 20%",
+        },
+      ],
     },
     {
       // Sede nueva (Maya Vega, 2026-09-29). Fotos y videos del equipo: fachada, recepción,
@@ -543,13 +579,43 @@ export const ubicaciones = {
       turno: "Hola, quiero pedir un turno en la sede de Lomas de Zamora.",
       // Fachada retocada (sin el cartel del cirujano plástico, la pantalla con otra médica ni la lista de
       // especialidades del centro) y recortada sin el 185, que en compu quedaba cortado ("85").
-      foto: { src: "/images/sede-lomas-fachada.jpg", alt: "Fachada del Centro Médico Las Lomitas al atardecer, con el cartel encendido", pos: "50% 0%" },
+      // En el visor va la fachada entera (ahí el 185 sí se lee completo).
+      foto: {
+        src: "/images/sede-lomas-fachada.jpg",
+        completa: "/images/sede-lomas-fachada-completa.jpg",
+        alt: "Fachada del Centro Médico Las Lomitas al atardecer, con el cartel encendido",
+        etiqueta: "Fachada",
+        pos: "50% 0%",
+      },
+      // Fotos del interior que mandó el equipo (2026-09-29), sin gente
+      galeria: [
+        {
+          src: "/images/sede-lomas-recepcion.jpg",
+          mini: "/images/sede-lomas-recepcion-mini.jpg",
+          alt: "Recepción del Centro Médico Las Lomitas",
+          etiqueta: "Recepción",
+        },
+        {
+          src: "/images/sede-lomas-pasillo.jpg",
+          mini: "/images/sede-lomas-pasillo-mini.jpg",
+          alt: "Sala de espera y pasillo hacia los consultorios",
+          etiqueta: "Sala de espera y pasillo",
+        },
+        {
+          src: "/images/sede-lomas-consultorio.jpg",
+          mini: "/images/sede-lomas-consultorio-mini.jpg",
+          alt: "Consultorio de la sede de Lomas de Zamora",
+          etiqueta: "Consultorio",
+          pos: "50% 10%",
+        },
+      ],
       recorrido: {
         src: "/videos/sede-lomas-recorrido.mp4",
         poster: "/images/sede-lomas-recorrido.jpg",
         boton: "Ver recorrido",
         titulo: "Recorrido por la sede de Lomas de Zamora",
         alt: "Recorrido en video por la sede de Lomas de Zamora: la llegada, la recepción, la sala de espera, el pasillo y un consultorio",
+        etiqueta: "Recorrido en video",
       },
     },
   ] as Sede[],

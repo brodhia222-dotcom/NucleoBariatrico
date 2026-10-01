@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import Lenis from "lenis";
+import { registrarLenis } from "@/lib/scroll";
 
 export function LenisProvider() {
   // Si la página se abre con un ancla (/#contacto), el navegador salta antes de que la página termine
@@ -45,6 +46,8 @@ export function LenisProvider() {
       touchMultiplier: 1.2,
     });
 
+    registrarLenis(lenis);
+
     let rafId = 0;
     const raf = (time: number) => {
       lenis.raf(time);
@@ -69,6 +72,7 @@ export function LenisProvider() {
     return () => {
       document.removeEventListener("click", onAnchorClick);
       cancelAnimationFrame(rafId);
+      registrarLenis(null);
       lenis.destroy();
     };
   }, []);
