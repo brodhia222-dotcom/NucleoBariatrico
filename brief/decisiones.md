@@ -74,5 +74,7 @@ Lo que pidió o aprobó el cliente (o Fede para este cliente). No se repite en o
 
 - Proceso (pedido de Fede, 2026-10-01, después de ver la fila de 5 columnas): vuelve el diseño anterior en zigzag (foto de un lado y texto del otro, alternando, y cada paso entra al scrollear), "quedaba más estética", pero más bajo: bloque centrado de 900 px, foto en 16:10 (344x215 en compu; antes 457x304 en 3:2) y menos aire entre pasos. En celular, foto arriba en 16:9 con el número en el mismo renglón que el título. Mide 1,6 pantallas en compu (la versión original, 2,3; la fila de 5 columnas, 0,8) y 2,5 en celular (antes 3,2). El zigzag arranca desde 640 px.
 
+- Tras la pasada del crítico sobre el zigzag (2026-10-01): paso 03 recortado desde arriba (en celular se cortaba la cabeza de Agustina); textos de los pasos balanceados en celular y tablet (clase balance-hasta-lg en globals.css, porque la utilidad de Tailwind no pisa la regla global de los párrafos); los pasos entran escalonados cuando se llega desde el menú; y si la página se abre con un ancla (/#contacto), se vuelve a ubicar cuando termina de armarse (antes caía hasta 500 px pasada en celular).
+
 ## Técnico
 - robots en noindex hasta el lanzamiento real.

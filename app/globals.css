@@ -188,6 +188,13 @@ p, blockquote, dd, figcaption, li {
   text-wrap: pretty;
 }
 
+/* Párrafos cortos en columnas angostas (los pasos del proceso en celular y tablet): con "pretty"
+   quedaban en escalera y con 2 o 3 palabras solas al final. La utilidad text-balance de Tailwind
+   no alcanza: la regla de arriba la pisa. En compu no se aplica (angosta los párrafos). */
+@media (max-width: 1023px) {
+  .balance-hasta-lg { text-wrap: balance; }
+}
+
 /* ---------- TYPOGRAPHY UTILS ---------- */
 .font-display {
   font-family: var(--font-display);

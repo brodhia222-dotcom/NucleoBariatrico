@@ -354,7 +354,9 @@ export const proceso = {
       body: noOrphans(
         "Con el plan definido, te acompañamos en cada paso previo a la cirugía: orientación nutricional, estudios prequirúrgicos y controles médicos. Llegás al quirófano con todo en orden y sabiendo\u00A0qué esperar."
       ),
-      foto: "/images/proceso-preparacion.jpg",    },
+      foto: "/images/proceso-preparacion.jpg",
+      fotoPos: "center top",
+    },
     {
       n: "04",
       titulo: "Cirugía",

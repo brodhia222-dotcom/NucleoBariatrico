@@ -4,6 +4,35 @@ import { useEffect } from "react";
 import Lenis from "lenis";
 
 export function LenisProvider() {
+  // Si la página se abre con un ancla (/#contacto), el navegador salta antes de que la página termine
+  // de armarse y cae en otro lado: se vuelve a ubicar cuando ya está todo en su lugar, salvo que la
+  // persona ya haya empezado a moverse.
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (!hash || hash === "#") return;
+    let destino: Element | null = null;
+    try {
+      destino = document.querySelector(decodeURIComponent(hash));
+    } catch {
+      return;
+    }
+    if (!destino) return;
+    const el = destino;
+    const esperas: number[] = [];
+    const ubicar = () => {
+      const y = el.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top: Math.max(0, y), behavior: "instant" });
+    };
+    const cancelar = () => esperas.forEach((t) => window.clearTimeout(t));
+    for (const ms of [120, 500, 1100]) esperas.push(window.setTimeout(ubicar, ms));
+    const eventos = ["wheel", "touchstart", "keydown", "mousedown"] as const;
+    eventos.forEach((ev) => window.addEventListener(ev, cancelar, { once: true, passive: true }));
+    return () => {
+      cancelar();
+      eventos.forEach((ev) => window.removeEventListener(ev, cancelar));
+    };
+  }, []);
+
   useEffect(() => {
     if (typeof window === "undefined") return;
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

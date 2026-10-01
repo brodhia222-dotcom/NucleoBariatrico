@@ -47,7 +47,7 @@ export function Proceso() {
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={viewportOnce}
-                transition={{ duration: 0.75, ease: easeEditorial }}
+                transition={{ duration: 0.75, delay: Math.min(i, 3) * 0.08, ease: easeEditorial }}
                 className={`grid items-center gap-4 sm:gap-7 lg:gap-10 ${
                   alReves ? "sm:grid-cols-[3fr_2fr]" : "sm:grid-cols-[2fr_3fr]"
                 }`}
@@ -95,7 +95,7 @@ export function Proceso() {
                       {paso.titulo}
                     </h3>
                   </div>
-                  <p className="text-[color:var(--ink-soft)] max-sm:text-[length:var(--text-body-sm)] max-sm:leading-[var(--leading-normal)]">
+                  <p className="balance-hasta-lg text-[color:var(--ink-soft)] max-sm:text-[length:var(--text-body-sm)] max-sm:leading-[var(--leading-normal)]">
                     {paso.body}
                   </p>
                 </div>
