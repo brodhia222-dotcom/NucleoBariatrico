@@ -246,10 +246,12 @@ function SedeBloque({ sede, onAbrir }: { sede: Sede; onAbrir: (indice: number, b
         </div>
       </div>
 
-      {/* Más fotos del lugar: 3 en las 2 sedes, para que queden parejas. Se abren en el visor. */}
-      {sede.galeria.length > 0 && (
-        <ul className="col-span-2 grid grid-cols-3 gap-2 sm:gap-3">
-          {sede.galeria.map((g, k) => (
+      {/* Más fotos del lugar: 2 en cada sede, para que queden parejas. Se abren en el visor, que además
+          muestra las que no tienen miniatura. */}
+      {sede.galeria.some((g) => g.mini) && (
+        <ul className="col-span-2 grid grid-cols-2 gap-2 sm:gap-3">
+          {sede.galeria.map((g, k) =>
+            !g.mini ? null : (
             <li key={g.src}>
               <button
                 type="button"
@@ -262,12 +264,13 @@ function SedeBloque({ sede, onAbrir }: { sede: Sede; onAbrir: (indice: number, b
                   src={g.mini}
                   alt=""
                   loading="lazy"
-                  className="aspect-[3/2] w-full object-cover transition-transform duration-500 group-hover:scale-[1.05] sm:aspect-[5/2] lg:aspect-[16/9]"
+                  className="aspect-[16/9] w-full object-cover transition-transform duration-500 group-hover:scale-[1.05] sm:aspect-[5/2] lg:aspect-[2/1]"
                   style={{ objectPosition: g.pos }}
                 />
               </button>
             </li>
-          ))}
+            ),
+          )}
         </ul>
       )}
     </article>
@@ -368,7 +371,7 @@ function Visor({
             className="relative z-10 flex flex-col gap-3"
           >
             {/* Arriba del marco, para no tapar la foto ni el video: qué se está viendo, cuántas hay y cerrar */}
-            <div className="flex items-center justify-between gap-3">
+            <div className="flex w-0 min-w-full items-center justify-between gap-3">
               <p
                 aria-live="polite"
                 className="min-w-0 truncate rounded-full bg-[color:var(--bg-elevated)] px-3.5 py-2.5 text-[13px] font-medium leading-none text-[color:var(--ink)] shadow-[var(--shadow-sm)]"

@@ -1,13 +1,13 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useId, useState, type CSSProperties } from "react";
 import { motion } from "framer-motion";
 import { CaretDown } from "@phosphor-icons/react";
 import { Container } from "@/components/primitives/Container";
 import { Section } from "@/components/primitives/Section";
 import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { Reveal } from "@/components/primitives/Reveal";
-import { equipo } from "@/lib/copy";
+import { equipo, type Persona } from "@/lib/copy";
 import { easeEditorial, viewportOnce } from "@/lib/motion";
 
 export function Equipo() {
@@ -57,7 +57,6 @@ export function Equipo() {
   );
 }
 
-type Persona = { nombre: string; rol: string; bio: string; foto: string | null };
 
 function Miembro({ m, i }: { m: Persona; i: number }) {
   const [abierta, setAbierta] = useState(false);
@@ -81,8 +80,14 @@ function Miembro({ m, i }: { m: Persona; i: number }) {
             src={m.foto}
             alt={`${m.nombre} · ${m.rol}`}
             loading="lazy"
-            className="aspect-square w-full origin-[45.8%_15%] scale-[1.5] object-cover md:aspect-[4/3] md:origin-[41.6%_65.3%] md:scale-[1.2]"
-            style={{ objectPosition: "center 3%" }}
+            className="aspect-square w-full origin-[var(--foco-x)_15%] scale-[1.5] object-cover object-[center_3%] md:aspect-[4/3] md:origin-[var(--foco-x-md)_65.3%] md:scale-[1.2] md:object-[center_var(--foco-y-md)]"
+            style={
+              {
+                "--foco-x": m.foco?.x ?? "45.8%",
+                "--foco-x-md": m.foco?.xMd ?? "41.6%",
+                "--foco-y-md": m.foco?.yMd ?? "3%",
+              } as CSSProperties
+            }
           />
         ) : (
           // Sin retrato todavía: la inicial, nunca una caja vacía

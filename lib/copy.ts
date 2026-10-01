@@ -160,6 +160,16 @@ export const imcCalc = {
   },
 };
 
+// foco: ajuste fino del encuadre del retrato cuando la cara no cae donde las demás (x: punto de zoom
+// en celular; xMd e yMd: punto de zoom y altura desde tablet). Sin foco, el encuadre común.
+export type Persona = {
+  nombre: string;
+  rol: string;
+  bio: string;
+  foto: string | null;
+  foco?: { x?: string; xMd?: string; yMd?: string };
+};
+
 export const equipo = {
   eyebrow: "El equipo",
   headline: "Un equipo que te acompaña en cada etapa.",
@@ -173,6 +183,8 @@ export const equipo = {
         "Médica egresada de la UNR, especialista en Cirugía General, con Fellowship en Cirugía Bariátrica y Metabólica (UBA). Experiencia en manga gástrica, bypass y cirugía de revisión. Miembro de SACO e IFSO. Su práctica combina una atención cercana, basada en la evidencia, con un seguimiento a largo plazo."
       ),
       foto: "/images/equipo-agustina.jpg",
+      // Tenía los ojos un poco más abajo que el resto en el recorte apaisado
+      foco: { yMd: "7%" },
     },
     {
       nombre: "Sergio",
@@ -225,8 +237,10 @@ export const equipo = {
           "Licenciada en Nutrición, egresada de la UBA y diplomada en abordaje integral de la persona con obesidad. Miembro del grupo de estudio de obesidad de la Asociación Argentina de Licenciados en Nutrición. Su práctica combina una atención basada en la evidencia con un enfoque transdisciplinario."
         ),
         foto: "/images/equipo-debora.jpg",
+        // Su cara quedaba corrida a la izquierda respecto de las demás
+        foco: { x: "35.6%", xMd: "21%" },
       },
-    ] as { nombre: string; rol: string; bio: string; foto: string | null }[],
+    ] as Persona[],
   },
 };
 
@@ -505,10 +519,11 @@ export type Sede = {
   // Fachada vertical (así se sacaron las fotos del lugar). pos: object-position si se recorta;
   // completa: la versión entera, para el visor. etiqueta: lo que dice el visor al mostrarla.
   foto: { src: string; alt: string; etiqueta: string; pos?: string; completa?: string };
-  // Más fotos del lugar: 3 miniaturas debajo de cada sede (mini, 3:2) que se abren en el visor junto
-  // con la fachada y el video. Todas verticales, como las mandó el equipo. pos: qué parte de la
-  // miniatura queda a la vista cuando se muestra más apaisada (tablet y compu), para no cortar caras ni logos.
-  galeria: { src: string; mini: string; alt: string; etiqueta: string; pos?: string }[];
+  // Más fotos del lugar, todas verticales (así las mandó el equipo). Se ven en el visor junto con la
+  // fachada y el video. Las que tienen "mini" (3:2) además van como foto chica debajo de la sede: 2 por
+  // sede, para que queden parejas. pos: qué parte de la miniatura queda a la vista cuando se muestra
+  // más apaisada, para no cortar caras ni logos.
+  galeria: { src: string; mini?: string; alt: string; etiqueta: string; pos?: string }[];
   // Recorrido completo en video: es lo primero que muestra el visor de la sede
   recorrido?: { src: string; poster: string; boton: string; titulo: string; alt: string; etiqueta: string };
 };
@@ -548,18 +563,17 @@ export const ubicaciones = {
           etiqueta: "Número y cartel de la entrada",
         },
         {
+          // Solo en el visor, entera: recortada como miniatura era "una puerta suelta"
           src: "/images/sede-entrada.jpg",
-          mini: "/images/sede-entrada-mini.jpg",
           alt: "Puerta de la casa, pasando la reja",
           etiqueta: "Puerta de la casa",
-          pos: "50% 15%",
         },
         {
           src: "/images/sede-consultorio.jpg",
           mini: "/images/sede-consultorio-mini.jpg",
           alt: "Agustina en su escritorio, en el consultorio de Villa del Parque",
           etiqueta: "Consultorio",
-          pos: "50% 20%",
+          pos: "50% 30%",
         },
       ],
     },
@@ -596,8 +610,8 @@ export const ubicaciones = {
           etiqueta: "Recepción",
         },
         {
+          // Solo en el visor, para que las 2 sedes tengan la misma cantidad de fotos chicas
           src: "/images/sede-lomas-pasillo.jpg",
-          mini: "/images/sede-lomas-pasillo-mini.jpg",
           alt: "Sala de espera y pasillo hacia los consultorios",
           etiqueta: "Sala de espera y pasillo",
         },
@@ -606,7 +620,7 @@ export const ubicaciones = {
           mini: "/images/sede-lomas-consultorio-mini.jpg",
           alt: "Consultorio de la sede de Lomas de Zamora",
           etiqueta: "Consultorio",
-          pos: "50% 10%",
+          pos: "50% 0%",
         },
       ],
       recorrido: {
