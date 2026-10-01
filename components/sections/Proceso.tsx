@@ -8,8 +8,10 @@ import { Reveal } from "@/components/primitives/Reveal";
 import { proceso } from "@/lib/copy";
 import { easeEditorial, viewportOnce } from "@/lib/motion";
 
-// Compacto (pedido de Fede, 2026-10-01: "está todo muy gigante"): en compu grande los 5 pasos van en
-// una fila, con la foto chica arriba; en el resto, una lista con la foto al costado del texto.
+// Zigzag: foto de un lado y texto del otro, alternando, y cada paso entra al scrollear.
+// Fede probó la fila compacta de 5 columnas y prefirió este diseño ("quedaba más estética", 2026-10-01),
+// pero sin tanto scroll: por eso el bloque va centrado y angosto (900 px), con la foto en 16:10
+// (antes 3:2 a todo el ancho) y menos aire entre pasos. En celular, foto arriba en 16:9.
 export function Proceso() {
   return (
     <Section id="proceso" tone="default">
@@ -36,62 +38,70 @@ export function Proceso() {
           </Reveal>
         </div>
 
-        {/* Entre tablet y compu grande la lista va centrada (pegada a la izquierda dejaba media pantalla vacía) */}
-        <ol className="mx-auto grid max-w-3xl gap-5 sm:gap-6 xl:max-w-none xl:grid-cols-5 xl:gap-6">
-          {proceso.pasos.map((paso, i) => (
-            <motion.li
-              key={paso.n}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={viewportOnce}
-              transition={{ duration: 0.6, delay: i * 0.06, ease: easeEditorial }}
-              className="grid grid-cols-[96px_1fr] items-start gap-4 sm:grid-cols-[176px_1fr] sm:gap-6 xl:flex xl:flex-col xl:gap-4"
-            >
-              <div className="overflow-hidden rounded-[var(--radius-lg)]">
-                {paso.foto ? (
-                  <img
-                    src={paso.foto}
-                    alt={paso.titulo}
-                    loading="lazy"
-                    className="aspect-square w-full object-cover sm:aspect-[4/3]"
-                    style={{ objectPosition: paso.fotoPos ?? "center" }}
-                  />
-                ) : (
-                  <div className="placeholder aspect-square sm:aspect-[4/3]" />
-                )}
-              </div>
+        <ol className="mx-auto flex max-w-[900px] flex-col gap-8 lg:gap-9">
+          {proceso.pasos.map((paso, i) => {
+            const alReves = i % 2 === 1;
+            return (
+              <motion.li
+                key={paso.n}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={viewportOnce}
+                transition={{ duration: 0.75, ease: easeEditorial }}
+                className={`grid items-center gap-4 sm:gap-7 lg:gap-10 ${
+                  alReves ? "sm:grid-cols-[3fr_2fr]" : "sm:grid-cols-[2fr_3fr]"
+                }`}
+              >
+                {/* Foto: primero en el código (arriba en celular); en los pasos pares pasa a la derecha */}
+                <div className={`overflow-hidden rounded-[var(--radius-lg)] ${alReves ? "sm:order-2" : ""}`}>
+                  {paso.foto ? (
+                    <img
+                      src={paso.foto}
+                      alt={paso.titulo}
+                      loading="lazy"
+                      className="aspect-[16/9] w-full object-cover sm:aspect-[16/10]"
+                      style={{ objectPosition: paso.fotoPos ?? "center" }}
+                    />
+                  ) : (
+                    <div className="placeholder aspect-[16/9] sm:aspect-[16/10]" />
+                  )}
+                </div>
 
-              <div className="flex flex-col gap-1.5">
-                <span
-                  className="font-display tabular text-[color:var(--accent)]"
-                  style={{
-                    fontSize: "clamp(24px, 2.2vw, 30px)",
-                    lineHeight: 0.9,
-                    letterSpacing: "-0.03em",
-                    fontWeight: 300,
-                    fontVariationSettings: '"opsz" 72',
-                  }}
-                >
-                  {paso.n}
-                </span>
-                <h3
-                  className="font-display"
-                  style={{
-                    fontSize: "clamp(19px, 1.6vw, 22px)",
-                    lineHeight: 1.12,
-                    letterSpacing: "-0.015em",
-                    fontWeight: 300,
-                    fontVariationSettings: '"opsz" 48',
-                  }}
-                >
-                  {paso.titulo}
-                </h3>
-                <p className="body-sm text-[color:var(--ink-soft)]" style={{ maxWidth: "60ch" }}>
-                  {paso.body}
-                </p>
-              </div>
-            </motion.li>
-          ))}
+                {/* Texto: en celular el número va en el mismo renglón que el título */}
+                <div className="flex flex-col gap-2 sm:gap-2.5">
+                  <div className="flex items-baseline gap-3 sm:flex-col sm:items-start sm:gap-2.5">
+                    <span
+                      className="font-display tabular text-[color:var(--accent)]"
+                      style={{
+                        fontSize: "clamp(28px, 3vw, 42px)",
+                        lineHeight: 0.85,
+                        letterSpacing: "-0.035em",
+                        fontWeight: 300,
+                        fontVariationSettings: '"opsz" 72',
+                      }}
+                    >
+                      {paso.n}
+                    </span>
+                    <h3
+                      className="font-display"
+                      style={{
+                        fontSize: "clamp(20px, 1.9vw, 25px)",
+                        lineHeight: 1.1,
+                        letterSpacing: "-0.018em",
+                        fontWeight: 300,
+                        fontVariationSettings: '"opsz" 48',
+                      }}
+                    >
+                      {paso.titulo}
+                    </h3>
+                  </div>
+                  <p className="text-[color:var(--ink-soft)] max-sm:text-[length:var(--text-body-sm)] max-sm:leading-[var(--leading-normal)]">
+                    {paso.body}
+                  </p>
+                </div>
+              </motion.li>
+            );
+          })}
         </ol>
       </Container>
     </Section>
