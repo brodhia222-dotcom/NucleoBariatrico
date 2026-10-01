@@ -602,12 +602,16 @@ export const ubicaciones = {
         pos: "50% 0%",
       },
       // Fotos del interior que mandó el equipo (2026-09-29), sin gente
+      // Las fotos chicas van recortadas hacia abajo (pedido de Fede, 2026-10-01): el mostrador y los bancos
+      // en la recepción, el escritorio y las sillas en el consultorio; con el recorte de arriba eran techo y pared.
       galeria: [
         {
           src: "/images/sede-lomas-recepcion.jpg",
           mini: "/images/sede-lomas-recepcion-mini.jpg",
           alt: "Recepción del Centro Médico Las Lomitas",
           etiqueta: "Recepción",
+          // La miniatura arranca justo arriba del logo de la pared: se muestra desde arriba para no cortarlo
+          pos: "50% 0%",
         },
         {
           // Solo en el visor, para que las 2 sedes tengan la misma cantidad de fotos chicas
@@ -620,7 +624,6 @@ export const ubicaciones = {
           mini: "/images/sede-lomas-consultorio-mini.jpg",
           alt: "Consultorio de la sede de Lomas de Zamora",
           etiqueta: "Consultorio",
-          pos: "50% 0%",
         },
       ],
       recorrido: {

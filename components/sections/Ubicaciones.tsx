@@ -264,7 +264,7 @@ function SedeBloque({ sede, onAbrir }: { sede: Sede; onAbrir: (indice: number, b
                   src={g.mini}
                   alt=""
                   loading="lazy"
-                  className="aspect-[16/9] w-full object-cover transition-transform duration-500 group-hover:scale-[1.05] sm:aspect-[5/2] lg:aspect-[2/1]"
+                  className="aspect-[16/9] w-full object-cover transition-transform duration-500 group-hover:scale-[1.05] sm:aspect-[2/1]"
                   style={{ objectPosition: g.pos }}
                 />
               </button>
