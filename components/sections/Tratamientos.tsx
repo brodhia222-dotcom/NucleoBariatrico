@@ -160,9 +160,9 @@ export function Tratamientos() {
         <Reveal delay={0.1}>
           <article
             id="reganancia"
-            className="mt-5 grid overflow-hidden rounded-[var(--radius-xl)] border border-[color:var(--border)] bg-[color:var(--bg)] md:grid-cols-[5fr_7fr] lg:mt-6"
+            className="mt-5 grid overflow-hidden rounded-[var(--radius-xl)] border border-[color:var(--border)] bg-[color:var(--bg)] lg:mt-6 lg:grid-cols-[5fr_7fr]"
           >
-            <div className="relative aspect-[16/9] md:aspect-auto md:min-h-[260px]">
+            <div className="relative aspect-[16/9] lg:aspect-auto lg:min-h-[260px]">
               <div className="absolute inset-0">
                 <Foto op={reganancia} />
               </div>

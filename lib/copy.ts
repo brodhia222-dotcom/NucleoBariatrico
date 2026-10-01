@@ -371,7 +371,7 @@ export const proceso = {
         "El proceso no termina en el quirófano. Hacemos controles periódicos con todo el equipo durante el tiempo que tu caso lo requiera, porque el seguimiento a largo plazo es lo que permite sostener los resultados y cuidar tu salud en el tiempo."
       ),
       foto: "/images/proceso-seguimiento.jpg",
-      fotoPos: "10% 50%",
+      fotoPos: "20% 50%",
     },
   ] as { n: string; titulo: string; body: string; foto: string | null; fotoPos?: string; fotoAspect?: string }[],
 };

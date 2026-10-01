@@ -121,7 +121,7 @@ export function Ubicaciones() {
 // Una sede: la fachada a la izquierda (llena el alto de la columna de datos) y los datos a la derecha.
 function SedeBloque({ sede, onRecorrido }: { sede: Sede; onRecorrido?: (boton: HTMLButtonElement) => void }) {
   return (
-    <article className="grid grid-cols-[100px_1fr] gap-4 sm:grid-cols-[150px_1fr] sm:gap-6 lg:grid-cols-[136px_1fr] lg:gap-5 xl:grid-cols-[170px_1fr] xl:gap-6">
+    <article className="grid grid-cols-[100px_1fr] gap-4 sm:grid-cols-[150px_1fr] sm:gap-6 lg:grid-cols-[170px_1fr] lg:gap-5 xl:gap-6">
       <figure className="relative min-h-[180px] overflow-hidden rounded-[var(--radius-lg)]">
         <img
           src={sede.foto.src}

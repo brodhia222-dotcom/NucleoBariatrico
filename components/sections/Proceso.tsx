@@ -36,7 +36,8 @@ export function Proceso() {
           </Reveal>
         </div>
 
-        <ol className="grid gap-5 sm:gap-6 xl:grid-cols-5 xl:gap-6">
+        {/* Entre tablet y compu grande la lista va centrada (pegada a la izquierda dejaba media pantalla vacía) */}
+        <ol className="mx-auto grid max-w-3xl gap-5 sm:gap-6 xl:max-w-none xl:grid-cols-5 xl:gap-6">
           {proceso.pasos.map((paso, i) => (
             <motion.li
               key={paso.n}
