@@ -57,7 +57,18 @@
     "redes": [
       { "valor": "https://www.instagram.com/nucleobariatrico/", "estado": "confirmado", "fuente": "material del equipo 2026-07-03" }
     ],
-    "dominio": { "valor": "", "estado": "faltante" }
+    "dominio": {
+      "valor": "nucleobariatrico.com.ar",
+      "estado": "confirmado",
+      "fuente": "Maya Vega 2026-10-02, vía Fede: \"como dominio queda: www.nucleobariatrico.com.ar\"",
+      "nota": "Elegido, todavía sin registrar: el 2026-10-02 estaba libre en NIC Argentina (también nucleobariatrico.com y nucleobariatrico.ar). La dirección principal es sin www; con www redirige."
+    },
+    "director_medico": {
+      "valor": "Dr. Sergio Sitta, M.N. 156.136, M.P. 338.584",
+      "estado": "confirmado",
+      "fuente": "Maya Vega 2026-10-02, vía Fede: \"Sergio dice que lo pongamos a él como director, estos son sus datos: Sergio Sitta M.N 156.136 M.P 338.584\"",
+      "nota": "Va en el texto legal del pie. En el resto del sitio el equipo sigue con el nombre de pila."
+    }
   },
   "servicios": [
     {
@@ -207,7 +218,6 @@
   },
   "faltante": [
     "Antes de publicar: el mail donde quieren recibir las consultas del formulario (el dominio y la casilla los dejamos listos nosotros cuando nos confirmen el nombre).",
-    "Antes de publicar: el texto legal del pie de página.",
     "Para el formulario de testimonios de la web: ¿a qué mail o WhatsApp quieren que les lleguen y quién los revisa antes de publicarlos?",
     "Testimonios: confirmar que les parece bien que un comentario nombre al Dr. Sitta y que otro hable del acompañamiento con la prepaga (ver brief/material/testimonios-encuesta-2026-08.md).",
     "Opcional: en los testimonios, ¿quieren sumar un dato de contacto (teléfono o mail, que no se publica) para verificar que es un paciente antes de aprobarlo?",
@@ -226,9 +236,9 @@
     { "tema": "Convenios y tiempos de respuesta de cobertura", "detalle": "\"Trabajamos con más convenios de los que podemos listar acá\" y \"te confirmamos tu cobertura en minutos\". No confirmado: la reunión pidió no afirmar convenios y el tiempo confirmado es 24 horas hábiles." },
     { "tema": "Resúmenes viejos de los tratamientos", "detalle": "\"La técnica más utilizada\" (manga), \"Para casos más avanzados\" (bypass), \"Dispositivo temporal y reversible\" (balón) y \"Medicación bajo seguimiento médico\" (inyectables) no salen del material del equipo. Se usan los subtítulos del PDF." },
     { "tema": "Fotos de antes y después en testimonios", "detalle": "El formulario del PDF las ofrece, pero en julio el equipo pidió una portada con menos efecto de antes y después. Confirmar con el equipo antes de publicar alguna." },
-    { "tema": "Placeholders con forma de dato", "detalle": "Resuelto el 2026-10-02: los testimonios de ejemplo se reemplazaron por los 4 comentarios reales de la encuesta y los mensajes de ejemplo de \"No estás solo\" (firmados \"Una paciente · 6 meses post-cirugía\") se sacaron; \"Leer un mensaje\" queda oculto hasta que haya mensajes reales y \"Dejar un mensaje\" abre el formulario de testimonios (antes, una nota anónima que no se enviaba). Único texto de relleno que queda: el aviso legal del pie." },
+    { "tema": "Placeholders con forma de dato", "detalle": "Resuelto el 2026-10-02: los testimonios de ejemplo se reemplazaron por los 4 comentarios reales de la encuesta y los mensajes de ejemplo de \"No estás solo\" (firmados \"Una paciente · 6 meses post-cirugía\") se sacaron; \"Leer un mensaje\" queda oculto hasta que haya mensajes reales y \"Dejar un mensaje\" abre el formulario de testimonios (antes, una nota anónima que no se enviaba). El aviso legal del pie se cargó el mismo día con el director médico y sus matrículas: ya no queda texto de relleno en el sitio." },
     { "tema": "Mail publicado", "detalle": "El sitio no muestra mail (brand.email = null). El equipo prefería algo como info@...; no publicar ninguno hasta que exista la casilla." },
-    { "tema": "Dominio", "detalle": "brand.domain = nucleobariatrico.com.ar se usa en la URL para compartir y en los datos para Google, pero el dominio no está registrado ni elegido (el equipo prefería .com). Confirmar antes del lanzamiento." },
+    { "tema": "Dominio", "detalle": "Resuelto el 2026-10-02: el equipo confirmó nucleobariatrico.com.ar. Falta registrarlo en NIC Argentina y conectarlo antes del lanzamiento." },
     { "tema": "Cómo llegar", "detalle": "En las 2 sedes el botón \"Cómo llegar\" abre Google Maps. No publicar líneas de colectivo, tren ni estacionamiento: no están en el material (decisión confirmada vía Fede 2026-09-30)." }
   ]
 }

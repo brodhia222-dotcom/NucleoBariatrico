@@ -143,7 +143,7 @@ export function Footer() {
                 <li key={s.nombre}>
                   <a href="#ubicaciones" className="group block">
                     <span className="block text-sm font-medium text-[color:var(--ink-inverse)] underline-offset-4 group-hover:underline">{s.nombre}</span>
-                    <span className="caption mt-0.5 block text-[color:var(--ink-inverse)]/58">{s.direccion}</span>
+                    <span className="caption mt-0.5 block !text-[color:var(--ink-inverse)]/65">{s.direccion}</span>
                   </a>
                 </li>
               ))}
@@ -151,10 +151,19 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Legal */}
-        <div className="border-t border-[color:var(--ink-inverse)]/12 py-6 grid gap-4 md:grid-cols-[1fr_auto] items-start">
-          <p className="caption text-[color:var(--ink-inverse)]/65 max-w-prose">{footer.legal}</p>
-          <p className="caption text-[color:var(--ink-inverse)]/45 md:text-right">{footer.copyright}</p>
+        {/* Legal. La clase caption trae un color pensado para fondo claro: acá se pisa para que se lea.
+            En celular lleva aire abajo para que el botón flotante de WhatsApp no tape el último renglón. */}
+        <div className="border-t border-[color:var(--ink-inverse)]/12 pt-6 pb-24 md:pb-6 grid gap-4 md:grid-cols-[1fr_auto] items-start">
+          <div className="flex max-w-prose flex-col gap-2">
+            {/* En compu, director y matrículas van en un renglón; más angosto, en dos (sin punto suelto) */}
+            <p className="caption !text-[color:var(--ink-inverse)]/82">
+              <span className="block lg:inline">{footer.legal.director}</span>
+              <span aria-hidden className="hidden lg:inline"> · </span>
+              <span className="block lg:inline">{footer.legal.matriculas}</span>
+            </p>
+            <p className="caption !text-[color:var(--ink-inverse)]/65">{footer.legal.texto}</p>
+          </div>
+          <p className="caption !text-[color:var(--ink-inverse)]/65 md:text-right">{footer.copyright}</p>
         </div>
       </Container>
     </footer>

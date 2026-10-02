@@ -1,26 +1,10 @@
 // ============================================================================
 // NUCLEO BARIATRICO · Copy
-// Modo demo: bodies en lorem para que el cliente apruebe estructura/dirección
-// antes de redactar texto definitivo. Los TÍTULOS, eyebrows, CTAs y elementos
-// funcionales (IMC, navegación, contacto) sí mantienen copy real.
+// Todos los textos del sitio. Los datos del equipo (direcciones, matrículas,
+// contacto) salen solo de lo confirmado en brief/fuente-de-verdad.json.
 // ============================================================================
 
 import { noOrphans } from "./text";
-
-const lorem = {
-  short: noOrphans(
-    "Lorem ipsum dolor sit amet consectetur. Nullam vitae libero ut elit faucibus consectetur. Sed do eiusmod tempor incididunt."
-  ),
-  medium: noOrphans(
-    "Lorem ipsum dolor sit amet consectetur adipiscing elit. Vestibulum ut libero in lectus laoreet faucibus. Curabitur in lectus nec urna venenatis fermentum non a tortor. Etiam at orci a leo bibendum dapibus."
-  ),
-  long: noOrphans(
-    "Lorem ipsum dolor sit amet consectetur adipiscing elit. Vestibulum ut libero in lectus laoreet faucibus. Curabitur in lectus nec urna venenatis fermentum non a tortor. Etiam at orci a leo bibendum dapibus. Ut imperdiet justo sit amet velit auctor, eu commodo nisl gravida."
-  ),
-  quote: noOrphans(
-    "Lorem ipsum dolor sit amet consectetur. Nullam vitae libero ut elit faucibus consectetur, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-  ),
-};
 
 export const brand = {
   name: "Nucleo Bariátrico",
@@ -787,6 +771,15 @@ export const footer = {
   },
   // Sin repetir el barrio: "Villa del Parque" arriba y "Simbrón 3327, CABA" abajo
   sedes: ubicaciones.sedes.map((s) => ({ nombre: s.nombre, direccion: s.lineaDireccion })),
-  legal: lorem.long,
+  // Texto legal. Director médico y matrículas: Sergio, vía Maya Vega (2026-10-02). El párrafo es la
+  // propuesta que se le envió al equipo el 2026-10-01; el uso de los datos se limita a las consultas
+  // porque los testimonios se publican con su propio consentimiento.
+  legal: {
+    director: "Director médico: Dr.\u00A0Sergio\u00A0Sitta",
+    matriculas: "M.N.\u00A0156.136 · M.P.\u00A0338.584",
+    texto: noOrphans(
+      "La información de este sitio es orientativa y no reemplaza la consulta médica. Cada tratamiento se indica después de una evaluación personalizada y los resultados varían según cada paciente. Los datos que nos envíes al hacer una consulta se usan solo para responderte y no se comparten con terceros."
+    ),
+  },
   copyright: `© ${new Date().getFullYear()} Nucleo Bariátrico. Todos los derechos reservados.`,
 };

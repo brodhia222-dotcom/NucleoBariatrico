@@ -94,5 +94,10 @@ Lo que pidió o aprobó el cliente (o Fede para este cliente). No se repite en o
 - A confirmar con el equipo: un comentario nombra al "Dr. Sitta" (el sitio presenta al equipo con el nombre de pila); otro agradece el apoyo "durante la tramitación de autorizaciones en la prepaga" (promesa que el equipo sacó de los textos en septiembre; acá la dice un paciente); y la ley 17.132, art. 20 inc. 14 (ejercicio de la medicina en CABA) prohíbe a los médicos "publicar cartas de agradecimiento de pacientes": publicar testimonios es una decisión del equipo médico.
 - "Centro Médico Las Lomitas" (Lomas): confirmado por Maya Vega el 2026-10-02, "ese es el nombre del centro y está bien que aparezca".
 
+## Pie de página y dominio (2026-10-02, misma rama v7-testimonios)
+- Maya Vega, vía Fede: "Sergio dice que lo pongamos a él como director, estos son sus datos: Sergio Sitta M.N 156.136 M.P 338.584 y como dominio queda: www.nucleobariatrico.com.ar".
+- Texto legal del pie (reemplaza el de ejemplo): un renglón "Director médico: Dr. Sergio Sitta · M.N. 156.136 · M.P. 338.584" y debajo el párrafo propuesto al equipo el 2026-10-01 (la información es orientativa y no reemplaza la consulta; cada tratamiento se indica tras una evaluación y los resultados varían). La última frase quedó "Los datos que nos envíes al hacer una consulta se usan solo para responderte y no se comparten con terceros": antes decía "por los formularios", y los testimonios sí se publican (con su propio consentimiento). Ya no queda texto de relleno en el sitio.
+- Dominio: nucleobariatrico.com.ar confirmado. El 2026-10-02 estaba libre en NIC Argentina. La dirección principal va sin www (es la que ya usan la canónica, el sitemap y los datos para Google) y www redirige. Falta registrarlo y conectarlo: ver los pasos de lanzamiento que se le pasaron a Fede.
+
 ## Técnico
 - robots en noindex hasta el lanzamiento real.
