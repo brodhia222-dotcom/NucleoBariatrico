@@ -114,4 +114,5 @@ Lo que pidió o aprobó el cliente (o Fede para este cliente). No se repite en o
 - Google: sigue bloqueado hasta conectar el dominio y volver a publicar.
 
 ## Técnico
+- Revisión de seguridad del 2026-10-02 (pedido de Fede al publicar): Next pasó de 16.2.6 a 16.3.8 por avisos de seguridad críticos en las versiones anteriores, y `npm audit` quedó en 0. Se sumaron cabeceras básicas en `next.config.ts` (X-Content-Type-Options, X-Frame-Options, Referrer-Policy, Permissions-Policy); el https obligatorio lo agrega Vercel. No hay claves en el repositorio ni en su historial. Las 34 pantallas del recorrido quedaron iguales después de actualizar.
 - robots en noindex hasta el lanzamiento real.
