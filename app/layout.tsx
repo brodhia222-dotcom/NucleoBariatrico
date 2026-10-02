@@ -5,20 +5,11 @@ import { LenisProvider } from "@/components/LenisProvider";
 import { Analytics } from "@/components/Analytics";
 import { WhatsAppFloat } from "@/components/ui/WhatsAppFloat";
 import { brand } from "@/lib/copy";
-import { publicado } from "@/lib/entorno";
+import { baseDelSitio, publicado } from "@/lib/entorno";
 import "./globals.css";
 
-// Base de las URLs para compartir. En Vercel usa el dominio real del deploy (el de producción, o el link del
-// preview): hasta que nucleobariatrico.com.ar esté conectado, apuntar ahí deja el link sin vista previa.
-const sitio =
-  process.env.VERCEL_ENV === "production" && process.env.VERCEL_PROJECT_PRODUCTION_URL
-    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-    : process.env.VERCEL_BRANCH_URL
-      ? `https://${process.env.VERCEL_BRANCH_URL}`
-      : `https://${brand.domain}`;
-
 export const metadata: Metadata = {
-  metadataBase: new URL(sitio),
+  metadataBase: new URL(baseDelSitio),
   title: {
     default: `Cirugía bariátrica en CABA y Lomas · ${brand.name}`,
     template: `%s · ${brand.name}`,
@@ -45,7 +36,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `${brand.name} · ${brand.tagline}`,
     description: "Acompañamiento médico integral para cirugía bariátrica.",
-    url: `https://${brand.domain}`,
+    url: brand.url,
     siteName: brand.name,
     locale: "es_AR",
     type: "website",
@@ -59,7 +50,7 @@ const jsonLd = {
   "@type": "MedicalBusiness",
   name: brand.name,
   description: "Equipo médico especializado en cirugía bariátrica y metabólica",
-  url: `https://${brand.domain}`,
+  url: brand.url,
   telephone: brand.whatsappNumber,
   ...(brand.email ? { email: brand.email } : {}),
   areaServed: { "@type": "Country", name: "Argentina" },

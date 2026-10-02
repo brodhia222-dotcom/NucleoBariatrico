@@ -18,8 +18,11 @@ export const brand = {
   // casilla todavía no existe: mientras sea null no se muestra en el sitio. Cuando esté creada, cargarla
   // acá: aparece en Contacto y en el pie, y pasa a ser el destino de los formularios.
   email: null as string | null,
-  // Dominio confirmado y registrado a nombre de Sergio el 2026-10-02. La dirección principal va sin www.
+  // Dominio confirmado y registrado a nombre de Sergio el 2026-10-02 (sin www: es el que usan los mails).
   domain: "nucleobariatrico.com.ar",
+  // Dirección principal del sitio: con www. Así quedó en Vercel (2026-10-02), que manda ahí a quien
+  // entra sin www. Es la que usan la canónica, el sitemap y los datos para Google.
+  url: "https://www.nucleobariatrico.com.ar",
   instagram: "https://www.instagram.com/nucleobariatrico/",
 };
 

@@ -4,7 +4,7 @@ import { brand } from "@/lib/copy";
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: `https://${brand.domain}`,
+      url: brand.url,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 1,

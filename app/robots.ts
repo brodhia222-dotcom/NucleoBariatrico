@@ -6,6 +6,6 @@ import { publicado } from "@/lib/entorno";
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [publicado ? { userAgent: "*", allow: "/" } : { userAgent: "*", disallow: "/" }],
-    sitemap: `https://${brand.domain}/sitemap.xml`,
+    sitemap: `${brand.url}/sitemap.xml`,
   };
 }
