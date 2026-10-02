@@ -39,8 +39,8 @@
       {
         "valor": "Centro Médico Las Lomitas (lugar donde atienden en Lomas de Zamora)",
         "estado": "confirmado",
-        "fuente": "visto en las fotos que mandó el equipo el 2026-09-29 (FotosNucleo/UltimasFotosyVideos): cartel de la fachada \"CENTRO MÉDICO / LAS LOMITAS\" con el número 185, el mismo cartel sobre la recepción e Instagram @cm.laslomitas en el vidrio",
-        "nota": "Se muestra en la tarjeta de la sede, debajo de la dirección. A diferencia de Villa del Parque no hay duda de ortografía: se lee igual en los 3 lugares. Es un centro médico (no de estética) y es lo que la persona busca al llegar. El equipo no lo escribió: si prefiere que no figure, se saca (espacio: null)."
+        "fuente": "Maya Vega 2026-10-02, vía Fede: \"ese es el nombre del centro y está bien que aparezca\". Antes solo estaba visto en las fotos del equipo (cartel de la fachada y de la recepción)",
+        "nota": "Se muestra en la tarjeta de la sede, debajo de la dirección. A diferencia de Villa del Parque no hay duda de ortografía: se lee igual en los 3 lugares. Es un centro médico (no de estética) y es lo que la persona busca al llegar."
       }
     ],
     "horarios": [],
@@ -128,7 +128,14 @@
       "nota": "Apellido con tilde: Salamón, como lo escribió el equipo en la bio. La account manager lo había escrito sin tilde (Salamon) el 2026-09-28; vale el de la bio. El sitio solo muestra \"Débora\". La versión del sitio (292 caracteres) conserva UBA, diplomatura y el grupo de estudio de la AALN; saca la frase general sobre los objetivos de salud."
     }
   ],
-  "testimonios": [],
+  "testimonios": {
+    "estado": "confirmado",
+    "fuente": "Encuesta de satisfacción del equipo (formulario de Google), respuestas de agosto de 2026. Sergio se la pasó a Maya Vega y ella a Fede el 2026-10-02",
+    "publicables": 4,
+    "condicion": "Se publican solo los comentarios con autorización (pregunta 6) y siempre de forma anónima: sin nombre ni iniciales, aunque la persona haya dejado su nombre",
+    "detalle": "brief/material/testimonios-encuesta-2026-08.md (original y versión publicada de cada comentario). La planilla original, con nombres, no se guarda en el repositorio",
+    "no_publicar": "Las calificaciones de la encuesta (7 respuestas): la base es muy chica. Nada de las 2 personas que pidieron uso interno"
+  },
   "formulario_testimonios": {
     "estado": "confirmado",
     "fuente": "PDF de ajustes del equipo 2026-09-24, Testimonios",
@@ -143,7 +150,7 @@
     ],
     "boton": "Enviar testimonio",
     "confirmacion": "Gracias por compartir tu experiencia. Vamos a revisarla antes de publicarla.",
-    "nota": "La account manager les pasó a sus pacientes una plantilla para pedir testimonios; van a ir llegando con el tiempo y se cargan cuando Fede los pase (2026-09-26). Todavía no llegó ninguno."
+    "nota": "Los primeros 4 testimonios llegaron el 2026-10-02 por otra vía: la encuesta de satisfacción del equipo (ver \"testimonios\"). El formulario de la web sigue disponible para sumar más."
   },
   "preguntas_frecuentes": [
     { "grupo": "Tratamientos", "pregunta": "¿Cómo sé qué tratamiento es para mí?", "respuesta": "Lo definimos en la consulta. Evaluamos tu historia clínica, tus estudios y tu estado nutricional y emocional, y con esa información te indicamos el abordaje más adecuado para tu caso.", "estado": "confirmado", "fuente": "PDF de ajustes del equipo 2026-09-24, Preguntas frecuentes" },
@@ -201,7 +208,8 @@
   "faltante": [
     "Antes de publicar: el mail donde quieren recibir las consultas del formulario (el dominio y la casilla los dejamos listos nosotros cuando nos confirmen el nombre).",
     "Antes de publicar: el texto legal del pie de página.",
-    "Cuando lleguen: los testimonios de sus pacientes. Para el formulario de la web, ¿a qué mail o WhatsApp quieren que les lleguen y quién los revisa antes de publicarlos?",
+    "Para el formulario de testimonios de la web: ¿a qué mail o WhatsApp quieren que les lleguen y quién los revisa antes de publicarlos?",
+    "Testimonios: confirmar que les parece bien que un comentario nombre al Dr. Sitta y que otro hable del acompañamiento con la prepaga (ver brief/material/testimonios-encuesta-2026-08.md).",
     "Opcional: en los testimonios, ¿quieren sumar un dato de contacto (teléfono o mail, que no se publica) para verificar que es un paciente antes de aprobarlo?",
     "Opcional: testimonios con foto de antes y después, ¿confirman que quieren publicarlas? En julio pidieron una portada con menos efecto de antes y después.",
     "Opcional: cobertura, ¿siguen gestionando ustedes la autorización ante la obra social? El sitio decía que son efectores y que hacen el trámite; en el PDF de septiembre no aparece, así que por ahora no lo mostramos.",
@@ -218,7 +226,7 @@
     { "tema": "Convenios y tiempos de respuesta de cobertura", "detalle": "\"Trabajamos con más convenios de los que podemos listar acá\" y \"te confirmamos tu cobertura en minutos\". No confirmado: la reunión pidió no afirmar convenios y el tiempo confirmado es 24 horas hábiles." },
     { "tema": "Resúmenes viejos de los tratamientos", "detalle": "\"La técnica más utilizada\" (manga), \"Para casos más avanzados\" (bypass), \"Dispositivo temporal y reversible\" (balón) y \"Medicación bajo seguimiento médico\" (inyectables) no salen del material del equipo. Se usan los subtítulos del PDF." },
     { "tema": "Fotos de antes y después en testimonios", "detalle": "El formulario del PDF las ofrece, pero en julio el equipo pidió una portada con menos efecto de antes y después. Confirmar con el equipo antes de publicar alguna." },
-    { "tema": "Placeholders con forma de dato", "detalle": "Testimonios de ejemplo con \"8 meses después de la cirugía\", \"1 año y 2 meses\" y 5 estrellas, y mensajes de \"No estás solo\" firmados \"Una paciente · 6 meses post-cirugía\": no son datos reales y no pueden quedar visibles en producción." },
+    { "tema": "Placeholders con forma de dato", "detalle": "Resuelto el 2026-10-02: los testimonios de ejemplo se reemplazaron por los 4 comentarios reales de la encuesta y los mensajes de ejemplo de \"No estás solo\" (firmados \"Una paciente · 6 meses post-cirugía\") se sacaron; \"Leer un mensaje\" queda oculto hasta que haya mensajes reales. Único texto de relleno que queda: el aviso legal del pie." },
     { "tema": "Mail publicado", "detalle": "El sitio no muestra mail (brand.email = null). El equipo prefería algo como info@...; no publicar ninguno hasta que exista la casilla." },
     { "tema": "Dominio", "detalle": "brand.domain = nucleobariatrico.com.ar se usa en la URL para compartir y en los datos para Google, pero el dominio no está registrado ni elegido (el equipo prefería .com). Confirmar antes del lanzamiento." },
     { "tema": "Cómo llegar", "detalle": "En las 2 sedes el botón \"Cómo llegar\" abre Google Maps. No publicar líneas de colectivo, tren ni estacionamiento: no están en el material (decisión confirmada vía Fede 2026-09-30)." }

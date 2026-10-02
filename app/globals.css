@@ -195,6 +195,12 @@ p, blockquote, dd, figcaption, li {
   .balance-hasta-lg { text-wrap: balance; }
 }
 
+/* Al revés: citas en tarjetas anchas (testimonios en compu). Con "pretty" quedaban renglones muy
+   desparejos; en celular y tablet la columna es angosta y "pretty" corta mejor. */
+@media (min-width: 1024px) {
+  .balance-desde-lg { text-wrap: balance; }
+}
+
 /* ---------- TYPOGRAPHY UTILS ---------- */
 .font-display {
   font-family: var(--font-display);

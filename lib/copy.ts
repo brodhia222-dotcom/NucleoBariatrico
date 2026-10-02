@@ -392,10 +392,21 @@ export const proceso = {
   ] as { n: string; titulo: string; body: string; foto: string | null; fotoPos?: string; fotoAspect?: string }[],
 };
 
+// Un testimonio: el comentario del paciente y la frase de ese mismo comentario que va resaltada
+// ("destacado" tiene que figurar tal cual dentro de "quote").
+export type Testimonio = { quote: string; destacado: string };
+
 export const testimonios = {
   eyebrow: "Testimonios",
   headline: "Cambios reales, no promesas.",
-  body: lorem.short,
+  // De dónde salen: la encuesta de satisfacción que el equipo les manda a sus pacientes (respuestas de
+  // agosto de 2026; Sergio vía Maya Vega, 2026-10-02). Van solo los comentarios que autorizaron a
+  // compartirse y siempre sin nombre: la autorización es "de forma anónima".
+  nota: noOrphans(
+    "Son comentarios de nuestra encuesta de satisfacción. Los compartimos sin nombre y con la autorización de cada paciente."
+  ),
+  // Las tarjetas no llevan firma: ninguna puede tener nombre ni iniciales, y "paciente" repetido en
+  // las 4 no sumaba nada a lo que ya dice esta aclaración.
   // Formulario para que los pacientes dejen su experiencia (PDF de ajustes 2026-09-24).
   // Todo lo que llega se revisa antes de publicarse.
   formulario: {
@@ -421,57 +432,39 @@ export const testimonios = {
     error: "Algo no funcionó. Probá de nuevo o escribinos por WhatsApp.",
     errorFoto: "No pudimos procesar esa foto. Probá con otra en JPG o PNG.",
   },
+  // Texto original de cada comentario y qué se corrigió (solo ortografía y puntuación):
+  // brief/material/testimonios-encuesta-2026-08.md. Orden: en compu van 2 por fila, así que se
+  // emparejan por largo (los 2 más cortos arriba) para que no quede un hueco al pie de una tarjeta.
   items: [
     {
-      type: "text" as const,
-      nombre: "M.",
-      tiempo: "8 meses después de la cirugía",
-      quote: lorem.quote,
-      rating: 5,
-      foto: null,
+      quote: noOrphans(
+        "Me cambiaron la vida y siempre estuvieron atentos a mis problemas y dudas. Me sentí siempre acompañada. Gracias."
+      ),
+      destacado: "Me cambiaron la vida",
     },
     {
-      type: "image" as const,
-      nombre: "C.",
-      tiempo: "1 año y 2 meses",
-      quote: lorem.quote,
-      thumbnail: null,
-      foto: null,
+      quote: noOrphans(
+        "Mi experiencia fue grandiosa. Incluso la recomendé a una amiga y ella también se trató con ustedes. Me operé en el 2023 y estoy sumamente conforme con el resultado."
+      ),
+      destacado: "sumamente conforme con el resultado",
     },
     {
-      type: "text" as const,
-      nombre: "L.",
-      tiempo: "6 meses",
-      quote: lorem.quote,
-      rating: 5,
-      foto: null,
+      // A confirmar con el equipo: nombra el apoyo con la autorización de la prepaga. Si no lo
+      // quieren, la cita se corta en "postoperatorio." sin cambiar ninguna palabra.
+      quote: noOrphans(
+        "Excelente atención del equipo de cirujanos. Mucha comprensión, empatía y apoyo, desde el momento\u00A00 hasta el postoperatorio y durante la tramitación de autorizaciones en la prepaga."
+      ),
+      destacado: "Mucha comprensión, empatía y apoyo",
     },
     {
-      type: "video" as const,
-      nombre: "R.",
-      tiempo: "10 meses",
-      quote: lorem.short,
-      thumbnail: null,
-      mediaUrl: null,
-      foto: null,
+      // "El Dr. Sitta" es Sergio. Se deja porque lo escribió la paciente; si el equipo prefiere que no
+      // se nombre a un médico en particular, se saca el paréntesis.
+      quote: noOrphans(
+        "Fui tratada con profesionales (entre ellos el Dr.\u00A0Sitta) que no solo mostraron experiencia en lo suyo, sino una calidad humana para hacerte sentir que realmente podías estar mucho mejor. ¡Y aquí estoy, feliz con mi nueva\u00A0vida! ¡Solo puedo dar gracias, gracias, gracias!"
+      ),
+      destacado: "una calidad humana",
     },
-    {
-      type: "text" as const,
-      nombre: "J.",
-      tiempo: "4 meses",
-      quote: lorem.quote,
-      rating: 5,
-      foto: null,
-    },
-    {
-      type: "image" as const,
-      nombre: "A.",
-      tiempo: "1 año",
-      quote: lorem.quote,
-      thumbnail: null,
-      foto: null,
-    },
-  ],
+  ] as Testimonio[],
 };
 
 export const obrasSociales = {
@@ -586,7 +579,7 @@ export const ubicaciones = {
       // La zona ya está en el título: la línea de abajo lleva solo la calle (como Villa del Parque)
       lineaDireccion: "General Bartolomé Mitre 185",
       calle: "General Bartolomé Mitre 185",
-      // Visto en las fotos del equipo (cartel de la fachada y de la recepción); si no lo quieren, "Provincia de Buenos Aires"
+      // Confirmado por Maya Vega (2026-10-02): es el nombre del centro y está bien que aparezca
       detalle: "Centro Médico Las Lomitas",
       mapa: "https://maps.google.com/maps?q=General%20Bartolom%C3%A9%20Mitre%20185%2C%20Lomas%20de%20Zamora%2C%20Provincia%20de%20Buenos%20Aires&t=&z=16&ie=UTF8&iwloc=&output=embed",
       comoLlegar: "https://www.google.com/maps/dir/?api=1&destination=General%20Bartolom%C3%A9%20Mitre%20185%2C%20Lomas%20de%20Zamora%2C%20Provincia%20de%20Buenos%20Aires",
@@ -646,33 +639,19 @@ export const ubicaciones = {
 export const noEstasSolo = {
   eyebrow: "Una nota",
   headline: "No estás solo/a.",
+  // Texto para cuando no hay mensajes para leer (brief/contenido.md, 7 y 8). Con mensajes cargados:
+  // "...Leé lo que otros pacientes quisieron contarte, o dejá unas palabras para quien recién empieza el camino."
   body: noOrphans(
-    "Detrás de cada cirugía hay una historia parecida a la tuya. Leé lo que otros pacientes quisieron contarte, o dejá unas palabras para quien recién empieza el camino."
+    "Detrás de cada tratamiento hay una historia parecida a la tuya. Si ya pasaste por el proceso, dejá unas palabras para quien recién empieza el camino."
   ),
   cta: {
     leer: "Leer un mensaje",
     dejar: "Dejar un mensaje",
   },
-  mensajesEntrantes: [
-    {
-      texto: noOrphans(
-        "Lorem ipsum dolor sit amet consectetur. Nullam vitae libero ut elit faucibus consectetur, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-      ),
-      autor: "Una paciente · 6 meses post-cirugía",
-    },
-    {
-      texto: noOrphans(
-        "Curabitur in lectus nec urna venenatis fermentum non a tortor. Etiam at orci a leo bibendum dapibus, ut imperdiet justo sit amet velit auctor."
-      ),
-      autor: "Un paciente · 1 año post-cirugía",
-    },
-    {
-      texto: noOrphans(
-        "Vestibulum ut libero in lectus laoreet faucibus. Curabitur in lectus nec urna venenatis fermentum non a tortor."
-      ),
-      autor: "Una paciente · 8 meses post-cirugía",
-    },
-  ],
+  // Mensajes de pacientes para "Leer un mensaje". Hoy no hay ninguno y el botón no se muestra: los de
+  // ejemplo (en latín, con firma) se sacaron cuando llegaron los comentarios reales, que van en la
+  // sección de abajo (Testimonios). Solo se cargan mensajes reales y con autorización.
+  mensajesEntrantes: [] as { texto: string; autor: string }[],
   formLabels: {
     placeholder: "Dejá unas palabras que quieras que otra persona lea cuando llegue acá…",
     submit: "Compartir mensaje",

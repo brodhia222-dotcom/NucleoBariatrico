@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { Fragment, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BookOpen, PaperPlaneTilt, ArrowsClockwise, Heart, X } from "@phosphor-icons/react";
 import { Container } from "@/components/primitives/Container";
@@ -94,14 +94,17 @@ export function NoEstasSolo() {
                     {noEstasSolo.body}
                   </p>
                   <div className="flex flex-wrap justify-center gap-3">
-                    <button
-                      type="button"
-                      onClick={startRead}
-                      className="btn btn-ghost !border-[color:var(--ink-inverse)]/30 !text-[color:var(--ink-inverse)] hover:!bg-[color:var(--ink-inverse)] hover:!text-[color:var(--bg-inverse)]"
-                    >
-                      <BookOpen weight="regular" className="h-4 w-4" />
-                      {noEstasSolo.cta.leer}
-                    </button>
+                    {/* "Leer un mensaje" solo aparece si hay mensajes reales cargados */}
+                    {mensajes.length > 0 && (
+                      <button
+                        type="button"
+                        onClick={startRead}
+                        className="btn btn-ghost !border-[color:var(--ink-inverse)]/30 !text-[color:var(--ink-inverse)] hover:!bg-[color:var(--ink-inverse)] hover:!text-[color:var(--bg-inverse)]"
+                      >
+                        <BookOpen weight="regular" className="h-4 w-4" />
+                        {noEstasSolo.cta.leer}
+                      </button>
+                    )}
                     <button type="button" onClick={startWrite} className="btn btn-primary group">
                       <PaperPlaneTilt weight="fill" className="h-4 w-4" />
                       {noEstasSolo.cta.dejar}
@@ -110,7 +113,7 @@ export function NoEstasSolo() {
                 </motion.div>
               )}
 
-              {mode === "read" && (
+              {mode === "read" && current && (
                 <motion.figure
                   key={`read-${readIdx}`}
                   initial={{ opacity: 0, y: 12 }}
@@ -275,17 +278,18 @@ function Staggered({ text }: { text: string }) {
       }}
     >
       {words.map((w, i) => (
-        <motion.span
-          key={`${w}-${i}`}
-          variants={{
-            hidden: { opacity: 0, y: 6 },
-            visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: easeEditorial } },
-          }}
-          className="inline-block"
-        >
-          {w}
+        <Fragment key={`${w}-${i}`}>
+          <motion.span
+            variants={{
+              hidden: { opacity: 0, y: 6 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: easeEditorial } },
+            }}
+            className="inline-block"
+          >
+            {w}
+          </motion.span>
           {i < words.length - 1 ? " " : ""}
-        </motion.span>
+        </Fragment>
       ))}
     </motion.blockquote>
   );
