@@ -102,7 +102,8 @@ export async function POST(req: NextRequest) {
 
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.CONTACT_TO_EMAIL ?? brand.email;
-  const from = process.env.CONTACT_FROM_EMAIL ?? "Nucleo <onboarding@resend.dev>";
+  // Remitente del propio dominio (hay que verificarlo en Resend). Las respuestas no van a esta dirección.
+  const from = process.env.CONTACT_FROM_EMAIL ?? `${brand.name} <web@${brand.domain}>`;
 
   // Sin clave de Resend o sin casilla de destino definida, la demo funciona sin enviar nada.
   if (!apiKey || !to) {

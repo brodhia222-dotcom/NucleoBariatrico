@@ -1,14 +1,10 @@
 import type { Metadata } from "next";
 import { fraunces, manrope } from "@/lib/fonts";
 import { IMCProvider } from "@/lib/imc-context";
-import { NavStyleProvider } from "@/lib/nav-style-context";
 import { LenisProvider } from "@/components/LenisProvider";
 import { Analytics } from "@/components/Analytics";
 import { WhatsAppFloat } from "@/components/ui/WhatsAppFloat";
-import { ThemePicker } from "@/components/ui/ThemePicker";
-import { NavStylePicker } from "@/components/ui/NavStylePicker";
 import { brand } from "@/lib/copy";
-import { themes } from "@/lib/themes";
 import "./globals.css";
 
 // Base de las URLs para compartir. En Vercel usa el dominio real del deploy (el de producción, o el link del
@@ -19,6 +15,9 @@ const sitio =
     : process.env.VERCEL_BRANCH_URL
       ? `https://${process.env.VERCEL_BRANCH_URL}`
       : `https://${brand.domain}`;
+
+// Google: solo se habilita en el sitio publicado. Los links de prueba y la compu local no se indexan.
+const enProduccion = process.env.VERCEL_ENV === "production";
 
 export const metadata: Metadata = {
   metadataBase: new URL(sitio),
@@ -53,7 +52,7 @@ export const metadata: Metadata = {
     locale: "es_AR",
     type: "website",
   },
-  robots: { index: false, follow: false },
+  robots: enProduccion ? { index: true, follow: true } : { index: false, follow: false },
 };
 
 const jsonLd = {
@@ -63,6 +62,7 @@ const jsonLd = {
   description: "Equipo médico especializado en cirugía bariátrica y metabólica",
   url: `https://${brand.domain}`,
   telephone: brand.whatsappNumber,
+  ...(brand.email ? { email: brand.email } : {}),
   areaServed: { "@type": "Country", name: "Argentina" },
   sameAs: [brand.instagram],
   // Sede principal en address; las 2 sedes en location. medicalSpecialty no existe en MedicalBusiness.
@@ -99,22 +99,6 @@ const jsonLd = {
   ],
 };
 
-// Pre-paint theme application — evita flash del tema "default" antes de que
-// React hidrate y aplique el guardado en localStorage.
-const themeBootstrapScript = `
-(function() {
-  try {
-    var stored = localStorage.getItem('nucleo-theme');
-    var themes = ${JSON.stringify(Object.fromEntries(themes.map((t) => [t.key, t.vars])))};
-    var key = themes[stored] ? stored : 'manual';
-    var vars = themes[key];
-    var root = document.documentElement;
-    Object.keys(vars).forEach(function(k){ root.style.setProperty(k, vars[k]); });
-    root.setAttribute('data-theme', key);
-  } catch(e) {}
-})();
-`;
-
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
@@ -124,21 +108,14 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     >
       <body className="min-h-full">
         <script
-          dangerouslySetInnerHTML={{ __html: themeBootstrapScript }}
-        />
-        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <IMCProvider>
-          <NavStyleProvider>
-            <LenisProvider />
-            <Analytics />
-            {children}
-            <WhatsAppFloat />
-            <ThemePicker />
-            <NavStylePicker />
-          </NavStyleProvider>
+          <LenisProvider />
+          <Analytics />
+          {children}
+          <WhatsAppFloat />
         </IMCProvider>
       </body>
     </html>

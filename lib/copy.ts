@@ -14,9 +14,10 @@ export const brand = {
   // Celular AR: se marca como +54 9 11 XXXX-XXXX para wa.me
   whatsappNumber: "+5491156077780",
   whatsappMessage: "Hola, me gustaría agendar una consulta.",
-  // Mail y dominio todavía sin definir (el equipo prefería algo como info@...).
-  // Mientras sea null no se muestra en el sitio: cargarlo acá cuando exista la casilla.
-  email: null as string | null,
+  // Mail de consultas confirmado por el equipo (vía Fede, 2026-10-02). Se muestra en Contacto y en el
+  // pie, y es adonde llegan los formularios. Con null deja de mostrarse en todos lados.
+  email: "info@nucleobariatrico.com.ar" as string | null,
+  // Dominio confirmado y registrado a nombre de Sergio el 2026-10-02. La dirección principal va sin www.
   domain: "nucleobariatrico.com.ar",
   instagram: "https://www.instagram.com/nucleobariatrico/",
 };

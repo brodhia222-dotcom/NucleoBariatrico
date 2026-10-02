@@ -133,7 +133,7 @@ export function Contacto() {
                       </span>
                       <span className="flex flex-col">
                         <span className="font-medium text-[color:var(--ink)]">WhatsApp</span>
-                        <span className="caption">Respuesta rápida</span>
+                        <span className="caption !text-[color:var(--ink)]/80">Respuesta rápida</span>
                       </span>
                     </span>
                     <ArrowRight weight="bold" className="h-4 w-4 text-[color:var(--ink)] opacity-50 group-hover:opacity-100 transition-opacity" />
@@ -154,7 +154,7 @@ export function Contacto() {
                         </span>
                         <span className="flex flex-col">
                           <span className="font-medium text-[color:var(--ink)]">Email</span>
-                          <span className="caption">{brand.email}</span>
+                          <span className="caption !text-[color:var(--ink)]/80">{brand.email}</span>
                         </span>
                       </span>
                       <ArrowRight weight="bold" className="h-4 w-4 text-[color:var(--ink)] opacity-50 group-hover:opacity-100 transition-opacity" />
@@ -173,7 +173,7 @@ export function Contacto() {
                     </span>
                     <span className="flex flex-col">
                       <span className="font-medium text-[color:var(--ink)]">{contacto.horario}</span>
-                      <span className="caption">Respuesta en menos de 24 hs hábiles</span>
+                      <span className="caption !text-[color:var(--ink)]/80">Respuesta en menos de 24 hs hábiles</span>
                     </span>
                   </div>
                 </li>

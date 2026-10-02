@@ -18,7 +18,9 @@
       { "valor": "5491156077780", "estado": "confirmado", "fuente": "reunión con el equipo 2026-07-06 (corregido y confirmado ahí)" }
     ],
     "telefonos": [],
-    "emails": [],
+    "emails": [
+      { "valor": "info@nucleobariatrico.com.ar", "estado": "confirmado", "fuente": "el equipo, vía Fede 2026-10-02: es el mail para recibir las consultas", "nota": "La casilla todavía hay que crearla sobre el dominio (o reenviarla a un mail que ya usen) antes de publicar." }
+    ],
     "direcciones": [
       {
         "valor": "Simbrón 3327, Villa del Parque, CABA",
@@ -217,7 +219,7 @@
     "videos_nota": "Los 4 son verticales de 464x832 y sin personas. Fuente: Maya Vega vía Fede 2026-09-29 (\"lo último que me enviaron los docs\")."
   },
   "faltante": [
-    "Antes de publicar: el mail donde quieren recibir las consultas del formulario (el dominio y la casilla los dejamos listos nosotros cuando nos confirmen el nombre).",
+    "Antes de publicar: adónde tiene que llegar lo que entra a info@nucleobariatrico.com.ar (un mail que ya usen, o una casilla propia).",
     "Para el formulario de testimonios de la web: ¿a qué mail o WhatsApp quieren que les lleguen y quién los revisa antes de publicarlos?",
     "Testimonios: confirmar que les parece bien que un comentario nombre al Dr. Sitta y que otro hable del acompañamiento con la prepaga (ver brief/material/testimonios-encuesta-2026-08.md).",
     "Opcional: en los testimonios, ¿quieren sumar un dato de contacto (teléfono o mail, que no se publica) para verificar que es un paciente antes de aprobarlo?",
@@ -237,7 +239,7 @@
     { "tema": "Resúmenes viejos de los tratamientos", "detalle": "\"La técnica más utilizada\" (manga), \"Para casos más avanzados\" (bypass), \"Dispositivo temporal y reversible\" (balón) y \"Medicación bajo seguimiento médico\" (inyectables) no salen del material del equipo. Se usan los subtítulos del PDF." },
     { "tema": "Fotos de antes y después en testimonios", "detalle": "El formulario del PDF las ofrece, pero en julio el equipo pidió una portada con menos efecto de antes y después. Confirmar con el equipo antes de publicar alguna." },
     { "tema": "Placeholders con forma de dato", "detalle": "Resuelto el 2026-10-02: los testimonios de ejemplo se reemplazaron por los 4 comentarios reales de la encuesta y los mensajes de ejemplo de \"No estás solo\" (firmados \"Una paciente · 6 meses post-cirugía\") se sacaron; \"Leer un mensaje\" queda oculto hasta que haya mensajes reales y \"Dejar un mensaje\" abre el formulario de testimonios (antes, una nota anónima que no se enviaba). El aviso legal del pie se cargó el mismo día con el director médico y sus matrículas: ya no queda texto de relleno en el sitio." },
-    { "tema": "Mail publicado", "detalle": "El sitio no muestra mail (brand.email = null). El equipo prefería algo como info@...; no publicar ninguno hasta que exista la casilla." },
+    { "tema": "Mail publicado", "detalle": "Resuelto el 2026-10-02: el equipo confirmó info@nucleobariatrico.com.ar. Se muestra en Contacto y en el pie desde la rama de lanzamiento; la casilla tiene que estar funcionando antes de pasar a producción." },
     { "tema": "Dominio", "detalle": "Resuelto el 2026-10-02: el equipo confirmó nucleobariatrico.com.ar. Falta registrarlo en NIC Argentina y conectarlo antes del lanzamiento." },
     { "tema": "Cómo llegar", "detalle": "En las 2 sedes el botón \"Cómo llegar\" abre Google Maps. No publicar líneas de colectivo, tren ni estacionamiento: no están en el material (decisión confirmada vía Fede 2026-09-30)." }
   ]

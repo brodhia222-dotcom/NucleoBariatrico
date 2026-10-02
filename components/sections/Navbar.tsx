@@ -1,90 +1,27 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { List, X, ArrowUpRight } from "@phosphor-icons/react";
 import { brand, nav } from "@/lib/copy";
-import { useNavStyle, type NavStyleKey } from "@/lib/nav-style-context";
 import { cn } from "@/lib/utils";
 
 type Tone = "light" | "dark";
 
-// Fondo del header por variante. "adaptive" es el comportamiento original
-// (transparente arriba, se tiñe al hacer scroll). Las otras 2 variantes
-// ("black"/"white") ahora pintan un color plano por sección (ver
-// toneForSection más abajo) vía inline style — acá solo aportan
-// borde/sombra, ya que background-color transiciona nativo y suave gracias
-// a la clase "transition-[...]" del header (a diferencia de background-image,
-// que no cruza de forma confiable entre navegadores).
-function headerBgClass(
-  navStyle: NavStyleKey,
-  scrolled: boolean,
-  useInverseText: boolean,
-) {
-  if (navStyle === "adaptive") {
-    return scrolled
-      ? useInverseText
-        ? "bg-[color:var(--bg-inverse)]/55 backdrop-blur-xl border-b border-[color:var(--ink-inverse)]/12"
-        : "bg-[color:var(--bg)]/75 backdrop-blur-xl border-b border-[color:var(--border)]"
-      : "bg-transparent border-b border-transparent";
-  }
-  return useInverseText
-    ? "border-b border-white/10 shadow-[var(--shadow-sm)]"
-    : "border-b border-[color:var(--border)] shadow-[var(--shadow-sm)]";
+// Fondo del header: transparente arriba y, al scrollear, se tiñe suave según el tono de la sección
+// que tiene debajo (es el estilo "Adaptativo" que eligió el equipo, 2026-10-02).
+function headerBgClass(scrolled: boolean, useInverseText: boolean) {
+  return scrolled
+    ? useInverseText
+      ? "bg-[color:var(--bg-inverse)]/55 backdrop-blur-xl border-b border-[color:var(--ink-inverse)]/12"
+      : "bg-[color:var(--bg)]/75 backdrop-blur-xl border-b border-[color:var(--border)]"
+    : "bg-transparent border-b border-transparent";
 }
-
-// Orden real de las secciones en el scroll — determina qué tono de la
-// paleta le toca a cada una (por índice, no por nombre).
-const SECTION_ORDER = [
-  "top",
-  "imc",
-  "diferencial",
-  "equipo",
-  "tratamientos",
-  "proceso",
-  "no-estas-solo",
-  "testimonios",
-  "obras-sociales",
-  "ubicaciones",
-  "faq",
-  "contacto",
-];
-
-// 2 paletas de 5 tonos cada una, ancladas a las escalas fijas de color
-// (--color-indigo-*/--color-beige-*, que el ThemePicker nunca pisa) para
-// que el contraste de texto quede siempre garantizado sin importar la
-// paleta semántica activa. Los tonos de cada paleta fueron elegidos a mano
-// (contraste estimado ≥ 4.5:1 contra su texto) — variantes más claras de
-// DARK_TONES o más oscuras de LIGHT_TONES quedan afuera por no cumplir AA.
-const DARK_TONES = [
-  "var(--color-indigo-950)",
-  "var(--color-indigo-900)",
-  "var(--color-indigo-800)",
-  "color-mix(in srgb, var(--color-indigo-950) 82%, var(--accent) 18%)",
-  "color-mix(in srgb, var(--color-indigo-900) 78%, var(--accent) 22%)",
-];
-
-const LIGHT_TONES = [
-  "var(--color-beige-50)",
-  "var(--color-beige-100)",
-  "var(--color-beige-200)",
-  "color-mix(in srgb, var(--color-beige-50) 85%, var(--accent) 15%)",
-  "color-mix(in srgb, var(--color-beige-100) 82%, var(--accent) 18%)",
-];
-
-function toneForSection(tones: string[], activeId: string) {
-  const idx = SECTION_ORDER.indexOf(activeId);
-  return tones[(idx < 0 ? 0 : idx) % tones.length];
-}
-
-const DEFAULT_SECTION_ID = "top";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [tone, setTone] = useState<Tone>("dark"); // hero is dark
-  const [activeId, setActiveId] = useState(DEFAULT_SECTION_ID);
-  const { navStyle } = useNavStyle();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -100,8 +37,7 @@ export function Navbar() {
     };
   }, [open]);
 
-  // Detección de sección activa: lee data-nav-tone + id de la sección que
-  // está bajo la nav.
+  // Tono de la sección que está bajo la nav (lee data-nav-tone).
   useEffect(() => {
     const sections = Array.from(
       document.querySelectorAll<HTMLElement>("section[id], [data-nav-tone]"),
@@ -117,7 +53,6 @@ export function Navbar() {
         if (rect.top <= probeY && rect.bottom > probeY) {
           const t = (s.getAttribute("data-nav-tone") as Tone | null) ?? "light";
           setTone(t);
-          if (s.id) setActiveId(s.id);
           return;
         }
       }
@@ -132,47 +67,17 @@ export function Navbar() {
     };
   }, []);
 
-  const isDark = tone === "dark";
-
-  // useInverseText = "el texto/logo de la nav usa la versión clara (ink-inverse)".
-  // - adaptive: sigue el tono de la sección, como siempre
-  // - black: su paleta (DARK_TONES) es siempre oscura, texto claro fijo
-  // - white: su paleta (LIGHT_TONES) es siempre clara, texto oscuro fijo
-  const useInverseText = useMemo(() => {
-    switch (navStyle) {
-      case "adaptive":
-        return isDark;
-      case "black":
-        return true;
-      case "white":
-        return false;
-    }
-  }, [navStyle, isDark]);
-
-  // Color plano por sección para las 2 variantes dinámicas. "adaptive" no
-  // pinta nada acá — su fondo sale de headerBgClass como siempre.
-  const headerBgColor = useMemo(() => {
-    switch (navStyle) {
-      case "black":
-        return toneForSection(DARK_TONES, activeId);
-      case "white":
-        return toneForSection(LIGHT_TONES, activeId);
-      default:
-        return undefined;
-    }
-  }, [navStyle, activeId]);
+  // El texto y el logo de la nav usan su versión clara cuando la sección de abajo es oscura.
+  const useInverseText = tone === "dark";
 
   return (
     <>
       <header
         className={cn(
           "fixed inset-x-0 top-0 z-[400] overflow-hidden transition-[background-color,backdrop-filter,border-color,color] duration-500",
-          headerBgClass(navStyle, scrolled, useInverseText),
+          headerBgClass(scrolled, useInverseText),
         )}
-        style={{
-          height: "var(--nav-height)",
-          ...(headerBgColor ? { backgroundColor: headerBgColor } : {}),
-        }}
+        style={{ height: "var(--nav-height)" }}
       >
         <div className="relative z-10 flex h-full items-center justify-between px-4 lg:px-6">
           {/* Logo */}

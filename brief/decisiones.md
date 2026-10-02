@@ -99,5 +99,13 @@ Lo que pidió o aprobó el cliente (o Fede para este cliente). No se repite en o
 - Texto legal del pie (reemplaza el de ejemplo): un renglón "Director médico: Dr. Sergio Sitta · M.N. 156.136 · M.P. 338.584" y debajo el párrafo propuesto al equipo el 2026-10-01 (la información es orientativa y no reemplaza la consulta; cada tratamiento se indica tras una evaluación y los resultados varían). La última frase quedó "Los datos que nos envíes al hacer una consulta se usan solo para responderte y no se comparten con terceros": antes decía "por los formularios", y los testimonios sí se publican (con su propio consentimiento). Ya no queda texto de relleno en el sitio.
 - Dominio: nucleobariatrico.com.ar confirmado. El 2026-10-02 estaba libre en NIC Argentina. La dirección principal va sin www (es la que ya usan la canónica, el sitemap y los datos para Google) y www redirige. Falta registrarlo y conectarlo: ver los pasos de lanzamiento que se le pasaron a Fede.
 
+## Lanzamiento (2026-10-02, rama v8-lanzamiento)
+- El equipo aprobó la v7 (vía Fede). Menú: queda el estilo "Adaptativo", el que viene al entrar. Paleta: queda la original del manual (índigo, beige y naranja), que es la que se vio siempre al entrar.
+- Se sacaron los dos probadores (Paleta y Nav) y todo su código: el sitio ya no lee ninguna elección guardada en el navegador, así que quien los haya usado vuelve a ver el diseño aprobado.
+- Mail de consultas confirmado por el equipo: info@nucleobariatrico.com.ar. Se muestra en Contacto y en el pie y es el destino de los 2 formularios. Remitente de los avisos: "Nucleo Bariátrico <web@nucleobariatrico.com.ar>" (hay que verificar el dominio en Resend). En Vercel solo hace falta cargar RESEND_API_KEY.
+- Google: el sitio publicado se puede indexar (etiqueta robots y robots.txt); los links de prueba y la compu local siguen bloqueados. Depende de VERCEL_ENV=production.
+- Dominio registrado el 2026-10-02 a nombre de Sergio (nucleobariatrico.com.ar, activo, vence el 2027-10-02). Falta delegarlo y conectarlo.
+- Antes de pasar esta rama a `main` (producción): OK de Fede, proyecto de Vercel en su cuenta Pro, dominio conectado, casilla info@ funcionando y RESEND_API_KEY cargada.
+
 ## Técnico
 - robots en noindex hasta el lanzamiento real.

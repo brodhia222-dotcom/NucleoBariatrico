@@ -112,13 +112,16 @@ export function Footer() {
                   WhatsApp
                 </a>
               </li>
+              {/* Va el nombre del canal, como WhatsApp e Instagram: la dirección entera no entra en esta
+                  columna sin partirse. Se lee completa en la sección Contacto. */}
               {footer.contacto.email && (
                 <li>
                   <a
                     href={`mailto:${footer.contacto.email}`}
-                    className="text-sm text-[color:var(--ink-inverse)]/82 hover:text-[color:var(--ink-inverse)] transition-colors break-all"
+                    aria-label={`Mail: ${footer.contacto.email}`}
+                    className="text-sm text-[color:var(--ink-inverse)]/82 hover:text-[color:var(--ink-inverse)] transition-colors"
                   >
-                    {footer.contacto.email}
+                    Mail
                   </a>
                 </li>
               )}
