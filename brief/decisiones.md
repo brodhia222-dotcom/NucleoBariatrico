@@ -118,6 +118,7 @@ Lo que pidió o aprobó el cliente (o Fede para este cliente). No se repite en o
 - Imagen nueva: violeta de la marca liso, todo centrado y adentro del cuadrado del medio. Logo vertical en crema (isotipo, "nucleo", "bariátrico") y, debajo, "Tu salud / empieza acá." como en el hero, con "acá." en naranja. Se sacaron el rubro y las sedes: a ese tamaño eran una raya, y el rubro ya lo dice el texto que WhatsApp pone al lado.
 - Se probaron 14 variantes simuladas adentro del mensaje, sobre la burbuja oscura y la clara: el fondo crema se pierde sobre la burbuja clara, el lema en 1 renglón no se lee en chico, el logo horizontal grande compite con el lema y el logo solo deja la imagen grande sin nada de la web.
 - Se usa el logo vertical porque entra en un cuadrado y trae "bariátrico" con tilde. El horizontal (barra de arriba y pie del sitio) dice "bariatrico" sin tilde: así viene en los archivos del cliente; se le avisó a Fede.
+- Tipografía del lema: Fraunces en su corte de 72 pt y peso normal (archivos en `assets/og/`). La Light de 144 pt, la de antes, tiene trazos tan finos que en la miniatura comprimida de WhatsApp el lema se rompía (lo encontró el crítico simulando la miniatura real de la captura de Fede).
 - El título y la descripción de la vista previa no cambiaron.
 - WhatsApp guarda la vista previa de cada link: los mensajes ya enviados no cambian y, para ver la nueva enseguida, sirve mandar el link con `?2` al final.
 

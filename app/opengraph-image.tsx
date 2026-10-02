@@ -7,11 +7,12 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function Image() {
-  // La misma tipografía de los títulos de la web (Fraunces Light) y el logo vertical, que es el que
-  // entra en un cuadrado
+  // La tipografía de los títulos de la web (Fraunces) en su corte de 72 pt y peso normal: la Light de
+  // 144 pt tiene trazos tan finos que en la miniatura comprimida de WhatsApp el lema se rompía.
+  // Y el logo vertical, que es el que entra en un cuadrado.
   const [fraunces, frauncesItalic, logo] = await Promise.all([
-    readFile(join(process.cwd(), "assets/og/Fraunces-Light.ttf")),
-    readFile(join(process.cwd(), "assets/og/Fraunces-LightItalic.ttf")),
+    readFile(join(process.cwd(), "assets/og/Fraunces-72pt-Regular.ttf")),
+    readFile(join(process.cwd(), "assets/og/Fraunces-72pt-Italic.ttf")),
     readFile(join(process.cwd(), "public/logos/logo-vertical-beige-trimmed.png")),
   ]);
   const logoSrc = `data:image/png;base64,${logo.toString("base64")}`;
@@ -59,8 +60,8 @@ export default async function Image() {
     {
       ...size,
       fonts: [
-        { name: "Fraunces", data: fraunces, style: "normal", weight: 300 },
-        { name: "Fraunces", data: frauncesItalic, style: "italic", weight: 300 },
+        { name: "Fraunces", data: fraunces, style: "normal", weight: 400 },
+        { name: "Fraunces", data: frauncesItalic, style: "italic", weight: 400 },
       ],
     },
   );
