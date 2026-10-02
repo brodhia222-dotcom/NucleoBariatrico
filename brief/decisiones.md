@@ -107,5 +107,11 @@ Lo que pidió o aprobó el cliente (o Fede para este cliente). No se repite en o
 - Dominio registrado el 2026-10-02 a nombre de Sergio (nucleobariatrico.com.ar, activo, vence el 2027-10-02). Falta delegarlo y conectarlo.
 - Antes de pasar esta rama a `main` (producción): OK de Fede, proyecto de Vercel en su cuenta Pro, dominio conectado, casilla info@ funcionando y RESEND_API_KEY cargada.
 
+## Publicación sin mails (2026-10-02, pedido de Fede: "olvidate de recibir los forms ahora, necesito que solo esté activo el sitio")
+- `main` pasó a ser la v8 el 2026-10-02 con OK de Fede. Proyecto nuevo en su Vercel Pro (repo privado FedericoDiTata/nucleo-bariatrico). Producción provisoria: nucleo-bariatrico-xi.vercel.app.
+- Mientras Vercel no tenga cargada `RESEND_API_KEY`, el sitio no envía mails y nada queda roto: el formulario de consulta arma el mensaje con los datos (y el IMC, si lo calcularon) y lo abre en WhatsApp, con el botón "Enviar por WhatsApp"; "Dejar un mensaje" y "Compartir mi experiencia" abren WhatsApp con el mensaje ya empezado. Cuando se cargue la clave y se vuelva a publicar, todo vuelve solo a los formularios por mail.
+- El mail info@nucleobariatrico.com.ar no se muestra hasta que la casilla exista (`brand.email = null`). Al crearla hay que cargarlo ahí.
+- Google: sigue bloqueado hasta conectar el dominio y volver a publicar.
+
 ## Técnico
 - robots en noindex hasta el lanzamiento real.

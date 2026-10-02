@@ -5,16 +5,18 @@ import { motion, AnimatePresence } from "framer-motion";
 import { BookOpen, PaperPlaneTilt, ArrowsClockwise, X } from "@phosphor-icons/react";
 import { Container } from "@/components/primitives/Container";
 import { TestimonioForm } from "@/components/ui/TestimonioForm";
+import { enlaceTestimonio } from "@/components/sections/Testimonios";
 import { noEstasSolo } from "@/lib/copy";
 import { viewportOnce, easeEditorial } from "@/lib/motion";
 
 type Mode = "idle" | "read";
 
-export function NoEstasSolo() {
+export function NoEstasSolo({ envioPorMail }: { envioPorMail: boolean }) {
   const [mode, setMode] = useState<Mode>("idle");
   const [readIdx, setReadIdx] = useState(0);
   // "Dejar un mensaje" abre el formulario de testimonios, el mismo de la sección de abajo: llega al
-  // equipo, que lo revisa antes de publicarlo. Antes abría una nota anónima que no se enviaba a nadie.
+  // equipo, que lo revisa antes de publicarlo. Si el sitio todavía no envía mails (envioPorMail), abre
+  // WhatsApp con el mensaje ya empezado.
   const [formAbierto, setFormAbierto] = useState(false);
 
   const mensajes = noEstasSolo.mensajesEntrantes;
@@ -95,15 +97,22 @@ export function NoEstasSolo() {
                         {noEstasSolo.cta.leer}
                       </button>
                     )}
-                    <button
-                      type="button"
-                      onClick={() => setFormAbierto(true)}
-                      aria-haspopup="dialog"
-                      className="btn btn-primary group"
-                    >
-                      <PaperPlaneTilt weight="fill" className="h-4 w-4" />
-                      {noEstasSolo.cta.dejar}
-                    </button>
+                    {envioPorMail ? (
+                      <button
+                        type="button"
+                        onClick={() => setFormAbierto(true)}
+                        aria-haspopup="dialog"
+                        className="btn btn-primary group"
+                      >
+                        <PaperPlaneTilt weight="fill" className="h-4 w-4" />
+                        {noEstasSolo.cta.dejar}
+                      </button>
+                    ) : (
+                      <a href={enlaceTestimonio} target="_blank" rel="noopener noreferrer" className="btn btn-primary group">
+                        <PaperPlaneTilt weight="fill" className="h-4 w-4" />
+                        {noEstasSolo.cta.dejar}
+                      </a>
+                    )}
                   </div>
                 </motion.div>
               )}
@@ -167,7 +176,7 @@ export function NoEstasSolo() {
           </motion.div>
         </div>
       </Container>
-      <TestimonioForm abierto={formAbierto} onCerrar={() => setFormAbierto(false)} />
+      {envioPorMail && <TestimonioForm abierto={formAbierto} onCerrar={() => setFormAbierto(false)} />}
     </section>
   );
 }

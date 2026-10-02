@@ -7,7 +7,7 @@ import { Container } from "@/components/primitives/Container";
 import { Section } from "@/components/primitives/Section";
 import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { Reveal } from "@/components/primitives/Reveal";
-import { testimonios, type Testimonio } from "@/lib/copy";
+import { brand, testimonios, type Testimonio } from "@/lib/copy";
 import { TestimonioForm } from "@/components/ui/TestimonioForm";
 import { easeOut, viewportOnce } from "@/lib/motion";
 
@@ -16,7 +16,9 @@ import { easeOut, viewportOnce } from "@/lib/motion";
 // se luce es la frase, con la idea central de cada comentario marcada. Las tarjetas claras van sobre el
 // fondo más oscuro del sitio para que se despeguen. No se tocan, así que no tienen efecto al pasar
 // el cursor.
-export function Testimonios() {
+// envioPorMail: si el sitio puede enviar mails, "Compartir mi experiencia" abre el formulario; si no,
+// abre WhatsApp con el mensaje ya empezado.
+export function Testimonios({ envioPorMail }: { envioPorMail: boolean }) {
   const [formAbierto, setFormAbierto] = useState(false);
   const v = variantes(!!useReducedMotion());
 
@@ -62,22 +64,34 @@ export function Testimonios() {
         <Reveal delay={0.1}>
           <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4 lg:mt-9">
             <p className="body text-[color:var(--ink)]/80">{testimonios.formulario.invitacion}</p>
-            <button
-              type="button"
-              onClick={() => setFormAbierto(true)}
-              aria-haspopup="dialog"
-              className="btn btn-ghost"
-            >
-              <ChatCenteredText weight="regular" className="h-4 w-4" />
-              {testimonios.formulario.boton}
-            </button>
+            {envioPorMail ? (
+              <button
+                type="button"
+                onClick={() => setFormAbierto(true)}
+                aria-haspopup="dialog"
+                className="btn btn-ghost"
+              >
+                <ChatCenteredText weight="regular" className="h-4 w-4" />
+                {testimonios.formulario.boton}
+              </button>
+            ) : (
+              <a href={enlaceTestimonio} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
+                <ChatCenteredText weight="regular" className="h-4 w-4" />
+                {testimonios.formulario.boton}
+              </a>
+            )}
           </div>
         </Reveal>
       </Container>
-      <TestimonioForm abierto={formAbierto} onCerrar={() => setFormAbierto(false)} />
+      {envioPorMail && <TestimonioForm abierto={formAbierto} onCerrar={() => setFormAbierto(false)} />}
     </Section>
   );
 }
+
+// WhatsApp con el mensaje del testimonio ya empezado (ver envioPorMail)
+export const enlaceTestimonio = `https://wa.me/${brand.whatsappNumber.replace(/[^\d]/g, "")}?text=${encodeURIComponent(
+  testimonios.formulario.whatsapp,
+)}`;
 
 // Movimiento: la tarjeta entra subiendo y la cita aparece enseguida. La marca de la frase central es
 // el gesto de la sección: se pinta de izquierda a derecha, como con un resaltador, recién cuando esa

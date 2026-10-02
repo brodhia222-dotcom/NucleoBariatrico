@@ -13,7 +13,9 @@ import { track } from "@/lib/analytics";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
-export function Contacto() {
+// envioPorMail: si el sitio puede enviar mails, la consulta llega por mail al equipo; si no, el mismo
+// formulario arma el mensaje y lo abre en WhatsApp para que la persona lo envíe.
+export function Contacto({ envioPorMail }: { envioPorMail: boolean }) {
   const { resultado } = useIMC();
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
@@ -56,6 +58,25 @@ export function Contacto() {
       peso: resultado?.peso,
       altura: resultado?.alturaCm,
     };
+
+    if (!envioPorMail) {
+      const lineas = [
+        contacto.labels.saludoWhatsApp,
+        `Nombre: ${payload.nombre}`,
+        `Teléfono: ${payload.telefono}`,
+        `Email: ${payload.email}`,
+        `Motivo: ${payload.motivo}`,
+        payload.mensaje.trim() ? `Mensaje: ${payload.mensaje.trim()}` : null,
+        resultado ? `IMC: ${resultado.imc} (${resultado.categoria})` : null,
+      ].filter(Boolean);
+      const numero = brand.whatsappNumber.replace(/[^\d]/g, "");
+      window.open(`https://wa.me/${numero}?text=${encodeURIComponent(lineas.join("\n"))}`, "_blank", "noopener,noreferrer");
+      setErrorMsg(null);
+      setStatus("sent");
+      track("form_submit", { formulario: "contacto", canal: "whatsapp" });
+      // No se vacía el formulario: si WhatsApp no llegó a abrirse, la persona puede volver a intentarlo
+      return;
+    }
 
     setStatus("sending");
     setErrorMsg(null);
@@ -265,7 +286,11 @@ export function Contacto() {
                   disabled={status === "sending"}
                   className="btn btn-primary mt-2 group disabled:opacity-60"
                 >
-                  {status === "sending" ? contacto.labels.enviando : contacto.labels.enviar}
+                  {status === "sending"
+                    ? contacto.labels.enviando
+                    : envioPorMail
+                      ? contacto.labels.enviar
+                      : contacto.labels.enviarWhatsApp}
                   <ArrowRight weight="bold" className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                 </button>
 
@@ -273,10 +298,11 @@ export function Contacto() {
                   <motion.p
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="text-sm text-[color:var(--color-success)] flex items-center gap-2"
+                    className="text-sm text-[color:var(--color-success)] flex items-start gap-2"
                   >
-                    <span className="h-2 w-2 rounded-full bg-[color:var(--color-success)]" />
-                    {contacto.labels.enviado}
+                    {/* El aviso puede ocupar varios renglones: el punto va fijo a la altura del primero */}
+                    <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-[color:var(--color-success)]" />
+                    {envioPorMail ? contacto.labels.enviado : contacto.labels.enviadoWhatsApp}
                   </motion.p>
                 )}
                 {status === "error" && (

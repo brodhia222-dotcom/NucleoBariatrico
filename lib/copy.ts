@@ -14,9 +14,10 @@ export const brand = {
   // Celular AR: se marca como +54 9 11 XXXX-XXXX para wa.me
   whatsappNumber: "+5491156077780",
   whatsappMessage: "Hola, me gustaría agendar una consulta.",
-  // Mail de consultas confirmado por el equipo (vía Fede, 2026-10-02). Se muestra en Contacto y en el
-  // pie, y es adonde llegan los formularios. Con null deja de mostrarse en todos lados.
-  email: "info@nucleobariatrico.com.ar" as string | null,
+  // El equipo confirmó info@nucleobariatrico.com.ar como mail de consultas (vía Fede, 2026-10-02), pero la
+  // casilla todavía no existe: mientras sea null no se muestra en el sitio. Cuando esté creada, cargarla
+  // acá: aparece en Contacto y en el pie, y pasa a ser el destino de los formularios.
+  email: null as string | null,
   // Dominio confirmado y registrado a nombre de Sergio el 2026-10-02. La dirección principal va sin www.
   domain: "nucleobariatrico.com.ar",
   instagram: "https://www.instagram.com/nucleobariatrico/",
@@ -397,6 +398,8 @@ export const testimonios = {
   formulario: {
     invitacion: "¿Te atendiste con nosotros?",
     boton: "Compartir mi experiencia",
+    // Mensaje ya escrito cuando el testimonio sale por WhatsApp (mientras el sitio no envía mails)
+    whatsapp: "Hola, me atendí con Nucleo Bariátrico y quiero compartir mi experiencia.",
     titulo: "Contanos tu experiencia",
     bajada: noOrphans("Tu testimonio puede ayudar a alguien que recién empieza. Lo revisamos antes de publicarlo."),
     nombre: "Nombre o iniciales",
@@ -749,6 +752,12 @@ export const contacto = {
     enviar: "Enviar consulta",
     enviando: "Enviando…",
     enviado: "Recibimos tu consulta. Te respondemos en menos de 24 horas hábiles.",
+    // Mientras el sitio no envía mails, el formulario arma la consulta y la manda por WhatsApp
+    enviarWhatsApp: "Enviar por WhatsApp",
+    enviadoWhatsApp: noOrphans(
+      "Abrimos WhatsApp con tu consulta ya escrita: solo falta que toques enviar. Si no se abrió, escribinos desde el botón de WhatsApp."
+    ),
+    saludoWhatsApp: "Hola, les escribo desde la web de Nucleo Bariátrico.",
     error: "Algo no funcionó. Probá de nuevo o escribinos por WhatsApp.",
     imcAuto: "Tu IMC calculado",
   },

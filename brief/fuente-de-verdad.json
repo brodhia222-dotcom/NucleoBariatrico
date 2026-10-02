@@ -19,7 +19,7 @@
     ],
     "telefonos": [],
     "emails": [
-      { "valor": "info@nucleobariatrico.com.ar", "estado": "confirmado", "fuente": "el equipo, vía Fede 2026-10-02: es el mail para recibir las consultas", "nota": "La casilla todavía hay que crearla sobre el dominio (o reenviarla a un mail que ya usen) antes de publicar." }
+      { "valor": "info@nucleobariatrico.com.ar", "estado": "confirmado", "fuente": "el equipo, vía Fede 2026-10-02: es el mail para recibir las consultas", "nota": "La casilla todavía no existe (el equipo quiere una casilla propia). Hasta que se cree, el sitio no muestra el mail y los formularios salen por WhatsApp (decisión de Fede 2026-10-02: publicar ya, sin recibir formularios por mail)." }
     ],
     "direcciones": [
       {
@@ -239,7 +239,7 @@
     { "tema": "Resúmenes viejos de los tratamientos", "detalle": "\"La técnica más utilizada\" (manga), \"Para casos más avanzados\" (bypass), \"Dispositivo temporal y reversible\" (balón) y \"Medicación bajo seguimiento médico\" (inyectables) no salen del material del equipo. Se usan los subtítulos del PDF." },
     { "tema": "Fotos de antes y después en testimonios", "detalle": "El formulario del PDF las ofrece, pero en julio el equipo pidió una portada con menos efecto de antes y después. Confirmar con el equipo antes de publicar alguna." },
     { "tema": "Placeholders con forma de dato", "detalle": "Resuelto el 2026-10-02: los testimonios de ejemplo se reemplazaron por los 4 comentarios reales de la encuesta y los mensajes de ejemplo de \"No estás solo\" (firmados \"Una paciente · 6 meses post-cirugía\") se sacaron; \"Leer un mensaje\" queda oculto hasta que haya mensajes reales y \"Dejar un mensaje\" abre el formulario de testimonios (antes, una nota anónima que no se enviaba). El aviso legal del pie se cargó el mismo día con el director médico y sus matrículas: ya no queda texto de relleno en el sitio." },
-    { "tema": "Mail publicado", "detalle": "Resuelto el 2026-10-02: el equipo confirmó info@nucleobariatrico.com.ar. Se muestra en Contacto y en el pie desde la rama de lanzamiento; la casilla tiene que estar funcionando antes de pasar a producción." },
+    { "tema": "Mail publicado", "detalle": "info@nucleobariatrico.com.ar está confirmado por el equipo pero NO se publica todavía: la casilla no existe. El sitio salió sin mail visible (brand.email = null); cargarlo cuando la casilla funcione." },
     { "tema": "Dominio", "detalle": "Resuelto el 2026-10-02: el equipo confirmó nucleobariatrico.com.ar. Falta registrarlo en NIC Argentina y conectarlo antes del lanzamiento." },
     { "tema": "Cómo llegar", "detalle": "En las 2 sedes el botón \"Cómo llegar\" abre Google Maps. No publicar líneas de colectivo, tren ni estacionamiento: no están en el material (decisión confirmada vía Fede 2026-09-30)." }
   ]

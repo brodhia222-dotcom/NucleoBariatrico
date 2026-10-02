@@ -13,6 +13,10 @@ import { FAQ } from "@/components/sections/FAQ";
 import { Contacto } from "@/components/sections/Contacto";
 import { Footer } from "@/components/sections/Footer";
 
+// Mientras no esté cargada la clave para enviar mails (RESEND_API_KEY), las consultas y los testimonios
+// salen por WhatsApp en lugar de por el formulario. Se resuelve al construir el sitio.
+const envioPorMail = !!process.env.RESEND_API_KEY;
+
 export default function Page() {
   return (
     <>
@@ -24,12 +28,12 @@ export default function Page() {
         <Equipo />
         <Tratamientos />
         <Proceso />
-        <NoEstasSolo />
-        <Testimonios />
+        <NoEstasSolo envioPorMail={envioPorMail} />
+        <Testimonios envioPorMail={envioPorMail} />
         <ObrasSociales />
         <Ubicaciones />
         <FAQ />
-        <Contacto />
+        <Contacto envioPorMail={envioPorMail} />
       </main>
       <Footer />
     </>
