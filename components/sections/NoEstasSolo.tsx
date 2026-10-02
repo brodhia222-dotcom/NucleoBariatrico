@@ -2,17 +2,20 @@
 
 import { Fragment, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { BookOpen, PaperPlaneTilt, ArrowsClockwise, Heart, X } from "@phosphor-icons/react";
+import { BookOpen, PaperPlaneTilt, ArrowsClockwise, X } from "@phosphor-icons/react";
 import { Container } from "@/components/primitives/Container";
+import { TestimonioForm } from "@/components/ui/TestimonioForm";
 import { noEstasSolo } from "@/lib/copy";
 import { viewportOnce, easeEditorial } from "@/lib/motion";
 
-type Mode = "idle" | "read" | "write" | "thanks";
+type Mode = "idle" | "read";
 
 export function NoEstasSolo() {
   const [mode, setMode] = useState<Mode>("idle");
   const [readIdx, setReadIdx] = useState(0);
-  const [draft, setDraft] = useState("");
+  // "Dejar un mensaje" abre el formulario de testimonios, el mismo de la sección de abajo: llega al
+  // equipo, que lo revisa antes de publicarlo. Antes abría una nota anónima que no se enviaba a nadie.
+  const [formAbierto, setFormAbierto] = useState(false);
 
   const mensajes = noEstasSolo.mensajesEntrantes;
   const current = useMemo(() => mensajes[readIdx % mensajes.length], [mensajes, readIdx]);
@@ -21,20 +24,7 @@ export function NoEstasSolo() {
     setReadIdx((i) => (i + 1) % mensajes.length);
     setMode("read");
   };
-  const startWrite = () => setMode("write");
-  const close = () => {
-    setMode("idle");
-    setDraft("");
-  };
-  const onSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (draft.trim().length < 4) return;
-    setMode("thanks");
-    setTimeout(() => {
-      setDraft("");
-      setMode("idle");
-    }, 5200);
-  };
+  const close = () => setMode("idle");
 
   return (
     <section
@@ -105,7 +95,12 @@ export function NoEstasSolo() {
                         {noEstasSolo.cta.leer}
                       </button>
                     )}
-                    <button type="button" onClick={startWrite} className="btn btn-primary group">
+                    <button
+                      type="button"
+                      onClick={() => setFormAbierto(true)}
+                      aria-haspopup="dialog"
+                      className="btn btn-primary group"
+                    >
                       <PaperPlaneTilt weight="fill" className="h-4 w-4" />
                       {noEstasSolo.cta.dejar}
                     </button>
@@ -158,88 +153,6 @@ export function NoEstasSolo() {
                   </div>
                 </motion.figure>
               )}
-
-              {mode === "write" && (
-                <motion.form
-                  key="write"
-                  onSubmit={onSubmit}
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -12 }}
-                  transition={{ duration: 0.55, ease: easeEditorial }}
-                  className="mx-auto flex max-w-2xl flex-col items-stretch gap-5 rounded-[var(--radius-xl)] border border-[color:var(--ink-inverse)]/14 bg-[color:var(--ink-inverse)]/[0.04] p-6 lg:p-8 text-left"
-                >
-                  <label className="flex flex-col gap-3">
-                    <span className="font-mono text-[12px] tracking-[0.14em] uppercase text-[color:var(--ink-inverse)]/65">
-                      Tu mensaje (anónimo)
-                    </span>
-                    <textarea
-                      value={draft}
-                      onChange={(e) => setDraft(e.target.value)}
-                      rows={5}
-                      autoFocus
-                      placeholder={noEstasSolo.formLabels.placeholder}
-                      className="w-full resize-none rounded-[var(--radius-md)] border border-[color:var(--ink-inverse)]/20 bg-[color:var(--ink-inverse)]/[0.04] px-4 py-3 text-[16px] leading-relaxed text-[color:var(--ink-inverse)] placeholder:text-[color:var(--ink-inverse)]/40 outline-none transition-colors focus:border-[color:var(--accent)]"
-                    />
-                  </label>
-                  <div className="flex items-center justify-between gap-3">
-                    <span className="caption text-[color:var(--ink-inverse)]/55">
-                      {draft.length} / 500
-                    </span>
-                    <div className="flex items-center gap-2">
-                      <button
-                        type="button"
-                        onClick={close}
-                        className="btn btn-ghost !border-transparent !text-[color:var(--ink-inverse)]/60 hover:!text-[color:var(--ink-inverse)]"
-                      >
-                        Cancelar
-                      </button>
-                      <button
-                        type="submit"
-                        disabled={draft.trim().length < 4}
-                        className="btn btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
-                      >
-                        <PaperPlaneTilt weight="fill" className="h-4 w-4" />
-                        {noEstasSolo.formLabels.submit}
-                      </button>
-                    </div>
-                  </div>
-                </motion.form>
-              )}
-
-              {mode === "thanks" && (
-                <motion.div
-                  key="thanks"
-                  initial={{ opacity: 0, scale: 0.96 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.96 }}
-                  transition={{ duration: 0.6, ease: easeEditorial }}
-                  className="mx-auto flex max-w-xl flex-col items-center gap-6 rounded-[var(--radius-xl)] border border-[color:var(--accent)]/40 bg-[color:var(--accent)]/[0.08] p-8 lg:p-10"
-                >
-                  <motion.span
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ type: "spring", stiffness: 220, damping: 14, delay: 0.15 }}
-                    aria-hidden
-                    className="grid h-14 w-14 place-items-center rounded-full bg-[color:var(--accent)] text-white shadow-[var(--shadow-accent)]"
-                  >
-                    <Heart weight="fill" className="h-6 w-6" />
-                  </motion.span>
-                  <p
-                    className="font-display"
-                    style={{
-                      fontSize: "clamp(20px, 2.2vw, 26px)",
-                      lineHeight: 1.22,
-                      fontWeight: 300,
-                      letterSpacing: "-0.01em",
-                      textWrap: "balance",
-                      fontVariationSettings: '"opsz" 36',
-                    }}
-                  >
-                    {noEstasSolo.formLabels.thanks}
-                  </p>
-                </motion.div>
-              )}
             </AnimatePresence>
           </div>
 
@@ -254,6 +167,7 @@ export function NoEstasSolo() {
           </motion.div>
         </div>
       </Container>
+      <TestimonioForm abierto={formAbierto} onCerrar={() => setFormAbierto(false)} />
     </section>
   );
 }

@@ -434,7 +434,8 @@ export const testimonios = {
   },
   // Texto original de cada comentario y qué se corrigió (solo ortografía y puntuación):
   // brief/material/testimonios-encuesta-2026-08.md. Orden: en compu van 2 por fila, así que se
-  // emparejan por largo (los 2 más cortos arriba) para que no quede un hueco al pie de una tarjeta.
+  // emparejan por largo (los 2 más cortos arriba) para que el hueco al pie de la tarjeta más corta
+  // sea el menor posible.
   items: [
     {
       quote: noOrphans(
@@ -644,6 +645,7 @@ export const noEstasSolo = {
   body: noOrphans(
     "Detrás de cada tratamiento hay una historia parecida a la tuya. Si ya pasaste por el proceso, dejá unas palabras para quien recién empieza el camino."
   ),
+  // "dejar" abre el formulario de testimonios (el mismo de la sección Testimonios)
   cta: {
     leer: "Leer un mensaje",
     dejar: "Dejar un mensaje",
@@ -652,13 +654,6 @@ export const noEstasSolo = {
   // ejemplo (en latín, con firma) se sacaron cuando llegaron los comentarios reales, que van en la
   // sección de abajo (Testimonios). Solo se cargan mensajes reales y con autorización.
   mensajesEntrantes: [] as { texto: string; autor: string }[],
-  formLabels: {
-    placeholder: "Dejá unas palabras que quieras que otra persona lea cuando llegue acá…",
-    submit: "Compartir mensaje",
-    thanks: noOrphans(
-      "Gracias por dejar un mensaje. Cuando alguien más llegue hasta acá, tu mensaje lo va a estar esperando."
-    ),
-  },
 };
 
 // Preguntas y respuestas del equipo (PDF de ajustes 2026-09-24), en 3 grupos.

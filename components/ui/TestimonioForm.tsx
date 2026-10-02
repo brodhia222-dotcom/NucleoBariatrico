@@ -147,7 +147,8 @@ export function TestimonioForm({ abierto, onCerrar }: { abierto: boolean; onCerr
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 30 }}
             transition={{ type: "spring", stiffness: 260, damping: 30 }}
-            className="relative z-10 flex max-h-[92dvh] w-full max-w-2xl flex-col overflow-hidden rounded-t-[var(--radius-2xl)] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] shadow-[var(--shadow-lg)] sm:rounded-[var(--radius-2xl)]"
+            // El color del texto va fijo acá: la ventana también se abre desde una sección de fondo oscuro
+            className="relative z-10 flex max-h-[92dvh] w-full max-w-2xl flex-col overflow-hidden rounded-t-[var(--radius-2xl)] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] text-left text-[color:var(--ink)] shadow-[var(--shadow-lg)] sm:rounded-[var(--radius-2xl)]"
           >
             <button
               type="button"
