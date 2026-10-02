@@ -113,6 +113,14 @@ Lo que pidió o aprobó el cliente (o Fede para este cliente). No se repite en o
 - El mail info@nucleobariatrico.com.ar no se muestra hasta que la casilla exista (`brand.email = null`). Al crearla hay que cargarlo ahí.
 - Google: sigue bloqueado hasta conectar el dominio y volver a publicar.
 
+## Vista previa al compartir el link (2026-10-02, rama v9-vista-previa; pedido de Fede: "se ve medio fea, no se entiende")
+- El problema: WhatsApp en la compu, y varias apps en su vista chica, muestran solo el cuadrado del medio de la imagen para compartir, a unos 114 px de lado. La imagen anterior tenía el logo arriba a la izquierda y el título contra la izquierda: en ese cuadrado quedaban pedazos de letras ("lud / za acá.").
+- Imagen nueva: violeta de la marca liso, todo centrado y adentro del cuadrado del medio. Logo vertical en crema (isotipo, "nucleo", "bariátrico") y, debajo, "Tu salud / empieza acá." como en el hero, con "acá." en naranja. Se sacaron el rubro y las sedes: a ese tamaño eran una raya, y el rubro ya lo dice el texto que WhatsApp pone al lado.
+- Se probaron 14 variantes simuladas adentro del mensaje, sobre la burbuja oscura y la clara: el fondo crema se pierde sobre la burbuja clara, el lema en 1 renglón no se lee en chico, el logo horizontal grande compite con el lema y el logo solo deja la imagen grande sin nada de la web.
+- Se usa el logo vertical porque entra en un cuadrado y trae "bariátrico" con tilde. El horizontal (barra de arriba y pie del sitio) dice "bariatrico" sin tilde: así viene en los archivos del cliente; se le avisó a Fede.
+- El título y la descripción de la vista previa no cambiaron.
+- WhatsApp guarda la vista previa de cada link: los mensajes ya enviados no cambian y, para ver la nueva enseguida, sirve mandar el link con `?2` al final.
+
 ## Técnico
 - Revisión de seguridad del 2026-10-02 (pedido de Fede al publicar): Next pasó de 16.2.6 a 16.3.8 por avisos de seguridad críticos en las versiones anteriores, y `npm audit` quedó en 0. Se sumaron cabeceras básicas en `next.config.ts` (X-Content-Type-Options, X-Frame-Options, Referrer-Policy, Permissions-Policy); el https obligatorio lo agrega Vercel. No hay claves en el repositorio ni en su historial. Las 34 pantallas del recorrido quedaron iguales después de actualizar.
 - robots en noindex hasta el lanzamiento real.
