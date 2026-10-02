@@ -5,6 +5,7 @@ import { LenisProvider } from "@/components/LenisProvider";
 import { Analytics } from "@/components/Analytics";
 import { WhatsAppFloat } from "@/components/ui/WhatsAppFloat";
 import { brand } from "@/lib/copy";
+import { publicado } from "@/lib/entorno";
 import "./globals.css";
 
 // Base de las URLs para compartir. En Vercel usa el dominio real del deploy (el de producción, o el link del
@@ -15,9 +16,6 @@ const sitio =
     : process.env.VERCEL_BRANCH_URL
       ? `https://${process.env.VERCEL_BRANCH_URL}`
       : `https://${brand.domain}`;
-
-// Google: solo se habilita en el sitio publicado. Los links de prueba y la compu local no se indexan.
-const enProduccion = process.env.VERCEL_ENV === "production";
 
 export const metadata: Metadata = {
   metadataBase: new URL(sitio),
@@ -52,7 +50,8 @@ export const metadata: Metadata = {
     locale: "es_AR",
     type: "website",
   },
-  robots: enProduccion ? { index: true, follow: true } : { index: false, follow: false },
+  // Google: solo se habilita en el sitio publicado con su dominio (ver lib/entorno.ts)
+  robots: publicado ? { index: true, follow: true } : { index: false, follow: false },
 };
 
 const jsonLd = {

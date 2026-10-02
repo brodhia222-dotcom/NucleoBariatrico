@@ -103,7 +103,7 @@ Lo que pidió o aprobó el cliente (o Fede para este cliente). No se repite en o
 - El equipo aprobó la v7 (vía Fede). Menú: queda el estilo "Adaptativo", el que viene al entrar. Paleta: queda la original del manual (índigo, beige y naranja), que es la que se vio siempre al entrar.
 - Se sacaron los dos probadores (Paleta y Nav) y todo su código: el sitio ya no lee ninguna elección guardada en el navegador, así que quien los haya usado vuelve a ver el diseño aprobado.
 - Mail de consultas confirmado por el equipo: info@nucleobariatrico.com.ar. Se muestra en Contacto y en el pie y es el destino de los 2 formularios. Remitente de los avisos: "Nucleo Bariátrico <web@nucleobariatrico.com.ar>" (hay que verificar el dominio en Resend). En Vercel solo hace falta cargar RESEND_API_KEY.
-- Google: el sitio publicado se puede indexar (etiqueta robots y robots.txt); los links de prueba y la compu local siguen bloqueados. Depende de VERCEL_ENV=production.
+- Google: el sitio publicado se puede indexar (etiqueta robots y robots.txt); los links de prueba, la compu local y la producción de Vercel mientras no tenga conectado el dominio siguen bloqueados (`lib/entorno.ts`). Como se resuelve al construir, después de conectar el dominio hay que volver a publicar.
 - Dominio registrado el 2026-10-02 a nombre de Sergio (nucleobariatrico.com.ar, activo, vence el 2027-10-02). Falta delegarlo y conectarlo.
 - Antes de pasar esta rama a `main` (producción): OK de Fede, proyecto de Vercel en su cuenta Pro, dominio conectado, casilla info@ funcionando y RESEND_API_KEY cargada.
 

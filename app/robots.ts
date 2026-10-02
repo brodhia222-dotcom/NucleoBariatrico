@@ -1,12 +1,11 @@
 import type { MetadataRoute } from "next";
 import { brand } from "@/lib/copy";
+import { publicado } from "@/lib/entorno";
 
-// Google solo puede recorrer el sitio publicado. Los links de prueba siguen bloqueados.
-const enProduccion = process.env.VERCEL_ENV === "production";
-
+// Google solo puede recorrer el sitio publicado con su dominio. Todo lo demás sigue bloqueado.
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: [enProduccion ? { userAgent: "*", allow: "/" } : { userAgent: "*", disallow: "/" }],
+    rules: [publicado ? { userAgent: "*", allow: "/" } : { userAgent: "*", disallow: "/" }],
     sitemap: `https://${brand.domain}/sitemap.xml`,
   };
 }
