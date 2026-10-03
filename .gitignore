@@ -41,4 +41,5 @@ yarn-error.log*
 next-env.d.ts
 
 # informes y capturas del QA de /nueva-web
-/brief/qa/
+# Material del cliente: notas, planillas y datos de personas. No va al repositorio.
+brief/

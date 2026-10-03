@@ -31,6 +31,8 @@ const ContactSchema = z.object({
   imcCategoria: z.string().max(40).optional(),
   peso: z.number().positive().max(400).optional(),
   altura: z.number().positive().max(260).optional(),
+  // Campo trampa: invisible para las personas, lo completan los bots.
+  website: z.string().max(200).optional().default(""),
 });
 
 function escapeHtml(s: string): string {
@@ -110,13 +112,14 @@ export async function POST(req: NextRequest) {
   }
 
   const parsed = ContactSchema.safeParse(raw);
+  // Sin detalle hacia afuera: el listado de campos inválidos le da el mapa a un bot.
   if (!parsed.success) {
-    return NextResponse.json(
-      { error: "invalid_input", issues: parsed.error.issues },
-      { status: 400 },
-    );
+    return NextResponse.json({ error: "invalid_input" }, { status: 400 });
   }
   const data = parsed.data;
+
+  // Cayó en la trampa: se responde bien para no darle pistas, pero no se envía nada.
+  if (data.website) return NextResponse.json({ ok: true });
 
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.CONTACT_TO_EMAIL ?? brand.email;
@@ -129,7 +132,8 @@ export async function POST(req: NextRequest) {
       console.error(`[contact]: falta RESEND_API_KEY o la casilla de destino`);
       return NextResponse.json({ ok: false, error: "No configurado" }, { status: 503 });
     }
-    console.log("[contact:dev] payload", data);
+    // Nunca se registran los datos de la persona (incluyen peso, altura e IMC).
+    console.log("[contact:dev] consulta recibida, no se envía: falta RESEND_API_KEY o casilla");
     return NextResponse.json({ ok: true, devMode: true });
   }
 
@@ -143,11 +147,12 @@ export async function POST(req: NextRequest) {
       html: renderEmail(data),
     });
     if (result.error) {
-      return NextResponse.json({ error: result.error.message }, { status: 502 });
+      console.error("[contact] Resend:", result.error.message);
+      return NextResponse.json({ error: "No se pudo enviar la consulta" }, { status: 502 });
     }
     return NextResponse.json({ ok: true });
   } catch (err) {
-    const message = err instanceof Error ? err.message : "send_failed";
-    return NextResponse.json({ error: message }, { status: 500 });
+    console.error("[contact] error al enviar:", err instanceof Error ? err.message : err);
+    return NextResponse.json({ error: "No se pudo enviar la consulta" }, { status: 500 });
   }
 }

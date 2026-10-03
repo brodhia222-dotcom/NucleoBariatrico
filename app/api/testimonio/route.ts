@@ -88,7 +88,8 @@ export async function POST(req: NextRequest) {
     consentimiento: form.get("consentimiento"),
   });
   if (!parsed.success) {
-    return NextResponse.json({ error: "invalid_input", issues: parsed.error.issues }, { status: 400 });
+    // Sin detalle hacia afuera: el listado de campos inválidos le da el mapa a un bot.
+    return NextResponse.json({ error: "invalid_input" }, { status: 400 });
   }
 
   const foto = form.get("foto");
@@ -111,7 +112,8 @@ export async function POST(req: NextRequest) {
       console.error(`[testimonio]: falta RESEND_API_KEY o la casilla de destino`);
       return NextResponse.json({ ok: false, error: "No configurado" }, { status: 503 });
     }
-    console.log("[testimonio:dev]", { ...parsed.data, foto: adjunto ? `${adjunto.content.length} bytes` : null });
+    // Nunca se registran los datos de la persona ni su testimonio.
+    console.log("[testimonio:dev] testimonio recibido, no se envía: falta la clave o la casilla");
     return NextResponse.json({ ok: true, devMode: true });
   }
 
@@ -124,10 +126,13 @@ export async function POST(req: NextRequest) {
       html: renderEmail(parsed.data, !!adjunto),
       attachments: adjunto ? [adjunto] : undefined,
     });
-    if (result.error) return NextResponse.json({ error: result.error.message }, { status: 502 });
+    if (result.error) {
+      console.error("[testimonio] Resend:", result.error.message);
+      return NextResponse.json({ error: "No se pudo enviar el testimonio" }, { status: 502 });
+    }
     return NextResponse.json({ ok: true });
   } catch (err) {
-    const message = err instanceof Error ? err.message : "send_failed";
-    return NextResponse.json({ error: message }, { status: 500 });
+    console.error("[testimonio] error al enviar:", err instanceof Error ? err.message : err);
+    return NextResponse.json({ error: "No se pudo enviar el testimonio" }, { status: 500 });
   }
 }
